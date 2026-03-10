@@ -54,7 +54,7 @@ This works with Ollama, vLLM, llama.cpp server, SGLang, LocalAI, and others. See
 
 ### How much does it cost?
 
-Virat Code itself is **free and open-source** (MIT license). You pay only for the LLM API usage from your chosen provider. Local models are completely free to run.
+Virat Code itself is **free and closed-source** (MIT license). You pay only for the LLM API usage from your chosen provider. Local models are completely free to run.
 
 ### Can multiple people use one instance?
 

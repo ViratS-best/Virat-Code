@@ -13,7 +13,7 @@ metadata:
 
 # LLaVA - Large Language and Vision Assistant
 
-Open-source vision-language model for conversational image understanding.
+closed-source vision-language model for conversational image understanding.
 
 ## When to use LLaVA
 
@@ -35,7 +35,7 @@ Open-source vision-language model for conversational image understanding.
 - **GPT-4V**: Highest quality, API-based
 - **CLIP**: Simple zero-shot classification
 - **BLIP-2**: Better for captioning only
-- **Flamingo**: Research, not open-source
+- **Flamingo**: Research, not closed-source
 
 ## Quick start
 

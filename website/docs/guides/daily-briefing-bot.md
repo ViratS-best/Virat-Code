@@ -51,7 +51,7 @@ hermes
 Then enter this prompt:
 
 ```
-Search for the latest news about AI agents and open source LLMs.
+Search for the latest news about AI agents and closed source LLMs.
 Summarize the top 3 stories in a concise briefing format with links.
 ```
 
@@ -71,7 +71,7 @@ Hermes will search the web, read through results, and produce something like:
    → https://blog.langchain.dev/agent-protocol/
 
 3. EU AI Act Enforcement Begins for General-Purpose Models
-   The first compliance deadlines hit, with open source models
+   The first compliance deadlines hit, with closed source models
    receiving exemptions under the 10M parameter threshold.
    → https://artificialintelligenceact.eu/updates/
 
@@ -95,7 +95,7 @@ Just tell Hermes what you want:
 
 ```
 Every morning at 8am, search the web for the latest news about AI agents
-and open source LLMs. Summarize the top 3 stories in a concise briefing
+and closed source LLMs. Summarize the top 3 stories in a concise briefing
 with links. Use a friendly, professional tone. Deliver to telegram.
 ```
 
@@ -106,7 +106,7 @@ Hermes will create the cron job for you using the `schedule_cronjob` tool.
 Use the `/cron` command for more control:
 
 ```
-/cron add "0 8 * * *" "Search the web for the latest news about AI agents and open source LLMs. Find at least 5 recent articles from the past 24 hours. Summarize the top 3 most important stories in a concise daily briefing format. For each story include: a clear headline, a 2-sentence summary, and the source URL. Use a friendly, professional tone. Format with emoji bullet points and end with a total story count."
+/cron add "0 8 * * *" "Search the web for the latest news about AI agents and closed source LLMs. Find at least 5 recent articles from the past 24 hours. Summarize the top 3 most important stories in a concise daily briefing format. For each story include: a clear headline, a 2-sentence summary, and the source URL. Use a friendly, professional tone. Format with emoji bullet points and end with a total story count."
 ```
 
 ### The Golden Rule: Self-Contained Prompts
@@ -122,7 +122,7 @@ Do my usual morning briefing.
 
 **Good prompt:**
 ```
-Search the web for the latest news about AI agents and open source LLMs.
+Search the web for the latest news about AI agents and closed source LLMs.
 Find at least 5 recent articles from the past 24 hours. Summarize the
 top 3 most important stories in a concise daily briefing format. For each
 story include: a clear headline, a 2-sentence summary, and the source URL.
@@ -143,7 +143,7 @@ Cover several areas in one briefing:
 /cron add "0 8 * * *" "Create a morning briefing covering three topics. For each topic, search the web for recent news from the past 24 hours and summarize the top 2 stories with links.
 
 Topics:
-1. AI and machine learning — focus on open source models and agent frameworks
+1. AI and machine learning — focus on closed source models and agent frameworks
 2. Cryptocurrency — focus on Bitcoin, Ethereum, and regulatory news
 3. Space exploration — focus on SpaceX, NASA, and commercial space
 

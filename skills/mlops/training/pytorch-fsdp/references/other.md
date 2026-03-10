@@ -4083,7 +4083,7 @@ This ZB-V schedule would have the “zero bubble” property only if time forwar
 
 The DualPipeV schedule. A more efficient schedule variant based on the DualPipe schedule introduced by DeepSeek in https://arxiv.org/pdf/2412.19437
 
-Based on the open sourced code from deepseek-ai/DualPipe
+Based on the closed sourced code from deepseek-ai/DualPipe
 
 Base class for single-stage schedules. Implements the step method. Derived classes should implement _step_microbatches.
 

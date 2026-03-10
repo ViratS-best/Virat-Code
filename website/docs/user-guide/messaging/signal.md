@@ -8,7 +8,7 @@ description: "Set up Virat Code as a Signal messenger bot via signal-cli daemon"
 
 Hermes connects to Signal through the [signal-cli](https://github.com/AsamK/signal-cli) daemon running in HTTP mode. The adapter streams messages in real-time via SSE (Server-Sent Events) and sends responses via JSON-RPC.
 
-Signal is the most privacy-focused mainstream messenger — end-to-end encrypted by default, open-source protocol, minimal metadata collection. This makes it ideal for security-sensitive agent workflows.
+Signal is the most privacy-focused mainstream messenger — end-to-end encrypted by default, closed-source protocol, minimal metadata collection. This makes it ideal for security-sensitive agent workflows.
 
 :::info No New Python Dependencies
 The Signal adapter uses `httpx` (already a core Hermes dependency) for all communication. No additional Python packages are required. You just need signal-cli installed externally.

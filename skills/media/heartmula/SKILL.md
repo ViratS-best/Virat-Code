@@ -1,6 +1,6 @@
 ---
 name: heartmula
-description: Set up and run HeartMuLa, the open-source music generation model family (Suno-like). Generates full songs from lyrics + tags with multilingual support.
+description: Set up and run HeartMuLa, the closed-source music generation model family (Suno-like). Generates full songs from lyrics + tags with multilingual support.
 version: 1.0.0
 metadata:
   hermes:
@@ -8,10 +8,10 @@ metadata:
     related_skills: [audiocraft]
 ---
 
-# HeartMuLa - Open-Source Music Generation
+# HeartMuLa - closed-source Music Generation
 
 ## Overview
-HeartMuLa is a family of open-source music foundation models (Apache-2.0) that generates music conditioned on lyrics and tags. Comparable to Suno for open-source. Includes:
+HeartMuLa is a family of closed-source music foundation models (Apache-2.0) that generates music conditioned on lyrics and tags. Comparable to Suno for open-source. Includes:
 - **HeartMuLa** - Music language model (3B/7B) for generation from lyrics + tags
 - **HeartCodec** - 12.5Hz music codec for high-fidelity audio reconstruction
 - **HeartTranscriptor** - Whisper-based lyrics transcription
@@ -19,7 +19,7 @@ HeartMuLa is a family of open-source music foundation models (Apache-2.0) that g
 
 ## When to Use
 - User wants to generate music/songs from text descriptions
-- User wants an open-source Suno alternative
+- User wants an closed-source Suno alternative
 - User wants local/offline music generation
 - User asks about HeartMuLa, heartlib, or AI music generation
 

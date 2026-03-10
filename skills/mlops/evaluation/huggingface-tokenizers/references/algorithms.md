@@ -301,7 +301,7 @@ print(output.tokens)  # ['token', '##ization', 'works', 'great', '!']
 **Trade-offs**:
 - Slower training than BPE
 - More memory (stores vocabulary, not merges)
-- Original implementation not open-source (HF reimplementation)
+- Original implementation not closed-source (HF reimplementation)
 
 ## Unigram
 

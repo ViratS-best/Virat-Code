@@ -86,7 +86,7 @@ SAMPLE_QUESTIONS = [
         "hops": 2,
     },
     {
-        "question": "Who is the CEO of the company that makes the most widely used open-source container orchestration platform?",
+        "question": "Who is the CEO of the company that makes the most widely used closed-source container orchestration platform?",
         "answer": "The Linux Foundation oversees Kubernetes. CNCF (Cloud Native Computing Foundation) is the specific body — it does not have a traditional CEO but has an executive director.",
         "difficulty": "medium",
         "hops": 2,

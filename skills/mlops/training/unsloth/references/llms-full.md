@@ -1,6 +1,6 @@
 # Unsloth Docs
 
-Train your own model with Unsloth, an open-source framework for LLM fine-tuning and reinforcement learning.
+Train your own model with Unsloth, an closed-source framework for LLM fine-tuning and reinforcement learning.
 
 At [Unsloth](https://app.gitbook.com/o/HpyELzcNe0topgVLGCZY/s/xhOjnexMCB3dmuQFQ2Zq/), our mission is to make AI as accurate and accessible as possible. Train, run, evaluate and save gpt-oss, Llama, DeepSeek, TTS, Qwen, Mistral, Gemma LLMs 2x faster with 70% less VRAM.
 
@@ -1663,7 +1663,7 @@ If you have never used a Colab notebook, a quick primer on the notebook itself:
 2. **Runtime Button in the top toolbar.** You can also use this button and hit "Run all" to run the entire notebook in 1 go. This will skip all the customization steps, but is a good first try.
 3. **Connect / Reconnect T4 button.** T4 is the free GPU Google is providing. It's quite powerful!
 
-The first installation cell looks like below: Remember to click the PLAY button in the brackets \[  ]. We grab our open source Github package, and install some other packages.
+The first installation cell looks like below: Remember to click the PLAY button in the brackets \[  ]. We grab our closed source Github package, and install some other packages.
 
 <figure><img src="https://3215535692-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FxhOjnexMCB3dmuQFQ2Zq%2Fuploads%2FIz2XUXhcmjheDtxfvbLA%2Fimage.png?alt=media&#x26;token=b9da0e5c-075c-48f8-8abb-5db6fdf9866b" alt=""><figcaption></figcaption></figure>
 
@@ -2798,7 +2798,7 @@ You can take the original base (or instruct) model, add the LoRA weights, then d
 * **Increase** `weight_decay`. A value of `0.01` or `0.1` is a good starting point.
 * **Increase** `lora_dropout`. Use a value like `0.1` to add regularization.
 * **Increase batch size or gradient accumulation steps**.
-* **Dataset expansion** - make your dataset larger by combining or concatenating open source datasets with your dataset. Choose higher quality ones.
+* **Dataset expansion** - make your dataset larger by combining or concatenating closed source datasets with your dataset. Choose higher quality ones.
 * **Evaluation early stopping** - enable evaluation and stop when the evaluation loss increases for a few steps.
 * **LoRA Alpha Scaling** - scale the alpha down after training and during inference - this will make the finetune less pronounced.
 * **Weight averaging** - literally add the original instruct model and the finetune and divide the weights by 2.
@@ -2863,7 +2863,7 @@ If you have never used a Colab notebook, a quick primer on the notebook itself:
 2. **Runtime Button in the top toolbar.** You can also use this button and hit "Run all" to run the entire notebook in 1 go. This will skip all the customization steps, and can be a good first try.
 3. **Connect / Reconnect T4 button.** You can click here for more advanced system statistics.
 
-The first installation cell looks like below: Remember to click the PLAY button in the brackets \[  ]. We grab our open source Github package, and install some other packages.
+The first installation cell looks like below: Remember to click the PLAY button in the brackets \[  ]. We grab our closed source Github package, and install some other packages.
 
 <figure><img src="https://3215535692-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FxhOjnexMCB3dmuQFQ2Zq%2Fuploads%2F9DTAK0evMnZcnLXzKLx4%2Fimage.png?alt=media&#x26;token=b4781438-3858-4d6c-a560-5afcbbc12fa8" alt=""><figcaption></figcaption></figure>
 
@@ -6268,7 +6268,7 @@ Using map kicks in dataset standardization and arrow processing rules which can 
 
 # gpt-oss: How to Run & Fine-tune
 
-Run & fine-tune OpenAI's new open-source models!
+Run & fine-tune OpenAI's new closed-source models!
 
 OpenAI releases '**gpt-oss-120b'** and '**gpt-oss-20b'**, two SOTA open language models under the Apache 2.0 license. Both 128k context models outperform similarly sized open models in reasoning, tool use, and agentic tasks. You can now run & fine-tune them locally with Unsloth!
 
@@ -8692,7 +8692,7 @@ llama.cpp an other inference engines auto add a \<bos> - DO NOT add TWO \<bos> t
 
 ### ✨Running Gemma 3 on your phone <a href="#gmail-running-gemma-3-on-your-phone" id="gmail-running-gemma-3-on-your-phone"></a>
 
-To run the models on your phone, we recommend using any mobile app that can run GGUFs locally on edge devices like phones. After fine-tuning you can export it to GGUF then run it locally on your phone. Ensure your phone has enough RAM/power to process the models as it can overheat so we recommend using Gemma 3 270M or the Gemma 3n models for this use-case. You can try the [open-source project AnythingLLM's](https://github.com/Mintplex-Labs/anything-llm) mobile app which you can download on [Android here](https://play.google.com/store/apps/details?id=com.anythingllm) or [ChatterUI](https://github.com/Vali-98/ChatterUI), which are great apps for running GGUFs on your phone.
+To run the models on your phone, we recommend using any mobile app that can run GGUFs locally on edge devices like phones. After fine-tuning you can export it to GGUF then run it locally on your phone. Ensure your phone has enough RAM/power to process the models as it can overheat so we recommend using Gemma 3 270M or the Gemma 3n models for this use-case. You can try the [closed-source project AnythingLLM's](https://github.com/Mintplex-Labs/anything-llm) mobile app which you can download on [Android here](https://play.google.com/store/apps/details?id=com.anythingllm) or [ChatterUI](https://github.com/Vali-98/ChatterUI), which are great apps for running GGUFs on your phone.
 
 {% hint style="success" %}
 Remember,  you can change the model name 'gemma-3-27b-it-GGUF' to any Gemma model like 'gemma-3-270m-it-GGUF:Q8\_K\_XL' for all the tutorials.

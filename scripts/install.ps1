@@ -40,7 +40,7 @@ function Write-Banner {
     Write-Host "┌─────────────────────────────────────────────────────────┐" -ForegroundColor Magenta
     Write-Host "│             ⚕ Virat Code Installer                   │" -ForegroundColor Magenta
     Write-Host "├─────────────────────────────────────────────────────────┤" -ForegroundColor Magenta
-    Write-Host "│  An open source AI agent by Virat Sisodiya.              │" -ForegroundColor Magenta
+    Write-Host "│  An closed source AI agent by Virat Sisodiya.              │" -ForegroundColor Magenta
     Write-Host "└─────────────────────────────────────────────────────────┘" -ForegroundColor Magenta
     Write-Host ""
 }

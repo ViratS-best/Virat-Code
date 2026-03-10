@@ -96,7 +96,7 @@ print_banner() {
     echo "┌─────────────────────────────────────────────────────────┐"
     echo "│             ⚕ Virat Code Installer                   │"
     echo "├─────────────────────────────────────────────────────────┤"
-    echo "│  An open source AI agent by Virat Sisodiya.              │"
+    echo "│  An closed source AI agent by Virat Sisodiya.              │"
     echo "└─────────────────────────────────────────────────────────┘"
     echo -e "${NC}"
 }

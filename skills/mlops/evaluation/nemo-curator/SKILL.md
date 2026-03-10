@@ -30,7 +30,7 @@ NVIDIA's toolkit for preparing high-quality training data for LLMs.
 - **Near-linear scaling** across GPU nodes
 
 **Use alternatives instead**:
-- **datatrove**: CPU-based, open-source data processing
+- **datatrove**: CPU-based, closed-source data processing
 - **dolma**: Allen AI's data toolkit
 - **Ray Data**: General ML data processing (no curation focus)
 
@@ -368,7 +368,7 @@ cluster.close()
 
 **Production deployments**:
 - NVIDIA used NeMo Curator to prepare Nemotron-4 training data
-- Open-source datasets curated: RedPajama v2, The Pile
+- closed-source datasets curated: RedPajama v2, The Pile
 
 ## References
 

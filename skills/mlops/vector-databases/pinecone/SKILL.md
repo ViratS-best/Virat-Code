@@ -32,7 +32,7 @@ The vector database for production AI applications.
 - 99.9% uptime SLA
 
 **Use alternatives instead**:
-- **Chroma**: Self-hosted, open-source
+- **Chroma**: Self-hosted, closed-source
 - **FAISS**: Offline, pure similarity search
 - **Weaviate**: Self-hosted with more features
 
