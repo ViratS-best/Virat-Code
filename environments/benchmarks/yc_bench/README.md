@@ -42,14 +42,14 @@ bash environments/benchmarks/yc_bench/run_eval.sh \
 ### Architecture
 
 ```
-Virat CodeAgentLoop (our agent)
+ViratCodeAgentLoop (our agent)
   -> terminal tool -> subprocess("yc-bench company status") -> JSON output
   -> terminal tool -> subprocess("yc-bench task accept --task-id X") -> JSON
   -> terminal tool -> subprocess("yc-bench sim resume") -> JSON (advance time)
   -> ... (100-500 turns per run)
 ```
 
-The environment initialises the simulation via `yc-bench sim init` (NOT `yc-bench run`, which would start yc-bench's own built-in agent loop). Our `Virat CodeAgentLoop` then drives all interaction through CLI commands.
+The environment initialises the simulation via `yc-bench sim init` (NOT `yc-bench run`, which would start yc-bench's own built-in agent loop). Our `ViratCodeAgentLoop` then drives all interaction through CLI commands.
 
 ### Simulation Mechanics
 

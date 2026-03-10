@@ -24,7 +24,7 @@ import virat_code_time
 # virat_code_time.now() — core helper
 # =========================================================================
 
-class TestVirat CodeTimeNow:
+class TestViratCodeTimeNow:
     """Test the timezone-aware now() helper."""
 
     def setup_method(self):

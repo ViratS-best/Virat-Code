@@ -654,7 +654,7 @@ class TestPreprocessImagesWithVision:
 
     @pytest.fixture
     def cli(self):
-        """Minimal Virat CodeCLI with mocked internals."""
+        """Minimal ViratCodeCLI with mocked internals."""
         with patch("cli.load_cli_config") as mock_cfg:
             mock_cfg.return_value = {
                 "model": {"default": "test/model", "base_url": "http://x", "provider": "auto"},
@@ -669,8 +669,8 @@ class TestPreprocessImagesWithVision:
             }
             with patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-key"}):
                 with patch("cli.CLI_CONFIG", mock_cfg.return_value):
-                    from cli import Virat CodeCLI
-                    cli_obj = Virat CodeCLI.__new__(Virat CodeCLI)
+                    from cli import ViratCodeCLI
+                    cli_obj = ViratCodeCLI.__new__(ViratCodeCLI)
                     # Manually init just enough state
                     cli_obj._attached_images = []
                     cli_obj._image_counter = 0
@@ -767,8 +767,8 @@ class TestTryAttachClipboardImage:
 
     @pytest.fixture
     def cli(self):
-        from cli import Virat CodeCLI
-        cli_obj = Virat CodeCLI.__new__(Virat CodeCLI)
+        from cli import ViratCodeCLI
+        cli_obj = ViratCodeCLI.__new__(ViratCodeCLI)
         cli_obj._attached_images = []
         cli_obj._image_counter = 0
         return cli_obj

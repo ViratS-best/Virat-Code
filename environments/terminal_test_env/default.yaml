@@ -18,7 +18,7 @@ env:
   steps_per_eval: 3
   terminal_backend: "modal"
   tool_call_parser: "Virat-Code"
-  tokenizer_name: "NousResearch/DeepVirat Code-3-Llama-3-3B-Preview"
+  tokenizer_name: "NousResearch/DeepViratCode-3-Llama-3-3B-Preview"
   ensure_scores_are_not_same: false
   use_wandb: false
   system_prompt: >

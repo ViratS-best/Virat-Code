@@ -18,14 +18,14 @@ Benchmarks (eval-only):
     - benchmarks/terminalbench_2/: Terminal-Bench 2.0 evaluation
 """
 
-from environments.agent_loop import AgentResult, Virat CodeAgentLoop
+from environments.agent_loop import AgentResult, ViratCodeAgentLoop
 from environments.tool_context import ToolContext
-from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
+from environments.virat-code_base_env import ViratCodeAgentBaseEnv, ViratCodeAgentEnvConfig
 
 __all__ = [
     "AgentResult",
-    "Virat CodeAgentLoop",
+    "ViratCodeAgentLoop",
     "ToolContext",
-    "Virat CodeAgentBaseEnv",
-    "Virat CodeAgentEnvConfig",
+    "ViratCodeAgentBaseEnv",
+    "ViratCodeAgentEnvConfig",
 ]

@@ -83,7 +83,7 @@ async def cache_image_from_url(url: str, ext: str = ".jpg") -> str:
         response = await client.get(
             url,
             headers={
-                "User-Agent": "Mozilla/5.0 (compatible; Virat CodeAgent/1.0)",
+                "User-Agent": "Mozilla/5.0 (compatible; ViratCodeAgent/1.0)",
                 "Accept": "image/*,*/*;q=0.8",
             },
         )
@@ -163,7 +163,7 @@ async def cache_audio_from_url(url: str, ext: str = ".ogg") -> str:
         response = await client.get(
             url,
             headers={
-                "User-Agent": "Mozilla/5.0 (compatible; Virat CodeAgent/1.0)",
+                "User-Agent": "Mozilla/5.0 (compatible; ViratCodeAgent/1.0)",
                 "Accept": "audio/*,*/*;q=0.8",
             },
         )

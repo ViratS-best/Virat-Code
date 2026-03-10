@@ -58,9 +58,9 @@ def test_get_codex_model_ids_falls_back_to_curated_defaults(tmp_path, monkeypatc
 
 
 def _make_cli(model="anthropic/claude-opus-4.6", **kwargs):
-    """Create a Virat CodeCLI with minimal mocking."""
+    """Create a ViratCodeCLI with minimal mocking."""
     import cli as _cli_mod
-    from cli import Virat CodeCLI
+    from cli import ViratCodeCLI
 
     _clean_config = {
         "model": {
@@ -78,7 +78,7 @@ def _make_cli(model="anthropic/claude-opus-4.6", **kwargs):
         patch.dict("os.environ", clean_env, clear=False),
         patch.dict(_cli_mod.__dict__, {"CLI_CONFIG": _clean_config}),
     ):
-        cli = Virat CodeCLI(model=model, **kwargs)
+        cli = ViratCodeCLI(model=model, **kwargs)
     return cli
 
 
@@ -152,8 +152,8 @@ class TestNormalizeModelForProvider:
             patch.dict("os.environ", {"LLM_MODEL": "", "VIRAT_CODE_MAX_ITERATIONS": ""}, clear=False),
             patch.dict(_cli_mod.__dict__, {"CLI_CONFIG": _clean_config}),
         ):
-            from cli import Virat CodeCLI
-            cli = Virat CodeCLI()
+            from cli import ViratCodeCLI
+            cli = ViratCodeCLI()
 
         assert cli._model_is_default is True
         with patch(
@@ -183,8 +183,8 @@ class TestNormalizeModelForProvider:
             patch.dict("os.environ", {"LLM_MODEL": "", "VIRAT_CODE_MAX_ITERATIONS": ""}, clear=False),
             patch.dict(_cli_mod.__dict__, {"CLI_CONFIG": _clean_config}),
         ):
-            from cli import Virat CodeCLI
-            cli = Virat CodeCLI()
+            from cli import ViratCodeCLI
+            cli = ViratCodeCLI()
 
         with patch(
             "virat_code_cli.codex_models.get_codex_model_ids",

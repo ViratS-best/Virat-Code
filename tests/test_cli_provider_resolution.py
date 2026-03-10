@@ -91,12 +91,12 @@ def test_virat_code_cli_init_does_not_eagerly_resolve_runtime_provider(monkeypat
 
     def _unexpected_runtime_resolve(**kwargs):
         calls["count"] += 1
-        raise AssertionError("resolve_runtime_provider should not be called in Virat CodeCLI.__init__")
+        raise AssertionError("resolve_runtime_provider should not be called in ViratCodeCLI.__init__")
 
     monkeypatch.setattr("virat_code_cli.runtime_provider.resolve_runtime_provider", _unexpected_runtime_resolve)
     monkeypatch.setattr("virat_code_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
-    shell = cli.Virat CodeCLI(model="gpt-5", compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(model="gpt-5", compact=True, max_turns=1)
 
     assert shell is not None
     assert calls["count"] == 0
@@ -126,7 +126,7 @@ def test_runtime_resolution_failure_is_not_sticky(monkeypatch):
     monkeypatch.setattr("virat_code_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
     monkeypatch.setattr(cli, "AIAgent", _DummyAgent)
 
-    shell = cli.Virat CodeCLI(model="gpt-5", compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(model="gpt-5", compact=True, max_turns=1)
 
     assert shell._init_agent() is False
     assert shell._init_agent() is True
@@ -149,7 +149,7 @@ def test_runtime_resolution_rebuilds_agent_on_routing_change(monkeypatch):
     monkeypatch.setattr("virat_code_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
     monkeypatch.setattr("virat_code_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
-    shell = cli.Virat CodeCLI(model="gpt-5", compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(model="gpt-5", compact=True, max_turns=1)
     shell.provider = "openrouter"
     shell.api_mode = "chat_completions"
     shell.base_url = "https://same-endpoint.example/v1"
@@ -187,7 +187,7 @@ def test_codex_provider_replaces_incompatible_default_model(monkeypatch):
         lambda access_token=None: ["gpt-5.2-codex", "gpt-5.1-codex-mini"],
     )
 
-    shell = cli.Virat CodeCLI(compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(compact=True, max_turns=1)
 
     assert shell._model_is_default is True
     assert shell._ensure_runtime_credentials() is True
@@ -218,7 +218,7 @@ def test_codex_provider_trusts_explicit_envvar_model(monkeypatch):
     monkeypatch.setattr("virat_code_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
     monkeypatch.setattr("virat_code_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
-    shell = cli.Virat CodeCLI(compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(compact=True, max_turns=1)
 
     assert shell._model_is_default is False
     assert shell._ensure_runtime_credentials() is True
@@ -247,7 +247,7 @@ def test_codex_provider_preserves_explicit_codex_model(monkeypatch):
     monkeypatch.setattr("virat_code_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
     monkeypatch.setattr("virat_code_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
-    shell = cli.Virat CodeCLI(model="gpt-5.1-codex-mini", compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(model="gpt-5.1-codex-mini", compact=True, max_turns=1)
 
     assert shell._model_is_default is False
     assert shell._ensure_runtime_credentials() is True
@@ -274,7 +274,7 @@ def test_codex_provider_strips_provider_prefix_from_model(monkeypatch):
     monkeypatch.setattr("virat_code_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
     monkeypatch.setattr("virat_code_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
-    shell = cli.Virat CodeCLI(model="openai/gpt-5.3-codex", compact=True, max_turns=1)
+    shell = cli.ViratCodeCLI(model="openai/gpt-5.3-codex", compact=True, max_turns=1)
 
     assert shell._ensure_runtime_credentials() is True
     assert shell.model == "gpt-5.3-codex"

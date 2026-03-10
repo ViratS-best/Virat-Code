@@ -1,6 +1,6 @@
 ---
 name: virat-code-atropos-environments
-description: Build, test, and debug Virat Code RL environments for Atropos training. Covers the Virat CodeAgentBaseEnv interface, reward functions, agent loop integration, evaluation with tools, wandb logging, and the three CLI modes (serve/process/evaluate). Use when creating, reviewing, or fixing RL environments in the Virat Code repo.
+description: Build, test, and debug Virat Code RL environments for Atropos training. Covers the ViratCodeAgentBaseEnv interface, reward functions, agent loop integration, evaluation with tools, wandb logging, and the three CLI modes (serve/process/evaluate). Use when creating, reviewing, or fixing RL environments in the Virat Code repo.
 version: 1.1.0
 author: Virat Code
 license: MIT
@@ -18,7 +18,7 @@ Guide for building RL environments in the Virat Code repo that integrate with th
 
 ```
 Atropos BaseEnv (atroposlib/envs/base.py)
-    └── Virat CodeAgentBaseEnv (environments/virat_code_base_env.py)
+    └── ViratCodeAgentBaseEnv (environments/virat_code_base_env.py)
             ├── Handles agent loop orchestration
             ├── Handles tool resolution per group
             ├── Handles ToolContext for reward verification
@@ -34,7 +34,7 @@ Virat Code environments are special because they run a **multi-turn agent loop w
 | File | Purpose |
 |------|---------|
 | `environments/virat_code_base_env.py` | Base class with agent loop + tool resolution |
-| `environments/agent_loop.py` | `Virat CodeAgentLoop` + `AgentResult` dataclass |
+| `environments/agent_loop.py` | `ViratCodeAgentLoop` + `AgentResult` dataclass |
 | `environments/tool_context.py` | `ToolContext` for reward verification |
 | `environments/tool_call_parsers.py` | Phase 2 tool call parsers (virat-code, mistral, etc.) |
 | `environments/your_env.py` | Your environment implementation |
@@ -151,7 +151,7 @@ The whole point of Virat Code environments is agentic evaluation:
 ```python
 async def evaluate(self, *args, **kwargs) -> None:
     import time, uuid
-    from environments.agent_loop import Virat CodeAgentLoop
+    from environments.agent_loop import ViratCodeAgentLoop
     from environments.tool_context import ToolContext
 
     start_time = time.time()
@@ -165,7 +165,7 @@ async def evaluate(self, *args, **kwargs) -> None:
             messages.append({"role": "system", "content": self.config.system_prompt})
         messages.append({"role": "user", "content": self.format_prompt(item)})
 
-        agent = Virat CodeAgentLoop(
+        agent = ViratCodeAgentLoop(
             server=self.server,
             tool_schemas=tools,
             valid_tool_names=valid_names,
@@ -242,7 +242,7 @@ Config priority: CLI args > YAML file > config_init() defaults.
 
 1. **AgentResult has .messages, not .final_response** — Extract the final response by iterating reversed(result.messages) looking for the last assistant message with content.
 
-2. **evaluate() must use Virat CodeAgentLoop, not chat_completion** — Single-turn chat_completion has no tools. The whole point of Virat Code benchmarks is agentic evaluation with tool use.
+2. **evaluate() must use ViratCodeAgentLoop, not chat_completion** — Single-turn chat_completion has no tools. The whole point of Virat Code benchmarks is agentic evaluation with tool use.
 
 3. **Don't call _llm_judge twice** — If compute_reward already calls it, extract the score from the buffer instead of calling judge separately in evaluate().
 
@@ -284,7 +284,7 @@ Weight correctness (0.6) + tool usage (0.2) + efficiency (0.2) + optional bonuse
 ## Minimum Implementation Checklist
 
 ```python
-class MyEnv(Virat CodeAgentBaseEnv):
+class MyEnv(ViratCodeAgentBaseEnv):
     name = "my-env"
     env_config_cls = MyEnvConfig
 

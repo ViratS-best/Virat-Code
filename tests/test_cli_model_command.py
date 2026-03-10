@@ -2,12 +2,12 @@
 
 from unittest.mock import patch, MagicMock
 
-from cli import Virat CodeCLI
+from cli import ViratCodeCLI
 
 
 class TestModelCommand:
     def _make_cli(self):
-        cli_obj = Virat CodeCLI.__new__(Virat CodeCLI)
+        cli_obj = ViratCodeCLI.__new__(ViratCodeCLI)
         cli_obj.model = "anthropic/claude-opus-4.6"
         cli_obj.agent = object()
         cli_obj.provider = "openrouter"

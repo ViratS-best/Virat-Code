@@ -16,7 +16,7 @@ This directory contains the integration layer between **Virat Code's** tool-call
                     └───────────┬───────────┘
                                 │ inherits
                     ┌───────────┴───────────┐
-                    │  Virat CodeAgentBaseEnv    │  virat_code_base_env.py
+                    │  ViratCodeAgentBaseEnv    │  virat_code_base_env.py
                     │  - Terminal backend    │
                     │  - Tool resolution     │
                     │  - Agent loop          │
@@ -26,7 +26,7 @@ This directory contains the integration layer between **Virat Code's** tool-call
                                 │ inherits
               ┌─────────────────┼─────────────────┐
               │                 │                  │
-     TerminalTestEnv     Virat CodeSweEnv    TerminalBench2EvalEnv
+     TerminalTestEnv     ViratCodeSweEnv    TerminalBench2EvalEnv
      (stack testing)     (SWE training)   (TB2 benchmark eval)
 ```
 
@@ -39,14 +39,14 @@ This directory contains the integration layer between **Virat Code's** tool-call
 - CLI interface with three subcommands: `serve`, `process`, `evaluate`
 - `evaluate_log()` for saving eval results to JSON + samples.jsonl
 
-**Virat CodeAgentBaseEnv** (`virat_code_base_env.py`) extends BaseEnv with Virat Code specifics:
+**ViratCodeAgentBaseEnv** (`virat_code_base_env.py`) extends BaseEnv with Virat Code specifics:
 - Sets `os.environ["TERMINAL_ENV"]` to configure the terminal backend (local, docker, modal, daytona, ssh, singularity)
 - Resolves Virat Code toolsets via `_resolve_tools_for_group()` (calls `get_tool_definitions()` which queries `tools/registry.py`)
 - Implements `collect_trajectory()` which runs the full agent loop and computes rewards
 - Supports two-phase operation (Phase 1: OpenAI server, Phase 2: VLLM ManagedServer)
 - Applies monkey patches for async-safe tool operation at import time
 
-Concrete environments inherit from `Virat CodeAgentBaseEnv` and implement:
+Concrete environments inherit from `ViratCodeAgentBaseEnv` and implement:
 - `setup()` -- Load dataset, initialize state
 - `get_next_item()` -- Return the next item for rollout
 - `format_prompt()` -- Convert a dataset item into the user message
@@ -57,7 +57,7 @@ Concrete environments inherit from `Virat CodeAgentBaseEnv` and implement:
 
 ### Agent Loop (`agent_loop.py`)
 
-`Virat CodeAgentLoop` is the reusable multi-turn agent engine. It runs the same pattern as Virat Code's `run_agent.py`:
+`ViratCodeAgentLoop` is the reusable multi-turn agent engine. It runs the same pattern as Virat Code's `run_agent.py`:
 
 1. Send messages + tools to the API via `server.chat_completion()`
 2. If the response contains `tool_calls`, execute each one via `handle_function_call()` (which delegates to `tools/registry.py`'s `dispatch()`)
@@ -169,8 +169,8 @@ Uses ManagedServer for exact token IDs + logprobs via `/generate`. Client-side t
 environments/
 ├── README.md                     # This file
 ├── __init__.py                   # Package exports
-├── virat_code_base_env.py            # Abstract base (Virat CodeAgentBaseEnv)
-├── agent_loop.py                 # Multi-turn agent engine (Virat CodeAgentLoop)
+├── virat_code_base_env.py            # Abstract base (ViratCodeAgentBaseEnv)
+├── agent_loop.py                 # Multi-turn agent engine (ViratCodeAgentLoop)
 ├── tool_context.py               # Per-rollout tool access for reward functions
 ├── patches.py                    # Async-safety patches for Modal backend
 │
@@ -219,7 +219,7 @@ python environments/terminal_test_env/terminal_test_env.py process \
     --env.data_path_to_save_groups terminal_test_output.jsonl
 ```
 
-### Virat CodeSweEnv (`virat_code_swe_env/`)
+### ViratCodeSweEnv (`virat_code_swe_env/`)
 
 SWE-bench style training environment. The model gets a coding task, uses terminal + file + web tools to solve it, and the reward function runs tests in the same Modal sandbox.
 
@@ -261,16 +261,16 @@ python environments/benchmarks/terminalbench_2/terminalbench2_env.py evaluate \
 ### Training Environment
 
 1. Create a new directory under `environments/`
-2. Create your env file inheriting from `Virat CodeAgentBaseEnv`
+2. Create your env file inheriting from `ViratCodeAgentBaseEnv`
 3. Implement the four abstract methods + `evaluate()`
 
 ```python
-from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
+from environments.virat-code_base_env import ViratCodeAgentBaseEnv, ViratCodeAgentEnvConfig
 
-class MyEnvConfig(Virat CodeAgentEnvConfig):
+class MyEnvConfig(ViratCodeAgentEnvConfig):
     pass  # Add custom fields as needed
 
-class MyEnv(Virat CodeAgentBaseEnv):
+class MyEnv(ViratCodeAgentBaseEnv):
     name = "my-env"
     env_config_cls = MyEnvConfig
 
@@ -313,7 +313,7 @@ if __name__ == "__main__":
 
 For eval benchmarks, follow the pattern in `terminalbench2_env.py`:
 1. Create under `environments/benchmarks/your-benchmark/`
-2. Inherit from `Virat CodeAgentBaseEnv`
+2. Inherit from `ViratCodeAgentBaseEnv`
 3. Set eval-only config: `eval_handling=STOP_TRAIN`, `steps_per_eval=1`, `total_steps=1`
 4. Stub the training methods (`collect_trajectories`, `score`)
 5. Implement `rollout_and_score_eval()` and `evaluate()`

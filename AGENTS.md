@@ -15,7 +15,7 @@ Virat Code/
 ├── run_agent.py          # AIAgent class — core conversation loop
 ├── model_tools.py        # Tool orchestration, _discover_tools(), handle_function_call()
 ├── toolsets.py           # Toolset definitions, _VIRAT_CODE_CORE_TOOLS list
-├── cli.py                # Virat CodeCLI class — interactive CLI orchestrator
+├── cli.py                # ViratCodeCLI class — interactive CLI orchestrator
 ├── virat_code_state.py       # SessionDB — SQLite session store (FTS5 search)
 ├── agent/                # Agent internals
 │   ├── prompt_builder.py     # System prompt assembly
@@ -123,13 +123,13 @@ Messages follow OpenAI format: `{"role": "system/user/assistant/tool", ...}`. Re
 - **KawaiiSpinner** (`agent/display.py`) — animated faces during API calls, `┊` activity feed for tool results
 - `load_cli_config()` in cli.py merges hardcoded defaults + user config YAML
 - **Skin engine** (`virat_code_cli/skin_engine.py`) — data-driven CLI theming; initialized from `display.skin` config key at startup; skins customize banner colors, spinner faces/verbs/wings, tool prefix, response box, branding text
-- `process_command()` is a method on `Virat CodeCLI` (not in commands.py)
+- `process_command()` is a method on `ViratCodeCLI` (not in commands.py)
 - Skill slash commands: `agent/skill_commands.py` scans `~/.virat-code/skills/`, injects as **user message** (not system prompt) to preserve prompt caching
 
 ### Adding CLI Commands
 
 1. Add to `COMMANDS` dict in `virat_code_cli/commands.py`
-2. Add handler in `Virat CodeCLI.process_command()` in `cli.py`
+2. Add handler in `ViratCodeCLI.process_command()` in `cli.py`
 3. For persistent settings, use `save_config_value()` in `cli.py`
 
 ---

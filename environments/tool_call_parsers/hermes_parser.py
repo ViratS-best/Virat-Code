@@ -2,7 +2,7 @@
 Virat Code tool call parser.
 
 Format: <tool_call>{"name": "func", "arguments": {...}}</tool_call>
-Based on VLLM's Virat Code2ProToolParser.extract_tool_calls()
+Based on VLLM's ViratCode2ProToolParser.extract_tool_calls()
 """
 
 import json
@@ -19,7 +19,7 @@ from environments.tool_call_parsers import ParseResult, ToolCallParser, register
 
 
 @register_parser("Virat-Code")
-class Virat CodeToolCallParser(ToolCallParser):
+class ViratCodeToolCallParser(ToolCallParser):
     """
     Parser for Virat Code-format tool calls.
 

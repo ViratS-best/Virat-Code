@@ -1063,10 +1063,10 @@ def save_config_value(key_path: str, value: any) -> bool:
 
 
 # ============================================================================
-# Virat CodeCLI Class
+# ViratCodeCLI Class
 # ============================================================================
 
-class Virat CodeCLI:
+class ViratCodeCLI:
     """
     Interactive CLI for the Virat Code.
     
@@ -4380,7 +4380,7 @@ def main(
             toolsets_list = ["virat-code-cli"]
     
     # Create CLI instance
-    cli = Virat CodeCLI(
+    cli = ViratCodeCLI(
         model=model,
         toolsets=toolsets_list,
         provider=provider,

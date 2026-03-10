@@ -36,7 +36,7 @@ The environment system is built on a three-layer inheritance chain:
                  └───────────┬───────────┘
                              │ inherits
                  ┌───────────┴───────────┐
-                 │  Virat CodeAgentBaseEnv    │  environments/virat_code_base_env.py
+                 │  ViratCodeAgentBaseEnv    │  environments/virat_code_base_env.py
                  │  - Terminal backend    │
                  │  - Tool resolution     │
                  │  - Agent loop engine   │
@@ -45,7 +45,7 @@ The environment system is built on a three-layer inheritance chain:
                              │ inherits
        ┌─────────────────────┼─────────────────────┐
        │                     │                      │
-  TerminalTestEnv     Virat CodeSweEnv     TerminalBench2EvalEnv
+  TerminalTestEnv     ViratCodeSweEnv     TerminalBench2EvalEnv
   (stack testing)    (SWE training)      (benchmark eval)
                                              │
                                     ┌────────┼────────┐
@@ -63,18 +63,18 @@ The foundation from `atroposlib`. Provides:
 - **CLI interface** — three subcommands: `serve`, `process`, `evaluate`
 - **Eval logging** — `evaluate_log()` saves results to JSON + JSONL
 
-### Virat CodeAgentBaseEnv
+### ViratCodeAgentBaseEnv
 
 The Virat Code layer (`environments/virat_code_base_env.py`). Adds:
 - **Terminal backend configuration** — sets `TERMINAL_ENV` for sandboxed execution (local, Docker, Modal, Daytona, SSH, Singularity)
 - **Tool resolution** — `_resolve_tools_for_group()` calls Virat Code's `get_tool_definitions()` to get the right tool schemas based on enabled/disabled toolsets
-- **Agent loop integration** — `collect_trajectory()` runs `Virat CodeAgentLoop` and scores the result
+- **Agent loop integration** — `collect_trajectory()` runs `ViratCodeAgentLoop` and scores the result
 - **Two-phase operation** — Phase 1 (OpenAI server) for eval/SFT, Phase 2 (VLLM ManagedServer) for full RL with logprobs
 - **Async safety patches** — monkey-patches Modal backend to work inside Atropos's event loop
 
 ### Concrete Environments
 
-Your environment inherits from `Virat CodeAgentBaseEnv` and implements five methods:
+Your environment inherits from `ViratCodeAgentBaseEnv` and implements five methods:
 
 | Method | Purpose |
 |--------|---------|
@@ -88,7 +88,7 @@ Your environment inherits from `Virat CodeAgentBaseEnv` and implements five meth
 
 ### Agent Loop
 
-`Virat CodeAgentLoop` (`environments/agent_loop.py`) is the reusable multi-turn agent engine. It runs the same tool-calling pattern as Virat Code's main loop:
+`ViratCodeAgentLoop` (`environments/agent_loop.py`) is the reusable multi-turn agent engine. It runs the same tool-calling pattern as Virat Code's main loop:
 
 1. Send messages + tool schemas to the API via `server.chat_completion()`
 2. If the response contains `tool_calls`, dispatch each via `handle_function_call()`
@@ -255,7 +255,7 @@ python environments/terminal_test_env/terminal_test_env.py process \
 python environments/terminal_test_env/terminal_test_env.py serve
 ```
 
-### Virat CodeSweEnv
+### ViratCodeSweEnv
 
 SWE-bench style training environment. The model gets a coding task, uses terminal + file + web tools to solve it, and the reward function runs tests in the same Modal sandbox.
 
@@ -331,13 +331,13 @@ Uses ManagedServer for exact token IDs + logprobs via `/generate`. A client-side
 ### Training Environment
 
 ```python
-from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
+from environments.virat-code_base_env import ViratCodeAgentBaseEnv, ViratCodeAgentEnvConfig
 from atroposlib.envs.server_handling.server_manager import APIServerConfig
 
-class MyEnvConfig(Virat CodeAgentEnvConfig):
+class MyEnvConfig(ViratCodeAgentEnvConfig):
     my_custom_field: str = "default_value"
 
-class MyEnv(Virat CodeAgentBaseEnv):
+class MyEnv(ViratCodeAgentBaseEnv):
     name = "my-env"
     env_config_cls = MyEnvConfig
 
@@ -398,7 +398,7 @@ See `environments/benchmarks/yc_bench/yc_bench_env.py` for a clean, well-documen
 
 ## Configuration Reference
 
-### Virat CodeAgentEnvConfig Fields
+### ViratCodeAgentEnvConfig Fields
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -479,8 +479,8 @@ See [RL Training](/user-guide/features/rl-training) for the agent-driven RL work
 
 ```
 environments/
-├── virat_code_base_env.py          # Abstract base class (Virat CodeAgentBaseEnv)
-├── agent_loop.py               # Multi-turn agent engine (Virat CodeAgentLoop)
+├── virat_code_base_env.py          # Abstract base class (ViratCodeAgentBaseEnv)
+├── agent_loop.py               # Multi-turn agent engine (ViratCodeAgentLoop)
 ├── tool_context.py             # Per-rollout tool access for reward functions
 ├── patches.py                  # Async-safety patches for Modal backend
 │

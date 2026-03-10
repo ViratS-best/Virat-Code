@@ -115,7 +115,7 @@ pytest tests/ -v
 ```
 Virat Code/
 ├── run_agent.py              # AIAgent class — core conversation loop, tool dispatch, session persistence
-├── cli.py                    # Virat CodeCLI class — interactive TUI, prompt_toolkit integration
+├── cli.py                    # ViratCodeCLI class — interactive TUI, prompt_toolkit integration
 ├── model_tools.py            # Tool orchestration (thin layer over tools/registry.py)
 ├── toolsets.py               # Tool groupings and presets (virat-code-cli, virat-code-telegram, etc.)
 ├── virat_code_state.py           # SQLite session database with FTS5 full-text search, session titles

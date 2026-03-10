@@ -45,7 +45,7 @@ from atroposlib.envs.server_handling.server_manager import APIServerConfig
 from atroposlib.type_definitions import Item
 
 from environments.agent_loop import AgentResult
-from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
+from environments.virat-code_base_env import ViratCodeAgentBaseEnv, ViratCodeAgentEnvConfig
 from environments.tool_context import ToolContext
 
 logger = logging.getLogger(__name__)
@@ -82,13 +82,13 @@ EVAL_TASKS = [
 ]
 
 
-class TerminalTestEnvConfig(Virat CodeAgentEnvConfig):
+class TerminalTestEnvConfig(ViratCodeAgentEnvConfig):
     """Config with defaults suitable for terminal testing."""
 
     pass  # Inherits all fields, overrides defaults in config_init
 
 
-class TerminalTestEnv(Virat CodeAgentBaseEnv):
+class TerminalTestEnv(ViratCodeAgentBaseEnv):
     """
     Simple test environment with inline file-creation tasks.
 

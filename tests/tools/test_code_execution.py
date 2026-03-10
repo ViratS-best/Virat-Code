@@ -61,7 +61,7 @@ class TestSandboxRequirements(unittest.TestCase):
         self.assertIn("code", EXECUTE_CODE_SCHEMA["parameters"]["required"])
 
 
-class TestVirat CodeToolsGeneration(unittest.TestCase):
+class TestViratCodeToolsGeneration(unittest.TestCase):
     def test_generates_all_allowed_tools(self):
         src = generate_virat_code_tools_module(list(SANDBOX_ALLOWED_TOOLS))
         for tool in SANDBOX_ALLOWED_TOOLS:

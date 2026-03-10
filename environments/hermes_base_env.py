@@ -1,10 +1,10 @@
 """
-Virat CodeAgentBaseEnv -- Abstract Base Environment for Virat Code + Atropos
+ViratCodeAgentBaseEnv -- Abstract Base Environment for Virat Code + Atropos
 
 Provides the Atropos integration plumbing that all Virat Code environments share:
 - Two-mode operation (OpenAI server for Phase 1, VLLM ManagedServer for Phase 2)
 - Per-group toolset/distribution resolution
-- Agent loop orchestration via Virat CodeAgentLoop
+- Agent loop orchestration via ViratCodeAgentLoop
 - ToolContext creation for reward functions
 - ScoredDataGroup construction from ManagedServer state
 
@@ -60,7 +60,7 @@ from atroposlib.envs.server_handling.server_manager import (
 )
 from atroposlib.type_definitions import Item
 
-from environments.agent_loop import AgentResult, Virat CodeAgentLoop
+from environments.agent_loop import AgentResult, ViratCodeAgentLoop
 from environments.tool_context import ToolContext
 
 # Import Virat Code toolset infrastructure
@@ -70,7 +70,7 @@ from toolset_distributions import sample_toolsets_from_distribution
 logger = logging.getLogger(__name__)
 
 
-class Virat CodeAgentEnvConfig(BaseEnvConfig):
+class ViratCodeAgentEnvConfig(BaseEnvConfig):
     """
     Configuration for Virat Code Atropos environments.
 
@@ -177,7 +177,7 @@ class Virat CodeAgentEnvConfig(BaseEnvConfig):
     )
 
 
-class Virat CodeAgentBaseEnv(BaseEnv):
+class ViratCodeAgentBaseEnv(BaseEnv):
     """
     Abstract base environment for Virat Code Atropos integration.
 
@@ -200,11 +200,11 @@ class Virat CodeAgentBaseEnv(BaseEnv):
     """
 
     name: Optional[str] = "Virat Code"
-    env_config_cls = Virat CodeAgentEnvConfig
+    env_config_cls = ViratCodeAgentEnvConfig
 
     def __init__(
         self,
-        config: Virat CodeAgentEnvConfig,
+        config: ViratCodeAgentEnvConfig,
         server_configs: Union[ServerBaseline, List[APIServerConfig]],
         slurm=False,
         testing=False,
@@ -483,7 +483,7 @@ class Virat CodeAgentBaseEnv(BaseEnv):
                     tokenizer=self.tokenizer,
                     tool_call_parser=tc_parser,
                 ) as managed:
-                    agent = Virat CodeAgentLoop(
+                    agent = ViratCodeAgentLoop(
                         server=managed,
                         tool_schemas=tools,
                         valid_tool_names=valid_names,
@@ -500,7 +500,7 @@ class Virat CodeAgentBaseEnv(BaseEnv):
                     "ManagedServer not available (OpenAI server?). "
                     "Falling back to direct server mode."
                 )
-                agent = Virat CodeAgentLoop(
+                agent = ViratCodeAgentLoop(
                     server=self.server,
                     tool_schemas=tools,
                     valid_tool_names=valid_names,
@@ -513,7 +513,7 @@ class Virat CodeAgentBaseEnv(BaseEnv):
                 result = await agent.run(messages)
         else:
             # Phase 1: OpenAI server -- native tool_calls, placeholder tokens
-            agent = Virat CodeAgentLoop(
+            agent = ViratCodeAgentLoop(
                 server=self.server,
                 tool_schemas=tools,
                 valid_tool_names=valid_names,

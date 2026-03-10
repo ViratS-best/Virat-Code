@@ -13,7 +13,7 @@ This guide covers the internal architecture of Virat Code for developers contrib
 ```
 Virat Code/
 ├── run_agent.py              # AIAgent class — core conversation loop, tool dispatch
-├── cli.py                    # Virat CodeCLI class — interactive TUI, prompt_toolkit
+├── cli.py                    # ViratCodeCLI class — interactive TUI, prompt_toolkit
 ├── model_tools.py            # Tool orchestration (thin layer over tools/registry.py)
 ├── toolsets.py               # Tool groupings and presets
 ├── virat_code_state.py           # SQLite session database with FTS5 full-text search

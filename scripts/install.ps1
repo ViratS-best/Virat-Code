@@ -16,7 +16,7 @@ param(
     [switch]$NoVenv,
     [switch]$SkipSetup,
     [string]$Branch = "main",
-    [string]$Virat CodeHome = "$env:LOCALAPPDATA\virat-code",
+    [string]$ViratCodeHome = "$env:LOCALAPPDATA\virat-code",
     [string]$InstallDir = "$env:LOCALAPPDATA\virat-code\Virat Code"
 )
 
@@ -217,10 +217,10 @@ function Test-Node {
     }
 
     # Check our own managed install from a previous run
-    $managedNode = "$Virat CodeHome\node\node.exe"
+    $managedNode = "$ViratCodeHome\node\node.exe"
     if (Test-Path $managedNode) {
         $version = & $managedNode --version
-        $env:Path = "$Virat CodeHome\node;$env:Path"
+        $env:Path = "$ViratCodeHome\node;$env:Path"
         Write-Success "Node.js $version found (Virat Code-managed)"
         $script:HasNode = $true
         return $true
@@ -263,11 +263,11 @@ function Test-Node {
 
             $extractedDir = Get-ChildItem $tmpDir -Directory | Select-Object -First 1
             if ($extractedDir) {
-                if (Test-Path "$Virat CodeHome\node") { Remove-Item -Recurse -Force "$Virat CodeHome\node" }
-                Move-Item $extractedDir.FullName "$Virat CodeHome\node"
-                $env:Path = "$Virat CodeHome\node;$env:Path"
+                if (Test-Path "$ViratCodeHome\node") { Remove-Item -Recurse -Force "$ViratCodeHome\node" }
+                Move-Item $extractedDir.FullName "$ViratCodeHome\node"
+                $env:Path = "$ViratCodeHome\node;$env:Path"
 
-                $version = & "$Virat CodeHome\node\node.exe" --version
+                $version = & "$ViratCodeHome\node\node.exe" --version
                 Write-Success "Node.js $version installed to ~/.virat-code/node/"
                 $script:HasNode = $true
 
@@ -616,12 +616,12 @@ function Set-PathVariable {
     # Set VIRAT_CODE_HOME so the Python code finds config/data in the right place.
     # Only needed on Windows where we install to %LOCALAPPDATA%\virat-code instead
     # of the Unix default ~/.virat-code
-    $currentVirat CodeHome = [Environment]::GetEnvironmentVariable("VIRAT_CODE_HOME", "User")
-    if (-not $currentVirat CodeHome -or $currentVirat CodeHome -ne $Virat CodeHome) {
-        [Environment]::SetEnvironmentVariable("VIRAT_CODE_HOME", $Virat CodeHome, "User")
-        Write-Success "Set VIRAT_CODE_HOME=$Virat CodeHome"
+    $currentViratCodeHome = [Environment]::GetEnvironmentVariable("VIRAT_CODE_HOME", "User")
+    if (-not $currentViratCodeHome -or $currentViratCodeHome -ne $ViratCodeHome) {
+        [Environment]::SetEnvironmentVariable("VIRAT_CODE_HOME", $ViratCodeHome, "User")
+        Write-Success "Set VIRAT_CODE_HOME=$ViratCodeHome"
     }
-    $env:VIRAT_CODE_HOME = $Virat CodeHome
+    $env:VIRAT_CODE_HOME = $ViratCodeHome
     
     # Update current session
     $env:Path = "$viratCodeBin;$env:Path"
@@ -633,19 +633,19 @@ function Copy-ConfigTemplates {
     Write-Info "Setting up configuration files..."
     
     # Create ~/.virat-code directory structure
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\cron" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\sessions" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\logs" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\pairing" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\hooks" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\image_cache" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\audio_cache" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\memories" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\skills" | Out-Null
-    New-Item -ItemType Directory -Force -Path "$Virat CodeHome\whatsapp\session" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\cron" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\sessions" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\logs" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\pairing" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\hooks" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\image_cache" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\audio_cache" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\memories" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\skills" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$ViratCodeHome\whatsapp\session" | Out-Null
     
     # Create .env
-    $envPath = "$Virat CodeHome\.env"
+    $envPath = "$ViratCodeHome\.env"
     if (-not (Test-Path $envPath)) {
         $examplePath = "$InstallDir\.env.example"
         if (Test-Path $examplePath) {
@@ -660,7 +660,7 @@ function Copy-ConfigTemplates {
     }
     
     # Create config.yaml
-    $configPath = "$Virat CodeHome\config.yaml"
+    $configPath = "$ViratCodeHome\config.yaml"
     if (-not (Test-Path $configPath)) {
         $examplePath = "$InstallDir\cli-config.yaml.example"
         if (Test-Path $examplePath) {
@@ -672,7 +672,7 @@ function Copy-ConfigTemplates {
     }
     
     # Create SOUL.md if it doesn't exist (global persona file)
-    $soulPath = "$Virat CodeHome\SOUL.md"
+    $soulPath = "$ViratCodeHome\SOUL.md"
     if (-not (Test-Path $soulPath)) {
         @"
 # Virat Code Persona
@@ -706,7 +706,7 @@ Delete the contents (or this file) to use the default personality.
         } catch {
             # Fallback: simple directory copy
             $bundledSkills = "$InstallDir\skills"
-            $userSkills = "$Virat CodeHome\skills"
+            $userSkills = "$ViratCodeHome\skills"
             if ((Test-Path $bundledSkills) -and -not (Get-ChildItem $userSkills -Exclude '.bundled_manifest' -ErrorAction SilentlyContinue)) {
                 Copy-Item -Path "$bundledSkills\*" -Destination $userSkills -Recurse -Force -ErrorAction SilentlyContinue
                 Write-Success "Skills copied to ~/.virat-code/skills/"
@@ -773,7 +773,7 @@ function Invoke-SetupWizard {
 }
 
 function Start-GatewayIfConfigured {
-    $envPath = "$Virat CodeHome\.env"
+    $envPath = "$ViratCodeHome\.env"
     if (-not (Test-Path $envPath)) { return }
 
     $hasMessaging = $false
@@ -792,7 +792,7 @@ function Start-GatewayIfConfigured {
 
     # If WhatsApp is enabled but not yet paired, run foreground for QR scan
     $whatsappEnabled = $content | Where-Object { $_ -match "^WHATSAPP_ENABLED=true" }
-    $whatsappSession = "$Virat CodeHome\whatsapp\session\creds.json"
+    $whatsappSession = "$ViratCodeHome\whatsapp\session\creds.json"
     if ($whatsappEnabled -and -not (Test-Path $whatsappSession)) {
         Write-Host ""
         Write-Info "WhatsApp is enabled but not yet paired."
@@ -817,10 +817,10 @@ function Start-GatewayIfConfigured {
     if ($response -eq "" -or $response -match "^[Yy]") {
         Write-Info "Starting gateway in background..."
         try {
-            $logFile = "$Virat CodeHome\logs\gateway.log"
+            $logFile = "$ViratCodeHome\logs\gateway.log"
             Start-Process -FilePath $viratCodeCmd -ArgumentList "gateway" `
                 -RedirectStandardOutput $logFile `
-                -RedirectStandardError "$Virat CodeHome\logs\gateway-error.log" `
+                -RedirectStandardError "$ViratCodeHome\logs\gateway-error.log" `
                 -WindowStyle Hidden
             Write-Success "Gateway started! Your bot is now online."
             Write-Info "Logs: $logFile"
@@ -844,13 +844,13 @@ function Write-Completion {
     Write-Host "📁 Your files:" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "   Config:    " -NoNewline -ForegroundColor Yellow
-    Write-Host "$Virat CodeHome\config.yaml"
+    Write-Host "$ViratCodeHome\config.yaml"
     Write-Host "   API Keys:  " -NoNewline -ForegroundColor Yellow
-    Write-Host "$Virat CodeHome\.env"
+    Write-Host "$ViratCodeHome\.env"
     Write-Host "   Data:      " -NoNewline -ForegroundColor Yellow
-    Write-Host "$Virat CodeHome\cron\, sessions\, logs\"
+    Write-Host "$ViratCodeHome\cron\, sessions\, logs\"
     Write-Host "   Code:      " -NoNewline -ForegroundColor Yellow
-    Write-Host "$Virat CodeHome\Virat Code\"
+    Write-Host "$ViratCodeHome\Virat Code\"
     Write-Host ""
     
     Write-Host "─────────────────────────────────────────────────────────" -ForegroundColor Cyan

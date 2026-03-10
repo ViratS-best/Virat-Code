@@ -60,7 +60,7 @@ Signal-cli works as a **linked device** — like WhatsApp Web, but for Signal. Y
 
 ```bash
 # Generate a linking URI (displays a QR code or link)
-signal-cli link -n "Virat CodeAgent"
+signal-cli link -n "ViratCodeAgent"
 ```
 
 1. Open **Signal** on your phone

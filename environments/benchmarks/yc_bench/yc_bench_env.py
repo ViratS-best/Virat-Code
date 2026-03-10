@@ -21,7 +21,7 @@ The evaluate flow:
     2. evaluate()  -- Iterates over all runs sequentially through:
         a. rollout_and_score_eval()  -- Per-run agent loop
             - Initialises a fresh yc-bench simulation via `sim init` (NOT `run`)
-            - Runs Virat CodeAgentLoop with terminal tool only
+            - Runs ViratCodeAgentLoop with terminal tool only
             - Reads final SQLite DB to extract score
             - Returns survival (0/1) + normalised funds score
         b. Aggregates per-preset and overall metrics
@@ -62,8 +62,8 @@ from pydantic import Field
 from atroposlib.envs.base import EvalHandlingEnum
 from atroposlib.envs.server_handling.server_manager import APIServerConfig
 
-from environments.agent_loop import Virat CodeAgentLoop
-from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
+from environments.agent_loop import ViratCodeAgentLoop
+from environments.virat-code_base_env import ViratCodeAgentBaseEnv, ViratCodeAgentEnvConfig
 
 logger = logging.getLogger(__name__)
 
@@ -176,11 +176,11 @@ _PRESET_HORIZONS = {
 # Configuration
 # =============================================================================
 
-class YCBenchEvalConfig(Virat CodeAgentEnvConfig):
+class YCBenchEvalConfig(ViratCodeAgentEnvConfig):
     """
     Configuration for the YC-Bench evaluation environment.
 
-    Extends Virat CodeAgentEnvConfig with YC-Bench-specific settings for
+    Extends ViratCodeAgentEnvConfig with YC-Bench-specific settings for
     preset selection, seed control, scoring, and simulation parameters.
     """
 
@@ -326,13 +326,13 @@ def _compute_composite_score(
 # Main Environment
 # =============================================================================
 
-class YCBenchEvalEnv(Virat CodeAgentBaseEnv):
+class YCBenchEvalEnv(ViratCodeAgentBaseEnv):
     """
     YC-Bench long-horizon agent benchmark environment (eval-only).
 
     Each eval item is a (preset, seed) pair. The environment initialises the
     simulation via ``yc-bench sim init`` (NOT ``yc-bench run`` which would start
-    a competing built-in agent loop). The Virat CodeAgentLoop then drives the
+    a competing built-in agent loop). The ViratCodeAgentLoop then drives the
     interaction by calling individual yc-bench CLI commands via the terminal tool.
 
     After the agent loop ends, the SQLite DB is read to extract the final score.
@@ -485,7 +485,7 @@ class YCBenchEvalEnv(Virat CodeAgentBaseEnv):
 
         1. Sets DATABASE_URL and YC_BENCH_EXPERIMENT env vars
         2. Initialises the simulation via ``yc-bench sim init`` (NOT ``run``)
-        3. Runs Virat CodeAgentLoop with terminal tool
+        3. Runs ViratCodeAgentLoop with terminal tool
         4. Reads SQLite DB to compute final score
         5. Returns result dict with survival, funds, and composite score
         """
@@ -511,7 +511,7 @@ class YCBenchEvalEnv(Virat CodeAgentBaseEnv):
             # Step 1: Initialise the simulation via CLI
             # IMPORTANT: We use `sim init`, NOT `yc-bench run`.
             # `yc-bench run` starts yc-bench's own LLM agent loop (via
-            # LiteLLM), which would compete with our Virat CodeAgentLoop.
+            # LiteLLM), which would compete with our ViratCodeAgentLoop.
             # `sim init` just sets up the world and returns.
             # ----------------------------------------------------------
             init_cmd = [
@@ -531,7 +531,7 @@ class YCBenchEvalEnv(Virat CodeAgentBaseEnv):
             tqdm.write(f"    Simulation initialized (horizon={horizon}yr)")
 
             # ----------------------------------------------------------
-            # Step 2: Run the Virat CodeAgentLoop
+            # Step 2: Run the ViratCodeAgentLoop
             # ----------------------------------------------------------
             tools, valid_names = self._resolve_tools_for_group()
 
@@ -540,7 +540,7 @@ class YCBenchEvalEnv(Virat CodeAgentBaseEnv):
                 {"role": "user", "content": self.format_prompt(eval_item)},
             ]
 
-            agent = Virat CodeAgentLoop(
+            agent = ViratCodeAgentLoop(
                 server=self.server,
                 tool_schemas=tools,
                 valid_tool_names=valid_names,
