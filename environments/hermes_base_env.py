@@ -1,10 +1,10 @@
 """
-HermesAgentBaseEnv -- Abstract Base Environment for Virat Code + Atropos
+Virat CodeAgentBaseEnv -- Abstract Base Environment for Virat Code + Atropos
 
 Provides the Atropos integration plumbing that all Virat Code environments share:
 - Two-mode operation (OpenAI server for Phase 1, VLLM ManagedServer for Phase 2)
 - Per-group toolset/distribution resolution
-- Agent loop orchestration via HermesAgentLoop
+- Agent loop orchestration via Virat CodeAgentLoop
 - ToolContext creation for reward functions
 - ScoredDataGroup construction from ManagedServer state
 
@@ -60,7 +60,7 @@ from atroposlib.envs.server_handling.server_manager import (
 )
 from atroposlib.type_definitions import Item
 
-from environments.agent_loop import AgentResult, HermesAgentLoop
+from environments.agent_loop import AgentResult, Virat CodeAgentLoop
 from environments.tool_context import ToolContext
 
 # Import Virat Code toolset infrastructure
@@ -70,7 +70,7 @@ from toolset_distributions import sample_toolsets_from_distribution
 logger = logging.getLogger(__name__)
 
 
-class HermesAgentEnvConfig(BaseEnvConfig):
+class Virat CodeAgentEnvConfig(BaseEnvConfig):
     """
     Configuration for Virat Code Atropos environments.
 
@@ -82,7 +82,7 @@ class HermesAgentEnvConfig(BaseEnvConfig):
     # Mutually exclusive: use either enabled_toolsets OR distribution
     enabled_toolsets: Optional[List[str]] = Field(
         default=None,
-        description="Explicit list of hermes toolsets to enable (e.g., ['terminal', 'file', 'web']). "
+        description="Explicit list of Virat-Code toolsets to enable (e.g., ['terminal', 'file', 'web']). "
         "If None and distribution is also None, all available toolsets are enabled.",
     )
     disabled_toolsets: Optional[List[str]] = Field(
@@ -154,10 +154,10 @@ class HermesAgentEnvConfig(BaseEnvConfig):
 
     # --- Phase 2: Tool call parsing ---
     tool_call_parser: str = Field(
-        default="hermes",
+        default="Virat-Code",
         description="Tool call parser name for Phase 2 (VLLM server type). "
         "Ignored in Phase 1 (OpenAI server type where VLLM parses natively). "
-        "Options: hermes, mistral, llama3_json, qwen, deepseek_v3, etc.",
+        "Options: virat-code, mistral, llama3_json, qwen, deepseek_v3, etc.",
     )
 
     # --- Provider-specific parameters ---
@@ -177,7 +177,7 @@ class HermesAgentEnvConfig(BaseEnvConfig):
     )
 
 
-class HermesAgentBaseEnv(BaseEnv):
+class Virat CodeAgentBaseEnv(BaseEnv):
     """
     Abstract base environment for Virat Code Atropos integration.
 
@@ -200,18 +200,18 @@ class HermesAgentBaseEnv(BaseEnv):
     """
 
     name: Optional[str] = "Virat Code"
-    env_config_cls = HermesAgentEnvConfig
+    env_config_cls = Virat CodeAgentEnvConfig
 
     def __init__(
         self,
-        config: HermesAgentEnvConfig,
+        config: Virat CodeAgentEnvConfig,
         server_configs: Union[ServerBaseline, List[APIServerConfig]],
         slurm=False,
         testing=False,
     ):
         super().__init__(config, server_configs, slurm, testing)
 
-        # Set terminal environment variables so hermes tools pick them up.
+        # Set terminal environment variables so Virat-Code tools pick them up.
         # These can all be overridden per-environment via config fields instead
         # of requiring users to set shell env vars.
         if config.terminal_backend:
@@ -473,17 +473,17 @@ class HermesAgentBaseEnv(BaseEnv):
                 tc_parser = get_parser(self.config.tool_call_parser)
             except KeyError:
                 logger.warning(
-                    "Tool call parser '%s' not found, falling back to 'hermes'",
+                    "Tool call parser '%s' not found, falling back to 'Virat-Code'",
                     self.config.tool_call_parser,
                 )
-                tc_parser = get_parser("hermes")
+                tc_parser = get_parser("Virat-Code")
 
             try:
                 async with self.server.managed_server(
                     tokenizer=self.tokenizer,
                     tool_call_parser=tc_parser,
                 ) as managed:
-                    agent = HermesAgentLoop(
+                    agent = Virat CodeAgentLoop(
                         server=managed,
                         tool_schemas=tools,
                         valid_tool_names=valid_names,
@@ -500,7 +500,7 @@ class HermesAgentBaseEnv(BaseEnv):
                     "ManagedServer not available (OpenAI server?). "
                     "Falling back to direct server mode."
                 )
-                agent = HermesAgentLoop(
+                agent = Virat CodeAgentLoop(
                     server=self.server,
                     tool_schemas=tools,
                     valid_tool_names=valid_names,
@@ -513,7 +513,7 @@ class HermesAgentBaseEnv(BaseEnv):
                 result = await agent.run(messages)
         else:
             # Phase 1: OpenAI server -- native tool_calls, placeholder tokens
-            agent = HermesAgentLoop(
+            agent = Virat CodeAgentLoop(
                 server=self.server,
                 tool_schemas=tools,
                 valid_tool_names=valid_names,

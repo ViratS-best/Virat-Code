@@ -25,12 +25,12 @@ RL training requires:
 - **Python >= 3.11** (Tinker package requirement)
 - **TINKER_API_KEY** — API key for the Tinker training service
 - **WANDB_API_KEY** — API key for Weights & Biases metrics tracking
-- The `tinker-atropos` submodule (at `tinker-atropos/` relative to the Hermes root)
+- The `tinker-atropos` submodule (at `tinker-atropos/` relative to the Virat Code root)
 
 ```bash
 # Set up API keys
-hermes config set TINKER_API_KEY your-tinker-key
-hermes config set WANDB_API_KEY your-wandb-key
+Virat-Code config set TINKER_API_KEY your-tinker-key
+Virat-Code config set WANDB_API_KEY your-wandb-key
 ```
 
 When both keys are present and Python >= 3.11 is available, the `rl` toolset is automatically enabled.

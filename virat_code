@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+"""
+Virat Code Agent CLI Launcher
+
+This is a convenience wrapper to launch the Virat Code CLI.
+Usage: ./virat_code [options]
+"""
+
+if __name__ == "__main__":
+    from cli import main
+    import fire
+    fire.Fire(main)

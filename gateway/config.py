@@ -147,7 +147,7 @@ class GatewayConfig:
     reset_triggers: List[str] = field(default_factory=lambda: ["/new", "/reset"])
     
     # Storage paths
-    sessions_dir: Path = field(default_factory=lambda: Path.home() / ".hermes" / "sessions")
+    sessions_dir: Path = field(default_factory=lambda: Path.home() / ".virat-code" / "sessions")
     
     # Delivery settings
     always_log_local: bool = True  # Always save cron outputs to local files
@@ -239,7 +239,7 @@ class GatewayConfig:
         if "default_reset_policy" in data:
             default_policy = SessionResetPolicy.from_dict(data["default_reset_policy"])
         
-        sessions_dir = Path.home() / ".hermes" / "sessions"
+        sessions_dir = Path.home() / ".virat-code" / "sessions"
         if "sessions_dir" in data:
             sessions_dir = Path(data["sessions_dir"])
         
@@ -260,14 +260,14 @@ def load_gateway_config() -> GatewayConfig:
     
     Priority (highest to lowest):
     1. Environment variables
-    2. ~/.hermes/gateway.json
+    2. ~/.virat-code/gateway.json
     3. cli-config.yaml gateway section
     4. Defaults
     """
     config = GatewayConfig()
     
-    # Try loading from ~/.hermes/gateway.json
-    gateway_config_path = Path.home() / ".hermes" / "gateway.json"
+    # Try loading from ~/.virat-code/gateway.json
+    gateway_config_path = Path.home() / ".virat-code" / "gateway.json"
     if gateway_config_path.exists():
         try:
             with open(gateway_config_path, "r", encoding="utf-8") as f:
@@ -278,10 +278,10 @@ def load_gateway_config() -> GatewayConfig:
     
     # Bridge session_reset from config.yaml (the user-facing config file)
     # into the gateway config. config.yaml takes precedence over gateway.json
-    # for session reset policy since that's where hermes setup writes it.
+    # for session reset policy since that's where Virat-Code setup writes it.
     try:
         import yaml
-        config_yaml_path = Path.home() / ".hermes" / "config.yaml"
+        config_yaml_path = Path.home() / ".virat-code" / "config.yaml"
         if config_yaml_path.exists():
             with open(config_yaml_path, encoding="utf-8") as f:
                 yaml_cfg = yaml.safe_load(f) or {}
@@ -437,8 +437,8 @@ def _apply_env_overrides(config: GatewayConfig) -> None:
 
 
 def save_gateway_config(config: GatewayConfig) -> None:
-    """Save gateway configuration to ~/.hermes/gateway.json."""
-    gateway_config_path = Path.home() / ".hermes" / "gateway.json"
+    """Save gateway configuration to ~/.virat-code/gateway.json."""
+    gateway_config_path = Path.home() / ".virat-code" / "gateway.json"
     gateway_config_path.parent.mkdir(parents=True, exist_ok=True)
     
     with open(gateway_config_path, "w", encoding="utf-8") as f:

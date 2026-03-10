@@ -2,7 +2,7 @@
 Event Hook System
 
 A lightweight event-driven system that fires handlers at key lifecycle points.
-Hooks are discovered from ~/.hermes/hooks/ directories, each containing:
+Hooks are discovered from ~/.virat-code/hooks/ directories, each containing:
   - HOOK.yaml  (metadata: name, description, events list)
   - handler.py (Python handler with async def handle(event_type, context))
 
@@ -27,7 +27,7 @@ from typing import Any, Callable, Dict, List, Optional
 import yaml
 
 
-HOOKS_DIR = Path(os.path.expanduser("~/.hermes/hooks"))
+HOOKS_DIR = Path(os.path.expanduser("~/.virat-code/hooks"))
 
 
 class HookRegistry:
@@ -85,7 +85,7 @@ class HookRegistry:
 
                 # Dynamically load the handler module
                 spec = importlib.util.spec_from_file_location(
-                    f"hermes_hook_{hook_name}", handler_path
+                    f"virat_code_hook_{hook_name}", handler_path
                 )
                 if spec is None or spec.loader is None:
                     print(f"[hooks] Skipping {hook_name}: could not load handler.py", flush=True)

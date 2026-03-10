@@ -17,9 +17,9 @@ SOUL.md is a special context file that defines the agent's personality, tone, an
 | Location | Scope |
 |----------|-------|
 | `./SOUL.md` (project directory) | Per-project personality |
-| `~/.hermes/SOUL.md` | Global default personality |
+| `~/.virat-code/SOUL.md` | Global default personality |
 
-The project-level file takes precedence. If no SOUL.md exists in the current directory, Hermes falls back to the global one in `~/.hermes/`.
+The project-level file takes precedence. If no SOUL.md exists in the current directory, Virat Code falls back to the global one in `~/.virat-code/`.
 
 ### How It Affects the System Prompt
 
@@ -61,7 +61,7 @@ SOUL.md is scanned for prompt injection patterns before being loaded. Keep the c
 
 ## Built-In Personalities
 
-Hermes ships with 14 built-in personalities defined in the CLI config. Switch between them with the `/personality` command.
+Virat Code ships with 14 built-in personalities defined in the CLI config. Switch between them with the `/personality` command.
 
 | Name | Description |
 |------|-------------|
@@ -72,7 +72,7 @@ Hermes ships with 14 built-in personalities defined in the CLI config. Switch be
 | **teacher** | Patient educator with clear examples |
 | **kawaii** | Cute expressions, sparkles, and enthusiasm ★ |
 | **catgirl** | Neko-chan with cat-like expressions, nya~ |
-| **pirate** | Captain Hermes, tech-savvy buccaneer |
+| **pirate** | Captain Virat Code, tech-savvy buccaneer |
 | **shakespeare** | Bardic prose with dramatic flair |
 | **surfer** | Totally chill bro vibes |
 | **noir** | Hard-boiled detective narration |
@@ -86,10 +86,10 @@ Hermes ships with 14 built-in personalities defined in the CLI config. Switch be
 `You are a kawaii assistant! Use cute expressions and sparkles, be super enthusiastic about everything! Every response should feel warm and adorable desu~!`
 
 **noir:**
-> The rain hammered against the terminal like regrets on a guilty conscience. They call me Hermes - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?
+> The rain hammered against the terminal like regrets on a guilty conscience. They call me Virat Code - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?
 
 **pirate:**
-> Arrr! Ye be talkin' to Captain Hermes, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin' to be plundered! Yo ho ho!
+> Arrr! Ye be talkin' to Captain Virat Code, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin' to be plundered! Yo ho ho!
 
 ## Switching Personalities
 
@@ -104,7 +104,7 @@ Hermes ships with 14 built-in personalities defined in the CLI config. Switch be
 When you set a personality via `/personality`, it:
 1. Sets the system prompt to that personality's text
 2. Forces the agent to reinitialize
-3. Saves the choice to `agent.system_prompt` in `~/.hermes/config.yaml`
+3. Saves the choice to `agent.system_prompt` in `~/.virat-code/config.yaml`
 
 The change persists across sessions until you set a different personality or clear it.
 
@@ -121,7 +121,7 @@ On messaging platforms (Telegram, Discord, etc.), the `/personality` command wor
 Set a personality directly in config:
 
 ```yaml
-# In ~/.hermes/config.yaml
+# In ~/.virat-code/config.yaml
 agent:
   system_prompt: "You are a concise assistant. Keep responses brief and to the point."
 ```
@@ -129,19 +129,19 @@ agent:
 Or via environment variable:
 
 ```bash
-# In ~/.hermes/.env
-HERMES_EPHEMERAL_SYSTEM_PROMPT="You are a pragmatic engineer who gives direct answers."
+# In ~/.virat-code/.env
+VIRAT_CODE_EPHEMERAL_SYSTEM_PROMPT="You are a pragmatic engineer who gives direct answers."
 ```
 
 :::info
-The environment variable `HERMES_EPHEMERAL_SYSTEM_PROMPT` takes precedence over the config file's `agent.system_prompt` value.
+The environment variable `VIRAT_CODE_EPHEMERAL_SYSTEM_PROMPT` takes precedence over the config file's `agent.system_prompt` value.
 :::
 
 ## Custom Personalities
 
 ### Defining Custom Personalities in Config
 
-Add your own personalities to `~/.hermes/config.yaml` under `agent.personalities`:
+Add your own personalities to `~/.virat-code/config.yaml` under `agent.personalities`:
 
 ```yaml
 agent:
@@ -198,7 +198,7 @@ You are assisting with a machine learning research project.
 EOF
 ```
 
-This personality only applies when running Hermes from that project directory.
+This personality only applies when running Virat Code from that project directory.
 
 ## How Personality Interacts with the System Prompt
 
@@ -209,7 +209,7 @@ The system prompt is assembled in layers (from `agent/prompt_builder.py` and `ru
 3. **Memory**: MEMORY.md and USER.md contents
 4. **Skills index**: available skills listing
 5. **Context files**: AGENTS.md, .cursorrules, **SOUL.md** (personality lives here)
-6. **Ephemeral system prompt**: `agent.system_prompt` or `HERMES_EPHEMERAL_SYSTEM_PROMPT` (overlaid)
+6. **Ephemeral system prompt**: `agent.system_prompt` or `VIRAT_CODE_EPHEMERAL_SYSTEM_PROMPT` (overlaid)
 7. **Session context**: platform, user info, connected platforms (gateway only)
 
 :::info

@@ -6,7 +6,7 @@ author: Virat Code
 license: MIT
 dependencies: []
 metadata:
-  hermes:
+  virat-code:
     tags: [Excalidraw, Diagrams, Flowcharts, Architecture, Visualization, JSON]
     related_skills: []
 

@@ -5,7 +5,7 @@
 # Virat Code ⚕
 
 <p align="center">
-  <a href="https://Virat Code.github.com/ViratS-best/docs/"><img src="https://img.shields.io/badge/Docs-hermes--agent.github.com/ViratS-best-FFD700?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://Virat Code.github.com/ViratS-best/docs/"><img src="https://img.shields.io/badge/Docs-virat-code--agent.github.com/ViratS-best-FFD700?style=for-the-badge" alt="Documentation"></a>
   <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://github.com/ViratS-best/Virat-Code/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
   <a href="https://github.com/ViratS-best"><img src="https://img.shields.io/badge/Built%20by-Nous%20Research-blueviolet?style=for-the-badge" alt="Built by Virat Sisodiya"></a>
@@ -13,7 +13,7 @@
 
 **The self-improving AI agent built by [Virat Sisodiya](https://github.com/ViratS-best).** It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.
 
-Use any model you want — [Nous Portal](https://portal.github.com/ViratS-best), [OpenRouter](https://openrouter.ai) (200+ models), [z.ai/GLM](https://z.ai), [Kimi/Moonshot](https://platform.moonshot.ai), [MiniMax](https://www.minimax.io), OpenAI, or your own endpoint. Switch with `hermes model` — no code changes, no lock-in.
+Use any model you want — [Nous Portal](https://portal.github.com/ViratS-best), [OpenRouter](https://openrouter.ai) (200+ models), [z.ai/GLM](https://z.ai), [Kimi/Moonshot](https://platform.moonshot.ai), [MiniMax](https://www.minimax.io), OpenAI, or your own endpoint. Switch with `virat-code model` — no code changes, no lock-in.
 
 <table>
 <tr><td><b>A real terminal interface</b></td><td>Full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output.</td></tr>
@@ -33,7 +33,7 @@ Use any model you want — [Nous Portal](https://portal.github.com/ViratS-best),
 curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
 ```
 
-Works on Linux, macOS, and WSL2. The installer handles everything — Python, Node.js, dependencies, and the `hermes` command. No prerequisites except git.
+Works on Linux, macOS, and WSL2. The installer handles everything — Python, Node.js, dependencies, and the `Virat-Code` command. No prerequisites except git.
 
 > **Windows:** Native Windows is not supported. Please install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run the command above.
 
@@ -41,8 +41,8 @@ After installation:
 
 ```bash
 source ~/.bashrc    # reload shell (or: source ~/.zshrc)
-hermes setup        # configure your LLM provider
-hermes              # start chatting!
+Virat-Code setup        # configure your LLM provider
+virat-code              # start chatting!
 ```
 
 ---
@@ -50,12 +50,12 @@ hermes              # start chatting!
 ## Getting Started
 
 ```bash
-hermes              # Interactive CLI — start a conversation
-hermes model        # Switch provider or model
-hermes setup        # Re-run the setup wizard
-hermes gateway      # Start the messaging gateway (Telegram, Discord, etc.)
-hermes update       # Update to the latest version
-hermes doctor       # Diagnose any issues
+virat-code              # Interactive CLI — start a conversation
+virat-code model        # Switch provider or model
+Virat-Code setup        # Re-run the setup wizard
+Virat-Code gateway      # Start the messaging gateway (Telegram, Discord, etc.)
+Virat-Code update       # Update to the latest version
+virat-code doctor       # Diagnose any issues
 ```
 
 📖 **[Full documentation →](https://Virat Code.github.com/ViratS-best/docs/)**

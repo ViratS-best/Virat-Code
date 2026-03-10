@@ -13,10 +13,10 @@ This guide covers the internal architecture of Virat Code for developers contrib
 ```
 Virat Code/
 ├── run_agent.py              # AIAgent class — core conversation loop, tool dispatch
-├── cli.py                    # HermesCLI class — interactive TUI, prompt_toolkit
+├── cli.py                    # Virat CodeCLI class — interactive TUI, prompt_toolkit
 ├── model_tools.py            # Tool orchestration (thin layer over tools/registry.py)
 ├── toolsets.py               # Tool groupings and presets
-├── hermes_state.py           # SQLite session database with FTS5 full-text search
+├── virat_code_state.py           # SQLite session database with FTS5 full-text search
 ├── batch_runner.py           # Parallel batch processing for trajectory generation
 │
 ├── agent/                    # Agent internals (extracted modules)
@@ -27,7 +27,7 @@ Virat Code/
 │   ├── model_metadata.py         # Model context lengths, token estimation
 │   └── trajectory.py             # Trajectory saving helpers
 │
-├── hermes_cli/               # CLI command implementations
+├── virat_code_cli/               # CLI command implementations
 │   ├── main.py                   # Entry point, argument parsing, command dispatch
 │   ├── config.py                 # Config management, migration, env var definitions
 │   ├── setup.py                  # Interactive setup wizard
@@ -69,7 +69,7 @@ Virat Code/
 │   ├── install.ps1               # Windows PowerShell installer
 │   └── whatsapp-bridge/          # Node.js WhatsApp bridge (Baileys)
 │
-├── skills/                   # Bundled skills (copied to ~/.hermes/skills/)
+├── skills/                   # Bundled skills (copied to ~/.virat-code/skills/)
 ├── optional-skills/          # Official optional skills (discoverable via hub, not activated by default)
 ├── environments/             # RL training environments (Atropos integration)
 └── tests/                    # Test suite
@@ -160,7 +160,7 @@ Tools are grouped into toolsets (`web`, `terminal`, `file`, `browser`, etc.) tha
 
 ### Session Persistence
 
-All conversations are stored in SQLite (`hermes_state.py`) with full-text search. JSON logs go to `~/.hermes/sessions/`.
+All conversations are stored in SQLite (`virat_code_state.py`) with full-text search. JSON logs go to `~/.virat-code/sessions/`.
 
 ### Ephemeral Injection
 
@@ -213,6 +213,6 @@ Each platform adapter conforms to `BasePlatformAdapter`.
 
 ## Configuration System
 
-- `~/.hermes/config.yaml` — All settings
-- `~/.hermes/.env` — API keys and secrets
+- `~/.virat-code/config.yaml` — All settings
+- `~/.virat-code/.env` — API keys and secrets
 - `_config_version` in `DEFAULT_CONFIG` — Bumped when required fields are added, triggers migration prompts

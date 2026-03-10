@@ -6,7 +6,7 @@ author: Virat Code
 license: MIT
 platforms: [macos]
 metadata:
-  hermes:
+  virat-code:
     tags: [iMessage, SMS, messaging, macOS, Apple]
 ---
 

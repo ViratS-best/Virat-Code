@@ -39,11 +39,11 @@ import fire
 from datetime import datetime
 from pathlib import Path
 
-# Load .env from ~/.hermes/.env first, then project root as dev fallback
+# Load .env from ~/.virat-code/.env first, then project root as dev fallback
 from dotenv import load_dotenv
 
-_hermes_home = Path(os.getenv("HERMES_HOME", Path.home() / ".hermes"))
-_user_env = _hermes_home / ".env"
+_virat_code_home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
+_user_env = _virat_code_home / ".env"
 _project_env = Path(__file__).parent / '.env'
 if _user_env.exists():
     try:
@@ -60,8 +60,8 @@ elif _project_env.exists():
 else:
     logger.info("No .env file found. Using system environment variables.")
 
-# Point mini-swe-agent at ~/.hermes/ so it shares our config
-os.environ.setdefault("MSWEA_GLOBAL_CONFIG_DIR", str(_hermes_home))
+# Point mini-swe-agent at ~/.virat-code/ so it shares our config
+os.environ.setdefault("MSWEA_GLOBAL_CONFIG_DIR", str(_virat_code_home))
 os.environ.setdefault("MSWEA_SILENT_STARTUP", "1")
 
 # Import our tool system
@@ -72,7 +72,7 @@ from tools.browser_tool import cleanup_browser
 
 import requests
 
-from hermes_constants import OPENROUTER_BASE_URL, OPENROUTER_MODELS_URL
+from virat_code_constants import OPENROUTER_BASE_URL, OPENROUTER_MODELS_URL
 
 # Agent internals extracted to agent/ package for modularity
 from agent.prompt_builder import (
@@ -297,10 +297,10 @@ class AIAgent:
         self._use_prompt_caching = is_openrouter and is_claude
         self._cache_ttl = "5m"  # Default 5-minute TTL (1.25x write cost)
         
-        # Persistent error log -- always writes WARNING+ to ~/.hermes/logs/errors.log
+        # Persistent error log -- always writes WARNING+ to ~/.virat-code/logs/errors.log
         # so tool failures, API errors, etc. are inspectable after the fact.
         from agent.redact import RedactingFormatter
-        _error_log_dir = Path.home() / ".hermes" / "logs"
+        _error_log_dir = Path.home() / ".virat-code" / "logs"
         _error_log_dir.mkdir(parents=True, exist_ok=True)
         _error_log_path = _error_log_dir / "errors.log"
         from logging.handlers import RotatingFileHandler
@@ -360,7 +360,7 @@ class AIAgent:
                     'run_agent',            # agent runner internals
                     'trajectory_compressor',
                     'cron',                 # scheduler (only relevant in daemon mode)
-                    'hermes_cli',           # CLI helpers
+                    'virat_code_cli',           # CLI helpers
                 ]:
                     logging.getLogger(quiet_logger).setLevel(logging.ERROR)
         
@@ -476,9 +476,9 @@ class AIAgent:
             short_uuid = uuid.uuid4().hex[:6]
             self.session_id = f"{timestamp_str}_{short_uuid}"
         
-        # Session logs go into ~/.hermes/sessions/ alongside gateway sessions
-        hermes_home = Path(os.getenv("HERMES_HOME", Path.home() / ".hermes"))
-        self.logs_dir = hermes_home / "sessions"
+        # Session logs go into ~/.virat-code/sessions/ alongside gateway sessions
+        virat_code_home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
+        self.logs_dir = virat_code_home / "sessions"
         self.logs_dir.mkdir(parents=True, exist_ok=True)
         self.session_log_file = self.logs_dir / f"session_{self.session_id}.json"
         
@@ -525,7 +525,7 @@ class AIAgent:
         self._memory_flush_min_turns = 6
         if not skip_memory:
             try:
-                from hermes_cli.config import load_config as _load_mem_config
+                from virat_code_cli.config import load_config as _load_mem_config
                 mem_config = _load_mem_config().get("memory", {})
                 self._memory_enabled = mem_config.get("memory_enabled", False)
                 self._user_profile_enabled = mem_config.get("user_profile_enabled", False)
@@ -561,7 +561,7 @@ class AIAgent:
                     if not self._honcho_session_key:
                         self._honcho_session_key = (
                             hcfg.resolve_session_name()
-                            or "hermes-default"
+                            or "virat-code-default"
                         )
                     # Ensure session exists in Honcho
                     self._honcho.get_or_create(self._honcho_session_key)
@@ -584,7 +584,7 @@ class AIAgent:
         # Skills config: nudge interval for skill creation reminders
         self._skill_nudge_interval = 15
         try:
-            from hermes_cli.config import load_config as _load_skills_config
+            from virat_code_cli.config import load_config as _load_skills_config
             skills_config = _load_skills_config().get("skills", {})
             self._skill_nudge_interval = int(skills_config.get("creation_nudge_interval", 15))
         except Exception:
@@ -1171,7 +1171,7 @@ class AIAgent:
 
             print(f"{self.log_prefix}🧾 Request debug dump written to: {dump_file}")
 
-            if os.getenv("HERMES_DUMP_REQUEST_STDOUT", "").strip().lower() in {"1", "true", "yes", "on"}:
+            if os.getenv("VIRAT_CODE_DUMP_REQUEST_STDOUT", "").strip().lower() in {"1", "true", "yes", "on"}:
                 print(json.dumps(dump_payload, ensure_ascii=False, indent=2, default=str))
 
             return dump_file
@@ -1430,8 +1430,8 @@ class AIAgent:
             if context_files_prompt:
                 prompt_parts.append(context_files_prompt)
 
-        from hermes_time import now as _hermes_now
-        now = _hermes_now()
+        from virat_code_time import now as _virat_code_now
+        now = _virat_code_now()
         prompt_parts.append(
             f"Conversation started: {now.strftime('%A, %B %d, %Y %I:%M %p')}"
         )
@@ -2082,7 +2082,7 @@ class AIAgent:
             return False
 
         try:
-            from hermes_cli.auth import resolve_codex_runtime_credentials
+            from virat_code_cli.auth import resolve_codex_runtime_credentials
 
             creds = resolve_codex_runtime_credentials(force_refresh=force)
         except Exception as exc:
@@ -2119,11 +2119,11 @@ class AIAgent:
             return False
 
         try:
-            from hermes_cli.auth import resolve_nous_runtime_credentials
+            from virat_code_cli.auth import resolve_nous_runtime_credentials
 
             creds = resolve_nous_runtime_credentials(
-                min_key_ttl_seconds=max(60, int(os.getenv("HERMES_NOUS_MIN_KEY_TTL_SECONDS", "1800"))),
-                timeout_seconds=float(os.getenv("HERMES_NOUS_TIMEOUT_SECONDS", "15")),
+                min_key_ttl_seconds=max(60, int(os.getenv("VIRAT_CODE_NOUS_MIN_KEY_TTL_SECONDS", "1800"))),
+                timeout_seconds=float(os.getenv("VIRAT_CODE_NOUS_TIMEOUT_SECONDS", "15")),
                 force_mint=force,
             )
         except Exception as exc:
@@ -2230,7 +2230,7 @@ class AIAgent:
         if fb_provider in self._FALLBACK_OAUTH_PROVIDERS:
             resolver_name, api_mode = self._FALLBACK_OAUTH_PROVIDERS[fb_provider]
             try:
-                import hermes_cli.auth as _auth
+                import virat_code_cli.auth as _auth
                 resolver = getattr(_auth, resolver_name)
                 creds = resolver()
                 return creds["api_key"], creds["base_url"], api_mode
@@ -3422,7 +3422,7 @@ class AIAgent:
                     if self.api_mode == "codex_responses":
                         api_kwargs = self._preflight_codex_api_kwargs(api_kwargs, allow_stream=False)
 
-                    if os.getenv("HERMES_DUMP_REQUESTS", "").strip().lower() in {"1", "true", "yes", "on"}:
+                    if os.getenv("VIRAT_CODE_DUMP_REQUESTS", "").strip().lower() in {"1", "true", "yes", "on"}:
                         self._dump_api_request_debug(api_kwargs, reason="preflight")
 
                     response = self._interruptible_api_call(api_kwargs)

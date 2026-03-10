@@ -5,7 +5,7 @@ version: 1.0.0
 author: Virat Code
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [GIF, Media, Search, Tenor, API]
 ---
 

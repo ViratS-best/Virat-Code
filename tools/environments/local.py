@@ -14,7 +14,7 @@ from tools.environments.base import BaseEnvironment
 
 # Unique marker to isolate real command output from shell init/exit noise.
 # printf (no trailing newline) keeps the boundaries clean for splitting.
-_OUTPUT_FENCE = "__HERMES_FENCE_a9f7b3__"
+_OUTPUT_FENCE = "__VIRAT_CODE_FENCE_a9f7b3__"
 
 
 def _find_bash() -> str:
@@ -35,7 +35,7 @@ def _find_bash() -> str:
 
     # Windows: look for Git Bash (installed with Git for Windows).
     # Allow override via env var (same pattern as Claude Code).
-    custom = os.environ.get("HERMES_GIT_BASH_PATH")
+    custom = os.environ.get("VIRAT_CODE_GIT_BASH_PATH")
     if custom and os.path.isfile(custom):
         return custom
 
@@ -56,7 +56,7 @@ def _find_bash() -> str:
     raise RuntimeError(
         "Git Bash not found. Virat Code requires Git for Windows on Windows.\n"
         "Install it from: https://git-scm.com/download/win\n"
-        "Or set HERMES_GIT_BASH_PATH to your bash.exe location."
+        "Or set VIRAT_CODE_GIT_BASH_PATH to your bash.exe location."
     )
 
 
@@ -185,9 +185,9 @@ class LocalEnvironment(BaseEnvironment):
             fenced_cmd = (
                 f"printf '{_OUTPUT_FENCE}';"
                 f" {exec_command};"
-                f" __hermes_rc=$?;"
+                f" __virat_code_rc=$?;"
                 f" printf '{_OUTPUT_FENCE}';"
-                f" exit $__hermes_rc"
+                f" exit $__virat_code_rc"
             )
             # Ensure PATH always includes standard dirs — systemd services
             # and some terminal multiplexers inherit a minimal PATH.

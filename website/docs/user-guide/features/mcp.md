@@ -15,14 +15,14 @@ The [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) is an open 
 What this means for you:
 
 - **Thousands of ready-made tools** — browse the [MCP server directory](https://github.com/modelcontextprotocol/servers) for servers covering GitHub, Slack, databases, file systems, web scraping, and more
-- **No code changes needed** — add a few lines to `~/.hermes/config.yaml` and the tools appear alongside built-in ones
+- **No code changes needed** — add a few lines to `~/.virat-code/config.yaml` and the tools appear alongside built-in ones
 - **Mix and match** — run multiple MCP servers simultaneously, combining stdio-based and HTTP-based servers
 - **Secure by default** — environment variables are filtered and credentials are stripped from error messages
 
 ## Prerequisites
 
 ```bash
-pip install Virat Code[mcp]
+pip install virat-code[mcp]
 ```
 
 | Server Type | Runtime Needed | Example |
@@ -33,7 +33,7 @@ pip install Virat Code[mcp]
 
 ## Configuration
 
-MCP servers are configured in `~/.hermes/config.yaml` under the `mcp_servers` key.
+MCP servers are configured in `~/.virat-code/config.yaml` under the `mcp_servers` key.
 
 ### Stdio Servers
 
@@ -131,7 +131,7 @@ Many MCP server docs show Claude Desktop JSON format. Here's the translation:
 }
 ```
 
-**Hermes YAML:**
+**Virat Code YAML:**
 ```yaml
 mcp_servers:                          # mcpServers → mcp_servers (snake_case)
   filesystem:
@@ -165,7 +165,7 @@ In addition to the server's own tools, each MCP server also gets 4 utility tools
 
 ### Reconnection
 
-If an MCP server disconnects, Hermes automatically reconnects with exponential backoff (1s, 2s, 4s, 8s, 16s — max 5 attempts). Initial connection failures are reported immediately.
+If an MCP server disconnects, Virat Code automatically reconnects with exponential backoff (1s, 2s, 4s, 8s, 16s — max 5 attempts). Initial connection failures are reported immediately.
 
 ### Shutdown
 
@@ -225,7 +225,7 @@ mcp_servers:
 ### "MCP SDK not available"
 
 ```bash
-pip install Virat Code[mcp]
+pip install virat-code[mcp]
 ```
 
 ### Server fails to start
@@ -267,7 +267,7 @@ mcp_servers:
 
 ### Reload MCP Servers
 
-You can reload MCP servers without restarting Hermes:
+You can reload MCP servers without restarting Virat Code:
 
 - In the CLI: the agent reconnects automatically
 - In messaging: send `/reload-mcp`

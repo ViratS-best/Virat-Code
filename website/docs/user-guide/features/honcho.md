@@ -7,15 +7,15 @@ sidebar_position: 8
 
 # Honcho Memory
 
-[Honcho](https://honcho.dev) is an AI-native memory system that gives Virat Code persistent, cross-session understanding of users. While Hermes has built-in memory (`MEMORY.md` and `USER.md` files), Honcho adds a deeper layer of **user modeling** — learning user preferences, goals, communication style, and context across conversations.
+[Honcho](https://honcho.dev) is an AI-native memory system that gives Virat Code persistent, cross-session understanding of users. While Virat Code has built-in memory (`MEMORY.md` and `USER.md` files), Honcho adds a deeper layer of **user modeling** — learning user preferences, goals, communication style, and context across conversations.
 
 ## How It Complements Built-in Memory
 
-Hermes has two memory systems that work together:
+Virat Code has two memory systems that work together:
 
 | Feature | Built-in Memory | Honcho Memory |
 |---------|----------------|---------------|
-| Storage | Local files (`~/.hermes/memories/`) | Cloud-hosted Honcho API |
+| Storage | Local files (`~/.virat-code/memories/`) | Cloud-hosted Honcho API |
 | Scope | Agent-level notes and user profile | Deep user modeling via dialectic reasoning |
 | Persistence | Across sessions on same machine | Across sessions, machines, and platforms |
 | Query | Injected into system prompt automatically | On-demand via `query_user_context` tool |
@@ -42,9 +42,9 @@ Honcho reads its configuration from `~/.honcho/config.json` (the global Honcho c
 ```json
 {
   "apiKey": "your-honcho-api-key",
-  "workspace": "hermes",
+  "workspace": "Virat-Code",
   "peerName": "your-name",
-  "aiPeer": "hermes",
+  "aiPeer": "Virat-Code",
   "environment": "production",
   "saveMessages": true,
   "sessionStrategy": "per-directory",
@@ -55,7 +55,7 @@ Honcho reads its configuration from `~/.honcho/config.json` (the global Honcho c
 Alternatively, set the API key as an environment variable:
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.virat-code/.env
 HONCHO_API_KEY=your-honcho-api-key
 ```
 
@@ -70,9 +70,9 @@ When an API key is present (either in `~/.honcho/config.json` or as `HONCHO_API_
 | Field | Default | Description |
 |-------|---------|-------------|
 | `apiKey` | — | Honcho API key (required) |
-| `workspace` | `"hermes"` | Workspace identifier |
+| `workspace` | `"Virat-Code"` | Workspace identifier |
 | `peerName` | *(derived)* | Your identity name for user modeling |
-| `aiPeer` | `"hermes"` | AI assistant identity name |
+| `aiPeer` | `"Virat-Code"` | AI assistant identity name |
 | `environment` | `"production"` | Honcho environment |
 | `saveMessages` | `true` | Whether to sync messages to Honcho |
 | `sessionStrategy` | `"per-directory"` | How sessions are scoped |
@@ -88,9 +88,9 @@ You can configure per-host settings for multi-application setups:
 {
   "apiKey": "your-key",
   "hosts": {
-    "hermes": {
+    "Virat-Code": {
       "workspace": "my-workspace",
-      "aiPeer": "hermes-assistant",
+      "aiPeer": "virat-code-assistant",
       "linkedHosts": ["other-app"],
       "contextTokens": 2000
     }
@@ -103,9 +103,9 @@ Host-specific fields override global fields. Resolution order:
 2. Global/flat fields from config root
 3. Defaults (host name used as workspace/peer)
 
-### Hermes Config (`~/.hermes/config.yaml`)
+### Virat Code Config (`~/.virat-code/config.yaml`)
 
-The `honcho` section in Hermes config is intentionally minimal — most configuration comes from the global `~/.honcho/config.json`:
+The `honcho` section in Virat Code config is intentionally minimal — most configuration comes from the global `~/.honcho/config.json`:
 
 ```yaml
 honcho: {}
@@ -113,7 +113,7 @@ honcho: {}
 
 ## The `query_user_context` Tool
 
-When Honcho is active, Hermes gains access to the `query_user_context` tool. This lets the agent proactively ask Honcho about the user during conversations:
+When Honcho is active, Virat Code gains access to the `query_user_context` tool. This lets the agent proactively ask Honcho about the user during conversations:
 
 **Tool schema:**
 - **Name:** `query_user_context`
@@ -142,7 +142,7 @@ Honcho sessions track conversation history for user modeling:
 - **Session creation** — sessions are created or resumed automatically based on session keys (e.g., `telegram:123456` or CLI session IDs)
 - **Message syncing** — new messages are synced to Honcho incrementally (only unsynced messages)
 - **Peer configuration** — user messages are observed for learning; assistant messages are not
-- **Context prefetch** — before responding, Hermes can prefetch user context (representation + peer card) in a single API call
+- **Context prefetch** — before responding, Virat Code can prefetch user context (representation + peer card) in a single API call
 - **Session rotation** — when sessions reset, old data is preserved in Honcho for continued user modeling
 
 ## Migration from Local Memory

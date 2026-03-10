@@ -1,18 +1,18 @@
 ---
 sidebar_position: 1
 title: "Messaging Gateway"
-description: "Chat with Hermes from Telegram, Discord, Slack, WhatsApp, or Signal — architecture and setup overview"
+description: "Chat with Virat Code from Telegram, Discord, Slack, WhatsApp, or Signal — architecture and setup overview"
 ---
 
 # Messaging Gateway
 
-Chat with Hermes from Telegram, Discord, Slack, WhatsApp, or Signal. The gateway is a single background process that connects to all your configured platforms, handles sessions, runs cron jobs, and delivers voice messages.
+Chat with Virat Code from Telegram, Discord, Slack, WhatsApp, or Signal. The gateway is a single background process that connects to all your configured platforms, handles sessions, runs cron jobs, and delivers voice messages.
 
 ## Architecture
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│                      Hermes Gateway                             │
+│                      Virat Code Gateway                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────┐ │
@@ -42,7 +42,7 @@ Each platform adapter receives messages, routes them through a per-chat session 
 The easiest way to configure messaging platforms is the interactive wizard:
 
 ```bash
-hermes gateway setup        # Interactive setup for all messaging platforms
+Virat-Code gateway setup        # Interactive setup for all messaging platforms
 ```
 
 This walks you through configuring each platform with arrow-key selection, shows which platforms are already configured, and offers to start/restart the gateway when done.
@@ -50,12 +50,12 @@ This walks you through configuring each platform with arrow-key selection, shows
 ## Gateway Commands
 
 ```bash
-hermes gateway              # Run in foreground
-hermes gateway setup        # Configure messaging platforms interactively
-hermes gateway install      # Install as systemd service (Linux) / launchd (macOS)
-hermes gateway start        # Start the service
-hermes gateway stop         # Stop the service
-hermes gateway status       # Check service status
+Virat-Code gateway              # Run in foreground
+Virat-Code gateway setup        # Configure messaging platforms interactively
+Virat-Code gateway install      # Install as systemd service (Linux) / launchd (macOS)
+Virat-Code gateway start        # Start the service
+Virat-Code gateway stop         # Stop the service
+Virat-Code gateway status       # Check service status
 ```
 
 ## Chat Commands (Inside Messaging)
@@ -95,7 +95,7 @@ Sessions reset based on configurable policies:
 | Idle | 120 min | Reset after N minutes of inactivity |
 | Both | (combined) | Whichever triggers first |
 
-Configure per-platform overrides in `~/.hermes/gateway.json`:
+Configure per-platform overrides in `~/.virat-code/gateway.json`:
 
 ```json
 {
@@ -130,11 +130,11 @@ Instead of manually configuring user IDs, unknown users receive a one-time pairi
 ```bash
 # The user sees: "Pairing code: XKGH5N7P"
 # You approve them with:
-hermes pairing approve telegram XKGH5N7P
+virat-code pairing approve telegram XKGH5N7P
 
 # Other pairing commands:
-hermes pairing list          # View pending + approved users
-hermes pairing revoke telegram 123456789  # Remove access
+virat-code pairing list          # View pending + approved users
+virat-code pairing revoke telegram 123456789  # Remove access
 ```
 
 Pairing codes expire after 1 hour, are rate-limited, and use cryptographic randomness.
@@ -150,7 +150,7 @@ Send any message while the agent is working to interrupt it. Key behaviors:
 
 ## Tool Progress Notifications
 
-Control how much tool activity is displayed in `~/.hermes/config.yaml`:
+Control how much tool activity is displayed in `~/.virat-code/config.yaml`:
 
 ```yaml
 display:
@@ -171,11 +171,11 @@ When enabled, the bot sends status messages as it works:
 ### Linux (systemd)
 
 ```bash
-hermes gateway install               # Install as user service
-systemctl --user start hermes-gateway
-systemctl --user stop hermes-gateway
-systemctl --user status hermes-gateway
-journalctl --user -u hermes-gateway -f
+Virat-Code gateway install               # Install as user service
+systemctl --user start virat-code-gateway
+systemctl --user stop virat-code-gateway
+systemctl --user status virat-code-gateway
+journalctl --user -u virat-code-gateway -f
 
 # Enable lingering (keeps running after logout)
 sudo loginctl enable-linger $USER
@@ -184,10 +184,10 @@ sudo loginctl enable-linger $USER
 ### macOS (launchd)
 
 ```bash
-hermes gateway install
-launchctl start ai.hermes.gateway
-launchctl stop ai.hermes.gateway
-tail -f ~/.hermes/logs/gateway.log
+Virat-Code gateway install
+launchctl start ai.virat-code.gateway
+launchctl stop ai.virat-code.gateway
+tail -f ~/.virat-code/logs/gateway.log
 ```
 
 ## Platform-Specific Toolsets
@@ -196,12 +196,12 @@ Each platform has its own toolset:
 
 | Platform | Toolset | Capabilities |
 |----------|---------|--------------|
-| CLI | `hermes-cli` | Full access |
-| Telegram | `hermes-telegram` | Full tools including terminal |
-| Discord | `hermes-discord` | Full tools including terminal |
-| WhatsApp | `hermes-whatsapp` | Full tools including terminal |
-| Slack | `hermes-slack` | Full tools including terminal |
-| Signal | `hermes-signal` | Full tools including terminal |
+| CLI | `virat-code-cli` | Full access |
+| Telegram | `virat-code-telegram` | Full tools including terminal |
+| Discord | `virat-code-discord` | Full tools including terminal |
+| WhatsApp | `virat-code-whatsapp` | Full tools including terminal |
+| Slack | `virat-code-slack` | Full tools including terminal |
+| Signal | `virat-code-signal` | Full tools including terminal |
 
 ## Next Steps
 

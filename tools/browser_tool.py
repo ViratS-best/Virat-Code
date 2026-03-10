@@ -128,7 +128,7 @@ def _socket_safe_tmpdir() -> str:
     """Return a short temp directory path suitable for Unix domain sockets.
 
     macOS sets ``TMPDIR`` to ``/var/folders/xx/.../T/`` (~51 chars).  When we
-    append ``agent-browser-hermes_…`` the resulting socket path exceeds the
+    append ``agent-browser-virat_code_…`` the resulting socket path exceeds the
     104-byte macOS limit for ``AF_UNIX`` addresses, causing agent-browser to
     fail with "Failed to create socket directory" or silent screenshot failures.
 
@@ -642,7 +642,7 @@ def _create_browserbase_session(task_id: str) -> Dict[str, str]:
         raise RuntimeError(f"Failed to create Browserbase session: {response.status_code} {response.text}")
     
     session_data = response.json()
-    session_name = f"hermes_{task_id}_{uuid.uuid4().hex[:8]}"
+    session_name = f"virat_code_{task_id}_{uuid.uuid4().hex[:8]}"
     
     # Update features based on what actually succeeded
     if enable_proxies and not proxies_fallback:
@@ -673,7 +673,7 @@ def _create_local_session(task_id: str) -> Dict[str, str]:
     of the code can treat both modes uniformly.
     """
     import uuid
-    session_name = f"hermes_{task_id}_{uuid.uuid4().hex[:8]}"
+    session_name = f"virat_code_{task_id}_{uuid.uuid4().hex[:8]}"
     logger.info("Created local browser session %s", session_name)
     return {
         "session_name": session_name,
@@ -1372,8 +1372,8 @@ def _maybe_start_recording(task_id: str):
     if task_id in _recording_sessions:
         return
     try:
-        hermes_home = Path(os.environ.get("HERMES_HOME", Path.home() / ".hermes"))
-        config_path = hermes_home / "config.yaml"
+        virat_code_home = Path(os.environ.get("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
+        config_path = virat_code_home / "config.yaml"
         record_enabled = False
         if config_path.exists():
             import yaml
@@ -1384,7 +1384,7 @@ def _maybe_start_recording(task_id: str):
         if not record_enabled:
             return
         
-        recordings_dir = hermes_home / "browser_recordings"
+        recordings_dir = virat_code_home / "browser_recordings"
         recordings_dir.mkdir(parents=True, exist_ok=True)
         _cleanup_old_recordings(max_age_hours=72)
         
@@ -1506,8 +1506,8 @@ def browser_vision(question: str, annotate: bool = False, task_id: Optional[str]
         }, ensure_ascii=False)
     
     # Save screenshot to persistent location so it can be shared with users
-    hermes_home = Path(os.environ.get("HERMES_HOME", Path.home() / ".hermes"))
-    screenshots_dir = hermes_home / "browser_screenshots"
+    virat_code_home = Path(os.environ.get("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
+    screenshots_dir = virat_code_home / "browser_screenshots"
     screenshot_path = screenshots_dir / f"browser_screenshot_{uuid_mod.uuid4().hex}.png"
     
     try:
@@ -1625,8 +1625,8 @@ def _cleanup_old_recordings(max_age_hours=72):
     """Remove browser recordings older than max_age_hours to prevent disk bloat."""
     import time
     try:
-        hermes_home = Path(os.environ.get("HERMES_HOME", Path.home() / ".hermes"))
-        recordings_dir = hermes_home / "browser_recordings"
+        virat_code_home = Path(os.environ.get("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
+        recordings_dir = virat_code_home / "browser_recordings"
         if not recordings_dir.exists():
             return
         cutoff = time.time() - (max_age_hours * 3600)

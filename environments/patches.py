@@ -21,7 +21,7 @@ What gets patched:
     - SwerexModalEnvironment.stop -- stops deployment on the background thread
 
 Usage:
-    Call apply_patches() once at import time (done automatically by hermes_base_env.py).
+    Call apply_patches() once at import time (done automatically by virat_code_base_env.py).
     This is idempotent -- calling it multiple times is safe.
 """
 

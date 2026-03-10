@@ -12,7 +12,7 @@ Quick answers and fixes for the most common questions and issues.
 
 ## Frequently Asked Questions
 
-### What LLM providers work with Hermes?
+### What LLM providers work with Virat Code?
 
 Virat Code works with any OpenAI-compatible API. Supported providers include:
 
@@ -26,11 +26,11 @@ Virat Code works with any OpenAI-compatible API. Supported providers include:
 - **MiniMax** — global and China endpoints
 - **Local models** — via [Ollama](https://ollama.com/), [vLLM](https://docs.vllm.ai/), [llama.cpp](https://github.com/ggerganov/llama.cpp), [SGLang](https://github.com/sgl-project/sglang), or any OpenAI-compatible server
 
-Set your provider with `hermes setup` or by editing `~/.hermes/.env`. See the [Environment Variables](./environment-variables.md) reference for all provider keys.
+Set your provider with `Virat-Code setup` or by editing `~/.virat-code/.env`. See the [Environment Variables](./environment-variables.md) reference for all provider keys.
 
 ### Does it work on Windows?
 
-**Not natively.** Virat Code requires a Unix-like environment. On Windows, install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Hermes from inside it. The standard install command works perfectly in WSL2:
+**Not natively.** Virat Code requires a Unix-like environment. On Windows, install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Virat Code from inside it. The standard install command works perfectly in WSL2:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
@@ -38,16 +38,16 @@ curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts
 
 ### Is my data sent anywhere?
 
-API calls go **only to the LLM provider you configure** (e.g., OpenRouter, your local Ollama instance). Virat Code does not collect telemetry, usage data, or analytics. Your conversations, memory, and skills are stored locally in `~/.hermes/`.
+API calls go **only to the LLM provider you configure** (e.g., OpenRouter, your local Ollama instance). Virat Code does not collect telemetry, usage data, or analytics. Your conversations, memory, and skills are stored locally in `~/.virat-code/`.
 
 ### Can I use it offline / with local models?
 
-Yes. Point Hermes at any local OpenAI-compatible server:
+Yes. Point Virat Code at any local OpenAI-compatible server:
 
 ```bash
-hermes config set OPENAI_BASE_URL http://localhost:11434/v1  # Ollama
-hermes config set OPENAI_API_KEY ollama                       # Any non-empty value
-hermes config set HERMES_MODEL llama3.1
+Virat-Code config set OPENAI_BASE_URL http://localhost:11434/v1  # Ollama
+Virat-Code config set OPENAI_API_KEY ollama                       # Any non-empty value
+Virat-Code config set VIRAT_CODE_MODEL llama3.1
 ```
 
 This works with Ollama, vLLM, llama.cpp server, SGLang, LocalAI, and others. See the [Configuration guide](../user-guide/configuration.md) for details.
@@ -69,12 +69,12 @@ Both persist across sessions. See [Memory](../user-guide/features/memory.md) and
 
 ### Can I use it in my own Python project?
 
-Yes. Import the `AIAgent` class and use Hermes programmatically:
+Yes. Import the `AIAgent` class and use Virat Code programmatically:
 
 ```python
-from hermes.agent import AIAgent
+from virat-code.agent import AIAgent
 
-agent = AIAgent(model="openrouter/nous/hermes-3-llama-3.1-70b")
+agent = AIAgent(model="openrouter/nous/virat-code-3-llama-3.1-70b")
 response = await agent.chat("Explain quantum computing briefly")
 ```
 
@@ -86,7 +86,7 @@ See the [Python Library guide](../user-guide/features/code-execution.md) for ful
 
 ### Installation Issues
 
-#### `hermes: command not found` after installation
+#### `virat-code: command not found` after installation
 
 **Cause:** Your shell hasn't reloaded the updated PATH.
 
@@ -101,8 +101,8 @@ source ~/.zshrc     # zsh
 
 If it still doesn't work, verify the install location:
 ```bash
-which hermes
-ls ~/.local/bin/hermes
+which virat-code
+ls ~/.local/bin/virat-code
 ```
 
 :::tip
@@ -111,7 +111,7 @@ The installer adds `~/.local/bin` to your PATH. If you use a non-standard shell 
 
 #### Python version too old
 
-**Cause:** Hermes requires Python 3.11 or newer.
+**Cause:** Virat Code requires Python 3.11 or newer.
 
 **Solution:**
 ```bash
@@ -142,7 +142,7 @@ source ~/.bashrc
 ```bash
 # Don't use sudo with the installer — it installs to ~/.local/bin
 # If you previously installed with sudo, clean up:
-sudo rm /usr/local/bin/hermes
+sudo rm /usr/local/bin/virat-code
 # Then re-run the standard installer
 curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
 ```
@@ -158,17 +158,17 @@ curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts
 **Solution:**
 ```bash
 # Check which keys are set
-hermes config get OPENROUTER_API_KEY
+Virat-Code config get OPENROUTER_API_KEY
 
 # Re-run interactive setup
-hermes setup
+Virat-Code setup
 
 # Or set directly
-hermes config set OPENROUTER_API_KEY sk-or-v1-xxxxxxxxxxxx
+Virat-Code config set OPENROUTER_API_KEY sk-or-v1-xxxxxxxxxxxx
 ```
 
 :::warning
-Make sure the key matches the provider. An OpenAI key won't work with OpenRouter and vice versa. Check `~/.hermes/.env` for conflicting entries.
+Make sure the key matches the provider. An OpenAI key won't work with OpenRouter and vice versa. Check `~/.virat-code/.env` for conflicting entries.
 :::
 
 #### Model not available / model not found
@@ -178,13 +178,13 @@ Make sure the key matches the provider. An OpenAI key won't work with OpenRouter
 **Solution:**
 ```bash
 # List available models for your provider
-hermes models
+virat-code models
 
 # Set a valid model
-hermes config set HERMES_MODEL openrouter/nous/hermes-3-llama-3.1-70b
+Virat-Code config set VIRAT_CODE_MODEL openrouter/nous/virat-code-3-llama-3.1-70b
 
 # Or specify per-session
-hermes chat --model openrouter/meta-llama/llama-3.1-70b-instruct
+virat-code chat --model openrouter/meta-llama/llama-3.1-70b-instruct
 ```
 
 #### Rate limiting (429 errors)
@@ -194,7 +194,7 @@ hermes chat --model openrouter/meta-llama/llama-3.1-70b-instruct
 **Solution:** Wait a moment and retry. For sustained usage, consider:
 - Upgrading your provider plan
 - Switching to a different model or provider
-- Using `hermes chat --provider <alternative>` to route to a different backend
+- Using `virat-code chat --provider <alternative>` to route to a different backend
 
 #### Context length exceeded
 
@@ -206,10 +206,10 @@ hermes chat --model openrouter/meta-llama/llama-3.1-70b-instruct
 /compress
 
 # Or start a fresh session
-hermes chat
+virat-code chat
 
 # Use a model with a larger context window
-hermes chat --model openrouter/google/gemini-2.0-flash-001
+virat-code chat --model openrouter/google/gemini-2.0-flash-001
 ```
 
 ---
@@ -218,14 +218,14 @@ hermes chat --model openrouter/google/gemini-2.0-flash-001
 
 #### Command blocked as dangerous
 
-**Cause:** Hermes detected a potentially destructive command (e.g., `rm -rf`, `DROP TABLE`). This is a safety feature.
+**Cause:** Virat Code detected a potentially destructive command (e.g., `rm -rf`, `DROP TABLE`). This is a safety feature.
 
 **Solution:** When prompted, review the command and type `y` to approve it. You can also:
 - Ask the agent to use a safer alternative
 - See the full list of dangerous patterns in the [Security docs](../user-guide/security.md)
 
 :::tip
-This is working as intended — Hermes never silently runs destructive commands. The approval prompt shows you exactly what will execute.
+This is working as intended — Virat Code never silently runs destructive commands. The approval prompt shows you exactly what will execute.
 :::
 
 #### `sudo` not working via messaging gateway
@@ -235,7 +235,7 @@ This is working as intended — Hermes never silently runs destructive commands.
 **Solution:**
 - Avoid `sudo` in messaging — ask the agent to find alternatives
 - If you must use `sudo`, configure passwordless sudo for specific commands in `/etc/sudoers`
-- Or switch to the terminal interface for administrative tasks: `hermes chat`
+- Or switch to the terminal interface for administrative tasks: `virat-code chat`
 
 #### Docker backend not connecting
 
@@ -265,13 +265,13 @@ docker run hello-world
 **Solution:**
 ```bash
 # Check if the gateway is running
-hermes gateway status
+Virat-Code gateway status
 
 # Start the gateway
-hermes gateway start
+Virat-Code gateway start
 
 # Check logs for errors
-hermes gateway logs
+Virat-Code gateway logs
 ```
 
 #### Messages not delivering
@@ -279,8 +279,8 @@ hermes gateway logs
 **Cause:** Network issues, bot token expired, or platform webhook misconfiguration.
 
 **Solution:**
-- Verify your bot token is valid with `hermes setup`
-- Check gateway logs: `hermes gateway logs`
+- Verify your bot token is valid with `Virat-Code setup`
+- Check gateway logs: `Virat-Code gateway logs`
 - For webhook-based platforms (Slack, WhatsApp), ensure your server is publicly accessible
 
 #### Allowlist confusion — who can talk to the bot?
@@ -295,7 +295,7 @@ hermes gateway logs
 | **DM pairing** | First user to message in DM claims exclusive access |
 | **Open** | Anyone can interact (not recommended for production) |
 
-Configure in `~/.hermes/config.yaml` under your gateway's settings. See the [Messaging docs](../user-guide/messaging/index.md).
+Configure in `~/.virat-code/config.yaml` under your gateway's settings. See the [Messaging docs](../user-guide/messaging/index.md).
 
 #### Gateway won't start
 
@@ -304,13 +304,13 @@ Configure in `~/.hermes/config.yaml` under your gateway's settings. See the [Mes
 **Solution:**
 ```bash
 # Install messaging dependencies
-pip install Virat Code[telegram]   # or [discord], [slack], [whatsapp]
+pip install virat-code[telegram]   # or [discord], [slack], [whatsapp]
 
 # Check for port conflicts
 lsof -i :8080
 
 # Verify configuration
-hermes config show
+Virat-Code config show
 ```
 
 ---
@@ -322,8 +322,8 @@ hermes config show
 **Cause:** Large model, distant API server, or heavy system prompt with many tools.
 
 **Solution:**
-- Try a faster/smaller model: `hermes chat --model openrouter/meta-llama/llama-3.1-8b-instruct`
-- Reduce active toolsets: `hermes chat -t "terminal"`
+- Try a faster/smaller model: `virat-code chat --model openrouter/meta-llama/llama-3.1-8b-instruct`
+- Reduce active toolsets: `virat-code chat -t "terminal"`
 - Check your network latency to the provider
 - For local models, ensure you have enough GPU VRAM
 
@@ -354,10 +354,10 @@ Use `/compress` regularly during long sessions. It summarizes the conversation h
 /compress
 
 # Start a new session with a reference to the old one
-hermes chat
+virat-code chat
 
 # Resume a specific session later if needed
-hermes chat --continue
+virat-code chat --continue
 ```
 
 ---
@@ -371,7 +371,7 @@ hermes chat --continue
 **Solution:**
 ```bash
 # Ensure MCP dependencies are installed
-pip install Virat Code[mcp]
+pip install virat-code[mcp]
 
 # For npm-based servers, ensure Node.js is available
 node --version
@@ -381,7 +381,7 @@ npx --version
 npx -y @modelcontextprotocol/server-filesystem /tmp
 ```
 
-Verify your `~/.hermes/config.yaml` MCP configuration:
+Verify your `~/.virat-code/config.yaml` MCP configuration:
 ```yaml
 mcp_servers:
   filesystem:
@@ -400,10 +400,10 @@ mcp_servers:
 
 ```bash
 # Verify MCP servers are configured
-hermes config show | grep -A 5 mcp_servers
+Virat-Code config show | grep -A 5 mcp_servers
 
-# Restart hermes to re-discover tools
-hermes chat
+# Restart Virat-Code to re-discover tools
+virat-code chat
 ```
 
 #### MCP timeout errors
@@ -416,7 +416,7 @@ hermes chat
 - For remote HTTP MCP servers, check network connectivity
 
 :::warning
-If an MCP server crashes mid-request, Hermes will report a timeout. Check the server's own logs (not just Hermes logs) to diagnose the root cause.
+If an MCP server crashes mid-request, Virat Code will report a timeout. Check the server's own logs (not just Virat Code logs) to diagnose the root cause.
 :::
 
 ---
@@ -427,4 +427,4 @@ If your issue isn't covered here:
 
 1. **Search existing issues:** [GitHub Issues](https://github.com/ViratS-best/Virat-Code/issues)
 2. **Ask the community:** [Virat Sisodiya Discord](https://discord.gg/nousresearch)
-3. **File a bug report:** Include your OS, Python version (`python3 --version`), Hermes version (`hermes --version`), and the full error message
+3. **File a bug report:** Include your OS, Python version (`python3 --version`), Virat Code version (`virat-code --version`), and the full error message

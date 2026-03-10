@@ -487,8 +487,8 @@ class DiscordAdapter(BasePlatformAdapter):
 
         tree = self._client.tree
 
-        @tree.command(name="ask", description="Ask Hermes a question")
-        @discord.app_commands.describe(question="Your question for Hermes")
+        @tree.command(name="ask", description="Ask Virat Code a question")
+        @discord.app_commands.describe(question="Your question for Virat Code")
         async def slash_ask(interaction: discord.Interaction, question: str):
             await interaction.response.defer()
             event = self._build_slash_event(interaction, question)
@@ -510,7 +510,7 @@ class DiscordAdapter(BasePlatformAdapter):
             except Exception as e:
                 logger.debug("Discord followup failed: %s", e)
 
-        @tree.command(name="reset", description="Reset your Hermes session")
+        @tree.command(name="reset", description="Reset your Virat Code session")
         async def slash_reset(interaction: discord.Interaction):
             await interaction.response.defer(ephemeral=True)
             event = self._build_slash_event(interaction, "/reset")
@@ -562,7 +562,7 @@ class DiscordAdapter(BasePlatformAdapter):
             except Exception as e:
                 logger.debug("Discord followup failed: %s", e)
 
-        @tree.command(name="status", description="Show Hermes session status")
+        @tree.command(name="status", description="Show Virat Code session status")
         async def slash_status(interaction: discord.Interaction):
             await interaction.response.defer(ephemeral=True)
             event = self._build_slash_event(interaction, "/status")

@@ -4,9 +4,9 @@ Gateway runtime status helpers.
 Provides PID-file based detection of whether the gateway daemon is running,
 used by send_message's check_fn to gate availability in the CLI.
 
-The PID file lives at ``{HERMES_HOME}/gateway.pid``.  HERMES_HOME defaults to
-``~/.hermes`` but can be overridden via the environment variable.  This means
-separate HERMES_HOME directories naturally get separate PID files — a property
+The PID file lives at ``{VIRAT_CODE_HOME}/gateway.pid``.  VIRAT_CODE_HOME defaults to
+``~/.virat-code`` but can be overridden via the environment variable.  This means
+separate VIRAT_CODE_HOME directories naturally get separate PID files — a property
 that will be useful when we add named profiles (multiple agents running
 concurrently under distinct configurations).
 """
@@ -17,8 +17,8 @@ from typing import Optional
 
 
 def _get_pid_path() -> Path:
-    """Return the path to the gateway PID file, respecting HERMES_HOME."""
-    home = Path(os.getenv("HERMES_HOME", Path.home() / ".hermes"))
+    """Return the path to the gateway PID file, respecting VIRAT_CODE_HOME."""
+    home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
     return home / "gateway.pid"
 
 

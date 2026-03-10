@@ -182,13 +182,13 @@ def _skill_is_platform_compatible(skill_file: Path) -> bool:
 def build_skills_system_prompt() -> str:
     """Build a compact skill index for the system prompt.
 
-    Scans ~/.hermes/skills/ for SKILL.md files grouped by category.
+    Scans ~/.virat-code/skills/ for SKILL.md files grouped by category.
     Includes per-skill descriptions from frontmatter so the model can
     match skills by meaning, not just name.
     Filters out skills incompatible with the current OS platform.
     """
-    hermes_home = Path(os.getenv("HERMES_HOME", Path.home() / ".hermes"))
-    skills_dir = hermes_home / "skills"
+    virat_code_home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
+    skills_dir = virat_code_home / "skills"
 
     if not skills_dir.exists():
         return ""
@@ -288,7 +288,7 @@ def build_context_files_prompt(cwd: Optional[str] = None) -> str:
     """Discover and load context files for the system prompt.
 
     Discovery: AGENTS.md (recursive), .cursorrules / .cursor/rules/*.mdc,
-    SOUL.md (cwd then ~/.hermes/ fallback). Each capped at 20,000 chars.
+    SOUL.md (cwd then ~/.virat-code/ fallback). Each capped at 20,000 chars.
     """
     if cwd is None:
         cwd = os.getcwd()
@@ -356,7 +356,7 @@ def build_context_files_prompt(cwd: Optional[str] = None) -> str:
         cursorrules_content = _truncate_content(cursorrules_content, ".cursorrules")
         sections.append(cursorrules_content)
 
-    # SOUL.md (cwd first, then ~/.hermes/ fallback)
+    # SOUL.md (cwd first, then ~/.virat-code/ fallback)
     soul_path = None
     for name in ["SOUL.md", "soul.md"]:
         candidate = cwd_path / name
@@ -364,7 +364,7 @@ def build_context_files_prompt(cwd: Optional[str] = None) -> str:
             soul_path = candidate
             break
     if not soul_path:
-        global_soul = Path.home() / ".hermes" / "SOUL.md"
+        global_soul = Path.home() / ".virat-code" / "SOUL.md"
         if global_soul.exists():
             soul_path = global_soul
 

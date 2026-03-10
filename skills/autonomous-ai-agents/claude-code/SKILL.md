@@ -5,14 +5,14 @@ version: 1.0.0
 author: Virat Code
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [Coding-Agent, Claude, Anthropic, Code-Review, Refactoring]
     related_skills: [codex, Virat Code]
 ---
 
 # Claude Code
 
-Delegate coding tasks to [Claude Code](https://docs.anthropic.com/en/docs/claude-code) via the Hermes terminal. Claude Code is Anthropic's autonomous coding agent CLI.
+Delegate coding tasks to [Claude Code](https://docs.anthropic.com/en/docs/claude-code) via the Virat Code terminal. Claude Code is Anthropic's autonomous coding agent CLI.
 
 ## Prerequisites
 

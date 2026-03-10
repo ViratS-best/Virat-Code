@@ -228,7 +228,7 @@ class TestTryActivateFallback:
             "base_url": "https://chatgpt.com/backend-api/codex",
         }
         with (
-            patch("hermes_cli.auth.resolve_codex_runtime_credentials", return_value=mock_creds),
+            patch("virat_code_cli.auth.resolve_codex_runtime_credentials", return_value=mock_creds),
             patch("run_agent.OpenAI") as mock_openai,
         ):
             result = agent._try_activate_fallback()
@@ -246,7 +246,7 @@ class TestTryActivateFallback:
             fallback_model={"provider": "openai-codex", "model": "gpt-5.3-codex"},
         )
         with patch(
-            "hermes_cli.auth.resolve_codex_runtime_credentials",
+            "virat_code_cli.auth.resolve_codex_runtime_credentials",
             side_effect=Exception("No Codex credentials"),
         ):
             assert agent._try_activate_fallback() is False
@@ -255,19 +255,19 @@ class TestTryActivateFallback:
     def test_activates_nous_fallback(self):
         """Nous Portal fallback should use OAuth credentials and chat_completions mode."""
         agent = _make_agent(
-            fallback_model={"provider": "nous", "model": "nous-hermes-3"},
+            fallback_model={"provider": "nous", "model": "nous-virat-code-3"},
         )
         mock_creds = {
             "api_key": "nous-agent-key-abc",
             "base_url": "https://inference-api.github.com/ViratS-best/v1",
         }
         with (
-            patch("hermes_cli.auth.resolve_nous_runtime_credentials", return_value=mock_creds),
+            patch("virat_code_cli.auth.resolve_nous_runtime_credentials", return_value=mock_creds),
             patch("run_agent.OpenAI") as mock_openai,
         ):
             result = agent._try_activate_fallback()
             assert result is True
-            assert agent.model == "nous-hermes-3"
+            assert agent.model == "nous-virat-code-3"
             assert agent.provider == "nous"
             assert agent.api_mode == "chat_completions"
             call_kwargs = mock_openai.call_args[1]
@@ -277,10 +277,10 @@ class TestTryActivateFallback:
     def test_nous_fallback_fails_gracefully_without_login(self):
         """Nous fallback should return False if not logged in."""
         agent = _make_agent(
-            fallback_model={"provider": "nous", "model": "nous-hermes-3"},
+            fallback_model={"provider": "nous", "model": "nous-virat-code-3"},
         )
         with patch(
-            "hermes_cli.auth.resolve_nous_runtime_credentials",
+            "virat_code_cli.auth.resolve_nous_runtime_credentials",
             side_effect=Exception("Not logged in to Nous Portal"),
         ):
             assert agent._try_activate_fallback() is False

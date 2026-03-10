@@ -5,7 +5,7 @@ version: 1.1.0
 author: Virat Code
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [GitHub, Repositories, Git, Releases, Secrets, Configuration]
     related_skills: [github-auth, github-pr-workflow, github-issues]
 ---

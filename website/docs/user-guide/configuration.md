@@ -6,12 +6,12 @@ description: "Configure Virat Code — config.yaml, providers, models, API keys,
 
 # Configuration
 
-All settings are stored in the `~/.hermes/` directory for easy access.
+All settings are stored in the `~/.virat-code/` directory for easy access.
 
 ## Directory Structure
 
 ```text
-~/.hermes/
+~/.virat-code/
 ├── config.yaml     # Settings (model, terminal, TTS, compression, etc.)
 ├── .env            # API keys and secrets
 ├── auth.json       # OAuth provider credentials (Nous Portal, etc.)
@@ -26,29 +26,29 @@ All settings are stored in the `~/.hermes/` directory for easy access.
 ## Managing Configuration
 
 ```bash
-hermes config              # View current configuration
-hermes config edit         # Open config.yaml in your editor
-hermes config set KEY VAL  # Set a specific value
-hermes config check        # Check for missing options (after updates)
-hermes config migrate      # Interactively add missing options
+Virat-Code config              # View current configuration
+Virat-Code config edit         # Open config.yaml in your editor
+Virat-Code config set KEY VAL  # Set a specific value
+Virat-Code config check        # Check for missing options (after updates)
+Virat-Code config migrate      # Interactively add missing options
 
 # Examples:
-hermes config set model anthropic/claude-opus-4
-hermes config set terminal.backend docker
-hermes config set OPENROUTER_API_KEY sk-or-...  # Saves to .env
+Virat-Code config set model anthropic/claude-opus-4
+Virat-Code config set terminal.backend docker
+Virat-Code config set OPENROUTER_API_KEY sk-or-...  # Saves to .env
 ```
 
 :::tip
-The `hermes config set` command automatically routes values to the right file — API keys are saved to `.env`, everything else to `config.yaml`.
+The `Virat-Code config set` command automatically routes values to the right file — API keys are saved to `.env`, everything else to `config.yaml`.
 :::
 
 ## Configuration Precedence
 
 Settings are resolved in this order (highest priority first):
 
-1. **CLI arguments** — e.g., `hermes chat --model anthropic/claude-sonnet-4` (per-invocation override)
-2. **`~/.hermes/config.yaml`** — the primary config file for all non-secret settings
-3. **`~/.hermes/.env`** — fallback for env vars; **required** for secrets (API keys, tokens, passwords)
+1. **CLI arguments** — e.g., `virat-code chat --model anthropic/claude-sonnet-4` (per-invocation override)
+2. **`~/.virat-code/config.yaml`** — the primary config file for all non-secret settings
+3. **`~/.virat-code/.env`** — fallback for env vars; **required** for secrets (API keys, tokens, passwords)
 4. **Built-in defaults** — hardcoded safe defaults when nothing else is set
 
 :::info Rule of Thumb
@@ -57,18 +57,18 @@ Secrets (API keys, bot tokens, passwords) go in `.env`. Everything else (model, 
 
 ## Inference Providers
 
-You need at least one way to connect to an LLM. Use `hermes model` to switch providers and models interactively, or configure directly:
+You need at least one way to connect to an LLM. Use `virat-code model` to switch providers and models interactively, or configure directly:
 
 | Provider | Setup |
 |----------|-------|
-| **Nous Portal** | `hermes model` (OAuth, subscription-based) |
-| **OpenAI Codex** | `hermes model` (ChatGPT OAuth, uses Codex models) |
-| **OpenRouter** | `OPENROUTER_API_KEY` in `~/.hermes/.env` |
-| **z.ai / GLM** | `GLM_API_KEY` in `~/.hermes/.env` (provider: `zai`) |
-| **Kimi / Moonshot** | `KIMI_API_KEY` in `~/.hermes/.env` (provider: `kimi-coding`) |
-| **MiniMax** | `MINIMAX_API_KEY` in `~/.hermes/.env` (provider: `minimax`) |
-| **MiniMax China** | `MINIMAX_CN_API_KEY` in `~/.hermes/.env` (provider: `minimax-cn`) |
-| **Custom Endpoint** | `OPENAI_BASE_URL` + `OPENAI_API_KEY` in `~/.hermes/.env` |
+| **Nous Portal** | `virat-code model` (OAuth, subscription-based) |
+| **OpenAI Codex** | `virat-code model` (ChatGPT OAuth, uses Codex models) |
+| **OpenRouter** | `OPENROUTER_API_KEY` in `~/.virat-code/.env` |
+| **z.ai / GLM** | `GLM_API_KEY` in `~/.virat-code/.env` (provider: `zai`) |
+| **Kimi / Moonshot** | `KIMI_API_KEY` in `~/.virat-code/.env` (provider: `kimi-coding`) |
+| **MiniMax** | `MINIMAX_API_KEY` in `~/.virat-code/.env` (provider: `minimax`) |
+| **MiniMax China** | `MINIMAX_CN_API_KEY` in `~/.virat-code/.env` (provider: `minimax-cn`) |
+| **Custom Endpoint** | `OPENAI_BASE_URL` + `OPENAI_API_KEY` in `~/.virat-code/.env` |
 
 :::info Codex Note
 The OpenAI Codex provider authenticates via device code (open a URL, enter a code). Credentials are stored at `~/.codex/auth.json` and auto-refresh. No Codex CLI installation required.
@@ -84,20 +84,20 @@ These providers have built-in support with dedicated provider IDs. Set the API k
 
 ```bash
 # z.ai / ZhipuAI GLM
-hermes chat --provider zai --model glm-4-plus
-# Requires: GLM_API_KEY in ~/.hermes/.env
+virat-code chat --provider zai --model glm-4-plus
+# Requires: GLM_API_KEY in ~/.virat-code/.env
 
 # Kimi / Moonshot AI
-hermes chat --provider kimi-coding --model moonshot-v1-auto
-# Requires: KIMI_API_KEY in ~/.hermes/.env
+virat-code chat --provider kimi-coding --model moonshot-v1-auto
+# Requires: KIMI_API_KEY in ~/.virat-code/.env
 
 # MiniMax (global endpoint)
-hermes chat --provider minimax --model MiniMax-Text-01
-# Requires: MINIMAX_API_KEY in ~/.hermes/.env
+virat-code chat --provider minimax --model MiniMax-Text-01
+# Requires: MINIMAX_API_KEY in ~/.virat-code/.env
 
 # MiniMax (China endpoint)
-hermes chat --provider minimax-cn --model MiniMax-Text-01
-# Requires: MINIMAX_CN_API_KEY in ~/.hermes/.env
+virat-code chat --provider minimax-cn --model MiniMax-Text-01
+# Requires: MINIMAX_CN_API_KEY in ~/.virat-code/.env
 ```
 
 Or set the provider permanently in `config.yaml`:
@@ -111,7 +111,7 @@ Base URLs can be overridden with `GLM_BASE_URL`, `KIMI_BASE_URL`, `MINIMAX_BASE_
 
 ## Custom & Self-Hosted LLM Providers
 
-Virat Code works with **any OpenAI-compatible API endpoint**. If a server implements `/v1/chat/completions`, you can point Hermes at it. This means you can use local models, GPU inference servers, multi-provider routers, or any third-party API.
+Virat Code works with **any OpenAI-compatible API endpoint**. If a server implements `/v1/chat/completions`, you can point Virat Code at it. This means you can use local models, GPU inference servers, multi-provider routers, or any third-party API.
 
 ### General Setup
 
@@ -119,14 +119,14 @@ Two ways to configure a custom endpoint:
 
 **Interactive (recommended):**
 ```bash
-hermes model
+virat-code model
 # Select "Custom endpoint (self-hosted / VLLM / etc.)"
 # Enter: API base URL, API key, Model name
 ```
 
 **Manual (`.env` file):**
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.virat-code/.env
 OPENAI_BASE_URL=http://localhost:8000/v1
 OPENAI_API_KEY=your-key-or-dummy
 LLM_MODEL=your-model-name
@@ -145,7 +145,7 @@ Everything below follows this same pattern — just change the URL, key, and mod
 ollama pull llama3.1:70b
 ollama serve   # Starts on port 11434
 
-# Configure Hermes
+# Configure Virat Code
 OPENAI_BASE_URL=http://localhost:11434/v1
 OPENAI_API_KEY=ollama           # Any non-empty string
 LLM_MODEL=llama3.1:70b
@@ -170,13 +170,13 @@ vllm serve meta-llama/Llama-3.1-70B-Instruct \
   --port 8000 \
   --tensor-parallel-size 2    # Multi-GPU
 
-# Configure Hermes
+# Configure Virat Code
 OPENAI_BASE_URL=http://localhost:8000/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=meta-llama/Llama-3.1-70B-Instruct
 ```
 
-vLLM supports tool calling, structured output, and multi-modal models. Use `--enable-auto-tool-choice` and `--tool-call-parser hermes` for Hermes-format tool calling with NousResearch models.
+vLLM supports tool calling, structured output, and multi-modal models. Use `--enable-auto-tool-choice` and `--tool-call-parser virat-code` for Virat Code-format tool calling with NousResearch models.
 
 ---
 
@@ -192,7 +192,7 @@ python -m sglang.launch_server \
   --port 8000 \
   --tp 2
 
-# Configure Hermes
+# Configure Virat Code
 OPENAI_BASE_URL=http://localhost:8000/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=meta-llama/Llama-3.1-70B-Instruct
@@ -211,7 +211,7 @@ cmake -B build && cmake --build build --config Release
   -m models/llama-3.1-8b-instruct-Q4_K_M.gguf \
   --port 8080 --host 0.0.0.0
 
-# Configure Hermes
+# Configure Virat Code
 OPENAI_BASE_URL=http://localhost:8080/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=llama-3.1-8b-instruct
@@ -235,7 +235,7 @@ litellm --model anthropic/claude-sonnet-4 --port 4000
 # Or with a config file for multiple models:
 litellm --config litellm_config.yaml --port 4000
 
-# Configure Hermes
+# Configure Virat Code
 OPENAI_BASE_URL=http://localhost:4000/v1
 OPENAI_API_KEY=sk-your-litellm-key
 LLM_MODEL=anthropic/claude-sonnet-4
@@ -266,7 +266,7 @@ router_settings:
 # Install and start
 npx @blockrun/clawrouter    # Starts on port 8402
 
-# Configure Hermes
+# Configure Virat Code
 OPENAI_BASE_URL=http://localhost:8402/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=blockrun/auto     # or: blockrun/eco, blockrun/premium, blockrun/agentic
@@ -328,7 +328,7 @@ LLM_MODEL=meta-llama/Llama-3.1-70B-Instruct-Turbo
 | **Chinese AI models** | z.ai (GLM), Kimi/Moonshot, or MiniMax (first-class providers) |
 
 :::tip
-You can switch between providers at any time with `hermes model` — no restart required. Your conversation history, memory, and skills carry over regardless of which provider you use.
+You can switch between providers at any time with `virat-code model` — no restart required. Your conversation history, memory, and skills carry over regardless of which provider you use.
 :::
 
 ## Optional API Keys
@@ -345,7 +345,7 @@ You can switch between providers at any time with `hermes model` — no restart 
 
 ### Self-Hosting Firecrawl
 
-By default, Hermes uses the [Firecrawl cloud API](https://firecrawl.dev/) for web search and scraping. If you prefer to run Firecrawl locally, you can point Hermes at a self-hosted instance instead.
+By default, Virat Code uses the [Firecrawl cloud API](https://firecrawl.dev/) for web search and scraping. If you prefer to run Firecrawl locally, you can point Virat Code at a self-hosted instance instead.
 
 **What you get:** No API key required, no rate limits, no per-page costs, full data sovereignty.
 
@@ -361,16 +361,16 @@ By default, Hermes uses the [Firecrawl cloud API](https://firecrawl.dev/) for we
    docker compose up -d
    ```
 
-2. Point Hermes at your instance (no API key needed):
+2. Point Virat Code at your instance (no API key needed):
    ```bash
-   hermes config set FIRECRAWL_API_URL http://localhost:3002
+   Virat-Code config set FIRECRAWL_API_URL http://localhost:3002
    ```
 
 You can also set both `FIRECRAWL_API_KEY` and `FIRECRAWL_API_URL` if your self-hosted instance has authentication enabled.
 
 ## OpenRouter Provider Routing
 
-When using OpenRouter, you can control how requests are routed across providers. Add a `provider_routing` section to `~/.hermes/config.yaml`:
+When using OpenRouter, you can control how requests are routed across providers. Add a `provider_routing` section to `~/.virat-code/config.yaml`:
 
 ```yaml
 provider_routing:
@@ -444,7 +444,7 @@ memory:
 Enable isolated git worktrees for running multiple agents in parallel on the same repo:
 
 ```yaml
-worktree: true    # Always create a worktree (same as hermes -w)
+worktree: true    # Always create a worktree (same as Virat-Code -w)
 # worktree: false # Default — only when -w flag is passed
 ```
 
@@ -473,9 +473,9 @@ The `summary_model` must support a context length at least as large as your main
 
 ## Auxiliary Models
 
-Hermes uses lightweight "auxiliary" models for side tasks like image analysis, web page summarization, and browser screenshot analysis. By default, these use **Gemini Flash** via OpenRouter or Nous Portal — you don't need to configure anything.
+Virat Code uses lightweight "auxiliary" models for side tasks like image analysis, web page summarization, and browser screenshot analysis. By default, these use **Gemini Flash** via OpenRouter or Nous Portal — you don't need to configure anything.
 
-To use a different model, add an `auxiliary` section to `~/.hermes/config.yaml`:
+To use a different model, add an `auxiliary` section to `~/.virat-code/config.yaml`:
 
 ```yaml
 auxiliary:
@@ -500,7 +500,7 @@ auxiliary:
     model: "openai/gpt-4o"
 ```
 
-Or via environment variable (in `~/.hermes/.env`):
+Or via environment variable (in `~/.virat-code/.env`):
 
 ```bash
 AUXILIARY_VISION_MODEL=openai/gpt-4o
@@ -512,15 +512,15 @@ AUXILIARY_VISION_MODEL=openai/gpt-4o
 |----------|-------------|-------------|
 | `"auto"` | Best available (default). Vision tries OpenRouter → Nous → Codex. | — |
 | `"openrouter"` | Force OpenRouter — routes to any model (Gemini, GPT-4o, Claude, etc.) | `OPENROUTER_API_KEY` |
-| `"nous"` | Force Nous Portal | `hermes login` |
-| `"codex"` | Force Codex OAuth (ChatGPT account). Supports vision (gpt-5.3-codex). | `hermes model` → Codex |
+| `"nous"` | Force Nous Portal | `virat-code login` |
+| `"codex"` | Force Codex OAuth (ChatGPT account). Supports vision (gpt-5.3-codex). | `virat-code model` → Codex |
 | `"main"` | Use your custom endpoint (`OPENAI_BASE_URL` + `OPENAI_API_KEY`). Works with OpenAI, local models, or any OpenAI-compatible API. | `OPENAI_BASE_URL` + `OPENAI_API_KEY` |
 
 ### Common Setups
 
 **Using OpenAI API key for vision:**
 ```yaml
-# In ~/.hermes/.env:
+# In ~/.virat-code/.env:
 # OPENAI_BASE_URL=https://api.openai.com/v1
 # OPENAI_API_KEY=sk-...
 
@@ -576,7 +576,7 @@ You can also configure auxiliary models via environment variables instead of `co
 | Compression model | `CONTEXT_COMPRESSION_MODEL` |
 
 :::tip
-Run `hermes config` to see your current auxiliary model settings. Overrides only show up when they differ from the defaults.
+Run `Virat-Code config` to see your current auxiliary model settings. Overrides only show up when they differ from the defaults.
 :::
 
 ## Reasoning Effort
@@ -660,7 +660,7 @@ Configure browser automation behavior:
 ```yaml
 browser:
   inactivity_timeout: 120        # Seconds before auto-closing idle sessions
-  record_sessions: false         # Auto-record browser sessions as WebM videos to ~/.hermes/browser_recordings/
+  record_sessions: false         # Auto-record browser sessions as WebM videos to ~/.virat-code/browser_recordings/
 ```
 
 ## Checkpoints
@@ -669,7 +669,7 @@ Automatic filesystem snapshots before destructive file operations. See the [Chec
 
 ```yaml
 checkpoints:
-  enabled: false                 # Enable automatic checkpoints (also: hermes --checkpoints)
+  enabled: false                 # Enable automatic checkpoints (also: Virat-Code --checkpoints)
   max_snapshots: 50              # Max checkpoints to keep per directory
 ```
 
@@ -707,20 +707,20 @@ Drop these files in your project directory and the agent automatically picks the
 | `.cursor/rules/*.mdc` | Cursor rule files (also detected) |
 
 - **AGENTS.md** is hierarchical: if subdirectories also have AGENTS.md, all are combined.
-- **SOUL.md** checks cwd first, then `~/.hermes/SOUL.md` as a global fallback.
+- **SOUL.md** checks cwd first, then `~/.virat-code/SOUL.md` as a global fallback.
 - All context files are capped at 20,000 characters with smart truncation.
 
 ## Working Directory
 
 | Context | Default |
 |---------|---------|
-| **CLI (`hermes`)** | Current directory where you run the command |
+| **CLI (`Virat-Code`)** | Current directory where you run the command |
 | **Messaging gateway** | Home directory `~` (override with `MESSAGING_CWD`) |
 | **Docker / Singularity / Modal / SSH** | User's home directory inside the container or remote machine |
 
 Override the working directory:
 ```bash
-# In ~/.hermes/.env or ~/.hermes/config.yaml:
+# In ~/.virat-code/.env or ~/.virat-code/config.yaml:
 MESSAGING_CWD=/home/myuser/projects    # Gateway sessions
 TERMINAL_CWD=/workspace                # All terminal sessions
 ```

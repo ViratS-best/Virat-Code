@@ -7,11 +7,11 @@ description: "Set up Virat Code as a Slack bot using Socket Mode"
 # Slack Setup
 
 Connect Virat Code to Slack as a bot using Socket Mode. Socket Mode uses WebSockets instead of
-public HTTP endpoints, so your Hermes instance doesn't need to be publicly accessible — it works
+public HTTP endpoints, so your Virat Code instance doesn't need to be publicly accessible — it works
 behind firewalls, on your laptop, or on a private server.
 
 :::warning Classic Slack Apps Deprecated
-Classic Slack apps (using RTM API) were **fully deprecated in March 2025**. Hermes uses the modern
+Classic Slack apps (using RTM API) were **fully deprecated in March 2025**. Virat Code uses the modern
 Bolt SDK with Socket Mode. If you have an old classic app, you must create a new one following
 the steps below.
 :::
@@ -76,7 +76,7 @@ Socket Mode lets the bot connect via WebSocket instead of requiring a public URL
 1. In the sidebar, go to **Settings → Socket Mode**
 2. Toggle **Enable Socket Mode** to ON
 3. You'll be prompted to create an **App-Level Token**:
-   - Name it something like `hermes-socket` (the name doesn't matter)
+   - Name it something like `virat-code-socket` (the name doesn't matter)
    - Add the **`connections:write`** scope
    - Click **Generate**
 4. **Copy the token** — it starts with `xapp-`. This is your `SLACK_APP_TOKEN`
@@ -129,7 +129,7 @@ to take effect. The Install App page will show a banner prompting you to do so.
 
 ## Step 6: Find User IDs for the Allowlist
 
-Hermes uses Slack **Member IDs** (not usernames or display names) for the allowlist.
+Virat Code uses Slack **Member IDs** (not usernames or display names) for the allowlist.
 
 To find a Member ID:
 
@@ -142,9 +142,9 @@ Member IDs look like `U01ABC2DEF3`. You need your own Member ID at minimum.
 
 ---
 
-## Step 7: Configure Hermes
+## Step 7: Configure Virat Code
 
-Add the following to your `~/.hermes/.env` file:
+Add the following to your `~/.virat-code/.env` file:
 
 ```bash
 # Required
@@ -159,14 +159,14 @@ SLACK_HOME_CHANNEL=C01234567890              # Default channel for cron/schedule
 Or run the interactive setup:
 
 ```bash
-hermes gateway setup    # Select Slack when prompted
+Virat-Code gateway setup    # Select Slack when prompted
 ```
 
 Then start the gateway:
 
 ```bash
-hermes gateway              # Foreground
-hermes gateway install      # Install as a system service
+Virat-Code gateway              # Foreground
+Virat-Code gateway install      # Install as a system service
 ```
 
 ---
@@ -185,7 +185,7 @@ The bot will **not** automatically join channels. You must invite it to each cha
 
 ## How the Bot Responds
 
-Understanding how Hermes behaves in different contexts:
+Understanding how Virat Code behaves in different contexts:
 
 | Context | Behavior |
 |---------|----------|
@@ -202,7 +202,7 @@ This is intentional — it prevents the bot from responding to every message in 
 
 ## Home Channel
 
-Set `SLACK_HOME_CHANNEL` to a channel ID where Hermes will deliver scheduled messages,
+Set `SLACK_HOME_CHANNEL` to a channel ID where Virat Code will deliver scheduled messages,
 cron job results, and other proactive notifications. To find a channel ID:
 
 1. Right-click the channel name in Slack
@@ -219,7 +219,7 @@ Make sure the bot has been **invited to the channel** (`/invite @Virat Code`).
 
 ## Voice Messages
 
-Hermes supports voice on Slack:
+Virat Code supports voice on Slack:
 
 - **Incoming:** Voice/audio messages are automatically transcribed using Whisper (requires `VOICE_TOOLS_OPENAI_KEY`)
 - **Outgoing:** TTS responses are sent as audio file attachments
@@ -263,7 +263,7 @@ the gateway will **deny all messages** by default as a safety measure. Never sha
 treat them like passwords.
 :::
 
-- Tokens should be stored in `~/.hermes/.env` (file permissions `600`)
+- Tokens should be stored in `~/.virat-code/.env` (file permissions `600`)
 - Rotate tokens periodically via the Slack app settings
-- Audit who has access to your Hermes config directory
+- Audit who has access to your Virat Code config directory
 - Socket Mode means no public endpoint is exposed — one less attack surface

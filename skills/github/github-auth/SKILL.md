@@ -5,7 +5,7 @@ version: 1.1.0
 author: Virat Code
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [GitHub, Authentication, Git, gh-cli, SSH, Setup]
     related_skills: [github-pr-workflow, github-code-review, github-issues, github-repo-management]
 ---

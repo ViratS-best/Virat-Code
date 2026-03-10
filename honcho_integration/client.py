@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 GLOBAL_CONFIG_PATH = Path.home() / ".honcho" / "config.json"
-HOST = "hermes"
+HOST = "Virat-Code"
 
 
 @dataclass
@@ -32,12 +32,12 @@ class HonchoClientConfig:
     """Configuration for Honcho client, resolved for a specific host."""
 
     host: str = HOST
-    workspace_id: str = "hermes"
+    workspace_id: str = "Virat-Code"
     api_key: str | None = None
     environment: str = "production"
     # Identity
     peer_name: str | None = None
-    ai_peer: str = "hermes"
+    ai_peer: str = "Virat-Code"
     linked_hosts: list[str] = field(default_factory=list)
     # Toggles
     enabled: bool = False
@@ -52,7 +52,7 @@ class HonchoClientConfig:
     raw: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
-    def from_env(cls, workspace_id: str = "hermes") -> HonchoClientConfig:
+    def from_env(cls, workspace_id: str = "Virat-Code") -> HonchoClientConfig:
         """Create config from environment variables (fallback)."""
         return cls(
             workspace_id=workspace_id,

@@ -9,7 +9,7 @@ and a trust-aware install policy that determines whether a skill is allowed
 based on both the scan verdict and the source's trust level.
 
 Trust levels:
-  - builtin:   Ships with Hermes. Never scanned, always trusted.
+  - builtin:   Ships with Virat Code. Never scanned, always trusted.
   - trusted:   openai/skills and anthropics/skills only. Caution verdicts allowed.
   - community: Everything else. Any findings = blocked unless --force.
 
@@ -29,7 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Tuple
 
-from hermes_constants import OPENROUTER_BASE_URL
+from virat_code_constants import OPENROUTER_BASE_URL
 
 
 # ---------------------------------------------------------------------------
@@ -116,9 +116,9 @@ THREAT_PATTERNS = [
     (r'\$HOME/\.docker|\~/\.docker',
      "docker_dir_access", "high", "exfiltration",
      "references Docker config (may contain registry creds)"),
-    (r'\$HOME/\.hermes/\.env|\~/\.hermes/\.env',
-     "hermes_env_access", "critical", "exfiltration",
-     "directly references Hermes secrets file"),
+    (r'\$HOME/\.virat-code/\.env|\~/\.virat-code/\.env',
+     "virat_code_env_access", "critical", "exfiltration",
+     "directly references Virat Code secrets file"),
     (r'cat\s+[^\n]*(\.env|credentials|\.netrc|\.pgpass|\.npmrc|\.pypirc)',
      "read_secrets_file", "critical", "exfiltration",
      "reads known secrets file"),
@@ -424,9 +424,9 @@ THREAT_PATTERNS = [
     (r'AGENTS\.md|CLAUDE\.md|\.cursorrules|\.clinerules',
      "agent_config_mod", "critical", "persistence",
      "references agent config files (could persist malicious instructions across sessions)"),
-    (r'\.hermes/config\.yaml|\.hermes/SOUL\.md',
-     "hermes_config_mod", "critical", "persistence",
-     "references Hermes configuration files directly"),
+    (r'\.virat-code/config\.yaml|\.virat-code/SOUL\.md',
+     "virat_code_config_mod", "critical", "persistence",
+     "references Virat Code configuration files directly"),
     (r'\.claude/settings|\.codex/config',
      "other_agent_config", "high", "persistence",
      "references other agent configuration files"),
@@ -1036,9 +1036,9 @@ def _parse_llm_response(text: str, skill_name: str) -> List[Finding]:
 
 
 def _get_configured_model() -> str:
-    """Load the user's configured model from ~/.hermes/config.yaml."""
+    """Load the user's configured model from ~/.virat-code/config.yaml."""
     try:
-        from hermes_cli.config import load_config
+        from virat_code_cli.config import load_config
         config = load_config()
         return config.get("model", "")
     except Exception:

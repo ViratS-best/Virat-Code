@@ -16,7 +16,7 @@ This directory contains the integration layer between **Virat Code's** tool-call
                     └───────────┬───────────┘
                                 │ inherits
                     ┌───────────┴───────────┐
-                    │  HermesAgentBaseEnv    │  hermes_base_env.py
+                    │  Virat CodeAgentBaseEnv    │  virat_code_base_env.py
                     │  - Terminal backend    │
                     │  - Tool resolution     │
                     │  - Agent loop          │
@@ -26,7 +26,7 @@ This directory contains the integration layer between **Virat Code's** tool-call
                                 │ inherits
               ┌─────────────────┼─────────────────┐
               │                 │                  │
-     TerminalTestEnv     HermesSweEnv    TerminalBench2EvalEnv
+     TerminalTestEnv     Virat CodeSweEnv    TerminalBench2EvalEnv
      (stack testing)     (SWE training)   (TB2 benchmark eval)
 ```
 
@@ -39,14 +39,14 @@ This directory contains the integration layer between **Virat Code's** tool-call
 - CLI interface with three subcommands: `serve`, `process`, `evaluate`
 - `evaluate_log()` for saving eval results to JSON + samples.jsonl
 
-**HermesAgentBaseEnv** (`hermes_base_env.py`) extends BaseEnv with Virat Code specifics:
+**Virat CodeAgentBaseEnv** (`virat_code_base_env.py`) extends BaseEnv with Virat Code specifics:
 - Sets `os.environ["TERMINAL_ENV"]` to configure the terminal backend (local, docker, modal, daytona, ssh, singularity)
 - Resolves Virat Code toolsets via `_resolve_tools_for_group()` (calls `get_tool_definitions()` which queries `tools/registry.py`)
 - Implements `collect_trajectory()` which runs the full agent loop and computes rewards
 - Supports two-phase operation (Phase 1: OpenAI server, Phase 2: VLLM ManagedServer)
 - Applies monkey patches for async-safe tool operation at import time
 
-Concrete environments inherit from `HermesAgentBaseEnv` and implement:
+Concrete environments inherit from `Virat CodeAgentBaseEnv` and implement:
 - `setup()` -- Load dataset, initialize state
 - `get_next_item()` -- Return the next item for rollout
 - `format_prompt()` -- Convert a dataset item into the user message
@@ -57,7 +57,7 @@ Concrete environments inherit from `HermesAgentBaseEnv` and implement:
 
 ### Agent Loop (`agent_loop.py`)
 
-`HermesAgentLoop` is the reusable multi-turn agent engine. It runs the same pattern as Virat Code's `run_agent.py`:
+`Virat CodeAgentLoop` is the reusable multi-turn agent engine. It runs the same pattern as Virat Code's `run_agent.py`:
 
 1. Send messages + tools to the API via `server.chat_completion()`
 2. If the response contains `tool_calls`, execute each one via `handle_function_call()` (which delegates to `tools/registry.py`'s `dispatch()`)
@@ -115,7 +115,7 @@ The patches are:
 - **Transparent** -- same interface and behavior, only the internal async execution changes
 - **Universal** -- works identically in normal CLI use (no running event loop)
 
-Applied automatically at import time by `hermes_base_env.py`.
+Applied automatically at import time by `virat_code_base_env.py`.
 
 ### Tool Call Parsers (`tool_call_parsers/`)
 
@@ -124,7 +124,7 @@ Client-side parsers that extract structured `tool_calls` from raw model output t
 Each parser is a standalone reimplementation of the corresponding VLLM parser's `extract_tool_calls()` logic. No VLLM dependency -- only standard library (`re`, `json`, `uuid`) and `openai` types.
 
 Available parsers:
-- `hermes` -- Hermes/ChatML `<tool_call>` XML format
+- `Virat-Code` -- Virat Code/ChatML `<tool_call>` XML format
 - `mistral` -- Mistral `[TOOL_CALLS]` format
 - `llama3_json` -- Llama 3 JSON tool calling
 - `qwen` -- Qwen tool calling format
@@ -139,7 +139,7 @@ Usage:
 ```python
 from environments.tool_call_parsers import get_parser
 
-parser = get_parser("hermes")
+parser = get_parser("Virat-Code")
 content, tool_calls = parser.parse(raw_model_output)
 ```
 
@@ -169,14 +169,14 @@ Uses ManagedServer for exact token IDs + logprobs via `/generate`. Client-side t
 environments/
 ├── README.md                     # This file
 ├── __init__.py                   # Package exports
-├── hermes_base_env.py            # Abstract base (HermesAgentBaseEnv)
-├── agent_loop.py                 # Multi-turn agent engine (HermesAgentLoop)
+├── virat_code_base_env.py            # Abstract base (Virat CodeAgentBaseEnv)
+├── agent_loop.py                 # Multi-turn agent engine (Virat CodeAgentLoop)
 ├── tool_context.py               # Per-rollout tool access for reward functions
 ├── patches.py                    # Async-safety patches for Modal backend
 │
 ├── tool_call_parsers/            # Phase 2 client-side parsers
 │   ├── __init__.py               # Registry + base class
-│   ├── hermes_parser.py
+│   ├── virat_code_parser.py
 │   ├── mistral_parser.py
 │   ├── llama_parser.py
 │   ├── qwen_parser.py
@@ -191,8 +191,8 @@ environments/
 ├── terminal_test_env/            # Stack validation environment
 │   └── terminal_test_env.py
 │
-├── hermes_swe_env/               # SWE-bench style training environment
-│   └── hermes_swe_env.py
+├── virat_code_swe_env/               # SWE-bench style training environment
+│   └── virat_code_swe_env.py
 │
 └── benchmarks/                   # Evaluation benchmarks
     ├── terminalbench_2/          # 89 terminal tasks, Modal sandboxes
@@ -219,12 +219,12 @@ python environments/terminal_test_env/terminal_test_env.py process \
     --env.data_path_to_save_groups terminal_test_output.jsonl
 ```
 
-### HermesSweEnv (`hermes_swe_env/`)
+### Virat CodeSweEnv (`virat_code_swe_env/`)
 
 SWE-bench style training environment. The model gets a coding task, uses terminal + file + web tools to solve it, and the reward function runs tests in the same Modal sandbox.
 
 ```bash
-python environments/hermes_swe_env/hermes_swe_env.py serve \
+python environments/virat_code_swe_env/virat_code_swe_env.py serve \
     --openai.model_name YourModel \
     --env.dataset_name bigcode/humanevalpack \
     --env.terminal_backend modal
@@ -261,16 +261,16 @@ python environments/benchmarks/terminalbench_2/terminalbench2_env.py evaluate \
 ### Training Environment
 
 1. Create a new directory under `environments/`
-2. Create your env file inheriting from `HermesAgentBaseEnv`
+2. Create your env file inheriting from `Virat CodeAgentBaseEnv`
 3. Implement the four abstract methods + `evaluate()`
 
 ```python
-from environments.hermes_base_env import HermesAgentBaseEnv, HermesAgentEnvConfig
+from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
 
-class MyEnvConfig(HermesAgentEnvConfig):
+class MyEnvConfig(Virat CodeAgentEnvConfig):
     pass  # Add custom fields as needed
 
-class MyEnv(HermesAgentBaseEnv):
+class MyEnv(Virat CodeAgentBaseEnv):
     name = "my-env"
     env_config_cls = MyEnvConfig
 
@@ -313,7 +313,7 @@ if __name__ == "__main__":
 
 For eval benchmarks, follow the pattern in `terminalbench2_env.py`:
 1. Create under `environments/benchmarks/your-benchmark/`
-2. Inherit from `HermesAgentBaseEnv`
+2. Inherit from `Virat CodeAgentBaseEnv`
 3. Set eval-only config: `eval_handling=STOP_TRAIN`, `steps_per_eval=1`, `total_steps=1`
 4. Stub the training methods (`collect_trajectories`, `score`)
 5. Implement `rollout_and_score_eval()` and `evaluate()`
@@ -323,12 +323,12 @@ For eval benchmarks, follow the pattern in `terminalbench2_env.py`:
 
 | Field | Description | Default |
 |-------|-------------|---------|
-| `enabled_toolsets` | Which hermes toolsets to enable | `None` (all) |
+| `enabled_toolsets` | Which Virat-Code toolsets to enable | `None` (all) |
 | `disabled_toolsets` | Toolsets to disable | `None` |
 | `distribution` | Probabilistic toolset distribution name | `None` |
 | `max_agent_turns` | Max LLM calls per rollout | `30` |
 | `agent_temperature` | Sampling temperature | `1.0` |
 | `terminal_backend` | `local`, `docker`, `modal`, `daytona`, `ssh`, `singularity` | `local` |
 | `system_prompt` | System message for the agent | `None` |
-| `tool_call_parser` | Parser name for Phase 2 | `hermes` |
+| `tool_call_parser` | Parser name for Phase 2 | `Virat-Code` |
 | `eval_handling` | `STOP_TRAIN`, `LIMIT_TRAIN`, `NONE` | `STOP_TRAIN` |

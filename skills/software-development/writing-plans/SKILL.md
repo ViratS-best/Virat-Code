@@ -5,7 +5,7 @@ version: 1.1.0
 author: Virat Code (adapted from obra/superpowers)
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [planning, design, implementation, workflow, documentation]
     related_skills: [subagent-driven-development, test-driven-development, requesting-code-review]
 ---
@@ -70,7 +70,7 @@ Every plan MUST start with:
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For Hermes:** Use subagent-driven-development skill to implement this plan task-by-task.
+> **For Virat Code:** Use subagent-driven-development skill to implement this plan task-by-task.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -140,7 +140,7 @@ Read and understand:
 
 ### Step 2: Explore the Codebase
 
-Use Hermes tools to understand the project:
+Use Virat Code tools to understand the project:
 
 ```python
 # Understand project structure

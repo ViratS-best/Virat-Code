@@ -1,4 +1,4 @@
-"""Shared OpenRouter API client for Hermes tools.
+"""Shared OpenRouter API client for Virat Code tools.
 
 Provides a single lazy-initialized AsyncOpenAI client that all tool modules
 can share, eliminating the duplicated _get_openrouter_client() / 
@@ -9,7 +9,7 @@ vision_tools, mixture_of_agents_tool, and session_search_tool.
 import os
 
 from openai import AsyncOpenAI
-from hermes_constants import OPENROUTER_BASE_URL
+from virat_code_constants import OPENROUTER_BASE_URL
 
 _client: AsyncOpenAI | None = None
 

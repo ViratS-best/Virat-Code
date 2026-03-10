@@ -5,7 +5,7 @@ version: 1.1.0
 author: Virat Code
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [GitHub, Pull-Requests, CI/CD, Git, Automation, Merge]
     related_skills: [github-auth, github-code-review]
 ---

@@ -2,7 +2,7 @@
 Channel directory -- cached map of reachable channels/contacts per platform.
 
 Built on gateway startup, refreshed periodically (every 5 min), and saved to
-~/.hermes/channel_directory.json.  The send_message tool reads this file for
+~/.virat-code/channel_directory.json.  The send_message tool reads this file for
 action="list" and for resolving human-friendly channel names to numeric IDs.
 """
 
@@ -14,7 +14,7 @@ from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
-DIRECTORY_PATH = Path.home() / ".hermes" / "channel_directory.json"
+DIRECTORY_PATH = Path.home() / ".virat-code" / "channel_directory.json"
 
 
 # ---------------------------------------------------------------------------
@@ -109,7 +109,7 @@ def _build_slack(adapter) -> List[Dict[str, str]]:
 
 def _build_from_sessions(platform_name: str) -> List[Dict[str, str]]:
     """Pull known channels/contacts from sessions.json origin data."""
-    sessions_path = Path.home() / ".hermes" / "sessions" / "sessions.json"
+    sessions_path = Path.home() / ".virat-code" / "sessions" / "sessions.json"
     if not sessions_path.exists():
         return []
 

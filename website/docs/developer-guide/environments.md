@@ -36,7 +36,7 @@ The environment system is built on a three-layer inheritance chain:
                  └───────────┬───────────┘
                              │ inherits
                  ┌───────────┴───────────┐
-                 │  HermesAgentBaseEnv    │  environments/hermes_base_env.py
+                 │  Virat CodeAgentBaseEnv    │  environments/virat_code_base_env.py
                  │  - Terminal backend    │
                  │  - Tool resolution     │
                  │  - Agent loop engine   │
@@ -45,7 +45,7 @@ The environment system is built on a three-layer inheritance chain:
                              │ inherits
        ┌─────────────────────┼─────────────────────┐
        │                     │                      │
-  TerminalTestEnv     HermesSweEnv     TerminalBench2EvalEnv
+  TerminalTestEnv     Virat CodeSweEnv     TerminalBench2EvalEnv
   (stack testing)    (SWE training)      (benchmark eval)
                                              │
                                     ┌────────┼────────┐
@@ -63,18 +63,18 @@ The foundation from `atroposlib`. Provides:
 - **CLI interface** — three subcommands: `serve`, `process`, `evaluate`
 - **Eval logging** — `evaluate_log()` saves results to JSON + JSONL
 
-### HermesAgentBaseEnv
+### Virat CodeAgentBaseEnv
 
-The Virat Code layer (`environments/hermes_base_env.py`). Adds:
+The Virat Code layer (`environments/virat_code_base_env.py`). Adds:
 - **Terminal backend configuration** — sets `TERMINAL_ENV` for sandboxed execution (local, Docker, Modal, Daytona, SSH, Singularity)
 - **Tool resolution** — `_resolve_tools_for_group()` calls Virat Code's `get_tool_definitions()` to get the right tool schemas based on enabled/disabled toolsets
-- **Agent loop integration** — `collect_trajectory()` runs `HermesAgentLoop` and scores the result
+- **Agent loop integration** — `collect_trajectory()` runs `Virat CodeAgentLoop` and scores the result
 - **Two-phase operation** — Phase 1 (OpenAI server) for eval/SFT, Phase 2 (VLLM ManagedServer) for full RL with logprobs
 - **Async safety patches** — monkey-patches Modal backend to work inside Atropos's event loop
 
 ### Concrete Environments
 
-Your environment inherits from `HermesAgentBaseEnv` and implements five methods:
+Your environment inherits from `Virat CodeAgentBaseEnv` and implements five methods:
 
 | Method | Purpose |
 |--------|---------|
@@ -88,7 +88,7 @@ Your environment inherits from `HermesAgentBaseEnv` and implements five methods:
 
 ### Agent Loop
 
-`HermesAgentLoop` (`environments/agent_loop.py`) is the reusable multi-turn agent engine. It runs the same tool-calling pattern as Virat Code's main loop:
+`Virat CodeAgentLoop` (`environments/agent_loop.py`) is the reusable multi-turn agent engine. It runs the same tool-calling pattern as Virat Code's main loop:
 
 1. Send messages + tool schemas to the API via `server.chat_completion()`
 2. If the response contains `tool_calls`, dispatch each via `handle_function_call()`
@@ -150,11 +150,11 @@ For **Phase 2** (VLLM ManagedServer), the server returns raw text without struct
 ```python
 from environments.tool_call_parsers import get_parser
 
-parser = get_parser("hermes")  # or "mistral", "llama3_json", "qwen", "deepseek_v3", etc.
+parser = get_parser("Virat-Code")  # or "mistral", "llama3_json", "qwen", "deepseek_v3", etc.
 content, tool_calls = parser.parse(raw_model_output)
 ```
 
-Available parsers: `hermes`, `mistral`, `llama3_json`, `qwen`, `qwen3_coder`, `deepseek_v3`, `deepseek_v3_1`, `kimi_k2`, `longcat`, `glm45`, `glm47`.
+Available parsers: `Virat-Code`, `mistral`, `llama3_json`, `qwen`, `qwen3_coder`, `deepseek_v3`, `deepseek_v3_1`, `kimi_k2`, `longcat`, `glm45`, `glm47`.
 
 In Phase 1 (OpenAI server type), parsers are not needed — the server handles tool call parsing natively.
 
@@ -223,7 +223,7 @@ TBLite is a thin subclass of TerminalBench2 — only the dataset and timeouts di
 
 ```bash
 # Install yc-bench (optional dependency)
-pip install "Virat Code[yc-bench]"
+pip install "virat-code[yc-bench]"
 
 # Run evaluation
 bash environments/benchmarks/yc_bench/run_eval.sh
@@ -255,12 +255,12 @@ python environments/terminal_test_env/terminal_test_env.py process \
 python environments/terminal_test_env/terminal_test_env.py serve
 ```
 
-### HermesSweEnv
+### Virat CodeSweEnv
 
 SWE-bench style training environment. The model gets a coding task, uses terminal + file + web tools to solve it, and the reward function runs tests in the same Modal sandbox.
 
 ```bash
-python environments/hermes_swe_env/hermes_swe_env.py serve \
+python environments/virat_code_swe_env/virat_code_swe_env.py serve \
     --openai.model_name YourModel \
     --env.dataset_name bigcode/humanevalpack \
     --env.terminal_backend modal
@@ -303,7 +303,7 @@ Connects the environment to a running Atropos API server (`run-api`). Used durin
 run-api
 
 # Terminal 2: Start the environment
-python environments/hermes_swe_env/hermes_swe_env.py serve \
+python environments/virat_code_swe_env/virat_code_swe_env.py serve \
     --openai.model_name YourModel
 ```
 
@@ -324,20 +324,20 @@ Uses ManagedServer for exact token IDs + logprobs via `/generate`. A client-side
 
 - **Use for**: full RL training with GRPO/PPO
 - **Real tokens**, masks, and logprobs flow through the pipeline
-- Set `tool_call_parser` in config to match your model's format (e.g., `"hermes"`, `"qwen"`, `"mistral"`)
+- Set `tool_call_parser` in config to match your model's format (e.g., `"Virat-Code"`, `"qwen"`, `"mistral"`)
 
 ## Creating Environments
 
 ### Training Environment
 
 ```python
-from environments.hermes_base_env import HermesAgentBaseEnv, HermesAgentEnvConfig
+from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
 from atroposlib.envs.server_handling.server_manager import APIServerConfig
 
-class MyEnvConfig(HermesAgentEnvConfig):
+class MyEnvConfig(Virat CodeAgentEnvConfig):
     my_custom_field: str = "default_value"
 
-class MyEnv(HermesAgentBaseEnv):
+class MyEnv(Virat CodeAgentBaseEnv):
     name = "my-env"
     env_config_cls = MyEnvConfig
 
@@ -398,11 +398,11 @@ See `environments/benchmarks/yc_bench/yc_bench_env.py` for a clean, well-documen
 
 ## Configuration Reference
 
-### HermesAgentEnvConfig Fields
+### Virat CodeAgentEnvConfig Fields
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `enabled_toolsets` | `List[str]` | `None` (all) | Which hermes toolsets to enable |
+| `enabled_toolsets` | `List[str]` | `None` (all) | Which Virat-Code toolsets to enable |
 | `disabled_toolsets` | `List[str]` | `None` | Toolsets to filter out |
 | `distribution` | `str` | `None` | Probabilistic toolset distribution name |
 | `max_agent_turns` | `int` | `30` | Max LLM calls per rollout |
@@ -413,7 +413,7 @@ See `environments/benchmarks/yc_bench/yc_bench_env.py` for a clean, well-documen
 | `terminal_lifetime` | `int` | `3600` | Max sandbox lifetime |
 | `dataset_name` | `str` | `None` | HuggingFace dataset identifier |
 | `tool_pool_size` | `int` | `128` | Thread pool size for tool execution |
-| `tool_call_parser` | `str` | `"hermes"` | Parser for Phase 2 raw output |
+| `tool_call_parser` | `str` | `"Virat-Code"` | Parser for Phase 2 raw output |
 | `extra_body` | `Dict` | `None` | Extra params for OpenAI API (e.g., OpenRouter provider prefs) |
 | `eval_handling` | `Enum` | `STOP_TRAIN` | `STOP_TRAIN`, `LIMIT_TRAIN`, `NONE` |
 
@@ -430,7 +430,7 @@ env:
   terminal_backend: "modal"
   terminal_timeout: 300
   dataset_name: "NousResearch/terminal-bench-2"
-  tokenizer_name: "NousResearch/Hermes-3-Llama-3.1-8B"
+  tokenizer_name: "NousResearch/Virat Code-3-Llama-3.1-8B"
   use_wandb: true
   wandb_name: "my-benchmark"
 
@@ -459,12 +459,12 @@ python my_env.py evaluate \
 
 ### For Modal-sandboxed benchmarks (TB2, TBLite)
 
-- [Modal](https://modal.com) account and CLI: `pip install "Virat Code[modal]"`
+- [Modal](https://modal.com) account and CLI: `pip install "virat-code[modal]"`
 - `MODAL_TOKEN_ID` and `MODAL_TOKEN_SECRET` environment variables
 
 ### For YC-Bench
 
-- `pip install "Virat Code[yc-bench]"` (installs the yc-bench CLI + SQLAlchemy)
+- `pip install "virat-code[yc-bench]"` (installs the yc-bench CLI + SQLAlchemy)
 - No Modal needed — runs with local terminal backend
 
 ### For RL training
@@ -479,13 +479,13 @@ See [RL Training](/user-guide/features/rl-training) for the agent-driven RL work
 
 ```
 environments/
-├── hermes_base_env.py          # Abstract base class (HermesAgentBaseEnv)
-├── agent_loop.py               # Multi-turn agent engine (HermesAgentLoop)
+├── virat_code_base_env.py          # Abstract base class (Virat CodeAgentBaseEnv)
+├── agent_loop.py               # Multi-turn agent engine (Virat CodeAgentLoop)
 ├── tool_context.py             # Per-rollout tool access for reward functions
 ├── patches.py                  # Async-safety patches for Modal backend
 │
 ├── tool_call_parsers/          # Phase 2 client-side parsers
-│   ├── hermes_parser.py        # Hermes/ChatML <tool_call> format
+│   ├── virat_code_parser.py        # Virat Code/ChatML <tool_call> format
 │   ├── mistral_parser.py       # Mistral [TOOL_CALLS] format
 │   ├── llama_parser.py         # Llama 3 JSON tool calling
 │   ├── qwen_parser.py          # Qwen format
@@ -493,7 +493,7 @@ environments/
 │   └── ...                     # + kimi_k2, longcat, glm45/47, etc.
 │
 ├── terminal_test_env/          # Stack validation (inline tasks)
-├── hermes_swe_env/             # SWE-bench training environment
+├── virat_code_swe_env/             # SWE-bench training environment
 │
 └── benchmarks/                 # Evaluation benchmarks
     ├── terminalbench_2/        # 89 terminal tasks, Modal sandboxes

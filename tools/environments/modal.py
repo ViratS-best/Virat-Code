@@ -18,7 +18,7 @@ from tools.interrupt import is_interrupted
 
 logger = logging.getLogger(__name__)
 
-_SNAPSHOT_STORE = Path.home() / ".hermes" / "modal_snapshots.json"
+_SNAPSHOT_STORE = Path.home() / ".virat-code" / "modal_snapshots.json"
 
 
 def _load_snapshots() -> Dict[str, str]:
@@ -101,9 +101,9 @@ class ModalEnvironment(BaseEnvironment):
                 timeout: int | None = None,
                 stdin_data: str | None = None) -> dict:
         if stdin_data is not None:
-            marker = f"HERMES_EOF_{uuid.uuid4().hex[:8]}"
+            marker = f"VIRAT_CODE_EOF_{uuid.uuid4().hex[:8]}"
             while marker in stdin_data:
-                marker = f"HERMES_EOF_{uuid.uuid4().hex[:8]}"
+                marker = f"VIRAT_CODE_EOF_{uuid.uuid4().hex[:8]}"
             command = f"{command} << '{marker}'\n{stdin_data}\n{marker}"
 
         exec_command, sudo_stdin = self._prepare_command(command)

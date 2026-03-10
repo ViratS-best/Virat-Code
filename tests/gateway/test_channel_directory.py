@@ -115,7 +115,7 @@ class TestResolveChannelName:
 class TestBuildFromSessions:
     def _write_sessions(self, tmp_path, sessions_data):
         """Write sessions.json at the path _build_from_sessions expects."""
-        sessions_path = tmp_path / ".hermes" / "sessions" / "sessions.json"
+        sessions_path = tmp_path / ".virat-code" / "sessions" / "sessions.json"
         sessions_path.parent.mkdir(parents=True)
         sessions_path.write_text(json.dumps(sessions_data))
 

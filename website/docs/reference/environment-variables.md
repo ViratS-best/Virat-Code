@@ -6,7 +6,7 @@ description: "Complete reference of all environment variables used by Virat Code
 
 # Environment Variables Reference
 
-All variables go in `~/.hermes/.env`. You can also set them with `hermes config set VAR value`.
+All variables go in `~/.virat-code/.env`. You can also set them with `Virat-Code config set VAR value`.
 
 ## LLM Providers
 
@@ -23,20 +23,20 @@ All variables go in `~/.hermes/.env`. You can also set them with `hermes config 
 | `MINIMAX_BASE_URL` | Override MiniMax base URL (default: `https://api.minimax.io/v1`) |
 | `MINIMAX_CN_API_KEY` | MiniMax API key — China endpoint ([minimaxi.com](https://www.minimaxi.com)) |
 | `MINIMAX_CN_BASE_URL` | Override MiniMax China base URL (default: `https://api.minimaxi.com/v1`) |
-| `HERMES_MODEL` | Preferred model name (checked before `LLM_MODEL`, used by gateway) |
+| `VIRAT_CODE_MODEL` | Preferred model name (checked before `LLM_MODEL`, used by gateway) |
 | `LLM_MODEL` | Default model name (fallback when not set in config.yaml) |
 | `VOICE_TOOLS_OPENAI_KEY` | OpenAI key for TTS and voice transcription (separate from custom endpoint) |
-| `HERMES_HOME` | Override Hermes config directory (default: `~/.hermes`) |
+| `VIRAT_CODE_HOME` | Override Virat Code config directory (default: `~/.virat-code`) |
 
 ## Provider Auth (OAuth)
 
 | Variable | Description |
 |----------|-------------|
-| `HERMES_INFERENCE_PROVIDER` | Override provider selection: `auto`, `openrouter`, `nous`, `zai`, `kimi-coding`, `minimax`, `minimax-cn` (default: `auto`) |
-| `HERMES_PORTAL_BASE_URL` | Override Nous Portal URL (for development/testing) |
+| `VIRAT_CODE_INFERENCE_PROVIDER` | Override provider selection: `auto`, `openrouter`, `nous`, `zai`, `kimi-coding`, `minimax`, `minimax-cn` (default: `auto`) |
+| `VIRAT_CODE_PORTAL_BASE_URL` | Override Nous Portal URL (for development/testing) |
 | `NOUS_INFERENCE_BASE_URL` | Override Nous inference API URL |
-| `HERMES_NOUS_MIN_KEY_TTL_SECONDS` | Min agent key TTL before re-mint (default: 1800 = 30min) |
-| `HERMES_DUMP_REQUESTS` | Dump API request payloads to log files (`true`/`false`) |
+| `VIRAT_CODE_NOUS_MIN_KEY_TTL_SECONDS` | Min agent key TTL before re-mint (default: 1800 = 30min) |
+| `VIRAT_CODE_DUMP_REQUESTS` | Dump API request payloads to log files (`true`/`false`) |
 
 ## Tool APIs
 
@@ -86,7 +86,7 @@ All variables go in `~/.hermes/.env`. You can also set them with `hermes config 
 | `TERMINAL_CONTAINER_MEMORY` | Memory in MB (default: 5120) |
 | `TERMINAL_CONTAINER_DISK` | Disk in MB (default: 51200) |
 | `TERMINAL_CONTAINER_PERSISTENT` | Persist container filesystem across sessions (default: `true`) |
-| `TERMINAL_SANDBOX_DIR` | Host directory for workspaces and overlays (default: `~/.hermes/sandboxes/`) |
+| `TERMINAL_SANDBOX_DIR` | Host directory for workspaces and overlays (default: `~/.virat-code/sandboxes/`) |
 
 ## Messaging
 
@@ -119,14 +119,14 @@ All variables go in `~/.hermes/.env`. You can also set them with `hermes config 
 
 | Variable | Description |
 |----------|-------------|
-| `HERMES_MAX_ITERATIONS` | Max tool-calling iterations per conversation (default: 60) |
-| `HERMES_TOOL_PROGRESS` | Send progress messages when using tools (`true`/`false`) |
-| `HERMES_TOOL_PROGRESS_MODE` | `all` (every call, default) or `new` (only when tool changes) |
-| `HERMES_HUMAN_DELAY_MODE` | Response pacing: `off`/`natural`/`custom` |
-| `HERMES_HUMAN_DELAY_MIN_MS` | Custom delay range minimum (ms) |
-| `HERMES_HUMAN_DELAY_MAX_MS` | Custom delay range maximum (ms) |
-| `HERMES_QUIET` | Suppress non-essential output (`true`/`false`) |
-| `HERMES_EXEC_ASK` | Enable execution approval prompts in gateway mode (`true`/`false`) |
+| `VIRAT_CODE_MAX_ITERATIONS` | Max tool-calling iterations per conversation (default: 60) |
+| `VIRAT_CODE_TOOL_PROGRESS` | Send progress messages when using tools (`true`/`false`) |
+| `VIRAT_CODE_TOOL_PROGRESS_MODE` | `all` (every call, default) or `new` (only when tool changes) |
+| `VIRAT_CODE_HUMAN_DELAY_MODE` | Response pacing: `off`/`natural`/`custom` |
+| `VIRAT_CODE_HUMAN_DELAY_MIN_MS` | Custom delay range minimum (ms) |
+| `VIRAT_CODE_HUMAN_DELAY_MAX_MS` | Custom delay range maximum (ms) |
+| `VIRAT_CODE_QUIET` | Suppress non-essential output (`true`/`false`) |
+| `VIRAT_CODE_EXEC_ASK` | Enable execution approval prompts in gateway mode (`true`/`false`) |
 
 ## Session Settings
 
@@ -145,7 +145,7 @@ All variables go in `~/.hermes/.env`. You can also set them with `hermes config 
 
 ## Provider Routing (config.yaml only)
 
-These go in `~/.hermes/config.yaml` under the `provider_routing` section:
+These go in `~/.virat-code/config.yaml` under the `provider_routing` section:
 
 | Key | Description |
 |-----|-------------|
@@ -157,5 +157,5 @@ These go in `~/.hermes/config.yaml` under the `provider_routing` section:
 | `data_collection` | `"allow"` (default) or `"deny"` to exclude data-storing providers |
 
 :::tip
-Use `hermes config set` to set environment variables — it automatically saves them to the right file (`.env` for secrets, `config.yaml` for everything else).
+Use `Virat-Code config set` to set environment variables — it automatically saves them to the right file (`.env` for secrets, `config.yaml` for everything else).
 :::

@@ -15,7 +15,7 @@ Every Telegram bot requires an API token issued by [@BotFather](https://t.me/Bot
 1. Open Telegram and search for **@BotFather**, or visit [t.me/BotFather](https://t.me/BotFather)
 2. Send `/newbot`
 3. Choose a **display name** (e.g., "Virat Code") — this can be anything
-4. Choose a **username** — this must be unique and end in `bot` (e.g., `my_hermes_bot`)
+4. Choose a **username** — this must be unique and end in `bot` (e.g., `my_virat_code_bot`)
 5. BotFather replies with your **API token**. It looks like this:
 
 ```
@@ -85,19 +85,19 @@ Virat Code uses numeric Telegram user IDs to control access. Your user ID is **n
 
 Save this number; you'll need it for the next step.
 
-## Step 5: Configure Hermes
+## Step 5: Configure Virat Code
 
 ### Option A: Interactive Setup (Recommended)
 
 ```bash
-hermes gateway setup
+Virat-Code gateway setup
 ```
 
 Select **Telegram** when prompted. The wizard asks for your bot token and allowed user IDs, then writes the configuration for you.
 
 ### Option B: Manual Configuration
 
-Add the following to `~/.hermes/.env`:
+Add the following to `~/.virat-code/.env`:
 
 ```bash
 TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrSTUvwxYZ
@@ -107,7 +107,7 @@ TELEGRAM_ALLOWED_USERS=123456789    # Comma-separated for multiple users
 ### Start the Gateway
 
 ```bash
-hermes gateway
+Virat-Code gateway
 ```
 
 The bot should come online within seconds. Send it a message on Telegram to verify.
@@ -116,7 +116,7 @@ The bot should come online within seconds. Send it a message on Telegram to veri
 
 Use the `/sethome` command in any Telegram chat (DM or group) to designate it as the **home channel**. Scheduled tasks (cron jobs) deliver their results to this channel.
 
-You can also set it manually in `~/.hermes/.env`:
+You can also set it manually in `~/.virat-code/.env`:
 
 ```bash
 TELEGRAM_HOME_CHANNEL=-1001234567890
@@ -131,7 +131,7 @@ Group chat IDs are negative numbers (e.g., `-1001234567890`). Your personal DM c
 
 ### Incoming Voice (Speech-to-Text)
 
-Voice messages you send on Telegram are automatically transcribed using OpenAI's Whisper API and injected as text into the conversation. This requires `VOICE_TOOLS_OPENAI_KEY` in `~/.hermes/.env`.
+Voice messages you send on Telegram are automatically transcribed using OpenAI's Whisper API and injected as text into the conversation. This requires `VOICE_TOOLS_OPENAI_KEY` in `~/.virat-code/.env`.
 
 ### Outgoing Voice (Text-to-Speech)
 
@@ -157,7 +157,7 @@ Configure the TTS provider in your `config.yaml` under the `tts.provider` key.
 Virat Code works in Telegram group chats with a few considerations:
 
 - **Privacy mode** determines what messages the bot can see (see [Step 3](#step-3-privacy-mode-critical-for-groups))
-- When privacy mode is on, **@mention the bot** (e.g., `@my_hermes_bot what's the weather?`) or **reply to its messages** to interact
+- When privacy mode is on, **@mention the bot** (e.g., `@my_virat_code_bot what's the weather?`) or **reply to its messages** to interact
 - When privacy mode is off (or bot is admin), the bot sees all messages and can participate naturally
 - `TELEGRAM_ALLOWED_USERS` still applies — only authorized users can trigger the bot, even in groups
 
@@ -170,10 +170,10 @@ Virat Code works in Telegram group chats with a few considerations:
 
 | Problem | Solution |
 |---------|----------|
-| Bot not responding at all | Verify `TELEGRAM_BOT_TOKEN` is correct. Check `hermes gateway` logs for errors. |
+| Bot not responding at all | Verify `TELEGRAM_BOT_TOKEN` is correct. Check `Virat-Code gateway` logs for errors. |
 | Bot responds with "unauthorized" | Your user ID is not in `TELEGRAM_ALLOWED_USERS`. Double-check with @userinfobot. |
 | Bot ignores group messages | Privacy mode is likely on. Disable it (Step 3) or make the bot a group admin. **Remember to remove and re-add the bot after changing privacy.** |
-| Voice messages not transcribed | Check that `VOICE_TOOLS_OPENAI_KEY` is set and valid in `~/.hermes/.env`. |
+| Voice messages not transcribed | Check that `VOICE_TOOLS_OPENAI_KEY` is set and valid in `~/.virat-code/.env`. |
 | Voice replies are files, not bubbles | Install `ffmpeg` (needed for Edge TTS Opus conversion). |
 | Bot token revoked/invalid | Generate a new token via `/revoke` then `/newbot` or `/token` in BotFather. Update your `.env` file. |
 

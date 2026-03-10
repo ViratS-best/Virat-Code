@@ -125,7 +125,7 @@ These are the minimum permissions your bot needs:
 You need the **Manage Server** permission on the Discord server to invite a bot. If you don't see your server in the dropdown, ask a server admin to use the invite link instead.
 :::
 
-After authorizing, the bot will appear in your server's member list (it will show as offline until you start the Hermes gateway).
+After authorizing, the bot will appear in your server's member list (it will show as offline until you start the Virat Code gateway).
 
 ## Step 7: Find Your Discord User ID
 
@@ -149,14 +149,14 @@ Developer Mode also lets you copy **Channel IDs** and **Server IDs** the same wa
 Run the guided setup command:
 
 ```bash
-hermes gateway setup
+Virat-Code gateway setup
 ```
 
 Select **Discord** when prompted, then paste your bot token and user ID when asked.
 
 ### Option B: Manual Configuration
 
-Add the following to your `~/.hermes/.env` file:
+Add the following to your `~/.virat-code/.env` file:
 
 ```bash
 # Required
@@ -172,13 +172,13 @@ DISCORD_ALLOWED_USERS=284102345871466496
 Once configured, start the Discord gateway:
 
 ```bash
-hermes gateway
+Virat-Code gateway
 ```
 
 The bot should come online in Discord within a few seconds. Send it a message — either a DM or in a channel it can see — to test.
 
 :::tip
-You can run `hermes gateway` in the background or as a systemd service for persistent operation. See the deployment docs for details.
+You can run `Virat-Code gateway` in the background or as a systemd service for persistent operation. See the deployment docs for details.
 :::
 
 ## Home Channel
@@ -191,7 +191,7 @@ Type `/sethome` in any Discord channel where the bot is present. That channel be
 
 ### Manual Configuration
 
-Add these to your `~/.hermes/.env`:
+Add these to your `~/.virat-code/.env`:
 
 ```bash
 DISCORD_HOME_CHANNEL=123456789012345678
@@ -241,15 +241,15 @@ Virat Code supports Discord voice messages:
 
 ### Bot is offline
 
-**Cause**: The Hermes gateway isn't running, or the token is incorrect.
+**Cause**: The Virat Code gateway isn't running, or the token is incorrect.
 
-**Fix**: Check that `hermes gateway` is running. Verify `DISCORD_BOT_TOKEN` in your `.env` file. If you recently reset the token, update it.
+**Fix**: Check that `Virat-Code gateway` is running. Verify `DISCORD_BOT_TOKEN` in your `.env` file. If you recently reset the token, update it.
 
 ### "User not allowed" / Bot ignores you
 
 **Cause**: Your User ID isn't in `DISCORD_ALLOWED_USERS`.
 
-**Fix**: Add your User ID to `DISCORD_ALLOWED_USERS` in `~/.hermes/.env` and restart the gateway.
+**Fix**: Add your User ID to `DISCORD_ALLOWED_USERS` in `~/.virat-code/.env` and restart the gateway.
 
 ## Security
 

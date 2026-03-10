@@ -13,7 +13,7 @@ Virat Code automatically discovers and loads project context files from your wor
 | File | Purpose | Discovery |
 |------|---------|-----------|
 | **AGENTS.md** | Project instructions, conventions, architecture | Recursive (walks subdirectories) |
-| **SOUL.md** | Personality and tone customization | CWD → `~/.hermes/SOUL.md` fallback |
+| **SOUL.md** | Personality and tone customization | CWD → `~/.virat-code/SOUL.md` fallback |
 | **.cursorrules** | Cursor IDE coding conventions | CWD only |
 | **.cursor/rules/*.mdc** | Cursor IDE rule modules | CWD only |
 
@@ -23,7 +23,7 @@ Virat Code automatically discovers and loads project context files from your wor
 
 ### Hierarchical Discovery
 
-Hermes walks the directory tree starting from the working directory and loads **all** `AGENTS.md` files found, sorted by depth. This supports monorepo-style setups:
+Virat Code walks the directory tree starting from the working directory and loads **all** `AGENTS.md` files found, sorted by depth. This supports monorepo-style setups:
 
 ```
 my-project/
@@ -74,7 +74,7 @@ This is a Next.js 14 web application with a Python FastAPI backend.
 **Discovery order:**
 
 1. `SOUL.md` or `soul.md` in the current working directory
-2. `~/.hermes/SOUL.md` (global fallback)
+2. `~/.virat-code/SOUL.md` (global fallback)
 
 When a SOUL.md is found, the agent is instructed:
 
@@ -82,9 +82,9 @@ When a SOUL.md is found, the agent is instructed:
 
 ## .cursorrules
 
-Hermes is compatible with Cursor IDE's `.cursorrules` file and `.cursor/rules/*.mdc` rule modules. If these files exist in your project root, they're loaded alongside AGENTS.md.
+Virat Code is compatible with Cursor IDE's `.cursorrules` file and `.cursor/rules/*.mdc` rule modules. If these files exist in your project root, they're loaded alongside AGENTS.md.
 
-This means your existing Cursor conventions automatically apply when using Hermes.
+This means your existing Cursor conventions automatically apply when using Virat Code.
 
 ## How Context Files Are Loaded
 

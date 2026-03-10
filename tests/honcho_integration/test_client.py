@@ -19,8 +19,8 @@ from honcho_integration.client import (
 class TestHonchoClientConfigDefaults:
     def test_default_values(self):
         config = HonchoClientConfig()
-        assert config.host == "hermes"
-        assert config.workspace_id == "hermes"
+        assert config.host == "Virat-Code"
+        assert config.workspace_id == "Virat-Code"
         assert config.api_key is None
         assert config.environment == "production"
         assert config.enabled is False
@@ -75,7 +75,7 @@ class TestFromGlobalConfig:
             "workspace": "my-workspace",
             "environment": "staging",
             "peerName": "alice",
-            "aiPeer": "hermes-custom",
+            "aiPeer": "virat-code-custom",
             "enabled": True,
             "saveMessages": False,
             "contextTokens": 2000,
@@ -83,7 +83,7 @@ class TestFromGlobalConfig:
             "sessionPeerPrefix": True,
             "sessions": {"/home/user/proj": "my-session"},
             "hosts": {
-                "hermes": {
+                "Virat-Code": {
                     "workspace": "override-ws",
                     "aiPeer": "override-ai",
                     "linkedHosts": ["cursor"],
@@ -111,7 +111,7 @@ class TestFromGlobalConfig:
             "workspace": "root-ws",
             "aiPeer": "root-ai",
             "hosts": {
-                "hermes": {
+                "Virat-Code": {
                     "workspace": "host-ws",
                     "aiPeer": "host-ai",
                 }
@@ -181,7 +181,7 @@ class TestResolveSessionName:
 class TestGetLinkedWorkspaces:
     def test_resolves_linked_hosts(self):
         config = HonchoClientConfig(
-            workspace_id="hermes-ws",
+            workspace_id="virat-code-ws",
             linked_hosts=["cursor", "windsurf"],
             raw={
                 "hosts": {
@@ -196,16 +196,16 @@ class TestGetLinkedWorkspaces:
 
     def test_excludes_own_workspace(self):
         config = HonchoClientConfig(
-            workspace_id="hermes-ws",
+            workspace_id="virat-code-ws",
             linked_hosts=["other"],
-            raw={"hosts": {"other": {"workspace": "hermes-ws"}}},
+            raw={"hosts": {"other": {"workspace": "virat-code-ws"}}},
         )
         workspaces = config.get_linked_workspaces()
         assert workspaces == []
 
     def test_uses_host_key_as_fallback(self):
         config = HonchoClientConfig(
-            workspace_id="hermes-ws",
+            workspace_id="virat-code-ws",
             linked_hosts=["cursor"],
             raw={"hosts": {"cursor": {}}},  # no workspace field
         )

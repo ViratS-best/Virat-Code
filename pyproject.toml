@@ -55,29 +55,29 @@ mcp = ["mcp>=1.2.0"]
 homeassistant = ["aiohttp>=3.9.0"]
 yc-bench = ["yc-bench @ git+https://github.com/collinear-ai/yc-bench.git"]
 all = [
-  "Virat Code[modal]",
-  "Virat Code[daytona]",
-  "Virat Code[messaging]",
-  "Virat Code[cron]",
-  "Virat Code[cli]",
-  "Virat Code[dev]",
-  "Virat Code[tts-premium]",
-  "Virat Code[slack]",
-  "Virat Code[pty]",
-  "Virat Code[honcho]",
-  "Virat Code[mcp]",
-  "Virat Code[homeassistant]",
+  "virat-code[modal]",
+  "virat-code[daytona]",
+  "virat-code[messaging]",
+  "virat-code[cron]",
+  "virat-code[cli]",
+  "virat-code[dev]",
+  "virat-code[tts-premium]",
+  "virat-code[slack]",
+  "virat-code[pty]",
+  "virat-code[honcho]",
+  "virat-code[mcp]",
+  "virat-code[homeassistant]",
 ]
 
 [project.scripts]
-Virat-Code = "hermes_cli.main:main"
+Virat-Code = "virat_code_cli.main:main"
 Virat-Code-Agent = "run_agent:main"
 
 [tool.setuptools]
-py-modules = ["run_agent", "model_tools", "toolsets", "batch_runner", "trajectory_compressor", "toolset_distributions", "cli", "hermes_constants"]
+py-modules = ["run_agent", "model_tools", "toolsets", "batch_runner", "trajectory_compressor", "toolset_distributions", "cli", "virat_code_constants"]
 
 [tool.setuptools.packages.find]
-include = ["tools", "hermes_cli", "gateway", "cron", "honcho_integration"]
+include = ["tools", "virat_code_cli", "gateway", "cron", "honcho_integration"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

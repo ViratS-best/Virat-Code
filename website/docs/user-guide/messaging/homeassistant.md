@@ -25,7 +25,7 @@ Virat Code integrates with [Home Assistant](https://www.home-assistant.io/) in t
 ### 2. Configure Environment Variables
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.virat-code/.env
 
 # Required: your Long-Lived Access Token
 HASS_TOKEN=your-long-lived-access-token
@@ -41,7 +41,7 @@ The `homeassistant` toolset is automatically enabled when `HASS_TOKEN` is set. B
 ### 3. Start the Gateway
 
 ```bash
-hermes gateway
+Virat-Code gateway
 ```
 
 Home Assistant will appear as a connected platform alongside any other messaging platforms (Telegram, Discord, etc.).

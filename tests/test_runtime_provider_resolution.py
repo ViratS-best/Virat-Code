@@ -1,4 +1,4 @@
-from hermes_cli import runtime_provider as rp
+from virat_code_cli import runtime_provider as rp
 
 
 def test_resolve_runtime_provider_codex(monkeypatch):
@@ -143,7 +143,7 @@ def test_custom_endpoint_prefers_openai_key(monkeypatch):
 def test_custom_endpoint_auto_provider_prefers_openai_key(monkeypatch):
     """Auto provider with non-OpenRouter base_url should prefer OPENAI_API_KEY.
 
-    Same as #560 but via 'hermes model' flow which sets provider to 'auto'.
+    Same as #560 but via 'virat-code model' flow which sets provider to 'auto'.
     """
     monkeypatch.setattr(rp, "resolve_provider", lambda *a, **k: "openrouter")
     monkeypatch.setattr(rp, "_get_model_config", lambda: {})
@@ -182,6 +182,6 @@ def test_resolve_runtime_provider_nous_api(monkeypatch):
 
 
 def test_resolve_requested_provider_precedence(monkeypatch):
-    monkeypatch.setenv("HERMES_INFERENCE_PROVIDER", "nous")
+    monkeypatch.setenv("VIRAT_CODE_INFERENCE_PROVIDER", "nous")
     monkeypatch.setattr(rp, "_get_model_config", lambda: {"provider": "openai-codex"})
     assert rp.resolve_requested_provider("openrouter") == "openrouter"

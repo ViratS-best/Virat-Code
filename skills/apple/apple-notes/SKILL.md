@@ -6,7 +6,7 @@ author: Virat Code
 license: MIT
 platforms: [macos]
 metadata:
-  hermes:
+  virat-code:
     tags: [Notes, Apple, macOS, note-taking]
     related_skills: [obsidian]
 ---

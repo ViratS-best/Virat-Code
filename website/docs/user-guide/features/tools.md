@@ -34,13 +34,13 @@ Tools are functions that extend the agent's capabilities. They're organized into
 
 ```bash
 # Use specific toolsets
-hermes chat --toolsets "web,terminal"
+virat-code chat --toolsets "web,terminal"
 
 # See all available tools
-hermes tools
+virat-code tools
 
 # Configure tools per platform (interactive)
-hermes tools
+virat-code tools
 ```
 
 **Available toolsets:** `web`, `terminal`, `file`, `browser`, `vision`, `image_gen`, `moa`, `skills`, `tts`, `todo`, `memory`, `session_search`, `cronjob`, `code_execution`, `delegation`, `clarify`, and more.
@@ -60,7 +60,7 @@ The terminal tool can execute commands in different environments:
 ### Configuration
 
 ```yaml
-# In ~/.hermes/config.yaml
+# In ~/.virat-code/config.yaml
 terminal:
   backend: local    # or: docker, ssh, singularity, modal, daytona
   cwd: "."          # Working directory
@@ -84,7 +84,7 @@ terminal:
   backend: ssh
 ```
 ```bash
-# Set credentials in ~/.hermes/.env
+# Set credentials in ~/.virat-code/.env
 TERMINAL_SSH_HOST=my-server.example.com
 TERMINAL_SSH_USER=myuser
 TERMINAL_SSH_KEY=~/.ssh/id_rsa
@@ -97,8 +97,8 @@ TERMINAL_SSH_KEY=~/.ssh/id_rsa
 apptainer build ~/python.sif docker://python:3.11-slim
 
 # Configure
-hermes config set terminal.backend singularity
-hermes config set terminal.singularity_image ~/python.sif
+Virat-Code config set terminal.backend singularity
+Virat-Code config set terminal.singularity_image ~/python.sif
 ```
 
 ### Modal (Serverless Cloud)
@@ -106,7 +106,7 @@ hermes config set terminal.singularity_image ~/python.sif
 ```bash
 uv pip install "swe-rex[modal]"
 modal setup
-hermes config set terminal.backend modal
+Virat-Code config set terminal.backend modal
 ```
 
 ### Container Resources
@@ -156,8 +156,8 @@ PTY mode (`pty=true`) enables interactive CLI tools like Codex and Claude Code.
 
 ## Sudo Support
 
-If a command needs sudo, you'll be prompted for your password (cached for the session). Or set `SUDO_PASSWORD` in `~/.hermes/.env`.
+If a command needs sudo, you'll be prompted for your password (cached for the session). Or set `SUDO_PASSWORD` in `~/.virat-code/.env`.
 
 :::warning
-On messaging platforms, if sudo fails, the output includes a tip to add `SUDO_PASSWORD` to `~/.hermes/.env`.
+On messaging platforms, if sudo fails, the output includes a tip to add `SUDO_PASSWORD` to `~/.virat-code/.env`.
 :::

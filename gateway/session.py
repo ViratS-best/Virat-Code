@@ -203,7 +203,7 @@ def build_session_context_prompt(context: SessionContext) -> str:
         lines.append(f"- `\"origin\"` → Back to this chat ({context.source.chat_name or context.source.chat_id})")
     
     # Local always available
-    lines.append("- `\"local\"` → Save to local files only (~/.hermes/cron/output/)")
+    lines.append("- `\"local\"` → Save to local files only (~/.virat-code/cron/output/)")
     
     # Platform home channels
     for platform, home in context.home_channels.items():
@@ -327,7 +327,7 @@ class SessionStore:
         # Initialize SQLite session database
         self._db = None
         try:
-            from hermes_state import SessionDB
+            from virat_code_state import SessionDB
             self._db = SessionDB()
         except Exception as e:
             print(f"[gateway] Warning: SQLite session store unavailable, falling back to JSONL: {e}")

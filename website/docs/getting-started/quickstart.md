@@ -32,26 +32,26 @@ source ~/.bashrc   # or source ~/.zshrc
 The installer runs the setup wizard automatically. If you skipped it, run:
 
 ```bash
-hermes setup
+Virat-Code setup
 ```
 
 This walks you through selecting an inference provider:
 
 | Provider | What it is | How to set up |
 |----------|-----------|---------------|
-| **Nous Portal** | Subscription-based, zero-config | OAuth login via `hermes model` |
-| **OpenAI Codex** | ChatGPT OAuth, uses Codex models | Device code auth via `hermes model` |
+| **Nous Portal** | Subscription-based, zero-config | OAuth login via `virat-code model` |
+| **OpenAI Codex** | ChatGPT OAuth, uses Codex models | Device code auth via `virat-code model` |
 | **OpenRouter** | 200+ models, pay-per-use | Enter your API key |
 | **Custom Endpoint** | VLLM, SGLang, any OpenAI-compatible API | Set base URL + API key |
 
 :::tip
-You can switch providers at any time with `hermes model` — no code changes, no lock-in.
+You can switch providers at any time with `virat-code model` — no code changes, no lock-in.
 :::
 
 ## 3. Start Chatting
 
 ```bash
-hermes
+virat-code
 ```
 
 That's it! You'll see a welcome banner with your model, available tools, and skills. Type a message and press Enter.
@@ -94,11 +94,11 @@ If the agent is taking too long, just type a new message and press Enter — it 
 
 ### Resume a session
 
-When you exit, hermes prints a resume command:
+When you exit, Virat-Code prints a resume command:
 
 ```bash
-hermes --continue    # Resume the most recent session
-hermes -c            # Short form
+virat-code --continue    # Resume the most recent session
+virat-code -c            # Short form
 ```
 
 ## 5. Explore Further
@@ -110,16 +110,16 @@ Here are some things to try next:
 For safety, run the agent in a Docker container or on a remote server:
 
 ```bash
-hermes config set terminal.backend docker    # Docker isolation
-hermes config set terminal.backend ssh       # Remote server
+Virat-Code config set terminal.backend docker    # Docker isolation
+Virat-Code config set terminal.backend ssh       # Remote server
 ```
 
 ### Connect messaging platforms
 
-Chat with Hermes from your phone via Telegram, Discord, Slack, or WhatsApp:
+Chat with Virat Code from your phone via Telegram, Discord, Slack, or WhatsApp:
 
 ```bash
-hermes gateway setup    # Interactive platform configuration
+Virat-Code gateway setup    # Interactive platform configuration
 ```
 
 ### Schedule automated tasks
@@ -133,8 +133,8 @@ The agent will set up a cron job that runs automatically via the gateway.
 ### Browse and install skills
 
 ```bash
-hermes skills search kubernetes
-hermes skills install openai/skills/k8s
+virat-code skills search kubernetes
+virat-code skills install openai/skills/k8s
 ```
 
 Or use the `/skills` slash command inside chat.
@@ -144,7 +144,7 @@ Or use the `/skills` slash command inside chat.
 Connect to external tools via the Model Context Protocol:
 
 ```yaml
-# Add to ~/.hermes/config.yaml
+# Add to ~/.virat-code/config.yaml
 mcp_servers:
   github:
     command: npx
@@ -159,14 +159,14 @@ mcp_servers:
 
 | Command | Description |
 |---------|-------------|
-| `hermes` | Start chatting |
-| `hermes setup` | Configure providers and settings |
-| `hermes model` | Switch provider or model |
-| `hermes tools` | Configure which tools are enabled per platform |
-| `hermes doctor` | Diagnose issues |
-| `hermes update` | Update to latest version |
-| `hermes gateway` | Start the messaging gateway |
-| `hermes --continue` | Resume last session |
+| `Virat-Code` | Start chatting |
+| `Virat-Code setup` | Configure providers and settings |
+| `virat-code model` | Switch provider or model |
+| `virat-code tools` | Configure which tools are enabled per platform |
+| `virat-code doctor` | Diagnose issues |
+| `Virat-Code update` | Update to latest version |
+| `Virat-Code gateway` | Start the messaging gateway |
+| `virat-code --continue` | Resume last session |
 
 ## Next Steps
 

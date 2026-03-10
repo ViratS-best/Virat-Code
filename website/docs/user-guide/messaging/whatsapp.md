@@ -6,7 +6,7 @@ description: "Set up Virat Code as a WhatsApp bot via the built-in Baileys bridg
 
 # WhatsApp Setup
 
-Hermes connects to WhatsApp through a built-in bridge using [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
+Virat Code connects to WhatsApp through a built-in bridge using [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
 (Baileys-based). This works by emulating a WhatsApp Web session — **not** through the official
 WhatsApp Business API. No Meta developer account or Business verification is required.
 
@@ -20,8 +20,8 @@ whatsapp-web.js carries a small risk of account restrictions. To minimize risk:
 
 :::warning WhatsApp Web Protocol Updates
 WhatsApp periodically updates their Web protocol, which can temporarily break compatibility
-with whatsapp-web.js. When this happens, Hermes will update the bridge dependency. If the
-bot stops working after a WhatsApp update, pull the latest Hermes version and re-pair.
+with whatsapp-web.js. When this happens, Virat Code will update the bridge dependency. If the
+bot stops working after a WhatsApp update, pull the latest Virat Code version and re-pair.
 :::
 
 ## Two Modes
@@ -59,7 +59,7 @@ sudo dnf install -y \
 ## Step 1: Run the Setup Wizard
 
 ```bash
-hermes whatsapp
+Virat-Code whatsapp
 ```
 
 The wizard will:
@@ -99,13 +99,13 @@ After getting the number:
 
 1. Install WhatsApp on a phone (or use WhatsApp Business app with dual-SIM)
 2. Register the new number with WhatsApp
-3. Run `hermes whatsapp` and scan the QR code from that WhatsApp account
+3. Run `Virat-Code whatsapp` and scan the QR code from that WhatsApp account
 
 ---
 
-## Step 3: Configure Hermes
+## Step 3: Configure Virat Code
 
-Add the following to your `~/.hermes/.env` file:
+Add the following to your `~/.virat-code/.env` file:
 
 ```bash
 # Required
@@ -120,8 +120,8 @@ WHATSAPP_HOME_CONTACT=15551234567          # Default contact for proactive/sched
 Then start the gateway:
 
 ```bash
-hermes gateway              # Foreground
-hermes gateway install      # Install as a system service
+Virat-Code gateway              # Foreground
+Virat-Code gateway install      # Install as a system service
 ```
 
 The gateway starts the WhatsApp bridge automatically using the saved session.
@@ -131,7 +131,7 @@ The gateway starts the WhatsApp bridge automatically using the saved session.
 ## Session Persistence
 
 The whatsapp-web.js `LocalAuth` strategy saves your session to the `.wwebjs_auth` folder inside
-your Hermes data directory (`~/.hermes/`). This means:
+your Virat Code data directory (`~/.virat-code/`). This means:
 
 - **Sessions survive restarts** — you don't need to re-scan the QR code every time
 - The session data includes encryption keys and device credentials
@@ -145,7 +145,7 @@ If the session breaks (phone reset, WhatsApp update, manually unlinked), you'll 
 errors in the gateway logs. To fix it:
 
 ```bash
-hermes whatsapp
+Virat-Code whatsapp
 ```
 
 This generates a fresh QR code. Scan it again and the session is re-established. The gateway
@@ -156,7 +156,7 @@ with reconnection logic.
 
 ## Voice Messages
 
-Hermes supports voice on WhatsApp:
+Virat Code supports voice on WhatsApp:
 
 - **Incoming:** Voice messages (`.ogg` opus) are automatically transcribed using Whisper (requires `VOICE_TOOLS_OPENAI_KEY`)
 - **Outgoing:** TTS responses are sent as MP3 audio file attachments
@@ -169,11 +169,11 @@ Hermes supports voice on WhatsApp:
 | Problem | Solution |
 |---------|----------|
 | **QR code not scanning** | Ensure terminal is wide enough (60+ columns). Try a different terminal. Make sure you're scanning from the correct WhatsApp account (bot number, not personal). |
-| **QR code expires** | QR codes refresh every ~20 seconds. If it times out, restart `hermes whatsapp`. |
-| **Session not persisting** | Check that `~/.hermes/.wwebjs_auth/` exists and is writable. On Docker, mount this as a volume. |
-| **Logged out unexpectedly** | WhatsApp unlinks devices after ~14 days of phone inactivity. Keep the phone on and connected to WiFi. Re-pair with `hermes whatsapp`. |
+| **QR code expires** | QR codes refresh every ~20 seconds. If it times out, restart `Virat-Code whatsapp`. |
+| **Session not persisting** | Check that `~/.virat-code/.wwebjs_auth/` exists and is writable. On Docker, mount this as a volume. |
+| **Logged out unexpectedly** | WhatsApp unlinks devices after ~14 days of phone inactivity. Keep the phone on and connected to WiFi. Re-pair with `Virat-Code whatsapp`. |
 | **"Execution context was destroyed"** | Chromium crashed. Install the Puppeteer dependencies listed in Prerequisites. On low-RAM servers, add swap space. |
-| **Bot stops working after WhatsApp update** | Update Hermes to get the latest bridge version, then re-pair. |
+| **Bot stops working after WhatsApp update** | Update Virat Code to get the latest bridge version, then re-pair. |
 | **Messages not being received** | Verify `WHATSAPP_ALLOWED_USERS` includes the sender's number (with country code, no `+` or spaces). |
 
 ---
@@ -187,7 +187,7 @@ safety measure.
 :::
 
 - The `.wwebjs_auth` folder contains full session credentials — protect it like a password
-- Set file permissions: `chmod 700 ~/.hermes/.wwebjs_auth`
+- Set file permissions: `chmod 700 ~/.virat-code/.wwebjs_auth`
 - Use a **dedicated phone number** for the bot to isolate risk from your personal account
 - If you suspect compromise, unlink the device from WhatsApp → Settings → Linked Devices
 - Phone numbers in logs are partially redacted, but review your log retention policy

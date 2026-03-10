@@ -26,7 +26,7 @@ Key capabilities:
 ### Required Environment Variables
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.virat-code/.env
 BROWSERBASE_API_KEY=your-api-key-here
 BROWSERBASE_PROJECT_ID=your-project-id-here
 ```
@@ -62,7 +62,7 @@ npm install
 ```
 
 :::info
-The `browser` toolset must be included in your config's `toolsets` list or enabled via `hermes config set toolsets '["hermes-cli", "browser"]'`.
+The `browser` toolset must be included in your config's `toolsets` list or enabled via `Virat-Code config set toolsets '["virat-code-cli", "browser"]'`.
 :::
 
 ## Available Tools
@@ -140,7 +140,7 @@ The screenshot is saved persistently and the file path is returned alongside the
 What does the chart on this page show?
 ```
 
-Screenshots are stored in `~/.hermes/browser_screenshots/` and automatically cleaned up after 24 hours.
+Screenshots are stored in `~/.virat-code/browser_screenshots/` and automatically cleaned up after 24 hours.
 
 ### `browser_console`
 
@@ -194,7 +194,7 @@ browser:
   record_sessions: true  # default: false
 ```
 
-When enabled, recording starts automatically on the first `browser_navigate` and saves to `~/.hermes/browser_recordings/` when the session closes. Works in both local and cloud (Browserbase) modes. Recordings older than 72 hours are automatically cleaned up.
+When enabled, recording starts automatically on the first `browser_navigate` and saves to `~/.virat-code/browser_recordings/` when the session closes. Works in both local and cloud (Browserbase) modes. Recordings older than 72 hours are automatically cleaned up.
 
 ## Stealth Features
 
@@ -208,7 +208,7 @@ Browserbase provides automatic stealth capabilities:
 | Keep Alive | On | Session reconnection after network hiccups |
 
 :::note
-If paid features aren't available on your plan, Hermes automatically falls back — first disabling `keepAlive`, then proxies — so browsing still works on free plans.
+If paid features aren't available on your plan, Virat Code automatically falls back — first disabling `keepAlive`, then proxies — so browsing still works on free plans.
 :::
 
 ## Session Management

@@ -3,13 +3,13 @@
 Official skills maintained by Virat Sisodiya that are **not activated by default**.
 
 These skills ship with the Virat Code repository but are not copied to
-`~/.hermes/skills/` during setup. They are discoverable via the Skills Hub:
+`~/.virat-code/skills/` during setup. They are discoverable via the Skills Hub:
 
 ```bash
-hermes skills browse               # browse all skills, official shown first
-hermes skills browse --source official  # browse only official optional skills
-hermes skills search <query>       # finds optional skills labeled "official"
-hermes skills install <identifier> # copies to ~/.hermes/skills/ and activates
+virat-code skills browse               # browse all skills, official shown first
+virat-code skills browse --source official  # browse only official optional skills
+virat-code skills search <query>       # finds optional skills labeled "official"
+virat-code skills install <identifier> # copies to ~/.virat-code/skills/ and activates
 ```
 
 ## Why optional?

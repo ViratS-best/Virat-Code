@@ -1,11 +1,11 @@
 ---
 name: google-workspace
-description: Gmail, Calendar, Drive, Contacts, Sheets, and Docs integration via Python. Uses OAuth2 with automatic token refresh. No external binaries needed — runs entirely with Google's Python client libraries in the Hermes venv.
+description: Gmail, Calendar, Drive, Contacts, Sheets, and Docs integration via Python. Uses OAuth2 with automatic token refresh. No external binaries needed — runs entirely with Google's Python client libraries in the Virat Code venv.
 version: 1.0.0
 author: Virat Sisodiya
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [Google, Gmail, Calendar, Drive, Sheets, Docs, Contacts, Email, OAuth]
     homepage: https://github.com/ViratS-best/Virat-Code
     related_skills: [himalaya]
@@ -32,7 +32,7 @@ on CLI, Telegram, Discord, or any platform.
 Define a shorthand first:
 
 ```bash
-GSETUP="python ~/.hermes/skills/productivity/google-workspace/scripts/setup.py"
+GSETUP="python ~/.virat-code/skills/productivity/google-workspace/scripts/setup.py"
 ```
 
 ### Step 0: Check if already set up
@@ -118,7 +118,7 @@ Should print `AUTHENTICATED`. Setup is complete — token refreshes automaticall
 
 ### Notes
 
-- Token is stored at `~/.hermes/google_token.json` and auto-refreshes.
+- Token is stored at `~/.virat-code/google_token.json` and auto-refreshes.
 - To revoke: `$GSETUP --revoke`
 
 ## Usage
@@ -126,7 +126,7 @@ Should print `AUTHENTICATED`. Setup is complete — token refreshes automaticall
 All commands go through the API script. Set `GAPI` as a shorthand:
 
 ```bash
-GAPI="python ~/.hermes/skills/productivity/google-workspace/scripts/google_api.py"
+GAPI="python ~/.virat-code/skills/productivity/google-workspace/scripts/google_api.py"
 ```
 
 ### Gmail

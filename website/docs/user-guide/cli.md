@@ -12,31 +12,31 @@ Virat Code's CLI is a full terminal user interface (TUI) — not a web UI. It fe
 
 ```bash
 # Start an interactive session (default)
-hermes
+virat-code
 
 # Single query mode (non-interactive)
-hermes chat -q "Hello"
+virat-code chat -q "Hello"
 
 # With a specific model
-hermes chat --model "anthropic/claude-sonnet-4"
+virat-code chat --model "anthropic/claude-sonnet-4"
 
 # With a specific provider
-hermes chat --provider nous        # Use Nous Portal
-hermes chat --provider openrouter  # Force OpenRouter
+virat-code chat --provider nous        # Use Nous Portal
+virat-code chat --provider openrouter  # Force OpenRouter
 
 # With specific toolsets
-hermes chat --toolsets "web,terminal,skills"
+virat-code chat --toolsets "web,terminal,skills"
 
 # Resume previous sessions
-hermes --continue             # Resume the most recent CLI session (-c)
-hermes --resume <session_id>  # Resume a specific session by ID (-r)
+virat-code --continue             # Resume the most recent CLI session (-c)
+virat-code --resume <session_id>  # Resume a specific session by ID (-r)
 
 # Verbose mode (debug output)
-hermes chat --verbose
+virat-code chat --verbose
 
 # Isolated git worktree (for running multiple agents in parallel)
-hermes -w                         # Interactive mode in worktree
-hermes -w -q "Fix issue #123"     # Single query in worktree
+virat-code -w                         # Interactive mode in worktree
+virat-code -w -q "Fix issue #123"     # Single query in worktree
 ```
 
 ## Interface Layout
@@ -67,7 +67,7 @@ The welcome banner shows your model, terminal backend, working directory, availa
 
 ### Session Resume Display
 
-When resuming a previous session (`hermes -c` or `hermes --resume <id>`), a "Previous Conversation" panel appears between the banner and the input prompt, showing a compact recap of the conversation history. See [Sessions — Conversation Recap on Resume](sessions.md#conversation-recap-on-resume) for details and configuration.
+When resuming a previous session (`virat-code -c` or `virat-code --resume <id>`), a "Previous Conversation" panel appears between the banner and the input prompt, showing a compact recap of the conversation history. See [Sessions — Conversation Recap on Resume](sessions.md#conversation-recap-on-resume) for details and configuration.
 
 ## Keybindings
 
@@ -133,7 +133,7 @@ Commands are case-insensitive — `/HELP` works the same as `/help`. Most comman
 
 ## Skill Slash Commands
 
-Every installed skill in `~/.hermes/skills/` is automatically registered as a slash command. The skill name becomes the command:
+Every installed skill in `~/.virat-code/skills/` is automatically registered as a slash command. The skill name becomes the command:
 
 ```
 /gif-search funny cats
@@ -156,14 +156,14 @@ Set a predefined personality to change the agent's tone:
 
 Built-in personalities include: `helpful`, `concise`, `technical`, `creative`, `teacher`, `kawaii`, `catgirl`, `pirate`, `shakespeare`, `surfer`, `noir`, `uwu`, `philosopher`, `hype`.
 
-You can also define custom personalities in `~/.hermes/config.yaml`:
+You can also define custom personalities in `~/.virat-code/config.yaml`:
 
 ```yaml
 agent:
   personalities:
     helpful: "You are a helpful, friendly AI assistant."
     kawaii: "You are a kawaii assistant! Use cute expressions..."
-    pirate: "Arrr! Ye be talkin' to Captain Hermes..."
+    pirate: "Arrr! Ye be talkin' to Captain Virat Code..."
     # Add your own!
 ```
 
@@ -221,7 +221,7 @@ When you exit a CLI session, a resume command is printed:
 
 ```
 Resume this session with:
-  hermes --resume 20260225_143052_a1b2c3
+  Virat-Code --resume 20260225_143052_a1b2c3
 
 Session:        20260225_143052_a1b2c3
 Duration:       12m 34s
@@ -231,21 +231,21 @@ Messages:       28 (5 user, 18 tool calls)
 Resume options:
 
 ```bash
-hermes --continue                          # Resume the most recent CLI session
-hermes -c                                  # Short form
-hermes -c "my project"                     # Resume a named session (latest in lineage)
-hermes --resume 20260225_143052_a1b2c3     # Resume a specific session by ID
-hermes --resume "refactoring auth"         # Resume by title
-hermes -r 20260225_143052_a1b2c3           # Short form
+virat-code --continue                          # Resume the most recent CLI session
+virat-code -c                                  # Short form
+virat-code -c "my project"                     # Resume a named session (latest in lineage)
+virat-code --resume 20260225_143052_a1b2c3     # Resume a specific session by ID
+virat-code --resume "refactoring auth"         # Resume by title
+virat-code -r 20260225_143052_a1b2c3           # Short form
 ```
 
 Resuming restores the full conversation history from SQLite. The agent sees all previous messages, tool calls, and responses — just as if you never left.
 
-Use `/title My Session Name` inside a chat to name the current session, or `hermes sessions rename <id> <title>` from the command line. Use `hermes sessions list` to browse past sessions.
+Use `/title My Session Name` inside a chat to name the current session, or `virat-code sessions rename <id> <title>` from the command line. Use `virat-code sessions list` to browse past sessions.
 
 ### Session Logging
 
-Sessions are automatically logged to `~/.hermes/sessions/`:
+Sessions are automatically logged to `~/.virat-code/sessions/`:
 
 ```
 sessions/
@@ -259,7 +259,7 @@ sessions/
 Long conversations are automatically summarized when approaching context limits:
 
 ```yaml
-# In ~/.hermes/config.yaml
+# In ~/.virat-code/config.yaml
 compression:
   enabled: true
   threshold: 0.85    # Compress at 85% of context limit
@@ -277,5 +277,5 @@ By default, the CLI runs in quiet mode which:
 
 For debug output:
 ```bash
-hermes chat --verbose
+virat-code chat --verbose
 ```

@@ -2,12 +2,12 @@
 
 from unittest.mock import patch, MagicMock
 
-from cli import HermesCLI
+from cli import Virat CodeCLI
 
 
 class TestModelCommand:
     def _make_cli(self):
-        cli_obj = HermesCLI.__new__(HermesCLI)
+        cli_obj = Virat CodeCLI.__new__(Virat CodeCLI)
         cli_obj.model = "anthropic/claude-opus-4.6"
         cli_obj.agent = object()
         cli_obj.provider = "openrouter"
@@ -21,7 +21,7 @@ class TestModelCommand:
     def test_valid_model_from_api_saved_to_config(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.models.fetch_api_models",
+        with patch("virat_code_cli.models.fetch_api_models",
                    return_value=["anthropic/claude-sonnet-4.5", "openai/gpt-5.4"]), \
              patch("cli.save_config_value", return_value=True) as save_mock:
             cli_obj.process_command("/model anthropic/claude-sonnet-4.5")
@@ -34,7 +34,7 @@ class TestModelCommand:
     def test_invalid_model_from_api_is_rejected(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.models.fetch_api_models",
+        with patch("virat_code_cli.models.fetch_api_models",
                    return_value=["anthropic/claude-opus-4.6"]), \
              patch("cli.save_config_value") as save_mock:
             cli_obj.process_command("/model anthropic/fake-model")
@@ -48,7 +48,7 @@ class TestModelCommand:
     def test_api_unreachable_falls_back_session_only(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.models.fetch_api_models", return_value=None), \
+        with patch("virat_code_cli.models.fetch_api_models", return_value=None), \
              patch("cli.save_config_value") as save_mock:
             cli_obj.process_command("/model anthropic/claude-sonnet-next")
 
@@ -61,7 +61,7 @@ class TestModelCommand:
     def test_no_slash_model_probes_api_and_rejects(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.models.fetch_api_models",
+        with patch("virat_code_cli.models.fetch_api_models",
                    return_value=["openai/gpt-5.4"]) as fetch_mock, \
              patch("cli.save_config_value") as save_mock:
             cli_obj.process_command("/model gpt-5.4")
@@ -76,7 +76,7 @@ class TestModelCommand:
     def test_validation_crash_falls_back_to_save(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.models.validate_requested_model",
+        with patch("virat_code_cli.models.validate_requested_model",
                    side_effect=RuntimeError("boom")), \
              patch("cli.save_config_value", return_value=True) as save_mock:
             cli_obj.process_command("/model anthropic/claude-sonnet-4.5")
@@ -101,12 +101,12 @@ class TestModelCommand:
     def test_provider_colon_model_switches_provider(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.runtime_provider.resolve_runtime_provider", return_value={
+        with patch("virat_code_cli.runtime_provider.resolve_runtime_provider", return_value={
                  "provider": "zai",
                  "api_key": "zai-key",
                  "base_url": "https://api.z.ai/api/paas/v4",
              }), \
-             patch("hermes_cli.models.fetch_api_models",
+             patch("virat_code_cli.models.fetch_api_models",
                    return_value=["glm-5", "glm-4.7"]), \
              patch("cli.save_config_value", return_value=True) as save_mock:
             cli_obj.process_command("/model zai:glm-5")
@@ -123,9 +123,9 @@ class TestModelCommand:
     def test_provider_switch_fails_on_bad_credentials(self, capsys):
         cli_obj = self._make_cli()
 
-        with patch("hermes_cli.runtime_provider.resolve_runtime_provider",
+        with patch("virat_code_cli.runtime_provider.resolve_runtime_provider",
                    side_effect=Exception("No API key found")):
-            cli_obj.process_command("/model nous:hermes-3")
+            cli_obj.process_command("/model nous:virat-code-3")
 
         output = capsys.readouterr().out
         assert "Could not resolve credentials" in output

@@ -138,12 +138,12 @@ class TestReadSkillDescription:
 
 class TestBuildSkillsSystemPrompt:
     def test_empty_when_no_skills_dir(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("VIRAT_CODE_HOME", str(tmp_path))
         result = build_skills_system_prompt()
         assert result == ""
 
     def test_builds_index_with_skills(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("VIRAT_CODE_HOME", str(tmp_path))
         skills_dir = tmp_path / "skills" / "coding" / "python-debug"
         skills_dir.mkdir(parents=True)
         (skills_dir / "SKILL.md").write_text(
@@ -155,7 +155,7 @@ class TestBuildSkillsSystemPrompt:
         assert "available_skills" in result
 
     def test_deduplicates_skills(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("VIRAT_CODE_HOME", str(tmp_path))
         cat_dir = tmp_path / "skills" / "tools"
         for subdir in ["search", "search"]:
             d = cat_dir / subdir
@@ -167,7 +167,7 @@ class TestBuildSkillsSystemPrompt:
 
     def test_excludes_incompatible_platform_skills(self, monkeypatch, tmp_path):
         """Skills with platforms: [macos] should not appear on Linux."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("VIRAT_CODE_HOME", str(tmp_path))
         skills_dir = tmp_path / "skills" / "apple"
         skills_dir.mkdir(parents=True)
 
@@ -195,7 +195,7 @@ class TestBuildSkillsSystemPrompt:
 
     def test_includes_matching_platform_skills(self, monkeypatch, tmp_path):
         """Skills with platforms: [macos] should appear on macOS."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("VIRAT_CODE_HOME", str(tmp_path))
         skills_dir = tmp_path / "skills" / "apple"
         mac_skill = skills_dir / "imessage"
         mac_skill.mkdir(parents=True)

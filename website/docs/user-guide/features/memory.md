@@ -17,7 +17,7 @@ Two files make up the agent's memory:
 | **MEMORY.md** | Agent's personal notes — environment facts, conventions, things learned | 2,200 chars (~800 tokens) |
 | **USER.md** | User profile — your preferences, communication style, expectations | 1,375 chars (~500 tokens) |
 
-Both are stored in `~/.hermes/memories/` and are injected into the system prompt as a frozen snapshot at session start. The agent manages its own memory via the `memory` tool — it can add, replace, or remove entries.
+Both are stored in `~/.virat-code/memories/` and are injected into the system prompt as a frozen snapshot at session start. The agent manages its own memory via the `memory` tool — it can add, replace, or remove entries.
 
 :::info
 Character limits keep memory focused. When memory is full, the agent consolidates or replaces entries to make room for new information.
@@ -176,12 +176,12 @@ Memory entries are scanned for injection and exfiltration patterns before being 
 
 Beyond MEMORY.md and USER.md, the agent can search its past conversations using the `session_search` tool:
 
-- All CLI and messaging sessions are stored in SQLite (`~/.hermes/state.db`) with FTS5 full-text search
+- All CLI and messaging sessions are stored in SQLite (`~/.virat-code/state.db`) with FTS5 full-text search
 - Search queries return relevant past conversations with Gemini Flash summarization
 - The agent can find things it discussed weeks ago, even if they're not in its active memory
 
 ```bash
-hermes sessions list    # Browse past sessions
+virat-code sessions list    # Browse past sessions
 ```
 
 ### session_search vs memory
@@ -199,7 +199,7 @@ hermes sessions list    # Browse past sessions
 ## Configuration
 
 ```yaml
-# In ~/.hermes/config.yaml
+# In ~/.virat-code/config.yaml
 memory:
   memory_enabled: true
   user_profile_enabled: true
@@ -231,8 +231,8 @@ cat > ~/.honcho/config.json << 'EOF'
   "apiKey": "your-honcho-api-key",
   "peerName": "your-name",
   "hosts": {
-    "hermes": {
-      "workspace": "hermes"
+    "Virat-Code": {
+      "workspace": "Virat-Code"
     }
   }
 }
@@ -241,7 +241,7 @@ EOF
 
 Or via environment variable:
 ```bash
-hermes config set HONCHO_API_KEY your-key
+Virat-Code config set HONCHO_API_KEY your-key
 ```
 
 :::tip

@@ -5,7 +5,7 @@ version: 1.1.0
 author: Virat Code (adapted from obra/superpowers)
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [testing, tdd, development, quality, red-green-refactor]
     related_skills: [systematic-debugging, writing-plans, subagent-driven-development]
 ---

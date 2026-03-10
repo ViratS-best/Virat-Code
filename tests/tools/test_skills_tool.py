@@ -67,9 +67,9 @@ class TestParseFrontmatter:
         assert fm == {}
 
     def test_nested_yaml(self):
-        content = "---\nname: test\nmetadata:\n  hermes:\n    tags: [a, b]\n---\n\nBody.\n"
+        content = "---\nname: test\nmetadata:\n  virat-code:\n    tags: [a, b]\n---\n\nBody.\n"
         fm, body = _parse_frontmatter(content)
-        assert fm["metadata"]["hermes"]["tags"] == ["a", "b"]
+        assert fm["metadata"]["Virat-Code"]["tags"] == ["a", "b"]
 
     def test_malformed_yaml_fallback(self):
         """Malformed YAML falls back to simple key:value parsing."""
@@ -296,7 +296,7 @@ class TestSkillView:
 
     def test_view_tags_from_metadata(self, tmp_path):
         with patch("tools.skills_tool.SKILLS_DIR", tmp_path):
-            _make_skill(tmp_path, "tagged", frontmatter_extra="metadata:\n  hermes:\n    tags: [fine-tuning, llm]\n")
+            _make_skill(tmp_path, "tagged", frontmatter_extra="metadata:\n  virat-code:\n    tags: [fine-tuning, llm]\n")
             raw = skill_view("tagged")
         result = json.loads(raw)
         assert "fine-tuning" in result["tags"]

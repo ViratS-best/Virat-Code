@@ -25,12 +25,12 @@ Convert text to speech with three providers:
 | Telegram | Voice bubble (plays inline) | Opus `.ogg` |
 | Discord | Audio file attachment | MP3 |
 | WhatsApp | Audio file attachment | MP3 |
-| CLI | Saved to `~/.hermes/audio_cache/` | MP3 |
+| CLI | Saved to `~/.virat-code/audio_cache/` | MP3 |
 
 ### Configuration
 
 ```yaml
-# In ~/.hermes/config.yaml
+# In ~/.virat-code/config.yaml
 tts:
   provider: "edge"              # "edge" | "elevenlabs" | "openai"
   edge:
@@ -77,12 +77,12 @@ Voice messages sent on Telegram, Discord, WhatsApp, or Slack are automatically t
 | **OpenAI GPT-4o** | `gpt-4o-mini-transcribe` | Better | Medium |
 | **OpenAI GPT-4o** | `gpt-4o-transcribe` | Best | Higher |
 
-Requires `VOICE_TOOLS_OPENAI_KEY` in `~/.hermes/.env`.
+Requires `VOICE_TOOLS_OPENAI_KEY` in `~/.virat-code/.env`.
 
 ### Configuration
 
 ```yaml
-# In ~/.hermes/config.yaml
+# In ~/.virat-code/config.yaml
 stt:
   enabled: true
   model: "whisper-1"

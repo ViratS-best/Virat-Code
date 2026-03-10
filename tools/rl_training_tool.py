@@ -48,8 +48,8 @@ from typing import Any, Dict, List, Optional
 # ============================================================================
 
 # Path to tinker-atropos submodule (relative to Virat Code root)
-HERMES_ROOT = Path(__file__).parent.parent
-TINKER_ATROPOS_ROOT = HERMES_ROOT / "tinker-atropos"
+VIRAT_CODE_ROOT = Path(__file__).parent.parent
+TINKER_ATROPOS_ROOT = VIRAT_CODE_ROOT / "tinker-atropos"
 ENVIRONMENTS_DIR = TINKER_ATROPOS_ROOT / "tinker_atropos" / "environments"
 CONFIGS_DIR = TINKER_ATROPOS_ROOT / "configs"
 LOGS_DIR = TINKER_ATROPOS_ROOT / "logs"
@@ -716,7 +716,7 @@ async def rl_start_training() -> str:
     # Check API keys
     if not os.getenv("TINKER_API_KEY"):
         return json.dumps({
-            "error": "TINKER_API_KEY not set. Add it to ~/.hermes/.env",
+            "error": "TINKER_API_KEY not set. Add it to ~/.virat-code/.env",
         }, indent=2)
     
     # Find environment file

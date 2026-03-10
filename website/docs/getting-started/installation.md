@@ -22,7 +22,7 @@ Native Windows is **not supported**. Please install [WSL2](https://learn.microso
 
 ### What the Installer Does
 
-The installer handles everything automatically — all dependencies (Python, Node.js, ripgrep, ffmpeg), the repo clone, virtual environment, and global `hermes` command setup. It finishes by running the interactive setup wizard to configure your LLM provider.
+The installer handles everything automatically — all dependencies (Python, Node.js, ripgrep, ffmpeg), the repo clone, virtual environment, and global `Virat-Code` command setup. It finishes by running the interactive setup wizard to configure your LLM provider.
 
 ### After Installation
 
@@ -30,8 +30,8 @@ Reload your shell and start chatting:
 
 ```bash
 source ~/.bashrc   # or: source ~/.zshrc
-hermes setup       # Configure API keys (if you skipped during install)
-hermes             # Start chatting!
+Virat-Code setup       # Configure API keys (if you skipped during install)
+virat-code             # Start chatting!
 ```
 
 ---
@@ -81,7 +81,7 @@ uv venv venv --python 3.11
 ```
 
 :::tip
-You do **not** need to activate the venv to use `hermes`. The entry point has a hardcoded shebang pointing to the venv Python, so it works globally once symlinked.
+You do **not** need to activate the venv to use `Virat-Code`. The entry point has a hardcoded shebang pointing to the venv Python, so it works globally once symlinked.
 :::
 
 ### Step 3: Install Python Dependencies
@@ -145,18 +145,18 @@ npm install
 
 ```bash
 # Create the directory structure
-mkdir -p ~/.hermes/{cron,sessions,logs,memories,skills,pairing,hooks,image_cache,audio_cache,whatsapp/session}
+mkdir -p ~/.virat-code/{cron,sessions,logs,memories,skills,pairing,hooks,image_cache,audio_cache,whatsapp/session}
 
 # Copy the example config file
-cp cli-config.yaml.example ~/.hermes/config.yaml
+cp cli-config.yaml.example ~/.virat-code/config.yaml
 
 # Create an empty .env file for API keys
-touch ~/.hermes/.env
+touch ~/.virat-code/.env
 ```
 
 ### Step 7: Add Your API Keys
 
-Open `~/.hermes/.env` and add at minimum an LLM provider key:
+Open `~/.virat-code/.env` and add at minimum an LLM provider key:
 
 ```bash
 # Required — at least one LLM provider:
@@ -169,14 +169,14 @@ FAL_KEY=your-fal-key                   # Image generation (FLUX)
 
 Or set them via the CLI:
 ```bash
-hermes config set OPENROUTER_API_KEY sk-or-v1-your-key-here
+Virat-Code config set OPENROUTER_API_KEY sk-or-v1-your-key-here
 ```
 
-### Step 8: Add `hermes` to Your PATH
+### Step 8: Add `Virat-Code` to Your PATH
 
 ```bash
 mkdir -p ~/.local/bin
-ln -sf "$(pwd)/venv/bin/hermes" ~/.local/bin/hermes
+ln -sf "$(pwd)/venv/bin/virat-code" ~/.local/bin/virat-code
 ```
 
 If `~/.local/bin` isn't on your PATH, add it to your shell config:
@@ -195,16 +195,16 @@ fish_add_path $HOME/.local/bin
 ### Step 9: Run the Setup Wizard (Optional)
 
 ```bash
-hermes setup
+Virat-Code setup
 ```
 
 ### Step 10: Verify the Installation
 
 ```bash
-hermes version    # Check that the command is available
-hermes doctor     # Run diagnostics to verify everything is working
-hermes status     # Check your configuration
-hermes chat -q "Hello! What tools do you have available?"
+virat-code version    # Check that the command is available
+virat-code doctor     # Run diagnostics to verify everything is working
+virat-code status     # Check your configuration
+virat-code chat -q "Hello! What tools do you have available?"
 ```
 
 ---
@@ -232,18 +232,18 @@ uv pip install -e "./tinker-atropos"
 npm install  # optional, for browser tools and WhatsApp
 
 # Configure
-mkdir -p ~/.hermes/{cron,sessions,logs,memories,skills,pairing,hooks,image_cache,audio_cache,whatsapp/session}
-cp cli-config.yaml.example ~/.hermes/config.yaml
-touch ~/.hermes/.env
-echo 'OPENROUTER_API_KEY=sk-or-v1-your-key' >> ~/.hermes/.env
+mkdir -p ~/.virat-code/{cron,sessions,logs,memories,skills,pairing,hooks,image_cache,audio_cache,whatsapp/session}
+cp cli-config.yaml.example ~/.virat-code/config.yaml
+touch ~/.virat-code/.env
+echo 'OPENROUTER_API_KEY=sk-or-v1-your-key' >> ~/.virat-code/.env
 
-# Make hermes available globally
+# Make Virat-Code available globally
 mkdir -p ~/.local/bin
-ln -sf "$(pwd)/venv/bin/hermes" ~/.local/bin/hermes
+ln -sf "$(pwd)/venv/bin/virat-code" ~/.local/bin/virat-code
 
 # Verify
-hermes doctor
-hermes
+virat-code doctor
+virat-code
 ```
 
 ---
@@ -252,8 +252,8 @@ hermes
 
 | Problem | Solution |
 |---------|----------|
-| `hermes: command not found` | Reload your shell (`source ~/.bashrc`) or check PATH |
-| `API key not set` | Run `hermes setup` or `hermes config set OPENROUTER_API_KEY your_key` |
-| Missing config after update | Run `hermes config check` then `hermes config migrate` |
+| `virat-code: command not found` | Reload your shell (`source ~/.bashrc`) or check PATH |
+| `API key not set` | Run `Virat-Code setup` or `Virat-Code config set OPENROUTER_API_KEY your_key` |
+| Missing config after update | Run `Virat-Code config check` then `Virat-Code config migrate` |
 
-For more diagnostics, run `hermes doctor` — it will tell you exactly what's missing and how to fix it.
+For more diagnostics, run `virat-code doctor` — it will tell you exactly what's missing and how to fix it.

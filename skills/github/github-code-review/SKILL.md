@@ -5,7 +5,7 @@ version: 1.1.0
 author: Virat Code
 license: MIT
 metadata:
-  hermes:
+  virat-code:
     tags: [GitHub, Code-Review, Pull-Requests, Git, Quality]
     related_skills: [github-auth, github-pr-workflow]
 ---
@@ -330,7 +330,7 @@ When the user asks you to "review PR #N", "look at this PR", or gives you a PR U
 ### Step 1: Set up environment
 
 ```bash
-source ~/.hermes/skills/github/github-auth/scripts/gh-env.sh
+source ~/.virat-code/skills/github/github-auth/scripts/gh-env.sh
 # Or run the inline setup block from the top of this skill
 ```
 

@@ -26,10 +26,10 @@ Before starting, make sure you have:
 
 - **Virat Code installed** on a server or VPS (not your laptop — the bot needs to stay running). Follow the [installation guide](/getting-started/learning-path) if you haven't yet.
 - **A Telegram account** for yourself (the bot owner)
-- **An LLM provider configured** — at minimum, an API key for OpenAI, Anthropic, or another supported provider in `~/.hermes/.env`
+- **An LLM provider configured** — at minimum, an API key for OpenAI, Anthropic, or another supported provider in `~/.virat-code/.env`
 
 :::tip
-A $5/month VPS is plenty for running the gateway. Hermes itself is lightweight — the LLM API calls are what cost money, and those happen remotely.
+A $5/month VPS is plenty for running the gateway. Virat Code itself is lightweight — the LLM API calls are what cost money, and those happen remotely.
 :::
 
 ---
@@ -41,8 +41,8 @@ Every Telegram bot starts with **@BotFather** — Telegram's official bot for cr
 1. **Open Telegram** and search for `@BotFather`, or go to [t.me/BotFather](https://t.me/BotFather)
 
 2. **Send `/newbot`** — BotFather will ask you two things:
-   - **Display name** — what users see (e.g., `Team Hermes Assistant`)
-   - **Username** — must end in `bot` (e.g., `myteam_hermes_bot`)
+   - **Display name** — what users see (e.g., `Team Virat Code Assistant`)
+   - **Username** — must end in `bot` (e.g., `myteam_virat_code_bot`)
 
 3. **Copy the bot token** — BotFather replies with something like:
    ```
@@ -86,14 +86,14 @@ You have two options: the interactive setup wizard (recommended) or manual confi
 ### Option A: Interactive Setup (Recommended)
 
 ```bash
-hermes gateway setup
+Virat-Code gateway setup
 ```
 
 This walks you through everything with arrow-key selection. Pick **Telegram**, paste your bot token, and enter your user ID when prompted.
 
 ### Option B: Manual Configuration
 
-Add these lines to `~/.hermes/.env`:
+Add these lines to `~/.virat-code/.env`:
 
 ```bash
 # Telegram bot token from BotFather
@@ -124,13 +124,13 @@ Telegram user IDs are permanent numbers like `123456789`. They're different from
 Run the gateway in the foreground first to make sure everything works:
 
 ```bash
-hermes gateway
+Virat-Code gateway
 ```
 
 You should see output like:
 
 ```
-[Gateway] Starting Hermes Gateway...
+[Gateway] Starting Virat Code Gateway...
 [Gateway] Telegram adapter connected
 [Gateway] Cron scheduler started (tick every 60s)
 ```
@@ -142,19 +142,19 @@ Open Telegram, find your bot, and send it a message. If it replies, you're in bu
 For a persistent deployment that survives reboots:
 
 ```bash
-hermes gateway install
+Virat-Code gateway install
 ```
 
 This creates a **systemd** service (Linux) or **launchd** service (macOS) that runs automatically.
 
 ```bash
 # Linux — manage the service
-hermes gateway start
-hermes gateway stop
-hermes gateway status
+Virat-Code gateway start
+Virat-Code gateway stop
+Virat-Code gateway status
 
 # View live logs
-journalctl --user -u hermes-gateway -f
+journalctl --user -u virat-code-gateway -f
 
 # Keep running after SSH logout
 sudo loginctl enable-linger $USER
@@ -162,15 +162,15 @@ sudo loginctl enable-linger $USER
 
 ```bash
 # macOS — manage the service
-launchctl start ai.hermes.gateway
-launchctl stop ai.hermes.gateway
-tail -f ~/.hermes/logs/gateway.log
+launchctl start ai.virat-code.gateway
+launchctl stop ai.virat-code.gateway
+tail -f ~/.virat-code/logs/gateway.log
 ```
 
 ### Verify It's Running
 
 ```bash
-hermes gateway status
+Virat-Code gateway status
 ```
 
 Then send a test message to your bot on Telegram. You should get a response within a few seconds.
@@ -186,14 +186,14 @@ Now let's give your teammates access. There are two approaches.
 Collect each team member's Telegram user ID (have them message [@userinfobot](https://t.me/userinfobot)) and add them as a comma-separated list:
 
 ```bash
-# In ~/.hermes/.env
+# In ~/.virat-code/.env
 TELEGRAM_ALLOWED_USERS=123456789,987654321,555555555
 ```
 
 Restart the gateway after changes:
 
 ```bash
-hermes gateway stop && hermes gateway start
+Virat-Code gateway stop && Virat-Code gateway start
 ```
 
 ### Approach B: DM Pairing (Recommended for Teams)
@@ -210,7 +210,7 @@ DM pairing is more flexible — you don't need to collect user IDs upfront. Here
 
 3. **You approve it** on the server:
    ```bash
-   hermes pairing approve telegram XKGH5N7P
+   Virat-Code pairing approve telegram XKGH5N7P
    ```
 
 4. **They're in** — the bot immediately starts responding to their messages
@@ -219,13 +219,13 @@ DM pairing is more flexible — you don't need to collect user IDs upfront. Here
 
 ```bash
 # See all pending and approved users
-hermes pairing list
+virat-code pairing list
 
 # Revoke someone's access
-hermes pairing revoke telegram 987654321
+virat-code pairing revoke telegram 987654321
 
 # Clear expired pending codes
-hermes pairing clear-pending
+virat-code pairing clear-pending
 ```
 
 :::tip
@@ -250,7 +250,7 @@ A **home channel** is where the bot delivers cron job results and proactive mess
 
 **Option 1:** Use the `/sethome` command in any Telegram group or chat where the bot is a member.
 
-**Option 2:** Set it manually in `~/.hermes/.env`:
+**Option 2:** Set it manually in `~/.virat-code/.env`:
 
 ```bash
 TELEGRAM_HOME_CHANNEL=-1001234567890
@@ -261,7 +261,7 @@ To find a channel ID, add [@userinfobot](https://t.me/userinfobot) to the group 
 
 ### Configure Tool Progress Display
 
-Control how much detail the bot shows when using tools. In `~/.hermes/config.yaml`:
+Control how much detail the bot shows when using tools. In `~/.virat-code/config.yaml`:
 
 ```yaml
 display:
@@ -279,7 +279,7 @@ Users can also change this per-session with the `/verbose` command in chat.
 
 ### Set Up a Personality with SOUL.md
 
-Customize how the bot communicates by creating `~/.hermes/SOUL.md`:
+Customize how the bot communicates by creating `~/.virat-code/SOUL.md`:
 
 ```markdown
 # Soul
@@ -294,7 +294,7 @@ before guessing at solutions.
 If your team works on specific projects, create context files so the bot knows your stack:
 
 ```markdown
-<!-- ~/.hermes/AGENTS.md -->
+<!-- ~/.virat-code/AGENTS.md -->
 # Team Context
 - We use Python 3.12 with FastAPI and SQLAlchemy
 - Frontend is React with TypeScript
@@ -340,8 +340,8 @@ partitions above 80%, containers that have restarted, or high memory usage.
 
 ```bash
 # From the CLI
-hermes cron list          # View all scheduled jobs
-hermes cron status        # Check if scheduler is running
+virat-code cron list          # View all scheduled jobs
+virat-code cron status        # Check if scheduler is running
 
 # From Telegram chat
 /cron list                # View jobs
@@ -361,12 +361,12 @@ Cron job prompts run in completely fresh sessions with no memory of prior conver
 On a shared team bot, use Docker as the terminal backend so agent commands run in a container instead of on your host:
 
 ```bash
-# In ~/.hermes/.env
+# In ~/.virat-code/.env
 TERMINAL_BACKEND=docker
 TERMINAL_DOCKER_IMAGE=nikolaik/python-nodejs:python3.11-nodejs20
 ```
 
-Or in `~/.hermes/config.yaml`:
+Or in `~/.virat-code/config.yaml`:
 
 ```yaml
 terminal:
@@ -382,33 +382,33 @@ This way, even if someone asks the bot to run something destructive, your host s
 
 ```bash
 # Check if the gateway is running
-hermes gateway status
+Virat-Code gateway status
 
 # Watch live logs (Linux)
-journalctl --user -u hermes-gateway -f
+journalctl --user -u virat-code-gateway -f
 
 # Watch live logs (macOS)
-tail -f ~/.hermes/logs/gateway.log
+tail -f ~/.virat-code/logs/gateway.log
 ```
 
-### Keep Hermes Updated
+### Keep Virat Code Updated
 
 From Telegram, send `/update` to the bot — it will pull the latest version and restart. Or from the server:
 
 ```bash
-hermes update
-hermes gateway stop && hermes gateway start
+Virat-Code update
+Virat-Code gateway stop && Virat-Code gateway start
 ```
 
 ### Log Locations
 
 | What | Location |
 |------|----------|
-| Gateway logs | `journalctl --user -u hermes-gateway` (Linux) or `~/.hermes/logs/gateway.log` (macOS) |
-| Cron job output | `~/.hermes/cron/output/{job_id}/{timestamp}.md` |
-| Cron job definitions | `~/.hermes/cron/jobs.json` |
-| Pairing data | `~/.hermes/pairing/` |
-| Session history | `~/.hermes/sessions/` |
+| Gateway logs | `journalctl --user -u virat-code-gateway` (Linux) or `~/.virat-code/logs/gateway.log` (macOS) |
+| Cron job output | `~/.virat-code/cron/output/{job_id}/{timestamp}.md` |
+| Cron job definitions | `~/.virat-code/cron/jobs.json` |
+| Pairing data | `~/.virat-code/pairing/` |
+| Session history | `~/.virat-code/sessions/` |
 
 ---
 

@@ -6,7 +6,7 @@ author: Virat Code + Teknium
 license: MIT
 platforms: [macos, linux]
 metadata:
-  hermes:
+  virat-code:
     tags: [Search, Knowledge-Base, RAG, Notes, MCP, Local-AI]
     related_skills: [obsidian, native-mcp, arxiv]
 ---
@@ -226,7 +226,7 @@ without needing to load this skill.
 
 ### Option A: Stdio Mode (Simple)
 
-Add to `~/.hermes/config.yaml`:
+Add to `~/.virat-code/config.yaml`:
 
 ```yaml
 mcp_servers:

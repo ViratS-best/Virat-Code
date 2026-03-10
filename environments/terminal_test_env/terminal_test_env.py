@@ -45,7 +45,7 @@ from atroposlib.envs.server_handling.server_manager import APIServerConfig
 from atroposlib.type_definitions import Item
 
 from environments.agent_loop import AgentResult
-from environments.hermes_base_env import HermesAgentBaseEnv, HermesAgentEnvConfig
+from environments.virat-code_base_env import Virat CodeAgentBaseEnv, Virat CodeAgentEnvConfig
 from environments.tool_context import ToolContext
 
 logger = logging.getLogger(__name__)
@@ -82,13 +82,13 @@ EVAL_TASKS = [
 ]
 
 
-class TerminalTestEnvConfig(HermesAgentEnvConfig):
+class TerminalTestEnvConfig(Virat CodeAgentEnvConfig):
     """Config with defaults suitable for terminal testing."""
 
     pass  # Inherits all fields, overrides defaults in config_init
 
 
-class TerminalTestEnv(HermesAgentBaseEnv):
+class TerminalTestEnv(Virat CodeAgentBaseEnv):
     """
     Simple test environment with inline file-creation tasks.
 
@@ -133,7 +133,7 @@ class TerminalTestEnv(HermesAgentBaseEnv):
             # Atropos settings
             group_size=3,              # 3 rollouts per group
             tokenizer_name="NousResearch/q-30b-t-h45-e1",
-            tool_call_parser="hermes",
+            tool_call_parser="Virat-Code",
             steps_per_eval=3,          # Eval after all 3 steps
             total_steps=3,             # 3 groups total (1 group per step)
             use_wandb=True,
