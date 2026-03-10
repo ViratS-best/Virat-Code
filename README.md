@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Virat Code" width="100%">
+  <img src="assets/banner.png" alt="Virat-Code" width="100%">
 </p>
 
-# Virat Code ⚕
+# Virat-Code ⚕
 
 <p align="center">
-  <a href="https://Virat Code.github.com/ViratS-best/docs/"><img src="https://img.shields.io/badge/Docs-virat-code--agent.github.com/ViratS-best-FFD700?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://Virat-Code.github.com/ViratS-best/docs/"><img src="https://img.shields.io/badge/Docs-virat-code--agent.github.com/ViratS-best-FFD700?style=for-the-badge" alt="Documentation"></a>
   <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://github.com/ViratS-best/Virat-Code/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
   <a href="https://github.com/ViratS-best"><img src="https://img.shields.io/badge/Built%20by-Nous%20Research-blueviolet?style=for-the-badge" alt="Built by Virat Sisodiya"></a>
@@ -58,43 +58,43 @@ Virat-Code update       # Update to the latest version
 virat-code doctor       # Diagnose any issues
 ```
 
-📖 **[Full documentation →](https://Virat Code.github.com/ViratS-best/docs/)**
+📖 **[Full documentation →](https://Virat-Code.github.com/ViratS-best/docs/)**
 
 ---
 
 ## Documentation
 
-All documentation lives at **[Virat Code.github.com/ViratS-best/docs](https://Virat Code.github.com/ViratS-best/docs/)**:
+All documentation lives at **[Virat-Code.github.com/ViratS-best/docs](https://Virat-Code.github.com/ViratS-best/docs/)**:
 
 | Section | What's Covered |
 |---------|---------------|
-| [Quickstart](https://Virat Code.github.com/ViratS-best/docs/getting-started/quickstart) | Install → setup → first conversation in 2 minutes |
-| [CLI Usage](https://Virat Code.github.com/ViratS-best/docs/user-guide/cli) | Commands, keybindings, personalities, sessions |
-| [Configuration](https://Virat Code.github.com/ViratS-best/docs/user-guide/configuration) | Config file, providers, models, all options |
-| [Messaging Gateway](https://Virat Code.github.com/ViratS-best/docs/user-guide/messaging) | Telegram, Discord, Slack, WhatsApp, Signal, Home Assistant |
-| [Security](https://Virat Code.github.com/ViratS-best/docs/user-guide/security) | Command approval, DM pairing, container isolation |
-| [Tools & Toolsets](https://Virat Code.github.com/ViratS-best/docs/user-guide/features/tools) | 40+ tools, toolset system, terminal backends |
-| [Skills System](https://Virat Code.github.com/ViratS-best/docs/user-guide/features/skills) | Procedural memory, Skills Hub, creating skills |
-| [Memory](https://Virat Code.github.com/ViratS-best/docs/user-guide/features/memory) | Persistent memory, user profiles, best practices |
-| [MCP Integration](https://Virat Code.github.com/ViratS-best/docs/user-guide/features/mcp) | Connect any MCP server for extended capabilities |
-| [Cron Scheduling](https://Virat Code.github.com/ViratS-best/docs/user-guide/features/cron) | Scheduled tasks with platform delivery |
-| [Context Files](https://Virat Code.github.com/ViratS-best/docs/user-guide/features/context-files) | Project context that shapes every conversation |
-| [Architecture](https://Virat Code.github.com/ViratS-best/docs/developer-guide/architecture) | Project structure, agent loop, key classes |
-| [Contributing](https://Virat Code.github.com/ViratS-best/docs/developer-guide/contributing) | Development setup, PR process, code style |
-| [CLI Reference](https://Virat Code.github.com/ViratS-best/docs/reference/cli-commands) | All commands and flags |
-| [Environment Variables](https://Virat Code.github.com/ViratS-best/docs/reference/environment-variables) | Complete env var reference |
+| [Quickstart](https://Virat-Code.github.com/ViratS-best/docs/getting-started/quickstart) | Install → setup → first conversation in 2 minutes |
+| [CLI Usage](https://Virat-Code.github.com/ViratS-best/docs/user-guide/cli) | Commands, keybindings, personalities, sessions |
+| [Configuration](https://Virat-Code.github.com/ViratS-best/docs/user-guide/configuration) | Config file, providers, models, all options |
+| [Messaging Gateway](https://Virat-Code.github.com/ViratS-best/docs/user-guide/messaging) | Telegram, Discord, Slack, WhatsApp, Signal, Home Assistant |
+| [Security](https://Virat-Code.github.com/ViratS-best/docs/user-guide/security) | Command approval, DM pairing, container isolation |
+| [Tools & Toolsets](https://Virat-Code.github.com/ViratS-best/docs/user-guide/features/tools) | 40+ tools, toolset system, terminal backends |
+| [Skills System](https://Virat-Code.github.com/ViratS-best/docs/user-guide/features/skills) | Procedural memory, Skills Hub, creating skills |
+| [Memory](https://Virat-Code.github.com/ViratS-best/docs/user-guide/features/memory) | Persistent memory, user profiles, best practices |
+| [MCP Integration](https://Virat-Code.github.com/ViratS-best/docs/user-guide/features/mcp) | Connect any MCP server for extended capabilities |
+| [Cron Scheduling](https://Virat-Code.github.com/ViratS-best/docs/user-guide/features/cron) | Scheduled tasks with platform delivery |
+| [Context Files](https://Virat-Code.github.com/ViratS-best/docs/user-guide/features/context-files) | Project context that shapes every conversation |
+| [Architecture](https://Virat-Code.github.com/ViratS-best/docs/developer-guide/architecture) | Project structure, agent loop, key classes |
+| [Contributing](https://Virat-Code.github.com/ViratS-best/docs/developer-guide/contributing) | Development setup, PR process, code style |
+| [CLI Reference](https://Virat-Code.github.com/ViratS-best/docs/reference/cli-commands) | All commands and flags |
+| [Environment Variables](https://Virat-Code.github.com/ViratS-best/docs/reference/environment-variables) | Complete env var reference |
 
 ---
 
 ## Contributing
 
-We welcome contributions! See the [Contributing Guide](https://Virat Code.github.com/ViratS-best/docs/developer-guide/contributing) for development setup, code style, and PR process.
+We welcome contributions! See the [Contributing Guide](https://Virat-Code.github.com/ViratS-best/docs/developer-guide/contributing) for development setup, code style, and PR process.
 
 Quick start for contributors:
 
 ```bash
 git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
-cd Virat Code
+cd Virat-Code
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv .venv --python 3.11
 source .venv/bin/activate

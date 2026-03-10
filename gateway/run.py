@@ -28,7 +28,7 @@ from typing import Dict, Optional, Any, List
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Resolve Virat Code home directory (respects VIRAT_CODE_HOME override)
+# Resolve Virat-Code home directory (respects VIRAT_CODE_HOME override)
 _virat_code_home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
 
 # Load environment variables from ~/.virat-code/.env first
@@ -466,7 +466,7 @@ class GatewayRunner:
         
         Returns True if at least one adapter connected successfully.
         """
-        logger.info("Starting Virat Code Gateway...")
+        logger.info("Starting Virat-Code Gateway...")
         logger.info("Session storage: %s", self.config.sessions_dir)
         
         # Warn if no user allowlists are configured and open access is not opted in
@@ -1149,7 +1149,7 @@ class GatewayRunner:
                     await adapter.send(
                         source.chat_id,
                         f"📬 No home channel is set for {platform_name.title()}. "
-                        f"A home channel is where Virat Code delivers cron job results "
+                        f"A home channel is where Virat-Code delivers cron job results "
                         f"and cross-platform messages.\n\n"
                         f"Type /sethome to make this chat your home channel, "
                         f"or ignore to skip."
@@ -1393,7 +1393,7 @@ class GatewayRunner:
         is_running = session_key in self._running_agents
         
         lines = [
-            "📊 **Virat Code Gateway Status**",
+            "📊 **Virat-Code Gateway Status**",
             "",
             f"**Session ID:** `{session_entry.session_id[:12]}...`",
             f"**Created:** {session_entry.created_at.strftime('%Y-%m-%d %H:%M')}",
@@ -1422,7 +1422,7 @@ class GatewayRunner:
     async def _handle_help_command(self, event: MessageEvent) -> str:
         """Handle /help command - list available commands."""
         lines = [
-            "📖 **Virat Code Commands**\n",
+            "📖 **Virat-Code Commands**\n",
             "`/new` — Start a new conversation",
             "`/reset` — Reset conversation history",
             "`/status` — Show session info",
@@ -1440,7 +1440,7 @@ class GatewayRunner:
             "`/insights [days]` — Show usage insights and analytics",
             "`/rollback [number]` — List or restore filesystem checkpoints",
             "`/reload-mcp` — Reload MCP servers from config",
-            "`/update` — Update Virat Code to the latest version",
+            "`/update` — Update Virat-Code to the latest version",
             "`/help` — Show this message",
         ]
         try:
@@ -2157,7 +2157,7 @@ class GatewayRunner:
             return f"❌ MCP reload failed: {e}"
 
     async def _handle_update_command(self, event: MessageEvent) -> str:
-        """Handle /update command — update Virat Code to the latest version.
+        """Handle /update command — update Virat-Code to the latest version.
 
         Spawns ``Virat-Code update`` in a separate systemd scope so it survives the
         gateway restart that ``Virat-Code update`` triggers at the end.  A marker
@@ -2216,7 +2216,7 @@ class GatewayRunner:
             pending_path.unlink(missing_ok=True)
             return f"✗ Failed to start update: {e}"
 
-        return "⚕ Starting Virat Code update… I'll notify you when it's done."
+        return "⚕ Starting Virat-Code update… I'll notify you when it's done."
 
     async def _send_update_notification(self) -> None:
         """If the gateway is starting after a ``/update``, notify the user."""
@@ -2250,9 +2250,9 @@ class GatewayRunner:
                     # Truncate if too long for a single message
                     if len(output) > 3500:
                         output = "…" + output[-3500:]
-                    msg = f"✅ Virat Code update finished — gateway restarted.\n\n```\n{output}\n```"
+                    msg = f"✅ Virat-Code update finished — gateway restarted.\n\n```\n{output}\n```"
                 else:
-                    msg = "✅ Virat Code update finished — gateway restarted successfully."
+                    msg = "✅ Virat-Code update finished — gateway restarted successfully."
                 await adapter.send(chat_id, msg)
                 logger.info("Sent post-update notification to %s:%s", platform_str, chat_id)
         except Exception as e:
@@ -3258,7 +3258,7 @@ def main():
     """CLI entry point for the gateway."""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Virat Code Gateway - Multi-platform messaging")
+    parser = argparse.ArgumentParser(description="Virat-Code Gateway - Multi-platform messaging")
     parser.add_argument("--config", "-c", help="Path to gateway config file")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
     

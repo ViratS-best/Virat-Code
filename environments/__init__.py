@@ -1,7 +1,7 @@
 """
-Virat Code Atropos Environments
+Virat-Code Atropos Environments
 
-Provides a layered integration between Virat Code's tool-calling capabilities
+Provides a layered integration between Virat-Code's tool-calling capabilities
 and the Atropos RL training framework.
 
 Core layers:

@@ -380,12 +380,12 @@ class AIAgent:
             # Primary: OPENROUTER_API_KEY, fallback to direct provider keys
             client_kwargs["api_key"] = os.getenv("OPENROUTER_API_KEY", "")
         
-        # OpenRouter app attribution — shows Virat Code in rankings/analytics
+        # OpenRouter app attribution — shows Virat-Code in rankings/analytics
         effective_base = client_kwargs.get("base_url", "")
         if "openrouter" in effective_base.lower():
             client_kwargs["default_headers"] = {
                 "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
-                "X-OpenRouter-Title": "Virat Code",
+                "X-OpenRouter-Title": "Virat-Code",
                 "X-OpenRouter-Categories": "productivity,cli-agent",
             }
         elif "api.kimi.com" in effective_base.lower():
@@ -2296,7 +2296,7 @@ class AIAgent:
             if "openrouter" in fb_base_url.lower():
                 client_kwargs["default_headers"] = {
                     "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
-                    "X-OpenRouter-Title": "Virat Code",
+                    "X-OpenRouter-Title": "Virat-Code",
                     "X-OpenRouter-Categories": "productivity,cli-agent",
                 }
             elif "api.kimi.com" in fb_base_url.lower():
@@ -2415,7 +2415,7 @@ class AIAgent:
 
         # Nous Portal product attribution
         if _is_nous:
-            extra_body["tags"] = ["product=Virat Code"]
+            extra_body["tags"] = ["product=Virat-Code"]
 
         if extra_body:
             api_kwargs["extra_body"] = extra_body
@@ -2987,7 +2987,7 @@ class AIAgent:
                         "effort": "medium"
                     }
             if _is_nous:
-                summary_extra_body["tags"] = ["product=Virat Code"]
+                summary_extra_body["tags"] = ["product=Virat-Code"]
 
             if self.api_mode == "codex_responses":
                 codex_kwargs = self._build_api_kwargs(api_messages)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Skills Hub CLI — Unified interface for the Virat Code Skills Hub.
+Skills Hub CLI — Unified interface for the Virat-Code Skills Hub.
 
 Powers both:
   - `virat-code skills <subcommand>` (CLI argparse entry point)
@@ -315,7 +315,7 @@ def do_install(identifier: str, category: str = "", force: bool = False,
         if bundle.source == "official":
             c.print(Panel(
                 "[bold bright_cyan]This is an official optional skill maintained by Virat Sisodiya.[/]\n\n"
-                "It ships with Virat Code but is not activated by default.\n"
+                "It ships with Virat-Code but is not activated by default.\n"
                 "Installing will copy it to your skills directory where the agent can use it.\n\n"
                 f"Files will be at: [cyan]~/.virat-code/skills/{category + '/' if category else ''}{bundle.name}/[/]",
                 title="Official Skill",
@@ -698,8 +698,8 @@ def _github_publish(skill_path: Path, skill_name: str, target_repo: str,
             headers=headers, timeout=15,
             json={
                 "title": f"Add skill: {skill_name}",
-                "body": f"Submitting the `{skill_name}` skill via Virat Code Skills Hub.\n\n"
-                        f"This skill was scanned by the Virat Code Skills Guard before submission.",
+                "body": f"Submitting the `{skill_name}` skill via Virat-Code Skills Hub.\n\n"
+                        f"This skill was scanned by the Virat-Code Skills Guard before submission.",
                 "head": f"{fork_repo.split('/')[0]}:{branch_name}",
                 "base": default_branch,
             },

@@ -1,12 +1,12 @@
 ---
 sidebar_position: 5
 title: "WhatsApp"
-description: "Set up Virat Code as a WhatsApp bot via the built-in Baileys bridge"
+description: "Set up Virat-Code as a WhatsApp bot via the built-in Baileys bridge"
 ---
 
 # WhatsApp Setup
 
-Virat Code connects to WhatsApp through a built-in bridge using [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
+Virat-Code connects to WhatsApp through a built-in bridge using [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
 (Baileys-based). This works by emulating a WhatsApp Web session — **not** through the official
 WhatsApp Business API. No Meta developer account or Business verification is required.
 
@@ -20,8 +20,8 @@ whatsapp-web.js carries a small risk of account restrictions. To minimize risk:
 
 :::warning WhatsApp Web Protocol Updates
 WhatsApp periodically updates their Web protocol, which can temporarily break compatibility
-with whatsapp-web.js. When this happens, Virat Code will update the bridge dependency. If the
-bot stops working after a WhatsApp update, pull the latest Virat Code version and re-pair.
+with whatsapp-web.js. When this happens, Virat-Code will update the bridge dependency. If the
+bot stops working after a WhatsApp update, pull the latest Virat-Code version and re-pair.
 :::
 
 ## Two Modes
@@ -103,7 +103,7 @@ After getting the number:
 
 ---
 
-## Step 3: Configure Virat Code
+## Step 3: Configure Virat-Code
 
 Add the following to your `~/.virat-code/.env` file:
 
@@ -131,7 +131,7 @@ The gateway starts the WhatsApp bridge automatically using the saved session.
 ## Session Persistence
 
 The whatsapp-web.js `LocalAuth` strategy saves your session to the `.wwebjs_auth` folder inside
-your Virat Code data directory (`~/.virat-code/`). This means:
+your Virat-Code data directory (`~/.virat-code/`). This means:
 
 - **Sessions survive restarts** — you don't need to re-scan the QR code every time
 - The session data includes encryption keys and device credentials
@@ -156,11 +156,11 @@ with reconnection logic.
 
 ## Voice Messages
 
-Virat Code supports voice on WhatsApp:
+Virat-Code supports voice on WhatsApp:
 
 - **Incoming:** Voice messages (`.ogg` opus) are automatically transcribed using Whisper (requires `VOICE_TOOLS_OPENAI_KEY`)
 - **Outgoing:** TTS responses are sent as MP3 audio file attachments
-- Agent responses are prefixed with "⚕ **Virat Code**" for easy identification
+- Agent responses are prefixed with "⚕ **Virat-Code**" for easy identification
 
 ---
 
@@ -173,7 +173,7 @@ Virat Code supports voice on WhatsApp:
 | **Session not persisting** | Check that `~/.virat-code/.wwebjs_auth/` exists and is writable. On Docker, mount this as a volume. |
 | **Logged out unexpectedly** | WhatsApp unlinks devices after ~14 days of phone inactivity. Keep the phone on and connected to WiFi. Re-pair with `Virat-Code whatsapp`. |
 | **"Execution context was destroyed"** | Chromium crashed. Install the Puppeteer dependencies listed in Prerequisites. On low-RAM servers, add swap space. |
-| **Bot stops working after WhatsApp update** | Update Virat Code to get the latest bridge version, then re-pair. |
+| **Bot stops working after WhatsApp update** | Update Virat-Code to get the latest bridge version, then re-pair. |
 | **Messages not being received** | Verify `WHATSAPP_ALLOWED_USERS` includes the sender's number (with country code, no `+` or spaces). |
 
 ---

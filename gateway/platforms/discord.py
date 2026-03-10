@@ -487,8 +487,8 @@ class DiscordAdapter(BasePlatformAdapter):
 
         tree = self._client.tree
 
-        @tree.command(name="ask", description="Ask Virat Code a question")
-        @discord.app_commands.describe(question="Your question for Virat Code")
+        @tree.command(name="ask", description="Ask Virat-Code a question")
+        @discord.app_commands.describe(question="Your question for Virat-Code")
         async def slash_ask(interaction: discord.Interaction, question: str):
             await interaction.response.defer()
             event = self._build_slash_event(interaction, question)
@@ -510,7 +510,7 @@ class DiscordAdapter(BasePlatformAdapter):
             except Exception as e:
                 logger.debug("Discord followup failed: %s", e)
 
-        @tree.command(name="reset", description="Reset your Virat Code session")
+        @tree.command(name="reset", description="Reset your Virat-Code session")
         async def slash_reset(interaction: discord.Interaction):
             await interaction.response.defer(ephemeral=True)
             event = self._build_slash_event(interaction, "/reset")
@@ -562,7 +562,7 @@ class DiscordAdapter(BasePlatformAdapter):
             except Exception as e:
                 logger.debug("Discord followup failed: %s", e)
 
-        @tree.command(name="status", description="Show Virat Code session status")
+        @tree.command(name="status", description="Show Virat-Code session status")
         async def slash_status(interaction: discord.Interaction):
             await interaction.response.defer(ephemeral=True)
             event = self._build_slash_event(interaction, "/status")
@@ -582,7 +582,7 @@ class DiscordAdapter(BasePlatformAdapter):
             except Exception as e:
                 logger.debug("Discord followup failed: %s", e)
 
-        @tree.command(name="stop", description="Stop the running Virat Code")
+        @tree.command(name="stop", description="Stop the running Virat-Code")
         async def slash_stop(interaction: discord.Interaction):
             await interaction.response.defer(ephemeral=True)
             event = self._build_slash_event(interaction, "/stop")
@@ -675,7 +675,7 @@ class DiscordAdapter(BasePlatformAdapter):
             except Exception as e:
                 logger.debug("Discord followup failed: %s", e)
 
-        @tree.command(name="update", description="Update Virat Code to the latest version")
+        @tree.command(name="update", description="Update Virat-Code to the latest version")
         async def slash_update(interaction: discord.Interaction):
             await interaction.response.defer(ephemeral=True)
             event = self._build_slash_event(interaction, "/update")

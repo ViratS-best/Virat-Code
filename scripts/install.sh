@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# Virat Code Installer
+# Virat-Code Installer
 # ============================================================================
 # Installation script for Linux and macOS.
 # Uses uv for fast Python provisioning and package management.
@@ -29,7 +29,7 @@ BOLD='\033[1m'
 REPO_URL_SSH="git@github.com:ViratS-best/Virat-Code.git"
 REPO_URL_HTTPS="https://github.com/ViratS-best/Virat-Code.git"
 VIRAT_CODE_HOME="$HOME/.virat-code"
-INSTALL_DIR="${VIRAT_CODE_INSTALL_DIR:-$VIRAT_CODE_HOME/Virat Code}"
+INSTALL_DIR="${VIRAT_CODE_INSTALL_DIR:-$VIRAT_CODE_HOME/Virat-Code}"
 PYTHON_VERSION="3.11"
 NODE_VERSION="22"
 
@@ -67,7 +67,7 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         -h|--help)
-            echo "Virat Code Installer"
+            echo "Virat-Code Installer"
             echo ""
             echo "Usage: install.sh [OPTIONS]"
             echo ""
@@ -75,7 +75,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --no-venv      Don't create virtual environment"
             echo "  --skip-setup   Skip interactive setup wizard"
             echo "  --branch NAME  Git branch to install (default: main)"
-            echo "  --dir PATH     Installation directory (default: ~/.virat-code/Virat Code)"
+            echo "  --dir PATH     Installation directory (default: ~/.virat-code/Virat-Code)"
             echo "  -h, --help     Show this help"
             exit 0
             ;;
@@ -94,7 +94,7 @@ print_banner() {
     echo ""
     echo -e "${MAGENTA}${BOLD}"
     echo "┌─────────────────────────────────────────────────────────┐"
-    echo "│             ⚕ Virat Code Installer                   │"
+    echo "│             ⚕ Virat-Code Installer                   │"
     echo "├─────────────────────────────────────────────────────────┤"
     echo "│  An closed source AI agent by Virat Sisodiya.              │"
     echo "└─────────────────────────────────────────────────────────┘"
@@ -285,7 +285,7 @@ check_node() {
     if [ -x "$VIRAT_CODE_HOME/node/bin/node" ]; then
         export PATH="$VIRAT_CODE_HOME/node/bin:$PATH"
         local found_ver=$("$VIRAT_CODE_HOME/node/bin/node" --version)
-        log_success "Node.js $found_ver found (Virat Code-managed)"
+        log_success "Node.js $found_ver found (Virat-Code-managed)"
         HAS_NODE=true
         return 0
     fi
@@ -744,7 +744,7 @@ setup_path() {
         for SHELL_CONFIG in "${SHELL_CONFIGS[@]}"; do
             if ! grep -v '^[[:space:]]*#' "$SHELL_CONFIG" 2>/dev/null | grep -qE 'PATH=.*\.local/bin'; then
                 echo "" >> "$SHELL_CONFIG"
-                echo "# Virat Code — ensure ~/.local/bin is on PATH" >> "$SHELL_CONFIG"
+                echo "# Virat-Code — ensure ~/.local/bin is on PATH" >> "$SHELL_CONFIG"
                 echo "$PATH_LINE" >> "$SHELL_CONFIG"
                 log_success "Added ~/.local/bin to PATH in $SHELL_CONFIG"
             fi
@@ -796,12 +796,12 @@ copy_config_templates() {
     # Create SOUL.md if it doesn't exist (global persona file)
     if [ ! -f "$VIRAT_CODE_HOME/SOUL.md" ]; then
         cat > "$VIRAT_CODE_HOME/SOUL.md" << 'SOUL_EOF'
-# Virat Code Persona
+# Virat-Code Persona
 
 <!--
 This file defines the agent's personality and tone.
 The agent will embody whatever you write here.
-Edit this to customize how Virat Code communicates with you.
+Edit this to customize how Virat-Code communicates with you.
 
 Examples:
   - "You are a warm, playful assistant who uses kaomoji occasionally."
@@ -934,7 +934,7 @@ maybe_start_gateway() {
 
     echo ""
     log_info "Messaging platform token detected!"
-    log_info "The gateway needs to be running for Virat Code to send/receive messages."
+    log_info "The gateway needs to be running for Virat-Code to send/receive messages."
 
     # If WhatsApp is enabled and no session exists yet, run foreground first for QR scan
     WHATSAPP_VAL=$(grep "^WHATSAPP_ENABLED=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2-)
@@ -1012,7 +1012,7 @@ print_success() {
     echo -e "   ${YELLOW}Config:${NC}    ~/.virat-code/config.yaml"
     echo -e "   ${YELLOW}API Keys:${NC}  ~/.virat-code/.env"
     echo -e "   ${YELLOW}Data:${NC}      ~/.virat-code/cron/, sessions/, logs/"
-    echo -e "   ${YELLOW}Code:${NC}      ~/.virat-code/Virat Code/"
+    echo -e "   ${YELLOW}Code:${NC}      ~/.virat-code/Virat-Code/"
     echo ""
 
     echo -e "${CYAN}─────────────────────────────────────────────────────────${NC}"

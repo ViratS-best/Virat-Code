@@ -1,19 +1,19 @@
 ---
-name: Virat Code-spawning
-description: Spawn additional Virat Code instances as autonomous subprocesses for independent long-running tasks. Supports non-interactive one-shot mode (-q) and interactive PTY mode for multi-turn collaboration. Different from delegate_task — this runs a full separate Virat-Code process.
+name: Virat-Code-spawning
+description: Spawn additional Virat-Code instances as autonomous subprocesses for independent long-running tasks. Supports non-interactive one-shot mode (-q) and interactive PTY mode for multi-turn collaboration. Different from delegate_task — this runs a full separate Virat-Code process.
 version: 1.1.0
-author: Virat Code
+author: Virat-Code
 license: MIT
 metadata:
   virat-code:
-    tags: [Agent, Virat Code, Multi-Agent, Orchestration, Subprocess, Interactive]
+    tags: [Agent, Virat-Code, Multi-Agent, Orchestration, Subprocess, Interactive]
     homepage: https://github.com/ViratS-best/Virat-Code
     related_skills: [claude-code, codex]
 ---
 
-# Spawning Virat Code Instances
+# Spawning Virat-Code Instances
 
-Run additional Virat Code processes as autonomous subprocesses. Unlike `delegate_task` (which spawns lightweight subagents sharing the same process), this launches fully independent `Virat-Code` CLI processes with their own sessions, tools, and terminal environments.
+Run additional Virat-Code processes as autonomous subprocesses. Unlike `delegate_task` (which spawns lightweight subagents sharing the same process), this launches fully independent `Virat-Code` CLI processes with their own sessions, tools, and terminal environments.
 
 ## When to Use This vs delegate_task
 
@@ -72,9 +72,9 @@ terminal(command="virat-code chat -q 'Set up CI/CD for ~/myapp'", background=tru
 
 ## Mode 2: Interactive PTY Session
 
-Launch a full interactive Virat Code session with PTY for back-and-forth collaboration. You can send messages, review its work, give feedback, and steer it.
+Launch a full interactive Virat-Code session with PTY for back-and-forth collaboration. You can send messages, review its work, give feedback, and steer it.
 
-Note: Virat Code uses prompt_toolkit for its CLI UI. Through a PTY, this works because ptyprocess provides a real terminal — input sent via `submit` arrives as keystrokes. The output log will contain ANSI escape sequences from the UI rendering — focus on the text content, not the formatting.
+Note: Virat-Code uses prompt_toolkit for its CLI UI. Through a PTY, this works because ptyprocess provides a real terminal — input sent via `submit` arrives as keystrokes. The output log will contain ANSI escape sequences from the UI rendering — focus on the text content, not the formatting.
 
 ```
 # Start interactive Virat-Code in background with PTY

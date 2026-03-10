@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Mini-SWE-Agent Runner with Virat Code Trajectory Format
+Mini-SWE-Agent Runner with Virat-Code Trajectory Format
 
 This module provides a runner that uses mini-swe-agent's execution environments
-(local, docker, modal) but outputs trajectories in the Virat Code format
+(local, docker, modal) but outputs trajectories in the Virat-Code format
 compatible with batch_runner.py and trajectory_compressor.py.
 
 Features:
 - Uses mini-swe-agent's Docker, Modal, or Local environments for command execution
-- Outputs trajectories in Virat Code format (from/value pairs with <tool_call>/<tool_response> XML)
+- Outputs trajectories in Virat-Code format (from/value pairs with <tool_call>/<tool_response> XML)
 - Compatible with the trajectory compression pipeline
 - Supports batch processing from JSONL prompt files
 
@@ -49,7 +49,7 @@ if mini_swe_path.exists():
 
 
 # ============================================================================
-# Terminal Tool Definition (matches Virat Code format)
+# Terminal Tool Definition (matches Virat-Code format)
 # ============================================================================
 
 TERMINAL_TOOL_DEFINITION = {
@@ -138,13 +138,13 @@ def create_environment(
 
 
 # ============================================================================
-# Mini-SWE Runner with Virat Code Trajectory Format
+# Mini-SWE Runner with Virat-Code Trajectory Format
 # ============================================================================
 
 class MiniSWERunner:
     """
     Agent runner that uses mini-swe-agent environments but outputs
-    trajectories in Virat Code format.
+    trajectories in Virat-Code format.
     """
     
     def __init__(
@@ -294,7 +294,7 @@ class MiniSWERunner:
         completed: bool
     ) -> List[Dict[str, Any]]:
         """
-        Convert internal message format to Virat Code trajectory format.
+        Convert internal message format to Virat-Code trajectory format.
         
         This produces the exact format used by batch_runner.py.
         """
@@ -541,7 +541,7 @@ Complete the user's task step by step."""
             # Cleanup environment
             self._cleanup_env()
         
-        # Convert to Virat Code trajectory format
+        # Convert to Virat-Code trajectory format
         trajectory = self._convert_to_virat_code_format(messages, task, completed)
         
         return {
@@ -627,7 +627,7 @@ def main(
     verbose: bool = False,
 ):
     """
-    Run mini-swe-agent tasks with Virat Code trajectory format output.
+    Run mini-swe-agent tasks with Virat-Code trajectory format output.
     
     Args:
         task: Single task to run (use this OR prompts_file)
@@ -653,7 +653,7 @@ def main(
         # Batch from file
         python mini_swe_runner.py --prompts_file tasks.jsonl --output_file results.jsonl
     """
-    print("🚀 Mini-SWE Runner with Virat Code Trajectory Format")
+    print("🚀 Mini-SWE Runner with Virat-Code Trajectory Format")
     print("=" * 60)
     
     # Initialize runner

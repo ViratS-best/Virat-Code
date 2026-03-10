@@ -11,7 +11,7 @@ training server.
 ### Step 1: Run 1 trajectory
 
 ```bash
-cd ~/.virat-code/Virat Code
+cd ~/.virat-code/Virat-Code
 source .venv/bin/activate
 
 python environments/your_env.py process \

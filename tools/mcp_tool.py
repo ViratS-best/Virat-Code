@@ -3,7 +3,7 @@
 MCP (Model Context Protocol) Client Support
 
 Connects to external MCP servers via stdio or HTTP/StreamableHTTP transport,
-discovers their tools, and registers them into the Virat Code tool registry
+discovers their tools, and registers them into the Virat-Code tool registry
 so the agent can call them like any built-in tool.
 
 Configuration is read from ~/.virat-code/config.yaml under the ``mcp_servers`` key.
@@ -802,7 +802,7 @@ def _run_on_mcp_loop(coro, timeout: float = 30):
 # ---------------------------------------------------------------------------
 
 def _load_mcp_config() -> Dict[str, dict]:
-    """Read ``mcp_servers`` from the Virat Code config file.
+    """Read ``mcp_servers`` from the Virat-Code config file.
 
     Returns a dict of ``{server_name: server_config}`` or empty dict.
     Server config can contain either ``command``/``args``/``env`` for stdio
@@ -1097,7 +1097,7 @@ def _make_check_fn(server_name: str):
 # ---------------------------------------------------------------------------
 
 def _convert_mcp_schema(server_name: str, mcp_tool) -> dict:
-    """Convert an MCP tool listing to the Virat Code registry schema format.
+    """Convert an MCP tool listing to the Virat-Code registry schema format.
 
     Args:
         server_name: The logical server name for prefixing.

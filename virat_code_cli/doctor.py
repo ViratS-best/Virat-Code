@@ -1,7 +1,7 @@
 """
 Doctor command for Virat-Code CLI.
 
-Diagnoses issues with Virat Code setup.
+Diagnoses issues with Virat-Code setup.
 """
 
 import os
@@ -76,7 +76,7 @@ def run_doctor(args):
     
     print()
     print(color("┌─────────────────────────────────────────────────────────┐", Colors.CYAN))
-    print(color("│                 🩺 Virat Code Doctor                        │", Colors.CYAN))
+    print(color("│                 🩺 Virat-Code Doctor                        │", Colors.CYAN))
     print(color("└─────────────────────────────────────────────────────────┘", Colors.CYAN))
     
     # =========================================================================
@@ -267,13 +267,13 @@ def run_doctor(args):
         else:
             check_info("~/.virat-code/SOUL.md exists but is empty — edit it to customize personality")
     else:
-        check_warn("~/.virat-code/SOUL.md not found", "(create it to give Virat Code a custom personality)")
+        check_warn("~/.virat-code/SOUL.md not found", "(create it to give Virat-Code a custom personality)")
         if should_fix:
             soul_path.parent.mkdir(parents=True, exist_ok=True)
             soul_path.write_text(
-                "# Virat Code Persona\n\n"
-                "<!-- Edit this file to customize how Virat Code communicates. -->\n\n"
-                "You are Virat Code, a helpful AI assistant.\n",
+                "# Virat-Code Persona\n\n"
+                "<!-- Edit this file to customize how Virat-Code communicates. -->\n\n"
+                "You are Virat-Code, a helpful AI assistant.\n",
                 encoding="utf-8",
             )
             check_ok("Created ~/.virat-code/SOUL.md with basic template")

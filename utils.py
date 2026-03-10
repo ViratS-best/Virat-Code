@@ -1,4 +1,4 @@
-"""Shared utility functions for Virat Code."""
+"""Shared utility functions for Virat-Code."""
 
 import json
 import os

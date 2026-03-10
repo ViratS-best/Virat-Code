@@ -1,12 +1,12 @@
 ---
 sidebar_position: 4
 title: "Contributing"
-description: "How to contribute to Virat Code — dev setup, code style, PR process"
+description: "How to contribute to Virat-Code — dev setup, code style, PR process"
 ---
 
 # Contributing
 
-Thank you for contributing to Virat Code! This guide covers setting up your dev environment, understanding the codebase, and getting your PR merged.
+Thank you for contributing to Virat-Code! This guide covers setting up your dev environment, understanding the codebase, and getting your PR merged.
 
 ## Contribution Priorities
 
@@ -35,7 +35,7 @@ We value contributions in this order:
 
 ```bash
 git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
-cd Virat Code
+cd Virat-Code
 
 # Create venv with Python 3.11
 uv venv venv --python 3.11
@@ -88,7 +88,7 @@ pytest tests/ -v
 
 ## Cross-Platform Compatibility
 
-Virat Code officially supports Linux, macOS, and WSL2. Native Windows is **not supported**, but the codebase includes some defensive coding patterns to avoid hard crashes in edge cases. Key rules:
+Virat-Code officially supports Linux, macOS, and WSL2. Native Windows is **not supported**, but the codebase includes some defensive coding patterns to avoid hard crashes in edge cases. Key rules:
 
 ### 1. `termios` and `fcntl` are Unix-only
 
@@ -133,7 +133,7 @@ Use `pathlib.Path` instead of string concatenation with `/`.
 
 ## Security Considerations
 
-Virat Code has terminal access. Security matters.
+Virat-Code has terminal access. Security matters.
 
 ### Existing Protections
 
@@ -211,7 +211,7 @@ fix(security): prevent shell injection in sudo password piping
 ## Reporting Issues
 
 - Use [GitHub Issues](https://github.com/ViratS-best/Virat-Code/issues)
-- Include: OS, Python version, Virat Code version (`virat-code version`), full error traceback
+- Include: OS, Python version, Virat-Code version (`virat-code version`), full error traceback
 - Include steps to reproduce
 - Check existing issues before creating duplicates
 - For security vulnerabilities, please report privately

@@ -33,7 +33,7 @@ DEFAULT_DATASETS = [
     "ViratS-best/Virat-Code-megascience-sft1",
     "ViratS-best/Virat-Code-Thinking-GLM-4.7-SFT2",
     "ViratS-best/Virat-Code-Thinking-GLM-4.7-SFT1",
-    "NousResearch/terminal-tasks-glm-Virat Code"
+    "NousResearch/terminal-tasks-glm-Virat-Code"
 ]
 
 

@@ -1,5 +1,5 @@
 """
-Virat Code Uninstaller.
+Virat-Code Uninstaller.
 
 Provides options for:
 - Full uninstall: Remove everything including configs and data
@@ -34,7 +34,7 @@ def get_project_root() -> Path:
 
 
 def get_virat_code_home() -> Path:
-    """Get the Virat Code home directory (~/.virat-code)."""
+    """Get the Virat-Code home directory (~/.virat-code)."""
     return Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
 
 
@@ -59,7 +59,7 @@ def find_shell_configs() -> list:
 
 
 def remove_path_from_shell_configs():
-    """Remove Virat Code PATH entries from shell configuration files."""
+    """Remove Virat-Code PATH entries from shell configuration files."""
     configs = find_shell_configs()
     removed_from = []
     
@@ -68,13 +68,13 @@ def remove_path_from_shell_configs():
             content = config_path.read_text()
             original_content = content
             
-            # Remove lines containing Virat Code or Virat-Code PATH entries
+            # Remove lines containing Virat-Code or Virat-Code PATH entries
             new_lines = []
             skip_next = False
             
             for line in content.split('\n'):
-                # Skip the "# Virat Code" comment and following line
-                if '# Virat Code' in line or '# Virat Code' in line:
+                # Skip the "# Virat-Code" comment and following line
+                if '# Virat-Code' in line or '# Virat-Code' in line:
                     skip_next = True
                     continue
                 if skip_next and ('Virat-Code' in line.lower() and 'PATH' in line):
@@ -117,7 +117,7 @@ def remove_wrapper_script():
             try:
                 # Check if it's our wrapper (contains virat_code_cli reference)
                 content = wrapper.read_text()
-                if 'virat_code_cli' in content or 'Virat Code' in content:
+                if 'virat_code_cli' in content or 'Virat-Code' in content:
                     wrapper.unlink()
                     removed.append(wrapper)
             except Exception as e:
@@ -183,7 +183,7 @@ def run_uninstall(args):
     
     print()
     print(color("┌─────────────────────────────────────────────────────────┐", Colors.MAGENTA, Colors.BOLD))
-    print(color("│            ⚕ Virat Code Uninstaller                  │", Colors.MAGENTA, Colors.BOLD))
+    print(color("│            ⚕ Virat-Code Uninstaller                  │", Colors.MAGENTA, Colors.BOLD))
     print(color("└─────────────────────────────────────────────────────────┘", Colors.MAGENTA, Colors.BOLD))
     print()
     
@@ -224,10 +224,10 @@ def run_uninstall(args):
     # Final confirmation
     print()
     if full_uninstall:
-        print(color("⚠️  WARNING: This will permanently delete ALL Virat Code data!", Colors.RED, Colors.BOLD))
+        print(color("⚠️  WARNING: This will permanently delete ALL Virat-Code data!", Colors.RED, Colors.BOLD))
         print(color("   Including: configs, API keys, sessions, scheduled jobs, logs", Colors.RED))
     else:
-        print("This will remove the Virat Code code but keep your configuration and data.")
+        print("This will remove the Virat-Code code but keep your configuration and data.")
     
     print()
     try:
@@ -278,7 +278,7 @@ def run_uninstall(args):
     # We need to be careful here
     try:
         if project_root.exists():
-            # If the install is inside ~/.virat-code/, just remove the Virat Code subdir
+            # If the install is inside ~/.virat-code/, just remove the Virat-Code subdir
             if virat_code_home in project_root.parents or project_root.parent == virat_code_home:
                 shutil.rmtree(project_root)
                 log_success(f"Removed {project_root}")
@@ -321,5 +321,5 @@ def run_uninstall(args):
     print(color("Reload your shell to complete the process:", Colors.YELLOW))
     print("  source ~/.bashrc  # or ~/.zshrc")
     print()
-    print("Thank you for using Virat Code! ⚕")
+    print("Thank you for using Virat-Code! ⚕")
     print()

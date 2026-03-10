@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: "Adding Tools"
-description: "How to add a new tool to Virat Code — schemas, handlers, registration, and toolsets"
+description: "How to add a new tool to Virat-Code — schemas, handlers, registration, and toolsets"
 ---
 
 # Adding Tools

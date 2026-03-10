@@ -173,7 +173,7 @@ def curated_models_for_provider(provider: Optional[str]) -> list[tuple[str, str]
 
 
 def normalize_provider(provider: Optional[str]) -> str:
-    """Normalize provider aliases to Virat Code' canonical provider ids.
+    """Normalize provider aliases to Virat-Code' canonical provider ids.
 
     Note: ``"auto"`` passes through unchanged — use
     ``virat_code_cli.auth.resolve_provider()`` to resolve it to a concrete

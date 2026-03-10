@@ -36,7 +36,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from cron.jobs import get_due_jobs, mark_job_run, save_job_output
 
-# Resolve Virat Code home directory (respects VIRAT_CODE_HOME override)
+# Resolve Virat-Code home directory (respects VIRAT_CODE_HOME override)
 _virat_code_home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
 
 # File-based lock prevents concurrent ticks from gateway + daemon + systemd timer

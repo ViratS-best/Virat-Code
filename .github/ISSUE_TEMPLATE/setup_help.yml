@@ -1,5 +1,5 @@
 name: "🔧 Setup / Installation Help"
-description: Having trouble installing or configuring Virat Code? Ask here.
+description: Having trouble installing or configuring Virat-Code? Ask here.
 title: "[Setup]: "
 labels: ["setup"]
 body:
@@ -69,7 +69,7 @@ body:
   - type: input
     id: virat-code-version
     attributes:
-      label: Virat Code Version
+      label: Virat-Code Version
       description: Output of `virat-code version` (if install got that far)
       placeholder: "2.1.0"
 

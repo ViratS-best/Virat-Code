@@ -1,12 +1,12 @@
 ---
 sidebar_position: 5
 title: "Environments, Benchmarks & Data Generation"
-description: "Building RL training environments, running evaluation benchmarks, and generating SFT data with the Virat Code Atropos integration"
+description: "Building RL training environments, running evaluation benchmarks, and generating SFT data with the Virat-Code Atropos integration"
 ---
 
 # Environments, Benchmarks & Data Generation
 
-Virat Code includes a full environment framework that connects its tool-calling capabilities to the [Atropos](https://github.com/NousResearch/atropos) RL training framework. This enables three workflows:
+Virat-Code includes a full environment framework that connects its tool-calling capabilities to the [Atropos](https://github.com/NousResearch/atropos) RL training framework. This enables three workflows:
 
 1. **RL Training** — Train language models on multi-turn agentic tasks with GRPO
 2. **Benchmarks** — Evaluate models on standardised agentic benchmarks
@@ -65,9 +65,9 @@ The foundation from `atroposlib`. Provides:
 
 ### ViratCodeAgentBaseEnv
 
-The Virat Code layer (`environments/virat_code_base_env.py`). Adds:
+The Virat-Code layer (`environments/virat_code_base_env.py`). Adds:
 - **Terminal backend configuration** — sets `TERMINAL_ENV` for sandboxed execution (local, Docker, Modal, Daytona, SSH, Singularity)
-- **Tool resolution** — `_resolve_tools_for_group()` calls Virat Code's `get_tool_definitions()` to get the right tool schemas based on enabled/disabled toolsets
+- **Tool resolution** — `_resolve_tools_for_group()` calls Virat-Code's `get_tool_definitions()` to get the right tool schemas based on enabled/disabled toolsets
 - **Agent loop integration** — `collect_trajectory()` runs `ViratCodeAgentLoop` and scores the result
 - **Two-phase operation** — Phase 1 (OpenAI server) for eval/SFT, Phase 2 (VLLM ManagedServer) for full RL with logprobs
 - **Async safety patches** — monkey-patches Modal backend to work inside Atropos's event loop
@@ -88,7 +88,7 @@ Your environment inherits from `ViratCodeAgentBaseEnv` and implements five metho
 
 ### Agent Loop
 
-`ViratCodeAgentLoop` (`environments/agent_loop.py`) is the reusable multi-turn agent engine. It runs the same tool-calling pattern as Virat Code's main loop:
+`ViratCodeAgentLoop` (`environments/agent_loop.py`) is the reusable multi-turn agent engine. It runs the same tool-calling pattern as Virat-Code's main loop:
 
 1. Send messages + tool schemas to the API via `server.chat_completion()`
 2. If the response contains `tool_calls`, dispatch each via `handle_function_call()`
@@ -140,7 +140,7 @@ Available methods:
 | **Transfers** | `upload_file()`, `upload_dir()`, `download_file()`, `download_dir()` |
 | **Web** | `web_search(query)`, `web_extract(urls)` |
 | **Browser** | `browser_navigate(url)`, `browser_snapshot()` |
-| **Generic** | `call_tool(name, args)` — escape hatch for any Virat Code tool |
+| **Generic** | `call_tool(name, args)` — escape hatch for any Virat-Code tool |
 | **Cleanup** | `cleanup()` — release all resources |
 
 ### Tool Call Parsers
@@ -430,7 +430,7 @@ env:
   terminal_backend: "modal"
   terminal_timeout: 300
   dataset_name: "NousResearch/terminal-bench-2"
-  tokenizer_name: "NousResearch/Virat Code-3-Llama-3.1-8B"
+  tokenizer_name: "NousResearch/Virat-Code-3-Llama-3.1-8B"
   use_wandb: true
   wandb_name: "my-benchmark"
 
@@ -485,7 +485,7 @@ environments/
 ├── patches.py                  # Async-safety patches for Modal backend
 │
 ├── tool_call_parsers/          # Phase 2 client-side parsers
-│   ├── virat_code_parser.py        # Virat Code/ChatML <tool_call> format
+│   ├── virat_code_parser.py        # Virat-Code/ChatML <tool_call> format
 │   ├── mistral_parser.py       # Mistral [TOOL_CALLS] format
 │   ├── llama_parser.py         # Llama 3 JSON tool calling
 │   ├── qwen_parser.py          # Qwen format

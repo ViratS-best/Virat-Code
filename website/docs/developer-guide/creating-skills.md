@@ -1,12 +1,12 @@
 ---
 sidebar_position: 3
 title: "Creating Skills"
-description: "How to create skills for Virat Code — SKILL.md format, guidelines, and publishing"
+description: "How to create skills for Virat-Code — SKILL.md format, guidelines, and publishing"
 ---
 
 # Creating Skills
 
-Skills are the preferred way to add new capabilities to Virat Code. They're easier to create than tools, require no code changes to the agent, and can be shared with the community.
+Skills are the preferred way to add new capabilities to Virat-Code. They're easier to create than tools, require no code changes to the agent, and can be shared with the community.
 
 ## Should it be a Skill or a Tool?
 
@@ -97,7 +97,7 @@ See `skills/apple/` for examples of macOS-only skills.
 
 ### No External Dependencies
 
-Prefer stdlib Python, curl, and existing Virat Code tools (`web_extract`, `terminal`, `read_file`). If a dependency is needed, document installation steps in the skill.
+Prefer stdlib Python, curl, and existing Virat-Code tools (`web_extract`, `terminal`, `read_file`). If a dependency is needed, document installation steps in the skill.
 
 ### Progressive Disclosure
 
@@ -117,7 +117,7 @@ virat-code chat --toolsets skills -q "Use the X skill to do Y"
 
 ## Where Should the Skill Live?
 
-Bundled skills (in `skills/`) ship with every Virat Code install. They should be **broadly useful to most users**:
+Bundled skills (in `skills/`) ship with every Virat-Code install. They should be **broadly useful to most users**:
 
 - Document handling, web research, common dev workflows, system administration
 - Used regularly by a wide range of people
@@ -154,7 +154,7 @@ All hub-installed skills go through a security scanner that checks for:
 - Shell injection
 
 Trust levels:
-- `builtin` — ships with Virat Code (always trusted)
+- `builtin` — ships with Virat-Code (always trusted)
 - `official` — from `optional-skills/` in the repo (builtin trust, no third-party warning)
 - `trusted` — from openai/skills, anthropics/skills
 - `community` — any findings = blocked unless `--force`

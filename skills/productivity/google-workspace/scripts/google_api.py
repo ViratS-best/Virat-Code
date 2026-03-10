@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Google Workspace API CLI for Virat Code.
+"""Google Workspace API CLI for Virat-Code.
 
 A thin CLI wrapper around Google's Python client libraries.
 Authenticates using the token stored by setup.py.
@@ -366,7 +366,7 @@ def docs_get(args):
 # =========================================================================
 
 def main():
-    parser = argparse.ArgumentParser(description="Google Workspace API for Virat Code")
+    parser = argparse.ArgumentParser(description="Google Workspace API for Virat-Code")
     sub = parser.add_subparsers(dest="service", required=True)
 
     # --- Gmail ---

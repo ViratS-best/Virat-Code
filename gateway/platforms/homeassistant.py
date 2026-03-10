@@ -383,7 +383,7 @@ class HomeAssistantAdapter(BasePlatformAdapter):
             "Content-Type": "application/json",
         }
         payload = {
-            "title": "Virat Code",
+            "title": "Virat-Code",
             "message": content[:self.MAX_MESSAGE_LENGTH],
         }
 

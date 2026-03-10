@@ -6,7 +6,7 @@ description: "Security model, dangerous command approval, user authorization, co
 
 # Security
 
-Virat Code is designed with a defense-in-depth security model. This page covers every security boundary — from command approval to container isolation to user authorization on messaging platforms.
+Virat-Code is designed with a defense-in-depth security model. This page covers every security boundary — from command approval to container isolation to user authorization on messaging platforms.
 
 ## Overview
 
@@ -20,7 +20,7 @@ The security model has five layers:
 
 ## Dangerous Command Approval
 
-Before executing any command, Virat Code checks it against a curated list of dangerous patterns. If a match is found, the user must explicitly approve it.
+Before executing any command, Virat-Code checks it against a curated list of dangerous patterns. If a match is found, the user must explicitly approve it.
 
 ### What Triggers Approval
 
@@ -96,7 +96,7 @@ Use `Virat-Code config edit` to review or remove patterns from your permanent al
 
 ## User Authorization (Gateway)
 
-When running the messaging gateway, Virat Code controls who can interact with the bot through a layered authorization system.
+When running the messaging gateway, Virat-Code controls who can interact with the bot through a layered authorization system.
 
 ### Authorization Check Order
 
@@ -142,7 +142,7 @@ or configure platform allowlists (e.g., TELEGRAM_ALLOWED_USERS=your_id).
 
 ### DM Pairing System
 
-For more flexible authorization, Virat Code includes a code-based pairing system. Instead of requiring user IDs upfront, unknown users receive a one-time pairing code that the bot owner approves via the CLI.
+For more flexible authorization, Virat-Code includes a code-based pairing system. Instead of requiring user IDs upfront, unknown users receive a one-time pairing code that the bot owner approves via the CLI.
 
 **How it works:**
 
@@ -187,7 +187,7 @@ virat-code pairing clear-pending
 
 ## Container Isolation
 
-When using the `docker` terminal backend, Virat Code applies strict security hardening to every container.
+When using the `docker` terminal backend, Virat-Code applies strict security hardening to every container.
 
 ### Docker Security Flags
 

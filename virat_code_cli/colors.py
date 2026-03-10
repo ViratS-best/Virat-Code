@@ -1,4 +1,4 @@
-"""Shared ANSI color utilities for Virat Code CLI modules."""
+"""Shared ANSI color utilities for Virat-Code CLI modules."""
 
 import sys
 

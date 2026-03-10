@@ -1,4 +1,4 @@
-"""Tests for Codex auth — tokens stored in Virat Code auth store (~/.virat-code/auth.json)."""
+"""Tests for Codex auth — tokens stored in Virat-Code auth store (~/.virat-code/auth.json)."""
 
 import json
 import time
@@ -23,7 +23,7 @@ from virat_code_cli.auth import (
 
 
 def _setup_virat_code_auth(virat_code_home: Path, *, access_token: str = "access", refresh_token: str = "refresh"):
-    """Write Codex tokens into the Virat Code auth store."""
+    """Write Codex tokens into the Virat-Code auth store."""
     virat_code_home.mkdir(parents=True, exist_ok=True)
     auth_store = {
         "version": 1,
@@ -161,7 +161,7 @@ def test_import_codex_cli_tokens_missing(tmp_path, monkeypatch):
 
 
 def test_codex_tokens_not_written_to_shared_file(tmp_path, monkeypatch):
-    """Verify Virat Code never writes to ~/.codex/auth.json."""
+    """Verify Virat-Code never writes to ~/.codex/auth.json."""
     virat_code_home = tmp_path / "Virat-Code"
     codex_home = tmp_path / "codex-cli"
     virat_code_home.mkdir(parents=True, exist_ok=True)
@@ -176,7 +176,7 @@ def test_codex_tokens_not_written_to_shared_file(tmp_path, monkeypatch):
     # ~/.codex/auth.json should NOT exist
     assert not (codex_home / "auth.json").exists()
 
-    # Virat Code auth store should have the tokens
+    # Virat-Code auth store should have the tokens
     data = _read_codex_tokens()
     assert data["tokens"]["access_token"] == "virat-code-at"
 

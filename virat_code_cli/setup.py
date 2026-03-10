@@ -1,5 +1,5 @@
 """
-Interactive setup wizard for Virat Code.
+Interactive setup wizard for Virat-Code.
 
 Modular wizard with independently-runnable sections:
   1. Model & Provider — choose your AI provider and model
@@ -533,7 +533,7 @@ def setup_model_provider(config: dict):
     default_provider = len(provider_choices) - 1 if has_any_provider else 3
     
     if not has_any_provider:
-        print_warning("An inference provider is required for Virat Code to work.")
+        print_warning("An inference provider is required for Virat-Code to work.")
         print()
     
     provider_idx = prompt_choice("Select your inference provider:", provider_choices, default_provider)
@@ -1073,7 +1073,7 @@ def setup_terminal_backend(config: dict):
     import shutil
 
     print_header("Terminal Backend")
-    print_info("Choose where Virat Code runs shell commands and code.")
+    print_info("Choose where Virat-Code runs shell commands and code.")
     print_info("This affects tool execution, file access, and isolation.")
     print()
 
@@ -1122,7 +1122,7 @@ def setup_terminal_backend(config: dict):
         # CWD for messaging
         print()
         print_info("Working directory for messaging sessions:")
-        print_info("  When using Virat Code via Telegram/Discord, this is where")
+        print_info("  When using Virat-Code via Telegram/Discord, this is where")
         print_info("  the agent starts. CLI mode always starts in the current directory.")
         current_cwd = config.get('terminal', {}).get('cwd', '')
         cwd = prompt("  Messaging working directory", current_cwd or str(Path.home()))
@@ -1486,7 +1486,7 @@ def setup_agent_settings(config: dict):
 def setup_gateway(config: dict):
     """Configure messaging platform integrations."""
     print_header("Messaging Platforms")
-    print_info("Connect to messaging platforms to chat with Virat Code from anywhere.")
+    print_info("Connect to messaging platforms to chat with Virat-Code from anywhere.")
     print()
 
     # ── Telegram ──
@@ -1519,7 +1519,7 @@ def setup_gateway(config: dict):
             
             # Home channel setup with better guidance
             print()
-            print_info("📬 Home Channel: where Virat Code delivers cron job results,")
+            print_info("📬 Home Channel: where Virat-Code delivers cron job results,")
             print_info("   cross-platform messages, and notifications.")
             print_info("   For Telegram DMs, this is your user ID (same as above).")
             
@@ -1582,7 +1582,7 @@ def setup_gateway(config: dict):
             
             # Home channel setup with better guidance
             print()
-            print_info("📬 Home Channel: where Virat Code delivers cron job results,")
+            print_info("📬 Home Channel: where Virat-Code delivers cron job results,")
             print_info("   cross-platform messages, and notifications.")
             print_info("   To get a channel ID: right-click a channel → Copy Channel ID")
             print_info("   (requires Developer Mode in Discord settings)")
@@ -1627,7 +1627,7 @@ def setup_gateway(config: dict):
         print_info("   5. Install to Workspace: Settings → Install App")
         print_info("   6. After installing, invite the bot to channels: /invite @YourBot")
         print()
-        print_info("   Full guide: https://Virat Code.ai/docs/user-guide/messaging/slack")
+        print_info("   Full guide: https://Virat-Code.ai/docs/user-guide/messaging/slack")
         print()
         bot_token = prompt("Slack Bot Token (xoxb-...)", password=True)
         if bot_token:
@@ -1807,7 +1807,7 @@ def run_setup_wizard(args):
             if key == section:
                 print()
                 print(color("┌─────────────────────────────────────────────────────────┐", Colors.MAGENTA))
-                print(color(f"│     ⚕ Virat Code Setup — {label:<34s} │", Colors.MAGENTA))
+                print(color(f"│     ⚕ Virat-Code Setup — {label:<34s} │", Colors.MAGENTA))
                 print(color("└─────────────────────────────────────────────────────────┘", Colors.MAGENTA))
                 func(config)
                 save_config(config)
@@ -1830,9 +1830,9 @@ def run_setup_wizard(args):
     
     print()
     print(color("┌─────────────────────────────────────────────────────────┐", Colors.MAGENTA))
-    print(color("│             ⚕ Virat Code Setup Wizard                │", Colors.MAGENTA))
+    print(color("│             ⚕ Virat-Code Setup Wizard                │", Colors.MAGENTA))
     print(color("├─────────────────────────────────────────────────────────┤", Colors.MAGENTA))
-    print(color("│  Let's configure your Virat Code installation.       │", Colors.MAGENTA))
+    print(color("│  Let's configure your Virat-Code installation.       │", Colors.MAGENTA))
     print(color("│  Press Ctrl+C at any time to exit.                     │", Colors.MAGENTA))
     print(color("└─────────────────────────────────────────────────────────┘", Colors.MAGENTA))
     
@@ -1840,7 +1840,7 @@ def run_setup_wizard(args):
         # ── Returning User Menu ──
         print()
         print_header("Welcome Back!")
-        print_success("You already have Virat Code configured.")
+        print_success("You already have Virat-Code configured.")
         print()
 
         menu_choices = [
@@ -2007,7 +2007,7 @@ def _run_quick_setup(config: dict, virat_code_home):
     if missing_messaging:
         print()
         print_header("Messaging Platforms")
-        print_info("Connect Virat Code to messaging apps to chat from anywhere.")
+        print_info("Connect Virat-Code to messaging apps to chat from anywhere.")
         print_info("You can configure these later with 'Virat-Code setup gateway'.")
 
         # Group by platform (preserving order)

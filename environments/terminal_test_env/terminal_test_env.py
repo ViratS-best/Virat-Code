@@ -9,7 +9,7 @@ Enables only terminal + file toolsets. Uses Modal terminal backend with
 OpenRouter (Claude) by default.
 
 Training tasks (3):
-    1. Create ~/greeting.txt with "Hello from Virat Code"
+    1. Create ~/greeting.txt with "Hello from Virat-Code"
     2. Create ~/count.txt with numbers 1-5, one per line
     3. Create ~/answer.txt with the result of 123 + 456
 
@@ -57,9 +57,9 @@ logger = logging.getLogger(__name__)
 
 TRAIN_TASKS = [
     {
-        "prompt": "Create a file at ~/greeting.txt containing exactly the text: Hello from Virat Code",
+        "prompt": "Create a file at ~/greeting.txt containing exactly the text: Hello from Virat-Code",
         "verify_path": "~/greeting.txt",
-        "expected_content": "Hello from Virat Code",
+        "expected_content": "Hello from Virat-Code",
     },
     {
         "prompt": "Create a file at ~/count.txt containing the numbers 1 through 5, one per line",
@@ -112,7 +112,7 @@ class TerminalTestEnv(ViratCodeAgentBaseEnv):
         Default configuration for the terminal test environment.
 
         Uses Modal terminal backend for cloud isolation and OpenRouter with
-        Claude for inference. API keys loaded from ~/Virat Code/.env.
+        Claude for inference. API keys loaded from ~/Virat-Code/.env.
         """
         env_config = TerminalTestEnvConfig(
             # Terminal + file tools only

@@ -75,9 +75,9 @@ When scheduling jobs, you specify where the output goes:
 | `"telegram:123456"` | Specific Telegram chat by ID | For directing output to a specific chat |
 | `"discord:987654"` | Specific Discord channel by ID | For directing output to a specific channel |
 
-**How `"origin"` works:** When a job is created from a messaging platform, Virat Code records the source platform and chat ID. When the job runs and deliver is `"origin"`, the output is sent back to that exact platform and chat. If origin info isn't available (e.g., job created from CLI), delivery falls back to local.
+**How `"origin"` works:** When a job is created from a messaging platform, Virat-Code records the source platform and chat ID. When the job runs and deliver is `"origin"`, the output is sent back to that exact platform and chat. If origin info isn't available (e.g., job created from CLI), delivery falls back to local.
 
-**How platform names work:** When you specify a bare platform name like `"telegram"`, Virat Code first checks if the job's origin matches that platform and uses the origin chat ID. Otherwise, it falls back to the platform's home channel configured via environment variable (e.g., `TELEGRAM_HOME_CHANNEL`).
+**How platform names work:** When you specify a bare platform name like `"telegram"`, Virat-Code first checks if the job's origin matches that platform and uses the origin chat ID. Otherwise, it falls back to the platform's home channel configured via environment variable (e.g., `TELEGRAM_HOME_CHANNEL`).
 
 The agent's final response is automatically delivered — you do **not** need to include `send_message` in the cron prompt.
 

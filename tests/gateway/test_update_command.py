@@ -68,7 +68,7 @@ class TestHandleUpdateCommand:
             # The handler does Path(__file__).parent.parent.resolve()
             # We need to make project_root / '.git' not exist.
             # Since Path(__file__) resolves to the real gateway/run.py,
-            # project_root will be the real Virat Code dir (which HAS .git).
+            # project_root will be the real Virat-Code dir (which HAS .git).
             # Patch Path to control this.
             original_path = Path
 
@@ -160,7 +160,7 @@ class TestHandleUpdateCommand:
         call_args = mock_popen.call_args[0][0]
         assert call_args[0] == "/usr/bin/systemd-run"
         assert "--scope" in call_args
-        assert "Starting Virat Code update" in result
+        assert "Starting Virat-Code update" in result
 
     @pytest.mark.asyncio
     async def test_fallback_nohup_when_no_systemd_run(self, tmp_path):
@@ -196,7 +196,7 @@ class TestHandleUpdateCommand:
         call_args = mock_popen.call_args[0][0]
         assert call_args[0] == "bash"
         assert "nohup" in call_args[2]
-        assert "Starting Virat Code update" in result
+        assert "Starting Virat-Code update" in result
 
     @pytest.mark.asyncio
     async def test_popen_failure_cleans_up(self, tmp_path):

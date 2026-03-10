@@ -1,12 +1,12 @@
 ---
 sidebar_position: 3
 title: "Discord"
-description: "Set up Virat Code as a Discord bot"
+description: "Set up Virat-Code as a Discord bot"
 ---
 
 # Discord Setup
 
-Virat Code integrates with Discord as a bot, letting you chat with your AI assistant through direct messages or server channels. The bot receives your messages, processes them through the Virat Code pipeline (including tool use, memory, and reasoning), and responds in real time. It supports text, voice messages, file attachments, and slash commands.
+Virat-Code integrates with Discord as a bot, letting you chat with your AI assistant through direct messages or server channels. The bot receives your messages, processes them through the Virat-Code pipeline (including tool use, memory, and reasoning), and responds in real time. It supports text, voice messages, file attachments, and slash commands.
 
 This guide walks you through the full setup process — from creating your bot on Discord's Developer Portal to sending your first message.
 
@@ -14,7 +14,7 @@ This guide walks you through the full setup process — from creating your bot o
 
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and sign in with your Discord account.
 2. Click **New Application** in the top-right corner.
-3. Enter a name for your application (e.g., "Virat Code") and accept the Developer Terms of Service.
+3. Enter a name for your application (e.g., "Virat-Code") and accept the Developer Terms of Service.
 4. Click **Create**.
 
 You'll land on the **General Information** page. Note the **Application ID** — you'll need it later to build the invite URL.
@@ -57,7 +57,7 @@ Click **Save Changes** at the bottom of the page.
 
 ## Step 4: Get the Bot Token
 
-The bot token is the credential Virat Code uses to log in as your bot. Still on the **Bot** page:
+The bot token is the credential Virat-Code uses to log in as your bot. Still on the **Bot** page:
 
 1. Under the **Token** section, click **Reset Token**.
 2. If you have two-factor authentication enabled on your Discord account, enter your 2FA code.
@@ -125,11 +125,11 @@ These are the minimum permissions your bot needs:
 You need the **Manage Server** permission on the Discord server to invite a bot. If you don't see your server in the dropdown, ask a server admin to use the invite link instead.
 :::
 
-After authorizing, the bot will appear in your server's member list (it will show as offline until you start the Virat Code gateway).
+After authorizing, the bot will appear in your server's member list (it will show as offline until you start the Virat-Code gateway).
 
 ## Step 7: Find Your Discord User ID
 
-Virat Code uses your Discord User ID to control who can interact with the bot. To find it:
+Virat-Code uses your Discord User ID to control who can interact with the bot. To find it:
 
 1. Open Discord (desktop or web app).
 2. Go to **Settings** → **Advanced** → toggle **Developer Mode** to **ON**.
@@ -142,7 +142,7 @@ Your User ID is a long number like `284102345871466496`.
 Developer Mode also lets you copy **Channel IDs** and **Server IDs** the same way — right-click the channel or server name and select Copy ID. You'll need a Channel ID if you want to set a home channel manually.
 :::
 
-## Step 8: Configure Virat Code
+## Step 8: Configure Virat-Code
 
 ### Option A: Interactive Setup (Recommended)
 
@@ -208,7 +208,7 @@ Replace the ID with the actual channel ID (right-click → Copy Channel ID with 
 
 ## Voice Messages
 
-Virat Code supports Discord voice messages:
+Virat-Code supports Discord voice messages:
 
 - **Incoming voice messages** are automatically transcribed using Whisper (requires `VOICE_TOOLS_OPENAI_KEY` to be set in your environment).
 - **Text-to-speech**: When TTS is enabled, the bot can send spoken responses as MP3 file attachments.
@@ -241,7 +241,7 @@ Virat Code supports Discord voice messages:
 
 ### Bot is offline
 
-**Cause**: The Virat Code gateway isn't running, or the token is incorrect.
+**Cause**: The Virat-Code gateway isn't running, or the token is incorrect.
 
 **Fix**: Check that `Virat-Code gateway` is running. Verify `DISCORD_BOT_TOKEN` in your `.env` file. If you recently reset the token, update it.
 
@@ -257,4 +257,4 @@ Virat Code supports Discord voice messages:
 Always set `DISCORD_ALLOWED_USERS` to restrict who can interact with the bot. Without it, the gateway denies all users by default as a safety measure. Only add User IDs of people you trust — authorized users have full access to the agent's capabilities, including tool use and system access.
 :::
 
-For more information on securing your Virat Code deployment, see the [Security Guide](../security.md).
+For more information on securing your Virat-Code deployment, see the [Security Guide](../security.md).

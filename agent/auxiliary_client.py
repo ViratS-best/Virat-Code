@@ -53,14 +53,14 @@ _API_KEY_PROVIDER_AUX_MODELS: Dict[str, str] = {
 # OpenRouter app attribution headers
 _OR_HEADERS = {
     "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
-    "X-OpenRouter-Title": "Virat Code",
+    "X-OpenRouter-Title": "Virat-Code",
     "X-OpenRouter-Categories": "productivity,cli-agent",
 }
 
 # Nous Portal extra_body for product attribution.
 # Callers should pass this as extra_body in chat.completions.create()
 # when the auxiliary client is backed by Nous Portal.
-NOUS_EXTRA_BODY = {"tags": ["product=Virat Code"]}
+NOUS_EXTRA_BODY = {"tags": ["product=Virat-Code"]}
 
 # Set at resolve time — True if the auxiliary client points to Nous Portal
 auxiliary_is_nous: bool = False
@@ -337,7 +337,7 @@ def _nous_base_url() -> str:
 
 
 def _read_codex_access_token() -> Optional[str]:
-    """Read a valid Codex OAuth access token from Virat Code auth store (~/.virat-code/auth.json)."""
+    """Read a valid Codex OAuth access token from Virat-Code auth store (~/.virat-code/auth.json)."""
     try:
         from virat_code_cli.auth import _read_codex_tokens
         data = _read_codex_tokens()

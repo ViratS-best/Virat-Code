@@ -140,7 +140,7 @@ def check_for_updates() -> Optional[int]:
     or ``None`` if the check fails or isn't applicable.
     """
     virat_code_home = Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
-    repo_dir = virat_code_home / "Virat Code"
+    repo_dir = virat_code_home / "Virat-Code"
     cache_file = virat_code_home / ".update_check"
 
     # Must be a git repo
@@ -375,7 +375,7 @@ def build_welcome_banner(console: Console, model: str, cwd: str,
     right_content = "\n".join(right_lines)
     layout_table.add_row(left_content, right_content)
 
-    agent_name = _skin_branding("agent_name", "Virat Code")
+    agent_name = _skin_branding("agent_name", "Virat-Code")
     title_color = _skin_color("banner_title", "#FFD700")
     border_color = _skin_color("banner_border", "#CD7F32")
     outer_panel = Panel(

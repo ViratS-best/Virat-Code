@@ -1,4 +1,4 @@
-"""Base class for all Virat Code execution environment backends."""
+"""Base class for all Virat-Code execution environment backends."""
 
 from abc import ABC, abstractmethod
 import os
@@ -22,7 +22,7 @@ def get_sandbox_dir() -> Path:
 
 
 class BaseEnvironment(ABC):
-    """Common interface for all Virat Code execution backends.
+    """Common interface for all Virat-Code execution backends.
 
     Subclasses implement execute() and cleanup(). Shared helpers eliminate
     duplicated subprocess boilerplate across backends.

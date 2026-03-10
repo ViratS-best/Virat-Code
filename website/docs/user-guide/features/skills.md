@@ -163,7 +163,7 @@ All hub-installed skills go through a **security scanner** that checks for data 
 
 | Level | Source | Policy |
 |-------|--------|--------|
-| `builtin` | Ships with Virat Code | Always trusted |
+| `builtin` | Ships with Virat-Code | Always trusted |
 | `official` | `optional-skills/` in the repo | Builtin trust, no third-party warning |
 | `trusted` | openai/skills, anthropics/skills | Trusted sources |
 | `community` | Everything else | Any findings = blocked unless `--force` |

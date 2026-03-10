@@ -1,18 +1,18 @@
 ---
 sidebar_position: 1
 title: "Messaging Gateway"
-description: "Chat with Virat Code from Telegram, Discord, Slack, WhatsApp, or Signal — architecture and setup overview"
+description: "Chat with Virat-Code from Telegram, Discord, Slack, WhatsApp, or Signal — architecture and setup overview"
 ---
 
 # Messaging Gateway
 
-Chat with Virat Code from Telegram, Discord, Slack, WhatsApp, or Signal. The gateway is a single background process that connects to all your configured platforms, handles sessions, runs cron jobs, and delivers voice messages.
+Chat with Virat-Code from Telegram, Discord, Slack, WhatsApp, or Signal. The gateway is a single background process that connects to all your configured platforms, handles sessions, runs cron jobs, and delivers voice messages.
 
 ## Architecture
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│                      Virat Code Gateway                             │
+│                      Virat-Code Gateway                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────┐ │
@@ -75,7 +75,7 @@ Virat-Code gateway status       # Check service status
 | `/usage` | Show token usage for this session |
 | `/insights [days]` | Show usage insights and analytics |
 | `/reload-mcp` | Reload MCP servers from config |
-| `/update` | Update Virat Code to the latest version |
+| `/update` | Update Virat-Code to the latest version |
 | `/help` | Show available commands |
 | `/<skill-name>` | Invoke any installed skill |
 

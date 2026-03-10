@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Virat Code CLI - Interactive Terminal Interface
+Virat-Code CLI - Interactive Terminal Interface
 
-A beautiful command-line interface for the Virat Code, inspired by Claude Code.
+A beautiful command-line interface for the Virat-Code, inspired by Claude Code.
 Features ASCII art branding, interactive REPL, toolset selection, and rich formatting.
 
 Usage:
@@ -189,10 +189,10 @@ def load_cli_config() -> Dict[str, Any]:
                 "teacher": "You are a patient teacher. Explain concepts clearly with examples.",
                 "kawaii": "You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and ~! Add sparkles and be super enthusiastic about everything! Every response should feel warm and adorable desu~! ヽ(>∀<☆)ノ",
                 "catgirl": "You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!",
-                "pirate": "Arrr! Ye be talkin' to Captain Virat Code, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin' to be plundered! Yo ho ho!",
+                "pirate": "Arrr! Ye be talkin' to Captain Virat-Code, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin' to be plundered! Yo ho ho!",
                 "shakespeare": "Hark! Thou speakest with an assistant most versed in the bardic arts. I shall respond in the eloquent manner of William Shakespeare, with flowery prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder terminal breaks?",
                 "surfer": "Duuude! You're chatting with the chillest AI on the web, bro! Everything's gonna be totally rad. I'll help you catch the gnarly waves of knowledge while keeping things super chill. Cowabunga!",
-                "noir": "The rain hammered against the terminal like regrets on a guilty conscience. They call me Virat Code - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?",
+                "noir": "The rain hammered against the terminal like regrets on a guilty conscience. They call me Virat-Code - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?",
                 "uwu": "hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful >w<",
                 "philosopher": "Greetings, seeker of wisdom. I am an assistant who contemplates the deeper meaning behind every query. Let us examine not just the 'how' but the 'why' of your questions. Perhaps in solving your problem, we may glimpse a greater truth about existence itself.",
                 "hype": "YOOO LET'S GOOOO!!! I am SO PUMPED to help you today! Every question is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS!",
@@ -721,7 +721,7 @@ class ChatConsole:
         for line in output.rstrip("\n").split("\n"):
             _cprint(line)
 
-# ASCII Art - Virat Code logo (full width, single line - requires ~95 char terminal)
+# ASCII Art - Virat-Code logo (full width, single line - requires ~95 char terminal)
 VIRAT_CODE_AGENT_LOGO = """[bold #FFD700]██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
 [bold #FFD700]██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
 [#FFBF00]███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
@@ -729,7 +729,7 @@ VIRAT_CODE_AGENT_LOGO = """[bold #FFD700]██╗  ██╗██████�
 [#CD7F32]██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
 [#CD7F32]╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]"""
 
-# ASCII Art - Virat Code Caduceus (compact, fits in left panel)
+# ASCII Art - Virat-Code Caduceus (compact, fits in left panel)
 VIRAT_CODE_CADUCEUS = """[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
 [#CD7F32]⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀[/]
 [#FFBF00]⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀[/]
@@ -859,12 +859,12 @@ def build_welcome_banner(console: Console, model: str, cwd: str, tools: List[dic
         _session_c = _bskin.get_color("session_border", "#8B8682")
         _title_c = _bskin.get_color("banner_title", "#FFD700")
         _border_c = _bskin.get_color("banner_border", "#CD7F32")
-        _agent_name = _bskin.get_branding("agent_name", "Virat Code")
+        _agent_name = _bskin.get_branding("agent_name", "Virat-Code")
     except Exception:
         _bskin = None
         _accent, _dim, _text = "#FFBF00", "#B8860B", "#FFF8DC"
         _session_c, _title_c, _border_c = "#8B8682", "#FFD700", "#CD7F32"
-        _agent_name = "Virat Code"
+        _agent_name = "Virat-Code"
 
     _hero = _bskin.banner_hero if hasattr(_bskin, 'banner_hero') and _bskin.banner_hero else VIRAT_CODE_CADUCEUS
     left_lines = ["", _hero, ""]
@@ -1068,7 +1068,7 @@ def save_config_value(key_path: str, value: any) -> bool:
 
 class ViratCodeCLI:
     """
-    Interactive CLI for the Virat Code.
+    Interactive CLI for the Virat-Code.
     
     Provides a REPL interface with rich formatting, command history,
     and tool execution capabilities.
@@ -1088,7 +1088,7 @@ class ViratCodeCLI:
         checkpoints: bool = False,
     ):
         """
-        Initialize the Virat Code CLI.
+        Initialize the Virat-Code CLI.
 
         Args:
             model: Model to use (default: from env or claude-sonnet)
@@ -1679,7 +1679,7 @@ class ViratCodeCLI:
                 for ml in msg_lines[1:]:
                     lines.append(f"         {ml}\n", style="dim")
             else:
-                lines.append("  ◆ Virat Code: ", style="dim bold #8FBC8F")
+                lines.append("  ◆ Virat-Code: ", style="dim bold #8FBC8F")
                 msg_lines = text.splitlines()
                 lines.append(msg_lines[0] + "\n", style="dim")
                 for ml in msg_lines[1:]:
@@ -1911,7 +1911,7 @@ class ViratCodeCLI:
             for cmd, info in sorted(_skill_commands.items()):
                 _cprint(f"  {_GOLD}{cmd:<22}{_RST} {_DIM}-{_RST} {info['description']}")
 
-        _cprint(f"\n  {_DIM}Tip: Just type your message to chat with Virat Code!{_RST}")
+        _cprint(f"\n  {_DIM}Tip: Just type your message to chat with Virat-Code!{_RST}")
         _cprint(f"  {_DIM}Multi-line: Alt+Enter for a new line{_RST}")
         _cprint(f"  {_DIM}Paste image: Alt+V (or /paste){_RST}\n")
     
@@ -2086,7 +2086,7 @@ class ViratCodeCLI:
                 )
                 continue
 
-            print(f"\n  [Virat Code #{visible_index}]")
+            print(f"\n  [Virat-Code #{visible_index}]")
             tool_calls = msg.get("tool_calls") or []
             if content_text:
                 preview = content_text[:preview_limit]
@@ -3328,10 +3328,10 @@ class ViratCodeCLI:
                 try:
                     from virat_code_cli.skin_engine import get_active_skin
                     _skin = get_active_skin()
-                    label = _skin.get_branding("response_label", "⚕ Virat Code")
+                    label = _skin.get_branding("response_label", "⚕ Virat-Code")
                     _resp_color = _skin.get_color("response_border", "#CD7F32")
                 except Exception:
-                    label = "⚕ Virat Code"
+                    label = "⚕ Virat-Code"
                     _resp_color = "#CD7F32"
 
                 _chat_console = ChatConsole()
@@ -3409,10 +3409,10 @@ class ViratCodeCLI:
         try:
             from virat_code_cli.skin_engine import get_active_skin
             _welcome_skin = get_active_skin()
-            _welcome_text = _welcome_skin.get_branding("welcome", "Welcome to Virat Code! Type your message or /help for commands.")
+            _welcome_text = _welcome_skin.get_branding("welcome", "Welcome to Virat-Code! Type your message or /help for commands.")
             _welcome_color = _welcome_skin.get_color("banner_text", "#FFF8DC")
         except Exception:
-            _welcome_text = "Welcome to Virat Code! Type your message or /help for commands."
+            _welcome_text = "Welcome to Virat-Code! Type your message or /help for commands."
             _welcome_color = "#FFF8DC"
         self.console.print(f"[{_welcome_color}]{_welcome_text}[/]")
         self.console.print()
@@ -3698,7 +3698,7 @@ class ViratCodeCLI:
                 # No image found — show a hint
                 pass  # silent when no image (avoid noise on accidental press)
 
-        # Dynamic prompt: shows Virat Code symbol when agent is working,
+        # Dynamic prompt: shows Virat-Code symbol when agent is working,
         # or answer prompt when clarify freetext mode is active.
         cli_ref = self
 
@@ -3920,14 +3920,14 @@ class ViratCodeCLI:
                 else "  Other (type your answer)"
             )
             preview_lines.extend(_wrap_panel_text(other_label, 60, subsequent_indent="  "))
-            box_width = _panel_box_width("Virat Code needs your input", preview_lines)
+            box_width = _panel_box_width("Virat-Code needs your input", preview_lines)
             inner_text_width = max(8, box_width - 2)
 
             lines = []
             # Box top border
             lines.append(('class:clarify-border', '╭─ '))
-            lines.append(('class:clarify-title', 'Virat Code needs your input'))
-            lines.append(('class:clarify-border', ' ' + ('─' * max(0, box_width - len("Virat Code needs your input") - 3)) + '╮\n'))
+            lines.append(('class:clarify-title', 'Virat-Code needs your input'))
+            lines.append(('class:clarify-border', ' ' + ('─' * max(0, box_width - len("Virat-Code needs your input") - 3)) + '╮\n'))
             _append_blank_panel_line(lines, 'class:clarify-border', box_width)
 
             # Question text
@@ -4288,7 +4288,7 @@ def main(
     checkpoints: bool = False,
 ):
     """
-    Virat Code CLI - Interactive AI Assistant
+    Virat-Code CLI - Interactive AI Assistant
     
     Args:
         query: Single query to execute (then exit). Alias: -q
@@ -4326,7 +4326,7 @@ def main(
     if gateway:
         import asyncio
         from gateway.run import start_gateway
-        print("Starting Virat Code Gateway (messaging platforms)...")
+        print("Starting Virat-Code Gateway (messaging platforms)...")
         asyncio.run(start_gateway())
         return
 

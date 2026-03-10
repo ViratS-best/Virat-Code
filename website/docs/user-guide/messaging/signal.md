@@ -1,17 +1,17 @@
 ---
 sidebar_position: 6
 title: "Signal"
-description: "Set up Virat Code as a Signal messenger bot via signal-cli daemon"
+description: "Set up Virat-Code as a Signal messenger bot via signal-cli daemon"
 ---
 
 # Signal Setup
 
-Virat Code connects to Signal through the [signal-cli](https://github.com/AsamK/signal-cli) daemon running in HTTP mode. The adapter streams messages in real-time via SSE (Server-Sent Events) and sends responses via JSON-RPC.
+Virat-Code connects to Signal through the [signal-cli](https://github.com/AsamK/signal-cli) daemon running in HTTP mode. The adapter streams messages in real-time via SSE (Server-Sent Events) and sends responses via JSON-RPC.
 
 Signal is the most privacy-focused mainstream messenger — end-to-end encrypted by default, closed-source protocol, minimal metadata collection. This makes it ideal for security-sensitive agent workflows.
 
 :::info No New Python Dependencies
-The Signal adapter uses `httpx` (already a core Virat Code dependency) for all communication. No additional Python packages are required. You just need signal-cli installed externally.
+The Signal adapter uses `httpx` (already a core Virat-Code dependency) for all communication. No additional Python packages are required. You just need signal-cli installed externally.
 :::
 
 ---
@@ -90,7 +90,7 @@ curl http://127.0.0.1:8080/api/v1/check
 
 ---
 
-## Step 3: Configure Virat Code
+## Step 3: Configure Virat-Code
 
 The easiest way:
 
@@ -136,7 +136,7 @@ Virat-Code gateway install      # Install as a system service
 
 ### DM Access
 
-DM access follows the same pattern as all other Virat Code platforms:
+DM access follows the same pattern as all other Virat-Code platforms:
 
 1. **`SIGNAL_ALLOWED_USERS` set** → only those users can message
 2. **No allowlist set** → unknown users get a DM pairing code (approve via `virat-code pairing approve signal CODE`)
@@ -174,7 +174,7 @@ The bot sends typing indicators while processing messages, refreshing every 8 se
 
 All phone numbers are automatically redacted in logs:
 - `+15551234567` → `+155****4567`
-- This applies to both Virat Code gateway logs and the global redaction system
+- This applies to both Virat-Code gateway logs and the global redaction system
 
 ### Health Monitoring
 

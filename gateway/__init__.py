@@ -1,7 +1,7 @@
 """
-Virat Code Gateway - Multi-platform messaging integration.
+Virat-Code Gateway - Multi-platform messaging integration.
 
-This module provides a unified gateway for connecting the Virat Code
+This module provides a unified gateway for connecting the Virat-Code
 to various messaging platforms (Telegram, Discord, WhatsApp) with:
 - Session management (persistent conversations with reset policies)
 - Dynamic context injection (agent knows where messages come from)

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: "Environment Variables"
-description: "Complete reference of all environment variables used by Virat Code"
+description: "Complete reference of all environment variables used by Virat-Code"
 ---
 
 # Environment Variables Reference
@@ -26,7 +26,7 @@ All variables go in `~/.virat-code/.env`. You can also set them with `Virat-Code
 | `VIRAT_CODE_MODEL` | Preferred model name (checked before `LLM_MODEL`, used by gateway) |
 | `LLM_MODEL` | Default model name (fallback when not set in config.yaml) |
 | `VOICE_TOOLS_OPENAI_KEY` | OpenAI key for TTS and voice transcription (separate from custom endpoint) |
-| `VIRAT_CODE_HOME` | Override Virat Code config directory (default: `~/.virat-code`) |
+| `VIRAT_CODE_HOME` | Override Virat-Code config directory (default: `~/.virat-code`) |
 
 ## Provider Auth (OAuth)
 

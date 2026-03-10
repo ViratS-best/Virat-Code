@@ -1,7 +1,7 @@
 """
 Status command for Virat-Code CLI.
 
-Shows the status of all Virat Code components.
+Shows the status of all Virat-Code components.
 """
 
 import os
@@ -49,13 +49,13 @@ def _format_iso_timestamp(value) -> str:
 
 
 def show_status(args):
-    """Show status of all Virat Code components."""
+    """Show status of all Virat-Code components."""
     show_all = getattr(args, 'all', False)
     deep = getattr(args, 'deep', False)
     
     print()
     print(color("┌─────────────────────────────────────────────────────────┐", Colors.CYAN))
-    print(color("│                 ⚕ Virat Code Status                  │", Colors.CYAN))
+    print(color("│                 ⚕ Virat-Code Status                  │", Colors.CYAN))
     print(color("└─────────────────────────────────────────────────────────┘", Colors.CYAN))
     
     # =========================================================================

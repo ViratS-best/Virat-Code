@@ -6,7 +6,7 @@ description: "Text-to-speech and voice message transcription across all platform
 
 # Voice & TTS
 
-Virat Code supports both text-to-speech output and voice message transcription across all messaging platforms.
+Virat-Code supports both text-to-speech output and voice message transcription across all messaging platforms.
 
 ## Text-to-Speech
 

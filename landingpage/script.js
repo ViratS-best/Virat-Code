@@ -1,5 +1,5 @@
 // =========================================================================
-// Virat Code Landing Page — Interactions
+// Virat-Code Landing Page — Interactions
 // =========================================================================
 
 // --- Platform install commands ---

@@ -1,6 +1,6 @@
-# Contributing to Virat Code
+# Contributing to Virat-Code
 
-Thank you for contributing to Virat Code! This guide covers everything you need: setting up your dev environment, understanding the architecture, deciding what to build, and getting your PR merged.
+Thank you for contributing to Virat-Code! This guide covers everything you need: setting up your dev environment, understanding the architecture, deciding what to build, and getting your PR merged.
 
 ---
 
@@ -9,7 +9,7 @@ Thank you for contributing to Virat Code! This guide covers everything you need:
 We value contributions in this order:
 
 1. **Bug fixes** — crashes, incorrect behavior, data loss. Always top priority.
-2. **Cross-platform compatibility** — Windows, macOS, different Linux distros, different terminal emulators. We want Virat Code to work everywhere.
+2. **Cross-platform compatibility** — Windows, macOS, different Linux distros, different terminal emulators. We want Virat-Code to work everywhere.
 3. **Security hardening** — shell injection, prompt injection, path traversal, privilege escalation. See [Security](#security-considerations).
 4. **Performance and robustness** — retry logic, error handling, graceful degradation.
 5. **New skills** — but only broadly useful ones. See [Should it be a Skill or a Tool?](#should-it-be-a-skill-or-a-tool)
@@ -38,7 +38,7 @@ This is the most common question for new contributors. The answer is almost alwa
 
 ### Should the Skill be bundled?
 
-Bundled skills (in `skills/`) ship with every Virat Code install. They should be **broadly useful to most users**:
+Bundled skills (in `skills/`) ship with every Virat-Code install. They should be **broadly useful to most users**:
 
 - Document handling, web research, common dev workflows, system administration
 - Used regularly by a wide range of people
@@ -64,7 +64,7 @@ If your skill is specialized, community-contributed, or niche, it's better suite
 
 ```bash
 git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
-cd Virat Code
+cd Virat-Code
 
 # Create venv with Python 3.11
 uv venv venv --python 3.11
@@ -113,7 +113,7 @@ pytest tests/ -v
 ## Project Structure
 
 ```
-Virat Code/
+Virat-Code/
 ├── run_agent.py              # AIAgent class — core conversation loop, tool dispatch, session persistence
 ├── cli.py                    # ViratCodeCLI class — interactive TUI, prompt_toolkit integration
 ├── model_tools.py            # Tool orchestration (thin layer over tools/registry.py)
@@ -174,7 +174,7 @@ Virat Code/
 ├── optional-skills/          # Official optional skills (discoverable via hub, not activated by default)
 ├── environments/             # RL training environments (Atropos integration)
 ├── tests/                    # Test suite
-├── website/                  # Documentation site (Virat Code.github.com/ViratS-best)
+├── website/                  # Documentation site (Virat-Code.github.com/ViratS-best)
 │
 ├── cli-config.yaml.example   # Example configuration (copied to ~/.virat-code/config.yaml)
 └── AGENTS.md                 # Development guide for AI coding assistants
@@ -369,7 +369,7 @@ If the field is omitted or empty, the skill loads on all platforms (backward com
 
 ### Skill guidelines
 
-- **No external dependencies unless absolutely necessary.** Prefer stdlib Python, curl, and existing Virat Code tools (`web_extract`, `terminal`, `read_file`).
+- **No external dependencies unless absolutely necessary.** Prefer stdlib Python, curl, and existing Virat-Code tools (`web_extract`, `terminal`, `read_file`).
 - **Progressive disclosure.** Put the most common workflow first. Edge cases and advanced usage go at the bottom.
 - **Include helper scripts** for XML/JSON parsing or complex logic — don't expect the LLM to write parsers inline every time.
 - **Test it.** Run `virat-code --toolsets skills -q "Use the X skill to do Y"` and verify the agent follows the instructions correctly.
@@ -378,7 +378,7 @@ If the field is omitted or empty, the skill loads on all platforms (backward com
 
 ## Adding a Skin / Theme
 
-Virat Code uses a data-driven skin system — no code changes needed to add a new skin.
+Virat-Code uses a data-driven skin system — no code changes needed to add a new skin.
 
 **Option A: User skin (YAML file)**
 
@@ -428,7 +428,7 @@ See `virat_code_cli/skin_engine.py` for the full schema and existing skins as ex
 
 ## Cross-Platform Compatibility
 
-Virat Code runs on Linux, macOS, and Windows. When writing code that touches the OS:
+Virat-Code runs on Linux, macOS, and Windows. When writing code that touches the OS:
 
 ### Critical rules
 
@@ -468,7 +468,7 @@ Virat Code runs on Linux, macOS, and Windows. When writing code that touches the
 
 ## Security Considerations
 
-Virat Code has terminal access. Security matters.
+Virat-Code has terminal access. Security matters.
 
 ### Existing protections
 
@@ -553,7 +553,7 @@ test(tools): add unit tests for file_operations
 ## Reporting Issues
 
 - Use [GitHub Issues](https://github.com/ViratS-best/Virat-Code/issues)
-- Include: OS, Python version, Virat Code version (`virat-code version`), full error traceback
+- Include: OS, Python version, Virat-Code version (`virat-code version`), full error traceback
 - Include steps to reproduce
 - Check existing issues before creating duplicates
 - For security vulnerabilities, please report privately

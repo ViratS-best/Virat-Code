@@ -1,4 +1,4 @@
-"""Slash command definitions and autocomplete for the Virat Code CLI.
+"""Slash command definitions and autocomplete for the Virat-Code CLI.
 
 Contains the shared built-in ``COMMANDS`` dict and ``SlashCommandCompleter``.
 The completer can optionally include dynamic skill slash commands supplied by the

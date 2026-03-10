@@ -1,6 +1,6 @@
-# Virat Code - Development Guide
+# Virat-Code - Development Guide
 
-Instructions for AI coding assistants and developers working on the Virat Code codebase.
+Instructions for AI coding assistants and developers working on the Virat-Code codebase.
 
 ## Development Environment
 
@@ -11,7 +11,7 @@ source .venv/bin/activate  # ALWAYS activate before running Python
 ## Project Structure
 
 ```
-Virat Code/
+Virat-Code/
 ├── run_agent.py          # AIAgent class — core conversation loop
 ├── model_tools.py        # Tool orchestration, _discover_tools(), handle_function_call()
 ├── toolsets.py           # Toolset definitions, _VIRAT_CODE_CORE_TOOLS list
@@ -236,7 +236,7 @@ virat_code_cli/skin_engine.py    # SkinConfig dataclass, built-in skins, YAML lo
 
 ### Built-in skins
 
-- `default` — Classic Virat Code gold/kawaii (the current look)
+- `default` — Classic Virat-Code gold/kawaii (the current look)
 - `ares` — Crimson/bronze war-god theme with custom spinner wings
 - `mono` — Clean grayscale monochrome
 - `slate` — Cool blue developer-focused theme
@@ -289,7 +289,7 @@ Activate with `/skin cyberpunk` or `display.skin: cyberpunk` in config.yaml.
 
 ### Prompt Caching Must Not Break
 
-Virat Code ensures caching remains valid throughout a conversation. **Do NOT implement changes that would:**
+Virat-Code ensures caching remains valid throughout a conversation. **Do NOT implement changes that would:**
 - Alter past context mid-conversation
 - Change toolsets mid-conversation
 - Reload memories or rebuild system prompts mid-conversation

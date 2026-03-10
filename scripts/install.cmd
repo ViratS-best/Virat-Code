@@ -1,6 +1,6 @@
 @echo off
 REM ============================================================================
-REM Virat Code Installer for Windows (CMD wrapper)
+REM Virat-Code Installer for Windows (CMD wrapper)
 REM ============================================================================
 REM This batch file launches the PowerShell installer for users running CMD.
 REM
@@ -12,7 +12,7 @@ REM   irm https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/
 REM ============================================================================
 
 echo.
-echo  Virat Code Installer
+echo  Virat-Code Installer
 echo  Launching PowerShell installer...
 echo.
 

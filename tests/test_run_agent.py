@@ -1147,7 +1147,7 @@ class TestSystemPromptStability:
         # Should have built fresh, not queried the DB
         mock_db.get_session.assert_not_called()
         assert agent._cached_system_prompt is not None
-        assert "Virat Code" in agent._cached_system_prompt
+        assert "Virat-Code" in agent._cached_system_prompt
 
     def test_fresh_build_when_db_has_no_prompt(self, agent):
         """If the session DB has no stored prompt, build fresh even with history."""
@@ -1174,7 +1174,7 @@ class TestSystemPromptStability:
                 agent._cached_system_prompt = agent._build_system_prompt()
 
         # Empty string is falsy, so should fall through to fresh build
-        assert "Virat Code" in agent._cached_system_prompt
+        assert "Virat-Code" in agent._cached_system_prompt
 
     def test_honcho_context_baked_into_prompt_on_first_turn(self, agent):
         """Honcho context should be baked into _cached_system_prompt on

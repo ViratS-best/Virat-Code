@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
 title: "CLI Interface"
-description: "Master the Virat Code terminal interface — commands, keybindings, personalities, and more"
+description: "Master the Virat-Code terminal interface — commands, keybindings, personalities, and more"
 ---
 
 # CLI Interface
 
-Virat Code's CLI is a full terminal user interface (TUI) — not a web UI. It features multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output. Built for people who live in the terminal.
+Virat-Code's CLI is a full terminal user interface (TUI) — not a web UI. It features multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output. Built for people who live in the terminal.
 
 ## Running the CLI
 
@@ -43,7 +43,7 @@ virat-code -w -q "Fix issue #123"     # Single query in worktree
 
 ```text
 ┌─────────────────────────────────────────────────┐
-│  Virat Code ASCII Logo                        │
+│  Virat-Code ASCII Logo                        │
 │  ┌─────────────┐ ┌────────────────────────────┐ │
 │  │  Caduceus   │ │ Model: claude-sonnet-4     │ │
 │  │  ASCII Art  │ │ Terminal: local            │ │
@@ -163,7 +163,7 @@ agent:
   personalities:
     helpful: "You are a helpful, friendly AI assistant."
     kawaii: "You are a kawaii assistant! Use cute expressions..."
-    pirate: "Arrr! Ye be talkin' to Captain Virat Code..."
+    pirate: "Arrr! Ye be talkin' to Captain Virat-Code..."
     # Add your own!
 ```
 

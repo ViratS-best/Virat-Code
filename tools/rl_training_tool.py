@@ -47,7 +47,7 @@ from typing import Any, Dict, List, Optional
 # Path Configuration
 # ============================================================================
 
-# Path to tinker-atropos submodule (relative to Virat Code root)
+# Path to tinker-atropos submodule (relative to Virat-Code root)
 VIRAT_CODE_ROOT = Path(__file__).parent.parent
 TINKER_ATROPOS_ROOT = VIRAT_CODE_ROOT / "tinker-atropos"
 ENVIRONMENTS_DIR = TINKER_ATROPOS_ROOT / "tinker_atropos" / "environments"

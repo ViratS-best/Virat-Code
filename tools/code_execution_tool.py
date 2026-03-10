@@ -2,7 +2,7 @@
 """
 Code Execution Tool -- Programmatic Tool Calling (PTC)
 
-Lets the LLM write a Python script that calls Virat Code tools via RPC,
+Lets the LLM write a Python script that calls Virat-Code tools via RPC,
 collapsing multi-step tool chains into a single inference turn.
 
 Architecture:
@@ -136,7 +136,7 @@ def generate_virat_code_tools_module(enabled_tools: List[str]) -> str:
         export_names.append(func_name)
 
     header = '''\
-"""Auto-generated Virat Code tools RPC stubs."""
+"""Auto-generated Virat-Code tools RPC stubs."""
 import json, os, socket, shlex, time
 
 _sock = None
@@ -350,7 +350,7 @@ def execute_code(
 ) -> str:
     """
     Run a Python script in a sandboxed child process with RPC access
-    to a subset of Virat Code tools.
+    to a subset of Virat-Code tools.
 
     Args:
         code:          Python source code to execute.
@@ -660,7 +660,7 @@ def build_execute_code_schema(enabled_sandbox_tools: set = None) -> dict:
         import_str = "..."
 
     description = (
-        "Run a Python script that can call Virat Code tools programmatically. "
+        "Run a Python script that can call Virat-Code tools programmatically. "
         "Use this when you need 3+ tool calls with processing logic between them, "
         "need to filter/reduce large tool outputs before they enter your context, "
         "need conditional branching (if X then Y else Z), or need to loop "

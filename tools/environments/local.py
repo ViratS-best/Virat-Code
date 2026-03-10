@@ -54,7 +54,7 @@ def _find_bash() -> str:
             return candidate
 
     raise RuntimeError(
-        "Git Bash not found. Virat Code requires Git for Windows on Windows.\n"
+        "Git Bash not found. Virat-Code requires Git for Windows on Windows.\n"
         "Install it from: https://git-scm.com/download/win\n"
         "Or set VIRAT_CODE_GIT_BASH_PATH to your bash.exe location."
     )

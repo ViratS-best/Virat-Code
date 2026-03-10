@@ -55,7 +55,7 @@ body:
     id: component
     attributes:
       label: Affected Component
-      description: Which part of Virat Code is affected?
+      description: Which part of Virat-Code is affected?
       multiple: true
       options:
         - CLI (interactive chat)
@@ -103,7 +103,7 @@ body:
   - type: input
     id: virat-code-version
     attributes:
-      label: Virat Code Version
+      label: Virat-Code Version
       description: Output of `virat-code version`
       placeholder: "2.1.0"
     validations:

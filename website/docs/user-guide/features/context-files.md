@@ -6,7 +6,7 @@ description: "Project context files — AGENTS.md, SOUL.md, and .cursorrules —
 
 # Context Files
 
-Virat Code automatically discovers and loads project context files from your working directory. These files are injected into the system prompt at the start of every session, giving the agent persistent knowledge about your project's conventions, architecture, and preferences.
+Virat-Code automatically discovers and loads project context files from your working directory. These files are injected into the system prompt at the start of every session, giving the agent persistent knowledge about your project's conventions, architecture, and preferences.
 
 ## Supported Context Files
 
@@ -23,7 +23,7 @@ Virat Code automatically discovers and loads project context files from your wor
 
 ### Hierarchical Discovery
 
-Virat Code walks the directory tree starting from the working directory and loads **all** `AGENTS.md` files found, sorted by depth. This supports monorepo-style setups:
+Virat-Code walks the directory tree starting from the working directory and loads **all** `AGENTS.md` files found, sorted by depth. This supports monorepo-style setups:
 
 ```
 my-project/
@@ -82,9 +82,9 @@ When a SOUL.md is found, the agent is instructed:
 
 ## .cursorrules
 
-Virat Code is compatible with Cursor IDE's `.cursorrules` file and `.cursor/rules/*.mdc` rule modules. If these files exist in your project root, they're loaded alongside AGENTS.md.
+Virat-Code is compatible with Cursor IDE's `.cursorrules` file and `.cursor/rules/*.mdc` rule modules. If these files exist in your project root, they're loaded alongside AGENTS.md.
 
-This means your existing Cursor conventions automatically apply when using Virat Code.
+This means your existing Cursor conventions automatically apply when using Virat-Code.
 
 ## How Context Files Are Loaded
 

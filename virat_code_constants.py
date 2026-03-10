@@ -1,4 +1,4 @@
-"""Shared constants for Virat Code.
+"""Shared constants for Virat-Code.
 
 Import-safe module with no dependencies — can be imported from anywhere
 without risk of circular imports.

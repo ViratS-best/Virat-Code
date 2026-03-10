@@ -6,7 +6,7 @@ description: "Session persistence, resume, search, management, and per-platform 
 
 # Sessions
 
-Virat Code automatically saves every conversation as a session. Sessions enable conversation resume, cross-session search, and full conversation history management.
+Virat-Code automatically saves every conversation as a session. Sessions enable conversation resume, cross-session search, and full conversation history management.
 
 ## How Sessions Work
 
@@ -86,15 +86,15 @@ Session IDs are shown when you exit a CLI session, and can be found with `virat-
 
 ### Conversation Recap on Resume
 
-When you resume a session, Virat Code displays a compact recap of the previous conversation in a styled panel before the input prompt:
+When you resume a session, Virat-Code displays a compact recap of the previous conversation in a styled panel before the input prompt:
 
 ```text
 ╭─────────────────────────── Previous Conversation ────────────────────────────╮
 │   ● You: What is Python?                                                     │
-│   ◆ Virat Code: Python is a high-level programming language.                     │
+│   ◆ Virat-Code: Python is a high-level programming language.                     │
 │   ● You: How do I install it?                                                │
-│   ◆ Virat Code: [3 tool calls: web_search, web_extract, terminal]                │
-│   ◆ Virat Code: You can download Python from python.org...                       │
+│   ◆ Virat-Code: [3 tool calls: web_search, web_extract, terminal]                │
+│   ◆ Virat-Code: You can download Python from python.org...                       │
 ╰──────────────────────────────────────────────────────────────────────────────╯
 ```
 
@@ -146,7 +146,7 @@ virat-code sessions rename 20250305_091523_a1b2c3d4 "refactoring auth module"
 
 ### Auto-Lineage on Compression
 
-When a session's context is compressed (manually via `/compress` or automatically), Virat Code creates a new continuation session. If the original had a title, the new session automatically gets a numbered title:
+When a session's context is compressed (manually via `/compress` or automatically), Virat-Code creates a new continuation session. If the original had a title, the new session automatically gets a numbered title:
 
 ```
 "my project" → "my project #2" → "my project #3"
@@ -163,7 +163,7 @@ The `/title` command works in all gateway platforms (Telegram, Discord, Slack, W
 
 ## Session Management Commands
 
-Virat Code provides a full set of session management commands via `virat-code sessions`:
+Virat-Code provides a full set of session management commands via `virat-code sessions`:
 
 ### List Sessions
 

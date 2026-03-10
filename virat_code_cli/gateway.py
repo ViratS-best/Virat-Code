@@ -120,7 +120,7 @@ def is_windows() -> bool:
 # =============================================================================
 
 SERVICE_NAME = "virat-code-gateway"
-SERVICE_DESCRIPTION = "Virat Code Gateway - Messaging Platform Integration"
+SERVICE_DESCRIPTION = "Virat-Code Gateway - Messaging Platform Integration"
 
 def get_systemd_unit_path() -> Path:
     return Path.home() / ".config" / "systemd" / "user" / f"{SERVICE_NAME}.service"
@@ -405,7 +405,7 @@ def run_gateway(verbose: bool = False, replace: bool = False):
     from gateway.run import start_gateway
     
     print("┌─────────────────────────────────────────────────────────┐")
-    print("│           ⚕ Virat Code Gateway Starting...                 │")
+    print("│           ⚕ Virat-Code Gateway Starting...                 │")
     print("├─────────────────────────────────────────────────────────┤")
     print("│  Messaging platforms + cron scheduler                    │")
     print("│  Press Ctrl+C to stop                                   │")

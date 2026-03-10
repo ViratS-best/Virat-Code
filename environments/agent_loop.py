@@ -1,13 +1,13 @@
 """
 ViratCodeAgentLoop -- Reusable Multi-Turn Agent Engine
 
-Runs the Virat Code tool-calling loop using standard OpenAI-spec tool calling.
+Runs the Virat-Code tool-calling loop using standard OpenAI-spec tool calling.
 Works with any server that returns ChatCompletion objects with tool_calls:
     - Phase 1: OpenAI server type (VLLM, SGLang, OpenRouter, OpenAI API)
     - Phase 2: ManagedServer with client-side tool call parser
 
 The loop passes tools= and checks response.choices[0].message.tool_calls,
-identical to Virat Code's run_agent.py. Tool execution is dispatched via
+identical to Virat-Code's run_agent.py. Tool execution is dispatched via
 handle_function_call() from model_tools.py.
 """
 
@@ -114,7 +114,7 @@ def _extract_reasoning_from_message(message) -> Optional[str]:
 
 class ViratCodeAgentLoop:
     """
-    Runs Virat Code's tool-calling loop using standard OpenAI-spec tool calling.
+    Runs Virat-Code's tool-calling loop using standard OpenAI-spec tool calling.
 
     Same pattern as run_agent.py:
     - Pass tools= to the API
@@ -276,7 +276,7 @@ class ViratCodeAgentLoop:
 
                 messages.append(msg_dict)
 
-                # Execute each tool call via Virat Code's dispatch
+                # Execute each tool call via Virat-Code's dispatch
                 for tc in assistant_msg.tool_calls:
                     tool_name = tc.function.name
                     tool_args_raw = tc.function.arguments

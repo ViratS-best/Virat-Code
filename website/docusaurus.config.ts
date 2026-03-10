@@ -3,15 +3,15 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Virat Code',
+  title: 'Virat-Code',
   tagline: 'The self-improving AI agent',
   favicon: 'img/favicon.ico',
 
-  url: 'https://Virat Code.github.com/ViratS-best',
+  url: 'https://Virat-Code.github.com/ViratS-best',
   baseUrl: '/docs/',
 
   organizationName: 'NousResearch',
-  projectName: 'Virat Code',
+  projectName: 'Virat-Code',
 
   onBrokenLinks: 'warn',
 
@@ -44,15 +44,15 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/Virat Code-banner.png',
+    image: 'img/Virat-Code-banner.png',
     colorMode: {
       defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Virat Code',
+      title: 'Virat-Code',
       logo: {
-        alt: 'Virat Code',
+        alt: 'Virat-Code',
         src: 'img/logo.png',
       },
       items: [
@@ -63,7 +63,7 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: 'https://Virat Code.github.com/ViratS-best',
+          href: 'https://Virat-Code.github.com/ViratS-best',
           label: 'Home',
           position: 'right',
         },

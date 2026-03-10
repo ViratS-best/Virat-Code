@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Virat Code CLI - Main entry point.
+Virat-Code CLI - Main entry point.
 
 Usage:
     Virat-Code                     # Interactive chat (default)
@@ -20,7 +20,7 @@ Usage:
     Virat-Code doctor              # Check configuration and dependencies
     Virat-Code version             # Show version
     Virat-Code update              # Update to latest version
-    Virat-Code uninstall           # Uninstall Virat Code
+    Virat-Code uninstall           # Uninstall Virat-Code
     Virat-Code sessions browse     # Interactive session picker with search
 """
 
@@ -455,7 +455,7 @@ def cmd_chat(args):
     # First-run guard: check if any provider is configured before launching
     if not _has_any_provider_configured():
         print()
-        print("It looks like Virat Code isn't configured yet -- no API keys or providers found.")
+        print("It looks like Virat-Code isn't configured yet -- no API keys or providers found.")
         print()
         print("  Run:  Virat-Code setup")
         print()
@@ -518,7 +518,7 @@ def cmd_whatsapp(args):
     current_mode = get_env_value("WHATSAPP_MODE") or ""
     if not current_mode:
         print()
-        print("How will you use WhatsApp with Virat Code?")
+        print("How will you use WhatsApp with Virat-Code?")
         print()
         print("  1. Separate bot number (recommended)")
         print("     People message the bot's number directly — cleanest experience.")
@@ -675,14 +675,14 @@ def cmd_whatsapp(args):
             print("    2. Send a message to the bot's WhatsApp number")
             print("    3. The agent will reply automatically")
             print()
-            print("  Tip: Agent responses are prefixed with '⚕ Virat Code'")
+            print("  Tip: Agent responses are prefixed with '⚕ Virat-Code'")
         else:
             print("  Next steps:")
             print("    1. Start the gateway:  Virat-Code gateway")
             print("    2. Open WhatsApp → Message Yourself")
             print("    3. Type a message — the agent will reply")
             print()
-            print("  Tip: Agent responses are prefixed with '⚕ Virat Code'")
+            print("  Tip: Agent responses are prefixed with '⚕ Virat-Code'")
             print("  so you can tell them apart from your own messages.")
         print()
         print("  Or install as a service: Virat-Code gateway install")
@@ -1432,7 +1432,7 @@ def _model_flow_api_key_provider(config, provider_id, current_model=""):
 
 
 def cmd_login(args):
-    """Authenticate Virat Code CLI with a provider."""
+    """Authenticate Virat-Code CLI with a provider."""
     from virat_code_cli.auth import login_command
     login_command(args)
 
@@ -1469,7 +1469,7 @@ def cmd_config(args):
 
 def cmd_version(args):
     """Show version."""
-    print(f"Virat Code v{__version__}")
+    print(f"Virat-Code v{__version__}")
     print(f"Project: {PROJECT_ROOT}")
     
     # Show Python version
@@ -1484,13 +1484,13 @@ def cmd_version(args):
 
 
 def cmd_uninstall(args):
-    """Uninstall Virat Code."""
+    """Uninstall Virat-Code."""
     from virat_code_cli.uninstall import run_uninstall
     run_uninstall(args)
 
 
 def _update_via_zip(args):
-    """Update Virat Code by downloading a ZIP archive.
+    """Update Virat-Code by downloading a ZIP archive.
     
     Used on Windows when git file I/O is broken (antivirus, NTFS filter 
     drivers causing 'Invalid argument' errors on file creation).
@@ -1506,15 +1506,15 @@ def _update_via_zip(args):
     print("→ Downloading latest version...")
     try:
         tmp_dir = tempfile.mkdtemp(prefix="virat-code-update-")
-        zip_path = os.path.join(tmp_dir, f"Virat Code-{branch}.zip")
+        zip_path = os.path.join(tmp_dir, f"Virat-Code-{branch}.zip")
         urlretrieve(zip_url, zip_path)
         
         print("→ Extracting...")
         with zipfile.ZipFile(zip_path, 'r') as zf:
             zf.extractall(tmp_dir)
         
-        # GitHub ZIPs extract to Virat Code-<branch>/
-        extracted = os.path.join(tmp_dir, f"Virat Code-{branch}")
+        # GitHub ZIPs extract to Virat-Code-<branch>/
+        extracted = os.path.join(tmp_dir, f"Virat-Code-{branch}")
         if not os.path.isdir(extracted):
             # Try to find it
             for d in os.listdir(tmp_dir):
@@ -1586,11 +1586,11 @@ def _update_via_zip(args):
 
 
 def cmd_update(args):
-    """Update Virat Code to the latest version."""
+    """Update Virat-Code to the latest version."""
     import subprocess
     import shutil
     
-    print("⚕ Updating Virat Code...")
+    print("⚕ Updating Virat-Code...")
     print()
     
     # Try git-based update first, fall back to ZIP download on Windows
@@ -1820,7 +1820,7 @@ def main():
     """Main entry point for Virat-Code CLI."""
     parser = argparse.ArgumentParser(
         prog="Virat-Code",
-        description="Virat Code - AI assistant with tool-calling capabilities",
+        description="Virat-Code - AI assistant with tool-calling capabilities",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -1883,7 +1883,7 @@ For more help on a command:
     chat_parser = subparsers.add_parser(
         "chat",
         help="Interactive chat with the agent",
-        description="Start an interactive chat session with Virat Code"
+        description="Start an interactive chat session with Virat-Code"
     )
     chat_parser.add_argument(
         "-q", "--query",
@@ -1993,7 +1993,7 @@ For more help on a command:
     setup_parser = subparsers.add_parser(
         "setup",
         help="Interactive setup wizard",
-        description="Configure Virat Code with an interactive wizard. "
+        description="Configure Virat-Code with an interactive wizard. "
                     "Run a specific section: Virat-Code setup model|terminal|gateway|tools|agent"
     )
     setup_parser.add_argument(
@@ -2031,7 +2031,7 @@ For more help on a command:
     login_parser = subparsers.add_parser(
         "login",
         help="Authenticate with an inference provider",
-        description="Run OAuth device authorization flow for Virat Code CLI"
+        description="Run OAuth device authorization flow for Virat-Code CLI"
     )
     login_parser.add_argument(
         "--provider",
@@ -2101,7 +2101,7 @@ For more help on a command:
     status_parser = subparsers.add_parser(
         "status",
         help="Show status of all components",
-        description="Display status of Virat Code components"
+        description="Display status of Virat-Code components"
     )
     status_parser.add_argument(
         "--all",
@@ -2143,7 +2143,7 @@ For more help on a command:
     doctor_parser = subparsers.add_parser(
         "doctor",
         help="Check configuration and dependencies",
-        description="Diagnose issues with Virat Code setup"
+        description="Diagnose issues with Virat-Code setup"
     )
     doctor_parser.add_argument(
         "--fix",
@@ -2158,7 +2158,7 @@ For more help on a command:
     config_parser = subparsers.add_parser(
         "config",
         help="View and edit configuration",
-        description="Manage Virat Code configuration"
+        description="Manage Virat-Code configuration"
     )
     config_subparsers = config_parser.add_subparsers(dest="config_command")
     
@@ -2532,7 +2532,7 @@ For more help on a command:
     # =========================================================================
     update_parser = subparsers.add_parser(
         "update",
-        help="Update Virat Code to the latest version",
+        help="Update Virat-Code to the latest version",
         description="Pull the latest changes from git and reinstall dependencies"
     )
     update_parser.set_defaults(func=cmd_update)
@@ -2542,8 +2542,8 @@ For more help on a command:
     # =========================================================================
     uninstall_parser = subparsers.add_parser(
         "uninstall",
-        help="Uninstall Virat Code",
-        description="Remove Virat Code from your system. Can keep configs/data for reinstall."
+        help="Uninstall Virat-Code",
+        description="Remove Virat-Code from your system. Can keep configs/data for reinstall."
     )
     uninstall_parser.add_argument(
         "--full",

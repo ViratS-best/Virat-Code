@@ -1,5 +1,5 @@
 """
-Virat Code CLI - Unified command-line interface for Virat Code.
+Virat-Code CLI - Unified command-line interface for Virat-Code.
 
 Provides subcommands for:
 - Virat-Code chat          - Interactive chat (same as ./virat-code)

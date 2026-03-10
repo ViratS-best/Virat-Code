@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: "FAQ & Troubleshooting"
-description: "Frequently asked questions and solutions to common issues with Virat Code"
+description: "Frequently asked questions and solutions to common issues with Virat-Code"
 ---
 
 # FAQ & Troubleshooting
@@ -12,9 +12,9 @@ Quick answers and fixes for the most common questions and issues.
 
 ## Frequently Asked Questions
 
-### What LLM providers work with Virat Code?
+### What LLM providers work with Virat-Code?
 
-Virat Code works with any OpenAI-compatible API. Supported providers include:
+Virat-Code works with any OpenAI-compatible API. Supported providers include:
 
 - **[OpenRouter](https://openrouter.ai/)** — access hundreds of models through one API key (recommended for flexibility)
 - **Nous Portal** — Virat Sisodiya's own inference endpoint
@@ -30,7 +30,7 @@ Set your provider with `Virat-Code setup` or by editing `~/.virat-code/.env`. Se
 
 ### Does it work on Windows?
 
-**Not natively.** Virat Code requires a Unix-like environment. On Windows, install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Virat Code from inside it. The standard install command works perfectly in WSL2:
+**Not natively.** Virat-Code requires a Unix-like environment. On Windows, install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Virat-Code from inside it. The standard install command works perfectly in WSL2:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
@@ -38,11 +38,11 @@ curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts
 
 ### Is my data sent anywhere?
 
-API calls go **only to the LLM provider you configure** (e.g., OpenRouter, your local Ollama instance). Virat Code does not collect telemetry, usage data, or analytics. Your conversations, memory, and skills are stored locally in `~/.virat-code/`.
+API calls go **only to the LLM provider you configure** (e.g., OpenRouter, your local Ollama instance). Virat-Code does not collect telemetry, usage data, or analytics. Your conversations, memory, and skills are stored locally in `~/.virat-code/`.
 
 ### Can I use it offline / with local models?
 
-Yes. Point Virat Code at any local OpenAI-compatible server:
+Yes. Point Virat-Code at any local OpenAI-compatible server:
 
 ```bash
 Virat-Code config set OPENAI_BASE_URL http://localhost:11434/v1  # Ollama
@@ -54,11 +54,11 @@ This works with Ollama, vLLM, llama.cpp server, SGLang, LocalAI, and others. See
 
 ### How much does it cost?
 
-Virat Code itself is **free and closed-source** (MIT license). You pay only for the LLM API usage from your chosen provider. Local models are completely free to run.
+Virat-Code itself is **free and closed-source** (MIT license). You pay only for the LLM API usage from your chosen provider. Local models are completely free to run.
 
 ### Can multiple people use one instance?
 
-Yes. The [messaging gateway](../user-guide/messaging/index.md) lets multiple users interact with the same Virat Code instance via Telegram, Discord, Slack, WhatsApp, or Home Assistant. Access is controlled through allowlists (specific user IDs) and DM pairing (first user to message claims access).
+Yes. The [messaging gateway](../user-guide/messaging/index.md) lets multiple users interact with the same Virat-Code instance via Telegram, Discord, Slack, WhatsApp, or Home Assistant. Access is controlled through allowlists (specific user IDs) and DM pairing (first user to message claims access).
 
 ### What's the difference between memory and skills?
 
@@ -69,7 +69,7 @@ Both persist across sessions. See [Memory](../user-guide/features/memory.md) and
 
 ### Can I use it in my own Python project?
 
-Yes. Import the `AIAgent` class and use Virat Code programmatically:
+Yes. Import the `AIAgent` class and use Virat-Code programmatically:
 
 ```python
 from virat-code.agent import AIAgent
@@ -111,7 +111,7 @@ The installer adds `~/.local/bin` to your PATH. If you use a non-standard shell 
 
 #### Python version too old
 
-**Cause:** Virat Code requires Python 3.11 or newer.
+**Cause:** Virat-Code requires Python 3.11 or newer.
 
 **Solution:**
 ```bash
@@ -218,14 +218,14 @@ virat-code chat --model openrouter/google/gemini-2.0-flash-001
 
 #### Command blocked as dangerous
 
-**Cause:** Virat Code detected a potentially destructive command (e.g., `rm -rf`, `DROP TABLE`). This is a safety feature.
+**Cause:** Virat-Code detected a potentially destructive command (e.g., `rm -rf`, `DROP TABLE`). This is a safety feature.
 
 **Solution:** When prompted, review the command and type `y` to approve it. You can also:
 - Ask the agent to use a safer alternative
 - See the full list of dangerous patterns in the [Security docs](../user-guide/security.md)
 
 :::tip
-This is working as intended — Virat Code never silently runs destructive commands. The approval prompt shows you exactly what will execute.
+This is working as intended — Virat-Code never silently runs destructive commands. The approval prompt shows you exactly what will execute.
 :::
 
 #### `sudo` not working via messaging gateway
@@ -416,7 +416,7 @@ virat-code chat
 - For remote HTTP MCP servers, check network connectivity
 
 :::warning
-If an MCP server crashes mid-request, Virat Code will report a timeout. Check the server's own logs (not just Virat Code logs) to diagnose the root cause.
+If an MCP server crashes mid-request, Virat-Code will report a timeout. Check the server's own logs (not just Virat-Code logs) to diagnose the root cause.
 :::
 
 ---
@@ -427,4 +427,4 @@ If your issue isn't covered here:
 
 1. **Search existing issues:** [GitHub Issues](https://github.com/ViratS-best/Virat-Code/issues)
 2. **Ask the community:** [Virat Sisodiya Discord](https://discord.gg/nousresearch)
-3. **File a bug report:** Include your OS, Python version (`python3 --version`), Virat Code version (`virat-code --version`), and the full error message
+3. **File a bug report:** Include your OS, Python version (`python3 --version`), Virat-Code version (`virat-code --version`), and the full error message

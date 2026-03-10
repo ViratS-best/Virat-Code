@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
 title: "Tips & Best Practices"
-description: "Practical advice to get the most out of Virat Code — prompt tips, CLI shortcuts, context files, memory, cost optimization, and security"
+description: "Practical advice to get the most out of Virat-Code — prompt tips, CLI shortcuts, context files, memory, cost optimization, and security"
 ---
 
 # Tips & Best Practices
 
-A quick-wins collection of practical tips that make you immediately more effective with Virat Code. Each section targets a different aspect — scan the headers and jump to what's relevant.
+A quick-wins collection of practical tips that make you immediately more effective with Virat-Code. Each section targets a different aspect — scan the headers and jump to what's relevant.
 
 ---
 
@@ -89,11 +89,11 @@ Always consider error handling and edge cases.
 
 ### .cursorrules Compatibility
 
-Already have a `.cursorrules` or `.cursor/rules/*.mdc` file? Virat Code reads those too. No need to duplicate your coding conventions — they're loaded automatically from the working directory.
+Already have a `.cursorrules` or `.cursor/rules/*.mdc` file? Virat-Code reads those too. No need to duplicate your coding conventions — they're loaded automatically from the working directory.
 
 ### Hierarchical Discovery
 
-Virat Code walks the directory tree and discovers **all** `AGENTS.md` files at every level. In a monorepo, put project-wide conventions at the root and team-specific ones in subdirectories — they're all concatenated together with path headers.
+Virat-Code walks the directory tree and discovers **all** `AGENTS.md` files at every level. In a monorepo, put project-wide conventions at the root and team-specific ones in subdirectories — they're all concatenated together with path headers.
 
 :::tip
 Keep context files focused and concise. Every character counts against your token budget since they're injected into every single message.
@@ -187,7 +187,7 @@ When the agent triggers a dangerous command approval (`rm -rf`, `DROP TABLE`, et
 
 ### Command Approval Is Your Safety Net
 
-Virat Code checks every command against a curated list of dangerous patterns before execution. This includes recursive deletes, SQL drops, piping curl to shell, and more. Don't disable this in production — it exists for good reasons.
+Virat-Code checks every command against a curated list of dangerous patterns before execution. This includes recursive deletes, SQL drops, piping curl to shell, and more. Don't disable this in production — it exists for good reasons.
 
 :::warning
 When running in a container backend (Docker, Singularity, Modal, Daytona), dangerous command checks are **skipped** because the container is the security boundary. Make sure your container images are properly locked down.

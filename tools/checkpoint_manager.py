@@ -125,7 +125,7 @@ def _init_shadow_repo(shadow_repo: Path, working_dir: str) -> Optional[str]:
         return f"Shadow repo init failed: {err}"
 
     _run_git(["config", "user.email", "virat-code@local"], shadow_repo, working_dir)
-    _run_git(["config", "user.name", "Virat Code Checkpoint"], shadow_repo, working_dir)
+    _run_git(["config", "user.name", "Virat-Code Checkpoint"], shadow_repo, working_dir)
 
     info_dir = shadow_repo / "info"
     info_dir.mkdir(exist_ok=True)

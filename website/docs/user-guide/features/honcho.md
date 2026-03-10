@@ -7,11 +7,11 @@ sidebar_position: 8
 
 # Honcho Memory
 
-[Honcho](https://honcho.dev) is an AI-native memory system that gives Virat Code persistent, cross-session understanding of users. While Virat Code has built-in memory (`MEMORY.md` and `USER.md` files), Honcho adds a deeper layer of **user modeling** — learning user preferences, goals, communication style, and context across conversations.
+[Honcho](https://honcho.dev) is an AI-native memory system that gives Virat-Code persistent, cross-session understanding of users. While Virat-Code has built-in memory (`MEMORY.md` and `USER.md` files), Honcho adds a deeper layer of **user modeling** — learning user preferences, goals, communication style, and context across conversations.
 
 ## How It Complements Built-in Memory
 
-Virat Code has two memory systems that work together:
+Virat-Code has two memory systems that work together:
 
 | Feature | Built-in Memory | Honcho Memory |
 |---------|----------------|---------------|
@@ -103,9 +103,9 @@ Host-specific fields override global fields. Resolution order:
 2. Global/flat fields from config root
 3. Defaults (host name used as workspace/peer)
 
-### Virat Code Config (`~/.virat-code/config.yaml`)
+### Virat-Code Config (`~/.virat-code/config.yaml`)
 
-The `honcho` section in Virat Code config is intentionally minimal — most configuration comes from the global `~/.honcho/config.json`:
+The `honcho` section in Virat-Code config is intentionally minimal — most configuration comes from the global `~/.honcho/config.json`:
 
 ```yaml
 honcho: {}
@@ -113,7 +113,7 @@ honcho: {}
 
 ## The `query_user_context` Tool
 
-When Honcho is active, Virat Code gains access to the `query_user_context` tool. This lets the agent proactively ask Honcho about the user during conversations:
+When Honcho is active, Virat-Code gains access to the `query_user_context` tool. This lets the agent proactively ask Honcho about the user during conversations:
 
 **Tool schema:**
 - **Name:** `query_user_context`
@@ -142,7 +142,7 @@ Honcho sessions track conversation history for user modeling:
 - **Session creation** — sessions are created or resumed automatically based on session keys (e.g., `telegram:123456` or CLI session IDs)
 - **Message syncing** — new messages are synced to Honcho incrementally (only unsynced messages)
 - **Peer configuration** — user messages are observed for learning; assistant messages are not
-- **Context prefetch** — before responding, Virat Code can prefetch user context (representation + peer card) in a single API call
+- **Context prefetch** — before responding, Virat-Code can prefetch user context (representation + peer card) in a single API call
 - **Session rotation** — when sessions reset, old data is preserved in Honcho for continued user modeling
 
 ## Migration from Local Memory

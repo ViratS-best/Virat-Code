@@ -7,7 +7,7 @@ sidebar_position: 5
 
 # Browser Automation
 
-Virat Code includes a full browser automation toolset powered by [Browserbase](https://browserbase.com), enabling the agent to navigate websites, interact with page elements, fill forms, and extract information — all running in cloud-hosted browsers with built-in anti-bot stealth features.
+Virat-Code includes a full browser automation toolset powered by [Browserbase](https://browserbase.com), enabling the agent to navigate websites, interact with page elements, fill forms, and extract information — all running in cloud-hosted browsers with built-in anti-bot stealth features.
 
 ## Overview
 
@@ -101,7 +101,7 @@ Click @e5 to press the "Sign In" button
 Type text into an input field. Clears the field first, then types the new text.
 
 ```
-Type "Virat Code" into the search field @e3
+Type "Virat-Code" into the search field @e3
 ```
 
 ### `browser_scroll`
@@ -208,7 +208,7 @@ Browserbase provides automatic stealth capabilities:
 | Keep Alive | On | Session reconnection after network hiccups |
 
 :::note
-If paid features aren't available on your plan, Virat Code automatically falls back — first disabling `keepAlive`, then proxies — so browsing still works on free plans.
+If paid features aren't available on your plan, Virat-Code automatically falls back — first disabling `keepAlive`, then proxies — so browsing still works on free plans.
 :::
 
 ## Session Management

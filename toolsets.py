@@ -218,7 +218,7 @@ TOOLSETS = {
     },
     
     # ==========================================================================
-    # Full Virat Code toolsets (CLI + messaging platforms)
+    # Full Virat-Code toolsets (CLI + messaging platforms)
     #
     # All platforms share the same core tools. Messaging platforms add
     # All platforms share the same core tools (including send_message,

@@ -1,4 +1,4 @@
-"""Shared fixtures for the Virat Code test suite."""
+"""Shared fixtures for the Virat-Code test suite."""
 
 import os
 import sys

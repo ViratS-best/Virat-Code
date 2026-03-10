@@ -1,7 +1,7 @@
 """
 Qwen 2.5 tool call parser.
 
-Uses the same <tool_call> format as Virat Code.
+Uses the same <tool_call> format as Virat-Code.
 Registered as a separate parser name for clarity when using --tool-parser=qwen.
 """
 
@@ -13,7 +13,7 @@ from environments.tool_call_parsers.virat-code_parser import ViratCodeToolCallPa
 class QwenToolCallParser(ViratCodeToolCallParser):
     """
     Parser for Qwen 2.5 tool calls.
-    Same <tool_call>{"name": ..., "arguments": ...}</tool_call> format as Virat Code.
+    Same <tool_call>{"name": ..., "arguments": ...}</tool_call> format as Virat-Code.
     """
 
-    pass  # Identical format -- inherits everything from Virat Code
+    pass  # Identical format -- inherits everything from Virat-Code

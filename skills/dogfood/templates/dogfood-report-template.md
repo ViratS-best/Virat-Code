@@ -3,7 +3,7 @@
 **Target:** {target_url}
 **Date:** {date}
 **Scope:** {scope_description}
-**Tester:** Virat Code (automated exploratory QA)
+**Tester:** Virat-Code (automated exploratory QA)
 
 ---
 

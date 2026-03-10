@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# GitHub environment detection helper for Virat Code skills.
+# GitHub environment detection helper for Virat-Code skills.
 #
 # Usage (via terminal tool):
 #   source skills/github/github-auth/scripts/gh-env.sh

@@ -1,6 +1,6 @@
-# Virat Code Atropos Environments
+# Virat-Code Atropos Environments
 
-This directory contains the integration layer between **Virat Code's** tool-calling capabilities and the **Atropos** RL training framework. It provides everything needed to run agentic LLMs through multi-turn tool-calling loops, score their output with arbitrary reward functions, and feed results into Atropos for training or evaluation.
+This directory contains the integration layer between **Virat-Code's** tool-calling capabilities and the **Atropos** RL training framework. It provides everything needed to run agentic LLMs through multi-turn tool-calling loops, score their output with arbitrary reward functions, and feed results into Atropos for training or evaluation.
 
 ## Architecture Overview
 
@@ -39,9 +39,9 @@ This directory contains the integration layer between **Virat Code's** tool-call
 - CLI interface with three subcommands: `serve`, `process`, `evaluate`
 - `evaluate_log()` for saving eval results to JSON + samples.jsonl
 
-**ViratCodeAgentBaseEnv** (`virat_code_base_env.py`) extends BaseEnv with Virat Code specifics:
+**ViratCodeAgentBaseEnv** (`virat_code_base_env.py`) extends BaseEnv with Virat-Code specifics:
 - Sets `os.environ["TERMINAL_ENV"]` to configure the terminal backend (local, docker, modal, daytona, ssh, singularity)
-- Resolves Virat Code toolsets via `_resolve_tools_for_group()` (calls `get_tool_definitions()` which queries `tools/registry.py`)
+- Resolves Virat-Code toolsets via `_resolve_tools_for_group()` (calls `get_tool_definitions()` which queries `tools/registry.py`)
 - Implements `collect_trajectory()` which runs the full agent loop and computes rewards
 - Supports two-phase operation (Phase 1: OpenAI server, Phase 2: VLLM ManagedServer)
 - Applies monkey patches for async-safe tool operation at import time
@@ -57,7 +57,7 @@ Concrete environments inherit from `ViratCodeAgentBaseEnv` and implement:
 
 ### Agent Loop (`agent_loop.py`)
 
-`ViratCodeAgentLoop` is the reusable multi-turn agent engine. It runs the same pattern as Virat Code's `run_agent.py`:
+`ViratCodeAgentLoop` is the reusable multi-turn agent engine. It runs the same pattern as Virat-Code's `run_agent.py`:
 
 1. Send messages + tools to the API via `server.chat_completion()`
 2. If the response contains `tool_calls`, execute each one via `handle_function_call()` (which delegates to `tools/registry.py`'s `dispatch()`)
@@ -70,7 +70,7 @@ Returns an `AgentResult` containing the full conversation history, turn count, r
 
 ### Tool Context (`tool_context.py`)
 
-`ToolContext` is a per-rollout handle that gives reward/verification functions direct access to **all** Virat Code tools, scoped to the rollout's `task_id`. The same `task_id` means the terminal/browser session is the SAME one the model used during its rollout -- all state (files, processes, browser tabs) is preserved.
+`ToolContext` is a per-rollout handle that gives reward/verification functions direct access to **all** Virat-Code tools, scoped to the rollout's `task_id`. The same `task_id` means the terminal/browser session is the SAME one the model used during its rollout -- all state (files, processes, browser tabs) is preserved.
 
 ```python
 async def compute_reward(self, item, result, ctx: ToolContext):
@@ -96,12 +96,12 @@ Available methods:
 - **Transfers**: `upload_file()`, `upload_dir()`, `download_file()`, `download_dir()` -- binary-safe file transfers between host and sandbox
 - **Web**: `web_search(query)`, `web_extract(urls)`
 - **Browser**: `browser_navigate(url)`, `browser_snapshot()`
-- **Generic**: `call_tool(name, args)` -- call any Virat Code tool by name
+- **Generic**: `call_tool(name, args)` -- call any Virat-Code tool by name
 - **Cleanup**: `cleanup()` -- release all resources (called automatically after `compute_reward`)
 
 ### Patches (`patches.py`)
 
-**Problem**: Some Virat Code tools use `asyncio.run()` internally (e.g., mini-swe-agent's Modal backend via SWE-ReX). This crashes when called from inside Atropos's event loop because `asyncio.run()` cannot be nested.
+**Problem**: Some Virat-Code tools use `asyncio.run()` internally (e.g., mini-swe-agent's Modal backend via SWE-ReX). This crashes when called from inside Atropos's event loop because `asyncio.run()` cannot be nested.
 
 **Solution**: `patches.py` monkey-patches `SwerexModalEnvironment` to use a dedicated background thread (`_AsyncWorker`) with its own event loop. The calling code sees the same sync interface, but internally the async work happens on a separate thread that doesn't conflict with Atropos's loop.
 
@@ -124,7 +124,7 @@ Client-side parsers that extract structured `tool_calls` from raw model output t
 Each parser is a standalone reimplementation of the corresponding VLLM parser's `extract_tool_calls()` logic. No VLLM dependency -- only standard library (`re`, `json`, `uuid`) and `openai` types.
 
 Available parsers:
-- `Virat-Code` -- Virat Code/ChatML `<tool_call>` XML format
+- `Virat-Code` -- Virat-Code/ChatML `<tool_call>` XML format
 - `mistral` -- Mistral `[TOOL_CALLS]` format
 - `llama3_json` -- Llama 3 JSON tool calling
 - `qwen` -- Qwen tool calling format

@@ -1,5 +1,5 @@
 # ============================================================================
-# Virat Code — Example Skin Template
+# Virat-Code — Example Skin Template
 # ============================================================================
 #
 # Copy this file to ~/.virat-code/skins/<name>.yaml to create a custom skin.
@@ -72,10 +72,10 @@ spinner:
 # ── Branding ────────────────────────────────────────────────────────────────
 # Text strings used throughout the CLI interface.
 branding:
-  agent_name: "Virat Code"          # Banner title, about display
+  agent_name: "Virat-Code"          # Banner title, about display
   welcome: "Welcome! Type your message or /help for commands."
   goodbye: "Goodbye! ⚕"              # Exit message
-  response_label: " ⚕ Virat Code "       # Response box header label
+  response_label: " ⚕ Virat-Code "       # Response box header label
   prompt_symbol: "❯ "                 # Input prompt symbol
   help_header: "(^_^)? Available Commands"  # /help header text
 

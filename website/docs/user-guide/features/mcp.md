@@ -1,16 +1,16 @@
 ---
 sidebar_position: 4
 title: "MCP (Model Context Protocol)"
-description: "Connect Virat Code to external tool servers via MCP — databases, APIs, filesystems, and more"
+description: "Connect Virat-Code to external tool servers via MCP — databases, APIs, filesystems, and more"
 ---
 
 # MCP (Model Context Protocol)
 
-MCP lets Virat Code connect to external tool servers — giving the agent access to databases, APIs, filesystems, and more without any code changes.
+MCP lets Virat-Code connect to external tool servers — giving the agent access to databases, APIs, filesystems, and more without any code changes.
 
 ## Overview
 
-The [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) is an open standard for connecting AI agents to external tools and data sources. MCP servers expose tools over a lightweight RPC protocol, and Virat Code can connect to any compliant server automatically.
+The [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) is an open standard for connecting AI agents to external tools and data sources. MCP servers expose tools over a lightweight RPC protocol, and Virat-Code can connect to any compliant server automatically.
 
 What this means for you:
 
@@ -131,7 +131,7 @@ Many MCP server docs show Claude Desktop JSON format. Here's the translation:
 }
 ```
 
-**Virat Code YAML:**
+**Virat-Code YAML:**
 ```yaml
 mcp_servers:                          # mcpServers → mcp_servers (snake_case)
   filesystem:
@@ -165,7 +165,7 @@ In addition to the server's own tools, each MCP server also gets 4 utility tools
 
 ### Reconnection
 
-If an MCP server disconnects, Virat Code automatically reconnects with exponential backoff (1s, 2s, 4s, 8s, 16s — max 5 attempts). Initial connection failures are reported immediately.
+If an MCP server disconnects, Virat-Code automatically reconnects with exponential backoff (1s, 2s, 4s, 8s, 16s — max 5 attempts). Initial connection failures are reported immediately.
 
 ### Shutdown
 
@@ -267,14 +267,14 @@ mcp_servers:
 
 ### Reload MCP Servers
 
-You can reload MCP servers without restarting Virat Code:
+You can reload MCP servers without restarting Virat-Code:
 
 - In the CLI: the agent reconnects automatically
 - In messaging: send `/reload-mcp`
 
 ## Sampling (Server-Initiated LLM Requests)
 
-MCP's `sampling/createMessage` capability allows MCP servers to request LLM completions through the Virat Code. This enables agent-in-the-loop workflows where servers can leverage the LLM during tool execution — for example, a database server asking the LLM to interpret query results, or a code analysis server requesting the LLM to review findings.
+MCP's `sampling/createMessage` capability allows MCP servers to request LLM completions through the Virat-Code. This enables agent-in-the-loop workflows where servers can leverage the LLM during tool execution — for example, a database server asking the LLM to interpret query results, or a code analysis server requesting the LLM to review findings.
 
 ### How It Works
 

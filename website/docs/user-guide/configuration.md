@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: "Configuration"
-description: "Configure Virat Code — config.yaml, providers, models, API keys, and more"
+description: "Configure Virat-Code — config.yaml, providers, models, API keys, and more"
 ---
 
 # Configuration
@@ -111,7 +111,7 @@ Base URLs can be overridden with `GLM_BASE_URL`, `KIMI_BASE_URL`, `MINIMAX_BASE_
 
 ## Custom & Self-Hosted LLM Providers
 
-Virat Code works with **any OpenAI-compatible API endpoint**. If a server implements `/v1/chat/completions`, you can point Virat Code at it. This means you can use local models, GPU inference servers, multi-provider routers, or any third-party API.
+Virat-Code works with **any OpenAI-compatible API endpoint**. If a server implements `/v1/chat/completions`, you can point Virat-Code at it. This means you can use local models, GPU inference servers, multi-provider routers, or any third-party API.
 
 ### General Setup
 
@@ -145,7 +145,7 @@ Everything below follows this same pattern — just change the URL, key, and mod
 ollama pull llama3.1:70b
 ollama serve   # Starts on port 11434
 
-# Configure Virat Code
+# Configure Virat-Code
 OPENAI_BASE_URL=http://localhost:11434/v1
 OPENAI_API_KEY=ollama           # Any non-empty string
 LLM_MODEL=llama3.1:70b
@@ -170,13 +170,13 @@ vllm serve meta-llama/Llama-3.1-70B-Instruct \
   --port 8000 \
   --tensor-parallel-size 2    # Multi-GPU
 
-# Configure Virat Code
+# Configure Virat-Code
 OPENAI_BASE_URL=http://localhost:8000/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=meta-llama/Llama-3.1-70B-Instruct
 ```
 
-vLLM supports tool calling, structured output, and multi-modal models. Use `--enable-auto-tool-choice` and `--tool-call-parser virat-code` for Virat Code-format tool calling with NousResearch models.
+vLLM supports tool calling, structured output, and multi-modal models. Use `--enable-auto-tool-choice` and `--tool-call-parser virat-code` for Virat-Code-format tool calling with NousResearch models.
 
 ---
 
@@ -192,7 +192,7 @@ python -m sglang.launch_server \
   --port 8000 \
   --tp 2
 
-# Configure Virat Code
+# Configure Virat-Code
 OPENAI_BASE_URL=http://localhost:8000/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=meta-llama/Llama-3.1-70B-Instruct
@@ -211,7 +211,7 @@ cmake -B build && cmake --build build --config Release
   -m models/llama-3.1-8b-instruct-Q4_K_M.gguf \
   --port 8080 --host 0.0.0.0
 
-# Configure Virat Code
+# Configure Virat-Code
 OPENAI_BASE_URL=http://localhost:8080/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=llama-3.1-8b-instruct
@@ -235,7 +235,7 @@ litellm --model anthropic/claude-sonnet-4 --port 4000
 # Or with a config file for multiple models:
 litellm --config litellm_config.yaml --port 4000
 
-# Configure Virat Code
+# Configure Virat-Code
 OPENAI_BASE_URL=http://localhost:4000/v1
 OPENAI_API_KEY=sk-your-litellm-key
 LLM_MODEL=anthropic/claude-sonnet-4
@@ -266,7 +266,7 @@ router_settings:
 # Install and start
 npx @blockrun/clawrouter    # Starts on port 8402
 
-# Configure Virat Code
+# Configure Virat-Code
 OPENAI_BASE_URL=http://localhost:8402/v1
 OPENAI_API_KEY=dummy
 LLM_MODEL=blockrun/auto     # or: blockrun/eco, blockrun/premium, blockrun/agentic
@@ -345,7 +345,7 @@ You can switch between providers at any time with `virat-code model` — no rest
 
 ### Self-Hosting Firecrawl
 
-By default, Virat Code uses the [Firecrawl cloud API](https://firecrawl.dev/) for web search and scraping. If you prefer to run Firecrawl locally, you can point Virat Code at a self-hosted instance instead.
+By default, Virat-Code uses the [Firecrawl cloud API](https://firecrawl.dev/) for web search and scraping. If you prefer to run Firecrawl locally, you can point Virat-Code at a self-hosted instance instead.
 
 **What you get:** No API key required, no rate limits, no per-page costs, full data sovereignty.
 
@@ -361,7 +361,7 @@ By default, Virat Code uses the [Firecrawl cloud API](https://firecrawl.dev/) fo
    docker compose up -d
    ```
 
-2. Point Virat Code at your instance (no API key needed):
+2. Point Virat-Code at your instance (no API key needed):
    ```bash
    Virat-Code config set FIRECRAWL_API_URL http://localhost:3002
    ```
@@ -473,7 +473,7 @@ The `summary_model` must support a context length at least as large as your main
 
 ## Auxiliary Models
 
-Virat Code uses lightweight "auxiliary" models for side tasks like image analysis, web page summarization, and browser screenshot analysis. By default, these use **Gemini Flash** via OpenRouter or Nous Portal — you don't need to configure anything.
+Virat-Code uses lightweight "auxiliary" models for side tasks like image analysis, web page summarization, and browser screenshot analysis. By default, these use **Gemini Flash** via OpenRouter or Nous Portal — you don't need to configure anything.
 
 To use a different model, add an `auxiliary` section to `~/.virat-code/config.yaml`:
 

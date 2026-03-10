@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""OpenClaw -> Virat Code migration helper.
+"""OpenClaw -> Virat-Code migration helper.
 
 This script migrates the parts of an OpenClaw user footprint that map cleanly
-into Virat Code, archives selected unmapped docs for manual review, and
+into Virat-Code, archives selected unmapped docs for manual review, and
 reports exactly what was skipped and why.
 """
 
@@ -45,7 +45,7 @@ WORKSPACE_INSTRUCTIONS_FILENAME = "AGENTS" + ".md"
 MIGRATION_OPTION_METADATA: Dict[str, Dict[str, str]] = {
     "soul": {
         "label": "SOUL.md",
-        "description": "Import the OpenClaw persona file into Virat Code.",
+        "description": "Import the OpenClaw persona file into Virat-Code.",
     },
     "workspace-agents": {
         "label": "Workspace instructions",
@@ -53,23 +53,23 @@ MIGRATION_OPTION_METADATA: Dict[str, Dict[str, str]] = {
     },
     "memory": {
         "label": "MEMORY.md",
-        "description": "Import long-term memory entries into Virat Code memories.",
+        "description": "Import long-term memory entries into Virat-Code memories.",
     },
     "user-profile": {
         "label": "USER.md",
-        "description": "Import user profile entries into Virat Code memories.",
+        "description": "Import user profile entries into Virat-Code memories.",
     },
     "messaging-settings": {
         "label": "Messaging settings",
-        "description": "Import Virat Code-compatible messaging settings such as allowlists and working directory.",
+        "description": "Import Virat-Code-compatible messaging settings such as allowlists and working directory.",
     },
     "secret-settings": {
         "label": "Allowlisted secrets",
-        "description": "Import the small allowlist of Virat Code-compatible secrets when explicitly enabled.",
+        "description": "Import the small allowlist of Virat-Code-compatible secrets when explicitly enabled.",
     },
     "command-allowlist": {
         "label": "Command allowlist",
-        "description": "Merge OpenClaw exec approval patterns into Virat Code command_allowlist.",
+        "description": "Merge OpenClaw exec approval patterns into Virat-Code command_allowlist.",
     },
     "skills": {
         "label": "User skills",
@@ -81,39 +81,39 @@ MIGRATION_OPTION_METADATA: Dict[str, Dict[str, str]] = {
     },
     "discord-settings": {
         "label": "Discord settings",
-        "description": "Import Discord bot token and allowlist into Virat Code .env.",
+        "description": "Import Discord bot token and allowlist into Virat-Code .env.",
     },
     "slack-settings": {
         "label": "Slack settings",
-        "description": "Import Slack bot/app tokens and allowlist into Virat Code .env.",
+        "description": "Import Slack bot/app tokens and allowlist into Virat-Code .env.",
     },
     "whatsapp-settings": {
         "label": "WhatsApp settings",
-        "description": "Import WhatsApp allowlist into Virat Code .env.",
+        "description": "Import WhatsApp allowlist into Virat-Code .env.",
     },
     "signal-settings": {
         "label": "Signal settings",
-        "description": "Import Signal account, HTTP URL, and allowlist into Virat Code .env.",
+        "description": "Import Signal account, HTTP URL, and allowlist into Virat-Code .env.",
     },
     "provider-keys": {
         "label": "Provider API keys",
-        "description": "Import model provider API keys into Virat Code .env (requires --migrate-secrets).",
+        "description": "Import model provider API keys into Virat-Code .env (requires --migrate-secrets).",
     },
     "model-config": {
         "label": "Default model",
-        "description": "Import the default model setting into Virat Code config.yaml.",
+        "description": "Import the default model setting into Virat-Code config.yaml.",
     },
     "tts-config": {
         "label": "TTS configuration",
-        "description": "Import TTS provider and voice settings into Virat Code config.yaml.",
+        "description": "Import TTS provider and voice settings into Virat-Code config.yaml.",
     },
     "shared-skills": {
         "label": "Shared skills",
-        "description": "Copy shared OpenClaw skills from ~/.openclaw/skills/ into Virat Code.",
+        "description": "Copy shared OpenClaw skills from ~/.openclaw/skills/ into Virat-Code.",
     },
     "daily-memory": {
         "label": "Daily memory files",
-        "description": "Merge daily memory entries from workspace/memory/ into Virat Code MEMORY.md.",
+        "description": "Merge daily memory entries from workspace/memory/ into Virat-Code MEMORY.md.",
     },
     "archive": {
         "label": "Archive unmapped docs",
@@ -233,7 +233,7 @@ def load_yaml_file(path: Path) -> Dict[str, Any]:
 
 def dump_yaml_file(path: Path, data: Dict[str, Any]) -> None:
     if yaml is None:
-        raise RuntimeError("PyYAML is required to update Virat Code config.yaml")
+        raise RuntimeError("PyYAML is required to update Virat-Code config.yaml")
     ensure_parent(path)
     path.write_text(
         yaml.safe_dump(data, sort_keys=False, allow_unicode=False),
@@ -413,7 +413,7 @@ def write_report(output_dir: Path, report: Dict[str, Any]) -> None:
         grouped.setdefault(item["status"], []).append(item)
 
     lines = [
-        "# OpenClaw -> Virat Code Migration Report",
+        "# OpenClaw -> Virat-Code Migration Report",
         "",
         f"- Timestamp: {report['timestamp']}",
         f"- Mode: {report['mode']}",
@@ -759,7 +759,7 @@ class Migrator:
             self.record("command-allowlist", source, destination, "skipped", "No allowlist patterns found")
             return
         if not destination.exists():
-            self.record("command-allowlist", source, destination, "skipped", "Virat Code config.yaml does not exist yet")
+            self.record("command-allowlist", source, destination, "skipped", "Virat-Code config.yaml does not exist yet")
             return
 
         config = load_yaml_file(destination)
@@ -871,7 +871,7 @@ class Migrator:
         if additions:
             self.merge_env_values(additions, "messaging-settings", self.source_root / "openclaw.json")
         else:
-            self.record("messaging-settings", self.source_root / "openclaw.json", self.target_root / ".env", "skipped", "No Virat Code-compatible messaging settings found")
+            self.record("messaging-settings", self.source_root / "openclaw.json", self.target_root / ".env", "skipped", "No Virat-Code-compatible messaging settings found")
 
     def handle_secret_settings(self, config: Optional[Dict[str, Any]] = None) -> None:
         config = config or self.load_openclaw_config()
@@ -918,7 +918,7 @@ class Migrator:
                 self.source_root / "openclaw.json",
                 self.target_root / ".env",
                 "skipped",
-                "No allowlisted Virat Code-compatible secrets found",
+                "No allowlisted Virat-Code-compatible secrets found",
                 supported_targets=sorted(SUPPORTED_SECRET_TARGETS),
             )
 
@@ -1419,16 +1419,16 @@ class Migrator:
         ]
         for candidate in candidates:
             if candidate:
-                self.archive_path(candidate, reason="No direct Virat Code destination; archived for manual review")
+                self.archive_path(candidate, reason="No direct Virat-Code destination; archived for manual review")
 
         for rel in ("workspace/.learnings", "workspace/memory"):
             candidate = self.source_root / rel
             if candidate.exists():
-                self.archive_path(candidate, reason="No direct Virat Code destination; archived for manual review")
+                self.archive_path(candidate, reason="No direct Virat-Code destination; archived for manual review")
 
         partially_extracted = [
-            ("openclaw.json", "Selected Virat Code-compatible values were extracted; raw OpenClaw config was not copied."),
-            ("credentials/telegram-default-allowFrom.json", "Selected Virat Code-compatible values were extracted; raw credentials file was not copied."),
+            ("openclaw.json", "Selected Virat-Code-compatible values were extracted; raw OpenClaw config was not copied."),
+            ("credentials/telegram-default-allowFrom.json", "Selected Virat-Code-compatible values were extracted; raw credentials file was not copied."),
         ]
         for rel, reason in partially_extracted:
             candidate = self.source_root / rel
@@ -1461,19 +1461,19 @@ class Migrator:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Migrate OpenClaw user state into Virat Code.")
+    parser = argparse.ArgumentParser(description="Migrate OpenClaw user state into Virat-Code.")
     parser.add_argument("--source", default=str(Path.home() / ".openclaw"), help="OpenClaw home directory")
-    parser.add_argument("--target", default=str(Path.home() / ".virat-code"), help="Virat Code home directory")
+    parser.add_argument("--target", default=str(Path.home() / ".virat-code"), help="Virat-Code home directory")
     parser.add_argument(
         "--workspace-target",
         help="Optional workspace root where the workspace instructions file should be copied",
     )
     parser.add_argument("--execute", action="store_true", help="Apply changes instead of reporting a dry run")
-    parser.add_argument("--overwrite", action="store_true", help="Overwrite existing Virat Code targets after backing them up")
+    parser.add_argument("--overwrite", action="store_true", help="Overwrite existing Virat-Code targets after backing them up")
     parser.add_argument(
         "--migrate-secrets",
         action="store_true",
-        help="Import a narrow allowlist of Virat Code-compatible secrets into the target env file",
+        help="Import a narrow allowlist of Virat-Code-compatible secrets into the target env file",
     )
     parser.add_argument(
         "--skill-conflict",

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: "Updating & Uninstalling"
-description: "How to update Virat Code to the latest version or uninstall it"
+description: "How to update Virat-Code to the latest version or uninstall it"
 ---
 
 # Updating & Uninstalling
@@ -35,7 +35,7 @@ This pulls the latest code, updates dependencies, and restarts the gateway.
 If you installed manually (not via the quick installer):
 
 ```bash
-cd /path/to/Virat Code
+cd /path/to/Virat-Code
 export VIRTUAL_ENV="$(pwd)/venv"
 
 # Pull latest code and submodules
@@ -66,7 +66,7 @@ The uninstaller gives you the option to keep your configuration files (`~/.virat
 
 ```bash
 rm -f ~/.local/bin/virat-code
-rm -rf /path/to/Virat Code
+rm -rf /path/to/Virat-Code
 rm -rf ~/.virat-code            # Optional — keep if you plan to reinstall
 ```
 

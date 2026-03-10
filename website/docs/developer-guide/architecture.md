@@ -1,17 +1,17 @@
 ---
 sidebar_position: 1
 title: "Architecture"
-description: "Virat Code internals — project structure, agent loop, key classes, and design patterns"
+description: "Virat-Code internals — project structure, agent loop, key classes, and design patterns"
 ---
 
 # Architecture
 
-This guide covers the internal architecture of Virat Code for developers contributing to the project.
+This guide covers the internal architecture of Virat-Code for developers contributing to the project.
 
 ## Project Structure
 
 ```
-Virat Code/
+Virat-Code/
 ├── run_agent.py              # AIAgent class — core conversation loop, tool dispatch
 ├── cli.py                    # ViratCodeCLI class — interactive TUI, prompt_toolkit
 ├── model_tools.py            # Tool orchestration (thin layer over tools/registry.py)

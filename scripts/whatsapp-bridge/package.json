@@ -1,7 +1,7 @@
 {
   "name": "virat-code-whatsapp-bridge",
   "version": "1.0.0",
-  "description": "WhatsApp bridge for Virat Code using Baileys",
+  "description": "WhatsApp bridge for Virat-Code using Baileys",
   "private": true,
   "type": "module",
   "scripts": {

@@ -366,7 +366,7 @@ class YCBenchEvalEnv(ViratCodeAgentBaseEnv):
             group_size=1,
             steps_per_eval=1,
             total_steps=1,
-            tokenizer_name="NousResearch/Virat Code-3-Llama-3.1-8B",
+            tokenizer_name="NousResearch/Virat-Code-3-Llama-3.1-8B",
             use_wandb=True,
             wandb_name="yc-bench",
             ensure_scores_are_not_same=False,

@@ -1,5 +1,5 @@
 """
-Configuration management for Virat Code.
+Configuration management for Virat-Code.
 
 Config files are stored in ~/.virat-code/ for easy access:
 - ~/.virat-code/config.yaml  - All settings (model, toolsets, terminal, etc.)
@@ -32,7 +32,7 @@ from virat_code_cli.colors import Colors, color
 # =============================================================================
 
 def get_virat_code_home() -> Path:
-    """Get the Virat Code home directory (~/.virat-code)."""
+    """Get the Virat-Code home directory (~/.virat-code)."""
     return Path(os.getenv("VIRAT_CODE_HOME", Path.home() / ".virat-code"))
 
 def get_config_path() -> Path:
@@ -106,7 +106,7 @@ DEFAULT_CONFIG = {
         "summary_provider": "auto",
     },
     
-    # Auxiliary model overrides (advanced).  By default Virat Code auto-selects
+    # Auxiliary model overrides (advanced).  By default Virat-Code auto-selects
     # the provider and model for each side task.  Set these to override.
     "auxiliary": {
         "vision": {
@@ -964,7 +964,7 @@ def show_config():
     
     print()
     print(color("┌─────────────────────────────────────────────────────────┐", Colors.CYAN))
-    print(color("│              ⚕ Virat Code Configuration                    │", Colors.CYAN))
+    print(color("│              ⚕ Virat-Code Configuration                    │", Colors.CYAN))
     print(color("└─────────────────────────────────────────────────────────┘", Colors.CYAN))
     
     # Paths

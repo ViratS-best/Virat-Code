@@ -2,7 +2,7 @@
 name: excalidraw
 description: Create hand-drawn style diagrams using Excalidraw JSON format. Generate .excalidraw files for architecture diagrams, flowcharts, sequence diagrams, concept maps, and more. Files can be opened at excalidraw.com or uploaded for shareable links.
 version: 1.0.0
-author: Virat Code
+author: Virat-Code
 license: MIT
 dependencies: []
 metadata:
@@ -31,7 +31,7 @@ Wrap your elements array in the standard `.excalidraw` envelope and save with `w
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "Virat Code",
+  "source": "Virat-Code",
   "elements": [ ...your elements array here... ],
   "appState": {
     "viewBackgroundColor": "#ffffff"

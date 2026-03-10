@@ -1,14 +1,14 @@
 ---
 sidebar_position: 1
 title: "Quickstart"
-description: "Your first conversation with Virat Code — from install to chatting in 2 minutes"
+description: "Your first conversation with Virat-Code — from install to chatting in 2 minutes"
 ---
 
 # Quickstart
 
-This guide walks you through installing Virat Code, setting up a provider, and having your first conversation. By the end, you'll know the key features and how to explore further.
+This guide walks you through installing Virat-Code, setting up a provider, and having your first conversation. By the end, you'll know the key features and how to explore further.
 
-## 1. Install Virat Code
+## 1. Install Virat-Code
 
 Run the one-line installer:
 
@@ -116,7 +116,7 @@ Virat-Code config set terminal.backend ssh       # Remote server
 
 ### Connect messaging platforms
 
-Chat with Virat Code from your phone via Telegram, Discord, Slack, or WhatsApp:
+Chat with Virat-Code from your phone via Telegram, Discord, Slack, or WhatsApp:
 
 ```bash
 Virat-Code gateway setup    # Interactive platform configuration

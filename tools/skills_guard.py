@@ -9,7 +9,7 @@ and a trust-aware install policy that determines whether a skill is allowed
 based on both the scan verdict and the source's trust level.
 
 Trust levels:
-  - builtin:   Ships with Virat Code. Never scanned, always trusted.
+  - builtin:   Ships with Virat-Code. Never scanned, always trusted.
   - trusted:   openai/skills and anthropics/skills only. Caution verdicts allowed.
   - community: Everything else. Any findings = blocked unless --force.
 
@@ -118,7 +118,7 @@ THREAT_PATTERNS = [
      "references Docker config (may contain registry creds)"),
     (r'\$HOME/\.virat-code/\.env|\~/\.virat-code/\.env',
      "virat_code_env_access", "critical", "exfiltration",
-     "directly references Virat Code secrets file"),
+     "directly references Virat-Code secrets file"),
     (r'cat\s+[^\n]*(\.env|credentials|\.netrc|\.pgpass|\.npmrc|\.pypirc)',
      "read_secrets_file", "critical", "exfiltration",
      "reads known secrets file"),
@@ -426,7 +426,7 @@ THREAT_PATTERNS = [
      "references agent config files (could persist malicious instructions across sessions)"),
     (r'\.virat-code/config\.yaml|\.virat-code/SOUL\.md',
      "virat_code_config_mod", "critical", "persistence",
-     "references Virat Code configuration files directly"),
+     "references Virat-Code configuration files directly"),
     (r'\.claude/settings|\.codex/config',
      "other_agent_config", "high", "persistence",
      "references other agent configuration files"),
@@ -948,7 +948,7 @@ def llm_audit_skill(skill_path: Path, static_result: ScanResult,
             api_key=api_key,
             default_headers={
                 "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
-                "X-OpenRouter-Title": "Virat Code",
+                "X-OpenRouter-Title": "Virat-Code",
                 "X-OpenRouter-Categories": "productivity,cli-agent",
             },
         )

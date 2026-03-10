@@ -1,5 +1,5 @@
 """
-Cron job management tools for Virat Code.
+Cron job management tools for Virat-Code.
 
 These tools allow the agent to schedule, list, and remove automated tasks.
 Only available when running via CLI (virat-code-cli toolset).

@@ -1,8 +1,8 @@
 # Terminal Test Environment -- Default Configuration
 #
-# Simple file-creation tasks for validating the full Atropos + Virat Code stack.
+# Simple file-creation tasks for validating the full Atropos + Virat-Code stack.
 # Uses Modal terminal backend and OpenRouter (Claude) for inference.
-# API keys loaded from ~/Virat Code/.env
+# API keys loaded from ~/Virat-Code/.env
 #
 # Usage:
 #   run-api

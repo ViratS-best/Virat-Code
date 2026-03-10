@@ -2,7 +2,7 @@
 name: apple-reminders
 description: Manage Apple Reminders via remindctl CLI (list, add, complete, delete).
 version: 1.0.0
-author: Virat Code
+author: Virat-Code
 license: MIT
 platforms: [macos]
 metadata:

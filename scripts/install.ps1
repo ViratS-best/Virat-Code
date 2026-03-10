@@ -1,5 +1,5 @@
 # ============================================================================
-# Virat Code Installer for Windows
+# Virat-Code Installer for Windows
 # ============================================================================
 # Installation script for Windows (PowerShell).
 # Uses uv for fast Python provisioning and package management.
@@ -17,7 +17,7 @@ param(
     [switch]$SkipSetup,
     [string]$Branch = "main",
     [string]$ViratCodeHome = "$env:LOCALAPPDATA\virat-code",
-    [string]$InstallDir = "$env:LOCALAPPDATA\virat-code\Virat Code"
+    [string]$InstallDir = "$env:LOCALAPPDATA\virat-code\Virat-Code"
 )
 
 $ErrorActionPreference = "Stop"
@@ -38,7 +38,7 @@ $NodeVersion = "22"
 function Write-Banner {
     Write-Host ""
     Write-Host "┌─────────────────────────────────────────────────────────┐" -ForegroundColor Magenta
-    Write-Host "│             ⚕ Virat Code Installer                   │" -ForegroundColor Magenta
+    Write-Host "│             ⚕ Virat-Code Installer                   │" -ForegroundColor Magenta
     Write-Host "├─────────────────────────────────────────────────────────┤" -ForegroundColor Magenta
     Write-Host "│  An closed source AI agent by Virat Sisodiya.              │" -ForegroundColor Magenta
     Write-Host "└─────────────────────────────────────────────────────────┘" -ForegroundColor Magenta
@@ -221,7 +221,7 @@ function Test-Node {
     if (Test-Path $managedNode) {
         $version = & $managedNode --version
         $env:Path = "$ViratCodeHome\node;$env:Path"
-        Write-Success "Node.js $version found (Virat Code-managed)"
+        Write-Success "Node.js $version found (Virat-Code-managed)"
         $script:HasNode = $true
         return $true
     }
@@ -462,8 +462,8 @@ function Install-Repository {
             Write-Warn "Git clone failed — downloading ZIP archive instead..."
             try {
                 $zipUrl = "https://github.com/ViratS-best/Virat-Code/archive/refs/heads/$Branch.zip"
-                $zipPath = "$env:TEMP\Virat Code-$Branch.zip"
-                $extractPath = "$env:TEMP\Virat Code-extract"
+                $zipPath = "$env:TEMP\Virat-Code-$Branch.zip"
+                $extractPath = "$env:TEMP\Virat-Code-extract"
                 
                 Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath -UseBasicParsing
                 if (Test-Path $extractPath) { Remove-Item -Recurse -Force $extractPath }
@@ -675,12 +675,12 @@ function Copy-ConfigTemplates {
     $soulPath = "$ViratCodeHome\SOUL.md"
     if (-not (Test-Path $soulPath)) {
         @"
-# Virat Code Persona
+# Virat-Code Persona
 
 <!-- 
 This file defines the agent's personality and tone.
 The agent will embody whatever you write here.
-Edit this to customize how Virat Code communicates with you.
+Edit this to customize how Virat-Code communicates with you.
 
 Examples:
   - "You are a warm, playful assistant who uses kaomoji occasionally."
@@ -850,7 +850,7 @@ function Write-Completion {
     Write-Host "   Data:      " -NoNewline -ForegroundColor Yellow
     Write-Host "$ViratCodeHome\cron\, sessions\, logs\"
     Write-Host "   Code:      " -NoNewline -ForegroundColor Yellow
-    Write-Host "$ViratCodeHome\Virat Code\"
+    Write-Host "$ViratCodeHome\Virat-Code\"
     Write-Host ""
     
     Write-Host "─────────────────────────────────────────────────────────" -ForegroundColor Cyan

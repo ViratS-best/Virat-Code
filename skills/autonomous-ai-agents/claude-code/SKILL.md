@@ -2,17 +2,17 @@
 name: claude-code
 description: Delegate coding tasks to Claude Code (Anthropic's CLI agent). Use for building features, refactoring, PR reviews, and iterative coding. Requires the claude CLI installed.
 version: 1.0.0
-author: Virat Code
+author: Virat-Code
 license: MIT
 metadata:
   virat-code:
     tags: [Coding-Agent, Claude, Anthropic, Code-Review, Refactoring]
-    related_skills: [codex, Virat Code]
+    related_skills: [codex, Virat-Code]
 ---
 
 # Claude Code
 
-Delegate coding tasks to [Claude Code](https://docs.anthropic.com/en/docs/claude-code) via the Virat Code terminal. Claude Code is Anthropic's autonomous coding agent CLI.
+Delegate coding tasks to [Claude Code](https://docs.anthropic.com/en/docs/claude-code) via the Virat-Code terminal. Claude Code is Anthropic's autonomous coding agent CLI.
 
 ## Prerequisites
 

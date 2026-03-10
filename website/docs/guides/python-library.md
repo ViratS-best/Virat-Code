@@ -1,18 +1,18 @@
 ---
 sidebar_position: 4
-title: "Using Virat Code as a Python Library"
+title: "Using Virat-Code as a Python Library"
 description: "Embed AIAgent in your own Python scripts, web apps, or automation pipelines — no CLI required"
 ---
 
-# Using Virat Code as a Python Library
+# Using Virat-Code as a Python Library
 
-Virat Code isn't just a CLI tool. You can import `AIAgent` directly and use it programmatically in your own Python scripts, web applications, or automation pipelines. This guide shows you how.
+Virat-Code isn't just a CLI tool. You can import `AIAgent` directly and use it programmatically in your own Python scripts, web applications, or automation pipelines. This guide shows you how.
 
 ---
 
 ## Installation
 
-Install Virat Code directly from the repository:
+Install Virat-Code directly from the repository:
 
 ```bash
 pip install git+https://github.com/ViratS-best/Virat-Code.git
@@ -27,18 +27,18 @@ uv pip install git+https://github.com/ViratS-best/Virat-Code.git
 You can also pin it in your `requirements.txt`:
 
 ```text
-Virat Code @ git+https://github.com/ViratS-best/Virat-Code.git
+Virat-Code @ git+https://github.com/ViratS-best/Virat-Code.git
 ```
 
 :::tip
-The same environment variables used by the CLI are required when using Virat Code as a library. At minimum, set `OPENROUTER_API_KEY` (or `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` if using direct provider access).
+The same environment variables used by the CLI are required when using Virat-Code as a library. At minimum, set `OPENROUTER_API_KEY` (or `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` if using direct provider access).
 :::
 
 ---
 
 ## Basic Usage
 
-The simplest way to use Virat Code is the `chat()` method — pass a message, get a string back:
+The simplest way to use Virat-Code is the `chat()` method — pass a message, get a string back:
 
 ```python
 from run_agent import AIAgent
@@ -54,7 +54,7 @@ print(response)
 `chat()` handles the full conversation loop internally — tool calls, retries, everything — and returns just the final text response.
 
 :::warning
-Always set `quiet_mode=True` when embedding Virat Code in your own code. Without it, the agent prints CLI spinners, progress indicators, and other terminal output that will clutter your application's output.
+Always set `quiet_mode=True` when embedding Virat-Code in your own code. Without it, the agent prints CLI spinners, progress indicators, and other terminal output that will clutter your application's output.
 :::
 
 ---
@@ -186,7 +186,7 @@ This is ideal for building specialized agents — a code reviewer, a documentati
 
 ## Batch Processing
 
-For running many prompts in parallel, Virat Code includes `batch_runner.py`. It manages concurrent `AIAgent` instances with proper resource isolation:
+For running many prompts in parallel, Virat-Code includes `batch_runner.py`. It manages concurrent `AIAgent` instances with proper resource isolation:
 
 ```bash
 python batch_runner.py --input prompts.jsonl --output results.jsonl

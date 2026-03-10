@@ -2,7 +2,7 @@
 
 Official skills maintained by Virat Sisodiya that are **not activated by default**.
 
-These skills ship with the Virat Code repository but are not copied to
+These skills ship with the Virat-Code repository but are not copied to
 `~/.virat-code/skills/` during setup. They are discoverable via the Skills Hub:
 
 ```bash

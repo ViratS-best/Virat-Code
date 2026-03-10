@@ -1,12 +1,12 @@
 ---
 sidebar_position: 2
 title: "Installation"
-description: "Install Virat Code on Linux, macOS, or WSL2"
+description: "Install Virat-Code on Linux, macOS, or WSL2"
 ---
 
 # Installation
 
-Get Virat Code up and running in under two minutes with the one-line installer, or follow the manual steps for full control.
+Get Virat-Code up and running in under two minutes with the one-line installer, or follow the manual steps for full control.
 
 ## Quick Install
 
@@ -17,7 +17,7 @@ curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts
 ```
 
 :::warning Windows
-Native Windows is **not supported**. Please install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Virat Code from there. The install command above works inside WSL2.
+Native Windows is **not supported**. Please install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Virat-Code from there. The install command above works inside WSL2.
 :::
 
 ### What the Installer Does
@@ -62,7 +62,7 @@ Clone with `--recurse-submodules` to pull the required submodules:
 
 ```bash
 git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
-cd Virat Code
+cd Virat-Code
 ```
 
 If you already cloned without `--recurse-submodules`:
@@ -219,7 +219,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone & enter
 git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
-cd Virat Code
+cd Virat-Code
 
 # Create venv with Python 3.11
 uv venv venv --python 3.11

@@ -1,10 +1,10 @@
 # Filesystem Checkpoints
 
-Virat Code can automatically snapshot your working directory before making file changes, giving you a safety net to roll back if something goes wrong.
+Virat-Code can automatically snapshot your working directory before making file changes, giving you a safety net to roll back if something goes wrong.
 
 ## How It Works
 
-When enabled, Virat Code takes a **one-time snapshot** at the start of each conversation turn before the first file-modifying operation (`write_file` or `patch`). This creates a point-in-time backup you can restore to at any time.
+When enabled, Virat-Code takes a **one-time snapshot** at the start of each conversation turn before the first file-modifying operation (`write_file` or `patch`). This creates a point-in-time backup you can restore to at any time.
 
 Under the hood, checkpoints use a **shadow git repository** stored at `~/.virat-code/checkpoints/`. This is completely separate from your project's git — no `.git` directory is created in your project, and your own git history is never touched.
 
@@ -48,7 +48,7 @@ Example output:
 Use /rollback <number> to restore, e.g. /rollback 1
 ```
 
-When you restore, Virat Code automatically takes a **pre-rollback snapshot** first — so you can always undo your undo.
+When you restore, Virat-Code automatically takes a **pre-rollback snapshot** first — so you can always undo your undo.
 
 ## What Gets Checkpointed
 
@@ -72,7 +72,7 @@ Checkpoints are designed to be lightweight:
 
 ## How It Determines the Project Root
 
-When you write to a file like `src/components/Button.tsx`, Virat Code walks up the directory tree looking for project markers (`.git`, `pyproject.toml`, `package.json`, `Cargo.toml`, etc.) to find the project root. This ensures the entire project is checkpointed, not just the file's parent directory.
+When you write to a file like `src/components/Button.tsx`, Virat-Code walks up the directory tree looking for project markers (`.git`, `pyproject.toml`, `package.json`, `Cargo.toml`, etc.) to find the project root. This ensures the entire project is checkpointed, not just the file's parent directory.
 
 ## Platforms
 

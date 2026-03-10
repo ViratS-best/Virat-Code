@@ -1,17 +1,17 @@
 ---
 sidebar_position: 4
 title: "Slack"
-description: "Set up Virat Code as a Slack bot using Socket Mode"
+description: "Set up Virat-Code as a Slack bot using Socket Mode"
 ---
 
 # Slack Setup
 
-Connect Virat Code to Slack as a bot using Socket Mode. Socket Mode uses WebSockets instead of
-public HTTP endpoints, so your Virat Code instance doesn't need to be publicly accessible — it works
+Connect Virat-Code to Slack as a bot using Socket Mode. Socket Mode uses WebSockets instead of
+public HTTP endpoints, so your Virat-Code instance doesn't need to be publicly accessible — it works
 behind firewalls, on your laptop, or on a private server.
 
 :::warning Classic Slack Apps Deprecated
-Classic Slack apps (using RTM API) were **fully deprecated in March 2025**. Virat Code uses the modern
+Classic Slack apps (using RTM API) were **fully deprecated in March 2025**. Virat-Code uses the modern
 Bolt SDK with Socket Mode. If you have an old classic app, you must create a new one following
 the steps below.
 :::
@@ -32,7 +32,7 @@ the steps below.
 1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
 2. Click **Create New App**
 3. Choose **From scratch**
-4. Enter an app name (e.g., "Virat Code") and select your workspace
+4. Enter an app name (e.g., "Virat-Code") and select your workspace
 5. Click **Create App**
 
 You'll land on the app's **Basic Information** page.
@@ -129,7 +129,7 @@ to take effect. The Install App page will show a banner prompting you to do so.
 
 ## Step 6: Find User IDs for the Allowlist
 
-Virat Code uses Slack **Member IDs** (not usernames or display names) for the allowlist.
+Virat-Code uses Slack **Member IDs** (not usernames or display names) for the allowlist.
 
 To find a Member ID:
 
@@ -142,7 +142,7 @@ Member IDs look like `U01ABC2DEF3`. You need your own Member ID at minimum.
 
 ---
 
-## Step 7: Configure Virat Code
+## Step 7: Configure Virat-Code
 
 Add the following to your `~/.virat-code/.env` file:
 
@@ -176,7 +176,7 @@ Virat-Code gateway install      # Install as a system service
 After starting the gateway, you need to **invite the bot** to any channel where you want it to respond:
 
 ```
-/invite @Virat Code
+/invite @Virat-Code
 ```
 
 The bot will **not** automatically join channels. You must invite it to each channel individually.
@@ -185,12 +185,12 @@ The bot will **not** automatically join channels. You must invite it to each cha
 
 ## How the Bot Responds
 
-Understanding how Virat Code behaves in different contexts:
+Understanding how Virat-Code behaves in different contexts:
 
 | Context | Behavior |
 |---------|----------|
 | **DMs** | Bot responds to every message — no @mention needed |
-| **Channels** | Bot **only responds when @mentioned** (e.g., `@Virat Code what time is it?`) |
+| **Channels** | Bot **only responds when @mentioned** (e.g., `@Virat-Code what time is it?`) |
 | **Threads** | Bot replies in threads when the triggering message is in a thread |
 
 :::tip
@@ -202,7 +202,7 @@ This is intentional — it prevents the bot from responding to every message in 
 
 ## Home Channel
 
-Set `SLACK_HOME_CHANNEL` to a channel ID where Virat Code will deliver scheduled messages,
+Set `SLACK_HOME_CHANNEL` to a channel ID where Virat-Code will deliver scheduled messages,
 cron job results, and other proactive notifications. To find a channel ID:
 
 1. Right-click the channel name in Slack
@@ -213,13 +213,13 @@ cron job results, and other proactive notifications. To find a channel ID:
 SLACK_HOME_CHANNEL=C01234567890
 ```
 
-Make sure the bot has been **invited to the channel** (`/invite @Virat Code`).
+Make sure the bot has been **invited to the channel** (`/invite @Virat-Code`).
 
 ---
 
 ## Voice Messages
 
-Virat Code supports voice on Slack:
+Virat-Code supports voice on Slack:
 
 - **Incoming:** Voice/audio messages are automatically transcribed using Whisper (requires `VOICE_TOOLS_OPENAI_KEY`)
 - **Outgoing:** TTS responses are sent as audio file attachments
@@ -231,11 +231,11 @@ Virat Code supports voice on Slack:
 | Problem | Solution |
 |---------|----------|
 | Bot doesn't respond to DMs | Verify `message.im` is in your event subscriptions and the app is reinstalled |
-| Bot works in DMs but not in channels | **Most common issue.** Add `message.channels` and `message.groups` to event subscriptions, reinstall the app, and invite the bot to the channel with `/invite @Virat Code` |
+| Bot works in DMs but not in channels | **Most common issue.** Add `message.channels` and `message.groups` to event subscriptions, reinstall the app, and invite the bot to the channel with `/invite @Virat-Code` |
 | Bot doesn't respond to @mentions in channels | 1) Check `message.channels` event is subscribed. 2) Bot must be invited to the channel. 3) Ensure `channels:history` scope is added. 4) Reinstall the app after scope/event changes |
 | Bot ignores messages in private channels | Add both the `message.groups` event subscription and `groups:history` scope, then reinstall the app and `/invite` the bot |
 | "not_authed" or "invalid_auth" errors | Regenerate your Bot Token and App Token, update `.env` |
-| Bot responds but can't post in a channel | Invite the bot to the channel with `/invite @Virat Code` |
+| Bot responds but can't post in a channel | Invite the bot to the channel with `/invite @Virat-Code` |
 | "missing_scope" error | Add the required scope in OAuth & Permissions, then **reinstall** the app |
 | Socket disconnects frequently | Check your network; Bolt auto-reconnects but unstable connections cause lag |
 | Changed scopes/events but nothing changed | You **must reinstall** the app to your workspace after any scope or event subscription change |
@@ -250,7 +250,7 @@ If the bot isn't working in channels, verify **all** of the following:
 4. ✅ `channels:history` scope is added (for public channels)
 5. ✅ `groups:history` scope is added (for private channels)
 6. ✅ App was **reinstalled** after adding scopes/events
-7. ✅ Bot was **invited** to the channel (`/invite @Virat Code`)
+7. ✅ Bot was **invited** to the channel (`/invite @Virat-Code`)
 8. ✅ You are **@mentioning** the bot in your message
 
 ---
@@ -265,5 +265,5 @@ treat them like passwords.
 
 - Tokens should be stored in `~/.virat-code/.env` (file permissions `600`)
 - Rotate tokens periodically via the Slack app settings
-- Audit who has access to your Virat Code config directory
+- Audit who has access to your Virat-Code config directory
 - Socket Mode means no public endpoint is exposed — one less attack surface

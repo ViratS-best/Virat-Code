@@ -205,7 +205,7 @@ These work in messaging platforms (Telegram, Discord, Slack, WhatsApp) but not t
 | `/reload-mcp` | Reload MCP servers from config |
 | `/rollback` | List filesystem checkpoints for the current directory |
 | `/rollback <N>` | Restore files to checkpoint #N |
-| `/update` | Update Virat Code to the latest version |
+| `/update` | Update Virat-Code to the latest version |
 
 ---
 
