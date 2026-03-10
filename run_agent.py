@@ -384,7 +384,7 @@ class AIAgent:
         effective_base = client_kwargs.get("base_url", "")
         if "openrouter" in effective_base.lower():
             client_kwargs["default_headers"] = {
-                "HTTP-Referer": "https://github.com/NousResearch/Virat Code",
+                "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
                 "X-OpenRouter-Title": "Virat Code",
                 "X-OpenRouter-Categories": "productivity,cli-agent",
             }
@@ -2295,7 +2295,7 @@ class AIAgent:
             client_kwargs = {"api_key": fb_key, "base_url": fb_base_url}
             if "openrouter" in fb_base_url.lower():
                 client_kwargs["default_headers"] = {
-                    "HTTP-Referer": "https://github.com/NousResearch/Virat Code",
+                    "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
                     "X-OpenRouter-Title": "Virat Code",
                     "X-OpenRouter-Categories": "productivity,cli-agent",
                 }

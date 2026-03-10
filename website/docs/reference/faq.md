@@ -17,7 +17,7 @@ Quick answers and fixes for the most common questions and issues.
 Virat Code works with any OpenAI-compatible API. Supported providers include:
 
 - **[OpenRouter](https://openrouter.ai/)** — access hundreds of models through one API key (recommended for flexibility)
-- **Nous Portal** — Nous Research's own inference endpoint
+- **Nous Portal** — Virat Sisodiya's own inference endpoint
 - **OpenAI** — GPT-4o, o1, o3, etc.
 - **Anthropic** — Claude models (via OpenRouter or compatible proxy)
 - **Google** — Gemini models (via OpenRouter or compatible proxy)
@@ -33,7 +33,7 @@ Set your provider with `hermes setup` or by editing `~/.hermes/.env`. See the [E
 **Not natively.** Virat Code requires a Unix-like environment. On Windows, install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) and run Hermes from inside it. The standard install command works perfectly in WSL2:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NousResearch/Virat Code/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
 ```
 
 ### Is my data sent anywhere?
@@ -144,7 +144,7 @@ source ~/.bashrc
 # If you previously installed with sudo, clean up:
 sudo rm /usr/local/bin/hermes
 # Then re-run the standard installer
-curl -fsSL https://raw.githubusercontent.com/NousResearch/Virat Code/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
 ```
 
 ---
@@ -425,6 +425,6 @@ If an MCP server crashes mid-request, Hermes will report a timeout. Check the se
 
 If your issue isn't covered here:
 
-1. **Search existing issues:** [GitHub Issues](https://github.com/NousResearch/Virat Code/issues)
-2. **Ask the community:** [Nous Research Discord](https://discord.gg/nousresearch)
+1. **Search existing issues:** [GitHub Issues](https://github.com/ViratS-best/Virat-Code/issues)
+2. **Ask the community:** [Virat Sisodiya Discord](https://discord.gg/nousresearch)
 3. **File a bug report:** Include your OS, Python version (`python3 --version`), Hermes version (`hermes --version`), and the full error message

@@ -15,19 +15,19 @@ Hermes isn't just a CLI tool. You can import `AIAgent` directly and use it progr
 Install Hermes directly from the repository:
 
 ```bash
-pip install git+https://github.com/NousResearch/Virat Code.git
+pip install git+https://github.com/ViratS-best/Virat-Code.git
 ```
 
 Or with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv pip install git+https://github.com/NousResearch/Virat Code.git
+uv pip install git+https://github.com/ViratS-best/Virat-Code.git
 ```
 
 You can also pin it in your `requirements.txt`:
 
 ```text
-Virat Code @ git+https://github.com/NousResearch/Virat Code.git
+Virat Code @ git+https://github.com/ViratS-best/Virat-Code.git
 ```
 
 :::tip

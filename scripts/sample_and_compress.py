@@ -30,9 +30,9 @@ load_dotenv()
 # Default datasets to sample from
 DEFAULT_DATASETS = [
     "NousResearch/swe-terminus-agent-glm-kimi-minimax",
-    "NousResearch/Virat Code-megascience-sft1",
-    "NousResearch/Virat Code-Thinking-GLM-4.7-SFT2",
-    "NousResearch/Virat Code-Thinking-GLM-4.7-SFT1",
+    "ViratS-best/Virat-Code-megascience-sft1",
+    "ViratS-best/Virat-Code-Thinking-GLM-4.7-SFT2",
+    "ViratS-best/Virat-Code-Thinking-GLM-4.7-SFT1",
     "NousResearch/terminal-tasks-glm-Virat Code"
 ]
 

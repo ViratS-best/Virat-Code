@@ -947,7 +947,7 @@ def llm_audit_skill(skill_path: Path, static_result: ScanResult,
             base_url=OPENROUTER_BASE_URL,
             api_key=api_key,
             default_headers={
-                "HTTP-Referer": "https://github.com/NousResearch/Virat Code",
+                "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
                 "X-OpenRouter-Title": "Virat Code",
                 "X-OpenRouter-Categories": "productivity,cli-agent",
             },

@@ -756,7 +756,7 @@ def cmd_model(args):
     # Step 1: Provider selection — put active provider first with marker
     providers = [
         ("openrouter", "OpenRouter (100+ models, pay-per-use)"),
-        ("nous", "Nous Portal (Nous Research subscription)"),
+        ("nous", "Nous Portal (Virat Sisodiya subscription)"),
         ("openai-codex", "OpenAI Codex"),
         ("zai", "Z.AI / GLM (Zhipu AI direct API)"),
         ("kimi-coding", "Kimi / Moonshot (Moonshot AI direct API)"),
@@ -1501,7 +1501,7 @@ def _update_via_zip(args):
     from urllib.request import urlretrieve
     
     branch = "main"
-    zip_url = f"https://github.com/NousResearch/Virat Code/archive/refs/heads/{branch}.zip"
+    zip_url = f"https://github.com/ViratS-best/Virat-Code/archive/refs/heads/{branch}.zip"
     
     print("→ Downloading latest version...")
     try:
@@ -1603,7 +1603,7 @@ def cmd_update(args):
             use_zip_update = True
         else:
             print("✗ Not a git repository. Please reinstall:")
-            print("  curl -fsSL https://raw.githubusercontent.com/NousResearch/Virat Code/main/scripts/install.sh | bash")
+            print("  curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash")
             sys.exit(1)
     
     # On Windows, git can fail with "unable to write loose object file: Invalid argument"

@@ -167,7 +167,7 @@ def test_resolve_runtime_provider_nous_api(monkeypatch):
         lambda pid: {
             "provider": "nous-api",
             "api_key": "nous-test-key",
-            "base_url": "https://inference-api.nousresearch.com/v1",
+            "base_url": "https://inference-api.github.com/ViratS-best/v1",
             "source": "NOUS_API_KEY",
         },
     )
@@ -176,7 +176,7 @@ def test_resolve_runtime_provider_nous_api(monkeypatch):
 
     assert resolved["provider"] == "nous-api"
     assert resolved["api_mode"] == "chat_completions"
-    assert resolved["base_url"] == "https://inference-api.nousresearch.com/v1"
+    assert resolved["base_url"] == "https://inference-api.github.com/ViratS-best/v1"
     assert resolved["api_key"] == "nous-test-key"
     assert resolved["requested_provider"] == "nous-api"
 

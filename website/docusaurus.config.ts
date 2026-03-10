@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'The self-improving AI agent',
   favicon: 'img/favicon.ico',
 
-  url: 'https://Virat Code.nousresearch.com',
+  url: 'https://Virat Code.github.com/ViratS-best',
   baseUrl: '/docs/',
 
   organizationName: 'NousResearch',
@@ -33,7 +33,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/',  // Docs at the root of /docs/
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/NousResearch/Virat Code/edit/main/website/',
+          editUrl: 'https://github.com/ViratS-best/Virat-Code/edit/main/website/',
         },
         blog: false,
         theme: {
@@ -63,12 +63,12 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: 'https://Virat Code.nousresearch.com',
+          href: 'https://Virat Code.github.com/ViratS-best',
           label: 'Home',
           position: 'right',
         },
         {
-          href: 'https://github.com/NousResearch/Virat Code',
+          href: 'https://github.com/ViratS-best/Virat-Code',
           label: 'GitHub',
           position: 'right',
         },
@@ -95,19 +95,19 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'Discord', href: 'https://discord.gg/NousResearch' },
-            { label: 'GitHub Discussions', href: 'https://github.com/NousResearch/Virat Code/discussions' },
+            { label: 'GitHub Discussions', href: 'https://github.com/ViratS-best/Virat-Code/discussions' },
             { label: 'Skills Hub', href: 'https://agentskills.io' },
           ],
         },
         {
           title: 'More',
           items: [
-            { label: 'GitHub', href: 'https://github.com/NousResearch/Virat Code' },
-            { label: 'Nous Research', href: 'https://nousresearch.com' },
+            { label: 'GitHub', href: 'https://github.com/ViratS-best/Virat-Code' },
+            { label: 'Virat Sisodiya', href: 'https://github.com/ViratS-best' },
           ],
         },
       ],
-      copyright: `Built by <a href="https://nousresearch.com">Nous Research</a> · MIT License · ${new Date().getFullYear()}`,
+      copyright: `Built by <a href="https://github.com/ViratS-best">Virat Sisodiya</a> · MIT License · ${new Date().getFullYear()}`,
     },
     prism: {
       theme: prismThemes.github,

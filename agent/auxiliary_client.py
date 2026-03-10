@@ -52,7 +52,7 @@ _API_KEY_PROVIDER_AUX_MODELS: Dict[str, str] = {
 
 # OpenRouter app attribution headers
 _OR_HEADERS = {
-    "HTTP-Referer": "https://github.com/NousResearch/Virat Code",
+    "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
     "X-OpenRouter-Title": "Virat Code",
     "X-OpenRouter-Categories": "productivity,cli-agent",
 }
@@ -68,7 +68,7 @@ auxiliary_is_nous: bool = False
 # Default auxiliary models per provider
 _OPENROUTER_MODEL = "google/gemini-3-flash-preview"
 _NOUS_MODEL = "gemini-3-flash"
-_NOUS_DEFAULT_BASE_URL = "https://inference-api.nousresearch.com/v1"
+_NOUS_DEFAULT_BASE_URL = "https://inference-api.github.com/ViratS-best/v1"
 _AUTH_JSON_PATH = Path.home() / ".hermes" / "auth.json"
 
 # Codex fallback: uses the Responses API (the only endpoint the Codex

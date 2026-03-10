@@ -210,7 +210,7 @@ OPTIONAL_ENV_VARS = {
     "NOUS_API_KEY": {
         "description": "Nous Portal API key (direct API key access to Nous inference)",
         "prompt": "Nous Portal API key",
-        "url": "https://portal.nousresearch.com",
+        "url": "https://portal.github.com/ViratS-best",
         "password": True,
         "category": "provider",
         "advanced": True,

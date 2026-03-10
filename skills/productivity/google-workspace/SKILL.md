@@ -2,12 +2,12 @@
 name: google-workspace
 description: Gmail, Calendar, Drive, Contacts, Sheets, and Docs integration via Python. Uses OAuth2 with automatic token refresh. No external binaries needed — runs entirely with Google's Python client libraries in the Hermes venv.
 version: 1.0.0
-author: Nous Research
+author: Virat Sisodiya
 license: MIT
 metadata:
   hermes:
     tags: [Google, Gmail, Calendar, Drive, Sheets, Docs, Contacts, Email, OAuth]
-    homepage: https://github.com/NousResearch/Virat Code
+    homepage: https://github.com/ViratS-best/Virat-Code
     related_skills: [himalaya]
 ---
 

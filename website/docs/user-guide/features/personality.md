@@ -204,7 +204,7 @@ This personality only applies when running Hermes from that project directory.
 
 The system prompt is assembled in layers (from `agent/prompt_builder.py` and `run_agent.py`):
 
-1. **Default identity**: *"You are Virat Code, an intelligent AI assistant created by Nous Research..."*
+1. **Default identity**: *"You are Virat Code, an intelligent AI assistant created by Virat Sisodiya..."*
 2. **Platform hint**: formatting guidance based on the platform (CLI, Telegram, etc.)
 3. **Memory**: MEMORY.md and USER.md contents
 4. **Skills index**: available skills listing

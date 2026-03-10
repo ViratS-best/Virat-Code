@@ -13,7 +13,7 @@ Get Virat Code up and running in under two minutes with the one-line installer, 
 ### Linux / macOS / WSL2
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NousResearch/Virat Code/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
 ```
 
 :::warning Windows
@@ -61,7 +61,7 @@ If you prefer full control over the installation process, follow these steps.
 Clone with `--recurse-submodules` to pull the required submodules:
 
 ```bash
-git clone --recurse-submodules https://github.com/NousResearch/Virat Code.git
+git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
 cd Virat Code
 ```
 
@@ -218,7 +218,7 @@ For those who just want the commands:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone & enter
-git clone --recurse-submodules https://github.com/NousResearch/Virat Code.git
+git clone --recurse-submodules https://github.com/ViratS-best/Virat-Code.git
 cd Virat Code
 
 # Create venv with Python 3.11

@@ -1031,7 +1031,7 @@ class TestNousCredentialRefresh:
             captured.update(kwargs)
             return {
                 "api_key": "new-nous-key",
-                "base_url": "https://inference-api.nousresearch.com/v1",
+                "base_url": "https://inference-api.github.com/ViratS-best/v1",
             }
 
         def _fake_openai(**kwargs):
@@ -1048,7 +1048,7 @@ class TestNousCredentialRefresh:
         assert closed["value"] is True
         assert captured["force_mint"] is True
         assert rebuilt["kwargs"]["api_key"] == "new-nous-key"
-        assert rebuilt["kwargs"]["base_url"] == "https://inference-api.nousresearch.com/v1"
+        assert rebuilt["kwargs"]["base_url"] == "https://inference-api.github.com/ViratS-best/v1"
         assert "default_headers" not in rebuilt["kwargs"]
         assert isinstance(agent.client, _RebuiltClient)
 

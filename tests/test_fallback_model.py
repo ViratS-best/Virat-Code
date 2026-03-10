@@ -259,7 +259,7 @@ class TestTryActivateFallback:
         )
         mock_creds = {
             "api_key": "nous-agent-key-abc",
-            "base_url": "https://inference-api.nousresearch.com/v1",
+            "base_url": "https://inference-api.github.com/ViratS-best/v1",
         }
         with (
             patch("hermes_cli.auth.resolve_nous_runtime_credentials", return_value=mock_creds),
@@ -272,7 +272,7 @@ class TestTryActivateFallback:
             assert agent.api_mode == "chat_completions"
             call_kwargs = mock_openai.call_args[1]
             assert call_kwargs["api_key"] == "nous-agent-key-abc"
-            assert "nousresearch.com" in call_kwargs["base_url"]
+            assert "github.com/ViratS-best" in call_kwargs["base_url"]
 
     def test_nous_fallback_fails_gracefully_without_login(self):
         """Nous fallback should return False if not logged in."""

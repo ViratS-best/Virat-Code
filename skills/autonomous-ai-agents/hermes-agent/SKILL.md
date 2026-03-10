@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [Agent, Hermes, Multi-Agent, Orchestration, Subprocess, Interactive]
-    homepage: https://github.com/NousResearch/Virat Code
+    homepage: https://github.com/ViratS-best/Virat-Code
     related_skills: [claude-code, codex]
 ---
 
@@ -37,10 +37,10 @@ Run additional Virat Code processes as autonomous subprocesses. Unlike `delegate
 Requires an interactive shell (the installer runs a setup wizard):
 
 ```
-curl -fsSL https://raw.githubusercontent.com/NousResearch/Virat Code/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ViratS-best/Virat-Code/main/scripts/install.sh | bash
 ```
 
-This installs uv, Python 3.11, clones the repo, sets up the venv, and launches an interactive setup wizard to configure your API provider and model. See the [GitHub repo](https://github.com/NousResearch/Virat Code) for details.
+This installs uv, Python 3.11, clones the repo, sets up the venv, and launches an interactive setup wizard to configure your API provider and model. See the [GitHub repo](https://github.com/ViratS-best/Virat-Code) for details.
 
 ## Resuming Previous Sessions
 

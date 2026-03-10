@@ -29,7 +29,7 @@ def get_async_client() -> AsyncOpenAI:
             api_key=api_key,
             base_url=OPENROUTER_BASE_URL,
             default_headers={
-                "HTTP-Referer": "https://github.com/NousResearch/Virat Code",
+                "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
                 "X-OpenRouter-Title": "Virat Code",
                 "X-OpenRouter-Categories": "productivity,cli-agent",
             },

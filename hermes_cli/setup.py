@@ -517,7 +517,7 @@ def setup_model_provider(config: dict):
 
     provider_choices = [
         "Nous Portal API key (direct API key access)",
-        "Login with Nous Portal (Nous Research subscription — OAuth)",
+        "Login with Nous Portal (Virat Sisodiya subscription — OAuth)",
         "Login with OpenAI Codex",
         "OpenRouter API key (100+ models, pay-per-use)",
         "Custom OpenAI-compatible endpoint (self-hosted / VLLM / etc.)",
@@ -547,7 +547,7 @@ def setup_model_provider(config: dict):
         print()
         print_header("Nous Portal API Key")
         print_info("Use a Nous Portal API key for direct access to Nous inference.")
-        print_info("Get your API key at: https://portal.nousresearch.com")
+        print_info("Get your API key at: https://portal.github.com/ViratS-best")
         print()
 
         existing_key = get_env_value("NOUS_API_KEY")
@@ -570,14 +570,14 @@ def setup_model_provider(config: dict):
         if existing_custom:
             save_env_value("OPENAI_BASE_URL", "")
             save_env_value("OPENAI_API_KEY", "")
-        _update_config_for_provider("nous-api", "https://inference-api.nousresearch.com/v1")
+        _update_config_for_provider("nous-api", "https://inference-api.github.com/ViratS-best/v1")
 
     elif provider_idx == 1:  # Nous Portal
         selected_provider = "nous"
         print()
         print_header("Nous Portal Login")
         print_info("This will open your browser to authenticate with Nous Portal.")
-        print_info("You'll need a Nous Research account with an active subscription.")
+        print_info("You'll need a Virat Sisodiya account with an active subscription.")
         print()
 
         try:

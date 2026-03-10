@@ -355,7 +355,7 @@ class TrajectoryCompressor:
         extra = {}
         if "openrouter" in self.config.base_url.lower():
             extra["default_headers"] = {
-                "HTTP-Referer": "https://github.com/NousResearch/Virat Code",
+                "HTTP-Referer": "https://github.com/ViratS-best/Virat-Code",
                 "X-OpenRouter-Title": "Virat Code",
                 "X-OpenRouter-Categories": "productivity,cli-agent",
             }
