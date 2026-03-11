@@ -1,4 +1,4 @@
-# ============================================================================
+﻿# ============================================================================
 # Virat-Code Installer for Windows
 # ============================================================================
 # Installation script for Windows (PowerShell).
@@ -40,7 +40,7 @@ function Write-Banner {
     Write-Host "┌─────────────────────────────────────────────────────────┐" -ForegroundColor Magenta
     Write-Host "│             ⚕ Virat-Code Installer                   │" -ForegroundColor Magenta
     Write-Host "├─────────────────────────────────────────────────────────┤" -ForegroundColor Magenta
-    Write-Host "│  An closed source AI agent by Virat Sisodiya.              │" -ForegroundColor Magenta
+    Write-Host "│  A closed source AI agent by Virat Sisodiya.              │" -ForegroundColor Magenta
     Write-Host "└─────────────────────────────────────────────────────────┘" -ForegroundColor Magenta
     Write-Host ""
 }
@@ -105,7 +105,6 @@ function Install-Uv {
             $uvExe = "$env:USERPROFILE\.cargo\bin\uv.exe"
         }
         if (-not (Test-Path $uvExe)) {
-            # Refresh PATH and try again
             $env:Path = [Environment]::GetEnvironmentVariable("Path", "User") + ";" + [Environment]::GetEnvironmentVariable("Path", "Machine")
             if (Get-Command uv -ErrorAction SilentlyContinue) {
                 $uvExe = (Get-Command uv).Source
@@ -122,7 +121,8 @@ function Install-Uv {
         Write-Err "uv installed but not found on PATH"
         Write-Info "Try restarting your terminal and re-running"
         return $false
-    } catch {
+    }
+    catch {
         Write-Err "Failed to install uv"
         Write-Info "Install manually: https://docs.astral.sh/uv/getting-started/installation/"
         return $false
@@ -140,7 +140,8 @@ function Test-Python {
             Write-Success "Python found: $ver"
             return $true
         }
-    } catch { }
+    }
+    catch { }
     
     # Python not found — use uv to install it (no admin needed!)
     Write-Info "Python $PythonVersion not found, installing via uv..."
@@ -153,11 +154,13 @@ function Test-Python {
                 Write-Success "Python installed: $ver"
                 return $true
             }
-        } else {
+        }
+        else {
             Write-Warn "uv python install output:"
             Write-Host $uvOutput -ForegroundColor DarkGray
         }
-    } catch {
+    }
+    catch {
         Write-Warn "uv python install error: $_"
     }
 
@@ -172,7 +175,8 @@ function Test-Python {
                 $script:PythonVersion = $fallbackVer
                 return $true
             }
-        } catch { }
+        }
+        catch { }
     }
 
     # Fallback: try system python
@@ -241,7 +245,8 @@ function Test-Node {
                 $script:HasNode = $true
                 return $true
             }
-        } catch { }
+        }
+        catch { }
     }
 
     # Fallback: download binary zip to ~/.virat-code/node/
@@ -276,7 +281,8 @@ function Test-Node {
                 return $true
             }
         }
-    } catch {
+    }
+    catch {
         Write-Warn "Download failed: $_"
     }
 
@@ -297,7 +303,8 @@ function Install-SystemPackages {
         $version = rg --version | Select-Object -First 1
         Write-Success "$version found"
         $script:HasRipgrep = $true
-    } else {
+    }
+    else {
         $needRipgrep = $true
     }
 
@@ -305,7 +312,8 @@ function Install-SystemPackages {
     if (Get-Command ffmpeg -ErrorAction SilentlyContinue) {
         Write-Success "ffmpeg found"
         $script:HasFfmpeg = $true
-    } else {
+    }
+    else {
         $needFfmpeg = $true
     }
 
@@ -341,7 +349,8 @@ function Install-SystemPackages {
         foreach ($pkg in $wingetPkgs) {
             try {
                 winget install $pkg --silent --accept-package-agreements --accept-source-agreements 2>&1 | Out-Null
-            } catch { }
+            }
+            catch { }
         }
         # Refresh PATH and recheck
         $env:Path = [Environment]::GetEnvironmentVariable("Path", "User") + ";" + [Environment]::GetEnvironmentVariable("Path", "Machine")
@@ -420,12 +429,14 @@ function Install-Repository {
             git -c windows.appendAtomically=false checkout $Branch
             git -c windows.appendAtomically=false pull origin $Branch
             Pop-Location
-        } else {
+        }
+        else {
             Write-Err "Directory exists but is not a git repository: $InstallDir"
             Write-Info "Remove it or choose a different directory with -InstallDir"
             throw "Directory exists but is not a git repository: $InstallDir"
         }
-    } else {
+    }
+    else {
         $cloneSuccess = $false
 
         # Fix Windows git "copy-fd: write returned: Invalid argument" error.
@@ -444,7 +455,8 @@ function Install-Repository {
         try {
             git -c windows.appendAtomically=false clone --branch $Branch --recurse-submodules $RepoUrlSsh $InstallDir
             if ($LASTEXITCODE -eq 0) { $cloneSuccess = $true }
-        } catch { }
+        }
+        catch { }
         $env:GIT_SSH_COMMAND = $null
         
         if (-not $cloneSuccess) {
@@ -453,7 +465,8 @@ function Install-Repository {
             try {
                 git -c windows.appendAtomically=false clone --branch $Branch --recurse-submodules $RepoUrlHttps $InstallDir
                 if ($LASTEXITCODE -eq 0) { $cloneSuccess = $true }
-            } catch { }
+            }
+            catch { }
         }
 
         # Fallback: download ZIP archive (bypasses git file I/O issues entirely)
@@ -490,7 +503,8 @@ function Install-Repository {
                 # Cleanup temp files
                 Remove-Item -Force $zipPath -ErrorAction SilentlyContinue
                 Remove-Item -Recurse -Force $extractPath -ErrorAction SilentlyContinue
-            } catch {
+            }
+            catch {
                 Write-Err "ZIP download also failed: $_"
             }
         }
@@ -509,7 +523,8 @@ function Install-Repository {
     git -c windows.appendAtomically=false submodule update --init --recursive 2>$null
     if ($LASTEXITCODE -ne 0) {
         Write-Warn "Submodule init failed (terminal/RL tools may need manual setup)"
-    } else {
+    }
+    else {
         Write-Success "Submodules ready"
     }
     Pop-Location
@@ -553,7 +568,8 @@ function Install-Dependencies {
     # Install main package with all extras
     try {
         & $UvCmd pip install -e ".[all]" 2>&1 | Out-Null
-    } catch {
+    }
+    catch {
         & $UvCmd pip install -e "." | Out-Null
     }
     
@@ -565,10 +581,12 @@ function Install-Dependencies {
         try {
             & $UvCmd pip install -e ".\mini-swe-agent" 2>&1 | Out-Null
             Write-Success "mini-swe-agent installed"
-        } catch {
+        }
+        catch {
             Write-Warn "mini-swe-agent install failed (terminal tools may not work)"
         }
-    } else {
+    }
+    else {
         Write-Warn "mini-swe-agent not found (run: git submodule update --init)"
     }
     
@@ -577,10 +595,12 @@ function Install-Dependencies {
         try {
             & $UvCmd pip install -e ".\tinker-atropos" 2>&1 | Out-Null
             Write-Success "tinker-atropos installed"
-        } catch {
+        }
+        catch {
             Write-Warn "tinker-atropos install failed (RL tools may not work)"
         }
-    } else {
+    }
+    else {
         Write-Warn "tinker-atropos not found (run: git submodule update --init)"
     }
     
@@ -594,7 +614,8 @@ function Set-PathVariable {
     
     if ($NoVenv) {
         $viratCodeBin = "$InstallDir"
-    } else {
+    }
+    else {
         $viratCodeBin = "$InstallDir\venv\Scripts"
     }
     
@@ -609,7 +630,8 @@ function Set-PathVariable {
             "User"
         )
         Write-Success "Added to user PATH: $viratCodeBin"
-    } else {
+    }
+    else {
         Write-Info "PATH already configured"
     }
     
@@ -651,11 +673,13 @@ function Copy-ConfigTemplates {
         if (Test-Path $examplePath) {
             Copy-Item $examplePath $envPath
             Write-Success "Created ~/.virat-code/.env from template"
-        } else {
+        }
+        else {
             New-Item -ItemType File -Force -Path $envPath | Out-Null
             Write-Success "Created ~/.virat-code/.env"
         }
-    } else {
+    }
+    else {
         Write-Info "~/.virat-code/.env already exists, keeping it"
     }
     
@@ -667,7 +691,8 @@ function Copy-ConfigTemplates {
             Copy-Item $examplePath $configPath
             Write-Success "Created ~/.virat-code/config.yaml from template"
         }
-    } else {
+    }
+    else {
         Write-Info "~/.virat-code/config.yaml already exists, keeping it"
     }
     
@@ -703,7 +728,8 @@ Delete the contents (or this file) to use the default personality.
         try {
             & $pythonExe "$InstallDir\tools\skills_sync.py" 2>$null
             Write-Success "Skills synced to ~/.virat-code/skills/"
-        } catch {
+        }
+        catch {
             # Fallback: simple directory copy
             $bundledSkills = "$InstallDir\skills"
             $userSkills = "$ViratCodeHome\skills"
@@ -728,7 +754,8 @@ function Install-NodeDeps {
         try {
             npm install --silent 2>&1 | Out-Null
             Write-Success "Node.js dependencies installed"
-        } catch {
+        }
+        catch {
             Write-Warn "npm install failed (browser tools may not work)"
         }
     }
@@ -741,7 +768,8 @@ function Install-NodeDeps {
         try {
             npm install --silent 2>&1 | Out-Null
             Write-Success "WhatsApp bridge dependencies installed"
-        } catch {
+        }
+        catch {
             Write-Warn "WhatsApp bridge npm install failed (WhatsApp may not work)"
         }
         Pop-Location
@@ -765,7 +793,8 @@ function Invoke-SetupWizard {
     # Run Virat-Code setup using the venv Python directly (no activation needed)
     if (-not $NoVenv) {
         & ".\venv\Scripts\python.exe" -m virat_code_cli.main setup
-    } else {
+    }
+    else {
         python -m virat_code_cli.main setup
     }
     
@@ -802,7 +831,8 @@ function Start-GatewayIfConfigured {
         if ($response -eq "" -or $response -match "^[Yy]") {
             try {
                 & $viratCodeCmd whatsapp
-            } catch {
+            }
+            catch {
                 # Expected after pairing completes
             }
         }
@@ -825,10 +855,12 @@ function Start-GatewayIfConfigured {
             Write-Success "Gateway started! Your bot is now online."
             Write-Info "Logs: $logFile"
             Write-Info "To stop: close the gateway process from Task Manager"
-        } catch {
+        }
+        catch {
             Write-Warn "Failed to start gateway. Run manually: Virat-Code gateway"
         }
-    } else {
+    }
+    else {
         Write-Info "Skipped. Start the gateway later with: Virat-Code gateway"
     }
 }
@@ -897,9 +929,9 @@ function Write-Completion {
 function Main {
     Write-Banner
     
-    if (-not (Install-Uv)) { throw "uv installation failed — cannot continue" }
-    if (-not (Test-Python)) { throw "Python $PythonVersion not available — cannot continue" }
-    if (-not (Test-Git)) { throw "Git not found — install from https://git-scm.com/download/win" }
+    if (-not (Install-Uv)) { throw "uv installation failed - cannot continue" }
+    if (-not (Test-Python)) { throw "Python $PythonVersion not available - cannot continue" }
+    if (-not (Test-Git)) { throw "Git not found - install from https://git-scm.com/download/win" }
     Test-Node              # Auto-installs if missing
     Install-SystemPackages  # ripgrep + ffmpeg in one step
     
@@ -920,7 +952,8 @@ function Main {
 # (exit/throw inside iex kills the entire PowerShell session)
 try {
     Main
-} catch {
+}
+catch {
     Write-Host ""
     Write-Err "Installation failed: $_"
     Write-Host ""
