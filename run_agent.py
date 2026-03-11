@@ -2407,11 +2407,6 @@ class AIAgent:
         if (_is_openrouter or _is_nous) and not _is_mistral:
             if self.reasoning_config is not None:
                 extra_body["reasoning"] = self.reasoning_config
-            else:
-                extra_body["reasoning"] = {
-                    "enabled": True,
-                    "effort": "medium"
-                }
 
         # Nous Portal product attribution
         if _is_nous:
